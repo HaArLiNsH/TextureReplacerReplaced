@@ -785,7 +785,7 @@ namespace TextureReplacer
             var femaleSuits = new List<string>();
             var eyelessHeads = new List<string>();
 
-            foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacer"))
+            foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
             {
                 ConfigNode customNode = file.config.GetNode("CustomKerbals");
                 if (customNode != null)

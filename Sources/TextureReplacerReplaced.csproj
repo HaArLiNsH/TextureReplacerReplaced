@@ -10,7 +10,7 @@
     <ProjectGuid>{2F4B8231-6DB5-4E24-BD56-4CB6FD27AA0D}</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'TextureReplacerReplaced|AnyCPU' ">
-    <OutputPath>..\GameData\TextureReplacer\Plugins\</OutputPath>
+    <OutputPath>..\GameData\TextureReplacerReplaced\Plugins\</OutputPath>
     <Optimize>true</Optimize>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>

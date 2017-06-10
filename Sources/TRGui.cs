@@ -368,7 +368,7 @@ namespace TextureReplacer
         {
             if (isGuiEnabled)
             {
-                foreach (ConfigNode node in GameDatabase.Instance.GetConfigNodes("TextureReplacer"))
+                foreach (ConfigNode node in GameDatabase.Instance.GetConfigNodes("TextureReplacerReplaced"))
                     Util.parse(node.GetValue("isGUIEnabled"), ref isGuiEnabled);
 
                 foreach (ConfigNode node in GameDatabase.Instance.GetConfigNodes("EXPERIENCE_TRAIT"))

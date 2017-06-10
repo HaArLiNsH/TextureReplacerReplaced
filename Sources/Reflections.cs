@@ -475,7 +475,7 @@ namespace TextureReplacer
                 return;
             }
 
-            if (!System.IO.File.Exists(KSPUtil.ApplicationRootPath + "GameData/TextureReplacer/Shaders/" + bundlePath))
+            if (!System.IO.File.Exists(KSPUtil.ApplicationRootPath + "GameData/TextureReplacerReplaced/Shaders/" + bundlePath))
             {
                 Util.log("Bundle '" + bundlePath + "' not found.");
                 BundleLoaded = true;
@@ -483,7 +483,7 @@ namespace TextureReplacer
                 return;
             }
 
-            using (WWW www = new WWW("file://" + KSPUtil.ApplicationRootPath + "GameData/TextureReplacer/Shaders/" + bundlePath))
+            using (WWW www = new WWW("file://" + KSPUtil.ApplicationRootPath + "GameData/TextureReplacerReplaced/Shaders/" + bundlePath))
             {
                 Util.log("Bundle '" + bundlePath + "' loaded.");
                 BundleLoaded = true;

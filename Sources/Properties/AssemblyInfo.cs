@@ -1,13 +1,13 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyTitle("TextureReplacer")]
+[assembly: AssemblyTitle("TextureReplacerReplaced")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TextureReplacer")]
-[assembly: AssemblyCopyright("© 2013-2017 Davorin Učakar, Ryan Bray, RangeMachine")]
+[assembly: AssemblyProduct("TextureReplacerReplaced")]
+[assembly: AssemblyCopyright("© 2013-2017 Davorin Učakar, Ryan Bray, RangeMachine, HaArLiNsH")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("2.6.0.0")]
+[assembly: AssemblyVersion("0.9")]
 
-[assembly: KSPAssembly("Texture Replacer", 2, 6)]
+[assembly: KSPAssembly("Texture Replacer Replaced", 0, 9)]
