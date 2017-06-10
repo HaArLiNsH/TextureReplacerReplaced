@@ -1,13 +1,17 @@
 ﻿![logo](https://cloud.githubusercontent.com/assets/11577601/19346143/808bc27c-914a-11e6-8bc9-4d80a0c08ae2.png)
 
-TextureReplacer
+TextureReplacerReplaced
 ===============
 
 * [Forum thread](http://forum.kerbalspaceprogram.com/index.php?/topic/96851-11-texturereplacer-2413-442016)
-* [GitHub page](http://github.com/RangeMachine/TextureReplacer)
+* [GitHub page](https://github.com/HaArLiNsH/TextureReplacerReplaced)
 
-TextureReplacer is a plugin for Kerbal Space Program that allows you to replace
-stock textures and customise your Kerbals. More specifically, it can:
+TextureReplacerReplaced is a plugin for Kerbal Space Program that allows you to replace
+stock textures and customise your Kerbals. 
+
+This is the continuation of [TextureReplacer](http://github.com/RangeMachine/TextureReplacer) made by Davorin Učakar. 
+
+More specifically, it can:
 
 * replace stock textures with custom ones,
 * assign personalised head and suit textures for each Kerbal,
@@ -22,16 +26,14 @@ stock textures and customise your Kerbals. More specifically, it can:
 
 Special thanks to:
 
-* Ducakar for making TextureReplacer in the first place, You rock man ! 
+* Davorin Učakar for making TextureReplacer in the first place, You rock man ! 
 * RangeMachine who kept this mod alive,
 * rbray89 who contributed a reflective visor shader and for Active Texture
   Management and Visual Enhancements where some code has been borrowed from,
-* Tingle for Universe Replacer; studying his code helped me a lot while
-  developing this plugin,
+* Tingle for Universe Replacer,
 * taniwha for KerbalStats that was optionally used by this plugin for gender
   determination and role-based suit assignment,
-* Razchek and Starwaster for Reflection Plugin where I learnt how to implement
-  reflections,
+* Razchek and Starwaster for Reflection Plugin,
 * sarbian for fixing an issue with non-mupliple-of-4 texture dimensions,
 * Ippo343 for contributing KSP-AVC configuration,
 * JPLRepo for contributing DeepFreeze compatibility fixes,
@@ -291,7 +293,7 @@ Known Issues
 Licence
 -------
 
-Copyright © 2013-2016 Davorin Učakar, Ryan Bray, RangeMachine, HaArliNsH
+Copyright © 2013-2017 Davorin Učakar, Ryan Bray, RangeMachine, HaArliNsH
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
