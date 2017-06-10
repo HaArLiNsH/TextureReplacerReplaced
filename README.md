@@ -3,7 +3,7 @@
 TextureReplacerReplaced
 ===============
 
-* [Forum thread](http://forum.kerbalspaceprogram.com/index.php?/topic/96851-11-texturereplacer-2413-442016)
+* [Forum thread](http://forum.kerbalspaceprogram.com/index.php?/topic/161898-13texturereplacerreplaced-v01/)
 * [GitHub page](https://github.com/HaArLiNsH/TextureReplacerReplaced)
 
 TextureReplacerReplaced is a plugin for Kerbal Space Program that allows you to replace
