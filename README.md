@@ -9,7 +9,7 @@ TextureReplacerReplaced
 TextureReplacerReplaced is a plugin for Kerbal Space Program that allows you to replace
 stock textures and customise your Kerbals. 
 
-This is the continuation of [TextureReplacer](http://github.com/RangeMachine/TextureReplacer) made by Davorin Učakar. 
+This is the continuation of [TextureReplacer](https://github.com/ducakar/TextureReplacer) made by Davorin Učakar. 
 
 More specifically, it can:
 
