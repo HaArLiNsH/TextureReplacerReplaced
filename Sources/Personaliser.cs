@@ -392,7 +392,7 @@ namespace TextureReplacer
 
                 switch (personaliser.personaliseEva(part, actualSuitState))
                 {
-                    case 0:     //IVA suit, if no air switch to state 1 : EVA
+                    case 0:     //IVA suit, if no air switch to state 1 : EVAground
                         actualSuitState = 0;
                         hasEvaSuit = false;
                         hasEvaGroundSuit = false;
@@ -526,6 +526,9 @@ namespace TextureReplacer
 
         // Atmospheric IVA suit parameters.
         public bool isAtmSuitEnabled = true;
+
+        // use of the legacy suit state from TextureReplacer
+        public bool isNewSuitStateEnabled = true;
 
         private double atmSuitPressure = 50.0;
         private readonly HashSet<string> atmSuitBodies = new HashSet<string>();
