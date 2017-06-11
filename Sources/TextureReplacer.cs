@@ -27,6 +27,7 @@ using System.Collections.Generic;
 
 namespace TextureReplacer
 {
+    // start at Mainmenu, so everythin else is finished loading. We don't need to be the early bird.
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
     public class TextureReplacer : MonoBehaviour
     {
@@ -67,25 +68,30 @@ namespace TextureReplacer
 
         public void LateUpdate()
         {
-            if (!isInitialised)
+            // only initialize once
+            if (!isLoaded)
             {
-                // Compress textures, generate mipmaps, convert DXT5 -> DXT1 if necessary etc.
-                Loader.instance.processTextures();
-
-                if (GameDatabase.Instance.IsReady())
+                if (!isInitialised)
                 {
-                    Loader.instance.initialise();
-                    isInitialised = true;
-                }
-            }
-            else if (PartLoader.Instance.IsReady())
-            {
-                Replacer.instance.load();
-                Reflections.instance.load();
-                Personaliser.instance.load();
+                    // Compress textures, generate mipmaps, convert DXT5 -> DXT1 if necessary etc.
+                    Loader.instance.processTextures();
 
-                isLoaded = true;
-                Destroy(this);
+                    if (GameDatabase.Instance.IsReady())
+                    {
+                        Loader.instance.initialise();
+                        isInitialised = true;
+                    }
+                }
+                else if (PartLoader.Instance.IsReady())
+                {
+                    Replacer.instance.load();
+                    Reflections.instance.load();
+                    Personaliser.instance.load();
+
+                    isLoaded = true;
+                    // we need this to stay alive, because it contains our shadersTable
+                    //Destroy(this);
+                }
             }
         }
 
