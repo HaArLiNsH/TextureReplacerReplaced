@@ -379,41 +379,60 @@ namespace TextureReplacer
             [KSPEvent(guiActive = true, guiName = "Toggle EVA Suit")]
             public void toggleEvaSuit()
             {
+                
                 Personaliser personaliser = Personaliser.instance;
 
-                if (actualSuitState < 2)
+                // new suit State for TRR
+                if (personaliser.isNewSuitStateEnabled)
                 {
-                    actualSuitState++;
-                }
-                else
-                {
-                    actualSuitState = 0;
-                }
-
-                switch (personaliser.personaliseEva(part, actualSuitState))
-                {
-                    case 0:     //IVA suit, if no air switch to state 1 : EVAground
+                    if (actualSuitState < 2)
+                    {
+                        actualSuitState++;
+                    }
+                    else
+                    {
                         actualSuitState = 0;
-                        hasEvaSuit = false;
-                        hasEvaGroundSuit = false;
+                    }
+
+                    switch (personaliser.personaliseEva(part, actualSuitState))
+                    {
+                        case 0:     //IVA suit, if no air switch to state 1 : EVAground
+                            actualSuitState = 0;
+                            hasEvaSuit = false;
+                            hasEvaGroundSuit = false;
+                            if (reflectionScript != null)
+                                reflectionScript.setActive(hasEvaSuit);
+                            break;
+                        case 1:     //EVAground suit
+                            actualSuitState = 1;
+                            hasEvaSuit = true;
+                            hasEvaGroundSuit = true;
+                            if (reflectionScript != null)
+                                reflectionScript.setActive(hasEvaSuit);
+                            break;
+                        case 2:     //EVA suit
+                            actualSuitState = 2;
+                            hasEvaSuit = true;
+                            hasEvaGroundSuit = false;
+                            if (reflectionScript != null)
+                                reflectionScript.setActive(hasEvaSuit);
+                            break;
+                    }
+                }
+                else // Legacy suit state from TextureReplacer
+                {
+                    if (personaliser.personaliseEvaLegacy(part, !hasEvaSuit))
+                    {
+                        hasEvaSuit = !hasEvaSuit;
+
                         if (reflectionScript != null)
                             reflectionScript.setActive(hasEvaSuit);
-                        break;
-                    case 1:     //EVAground suit
-                        actualSuitState = 1;
-                        hasEvaSuit = true;
-                        hasEvaGroundSuit = true;
-                        if (reflectionScript != null)
-                            reflectionScript.setActive(hasEvaSuit);
-                        break;
-                    case 2:     //EVA suit
-                        actualSuitState = 2;
-                        hasEvaSuit = true;
-                        hasEvaGroundSuit = false;
-                        if (reflectionScript != null)
-                            reflectionScript.setActive(hasEvaSuit);
-                        break;
-                }                                
+                    }
+                    else
+                    {
+                        ScreenMessages.PostScreenMessage("No breathable atmosphere", 5.0f, ScreenMessageStyle.UPPER_CENTER);
+                    }
+                }                             
             }
 
             public override void OnStart(StartState state)
@@ -559,6 +578,7 @@ namespace TextureReplacer
         /** wheter we are under sub orbit.
          * used to change automatically suits.
          */
+
         public bool isUnderSubOrbit(Kerbal kerbal)
         {
             bool value = false;
@@ -881,6 +901,167 @@ namespace TextureReplacer
             }
         }
 
+        private void personaliseKerbalLegacy(Component component, ProtoCrewMember kerbal, Part cabin, bool needsSuit)
+        {
+            KerbalData kerbalData = getKerbalData(kerbal);
+            bool isEva = cabin == null;
+
+            Head head = getKerbalHead(kerbal, kerbalData);
+            Suit suit = null;
+
+            if (isEva || !cabinSuits.TryGetValue(cabin.partInfo.name, out kerbalData.cabinSuit))
+                suit = getKerbalSuit(kerbal, kerbalData);
+
+            head = head == defaultHead[(int)kerbal.gender] ? null : head;
+            suit = (isEva && needsSuit) || kerbalData.cabinSuit == null ? suit : kerbalData.cabinSuit;
+            suit = suit == defaultSuit ? null : suit;
+
+            Transform model = isEva ? component.transform.Find("model01") : component.transform.Find("kbIVA@idle/model01");
+            Transform flag = isEva ? component.transform.Find("model/kbEVA_flagDecals") : null;
+
+            if (isEva)
+                flag.GetComponent<Renderer>().enabled = needsSuit;
+
+            // We must include hidden meshes, since flares are hidden when light is turned off.
+            // All other meshes are always visible, so no performance hit here.
+            foreach (Renderer renderer in model.GetComponentsInChildren<Renderer>(true))
+            {
+                var smr = renderer as SkinnedMeshRenderer;
+
+                // Thruster jets, flag decals and headlight flares.
+                if (smr == null)
+                {
+                    if (renderer.name != "screenMessage")
+                        renderer.enabled = needsSuit;
+                }
+                else
+                {
+                    Material material = renderer.material;
+                    Texture2D newTexture = null;
+                    Texture2D newNormalMap = null;
+
+                    switch (smr.name)
+                    {
+                        case "eyeballLeft":
+                        case "eyeballRight":
+                        case "pupilLeft":
+                        case "pupilRight":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballLeft":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballRight":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilLeft":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilRight":
+                            if (head != null && head.isEyeless)
+                                smr.sharedMesh = null;
+
+                            break;
+
+                        case "headMesh01":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pCube1":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_polySurface51":
+                        case "headMesh":
+                        case "ponytail":
+                            if (head != null)
+                            {
+                                newTexture = head.head;
+                                newNormalMap = head.headNRM;
+                            }
+                            break;
+
+                        case "tongue":
+                        case "upTeeth01":
+                        case "upTeeth02":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth01":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth01":
+                        case "downTeeth01":
+                            break;
+
+                        case "body01":
+                        case "mesh_female_kerbalAstronaut01_body01":
+                            bool isEvaSuit = isEva && needsSuit;
+
+                            if (suit != null)
+                            {
+                                newTexture = isEvaSuit ? suit.getEvaSuit(kerbal.experienceLevel) : suit.getSuit(kerbal.experienceLevel);
+                                newNormalMap = isEvaSuit ? suit.evaSuitNRM : suit.suitNRM;
+                            }
+
+                            if (newTexture == null)
+                            {
+                                // This required for two reasons: to fix IVA suits after KSP resetting them to the stock ones all the
+                                // time and to fix the switch from non-default to default texture during EVA suit toggle.
+                                newTexture = isEvaSuit ? defaultSuit.evaSuit
+                                  : kerbalData.isVeteran ? defaultSuit.suitVeteran
+                                  : defaultSuit.suit;
+                            }
+
+                            if (newNormalMap == null)
+                                newNormalMap = isEvaSuit ? defaultSuit.evaSuitNRM : defaultSuit.suitNRM;
+
+                            // Update textures in Kerbal IVA object since KSP resets them to these values a few frames later.
+                            if (!isEva)
+                            {
+                                Kerbal kerbalIVA = (Kerbal)component;
+
+                                kerbalIVA.textureStandard = newTexture;
+                                kerbalIVA.textureVeteran = newTexture;
+                            }
+                            break;
+
+                        case "helmet":
+                        case "mesh_female_kerbalAstronaut01_helmet":
+                            if (isEva)
+                                smr.enabled = needsSuit;
+                            else
+                                smr.sharedMesh = needsSuit ? helmetMesh[(int)kerbal.gender] : null;
+
+                            // Textures have to be replaced even when hidden since it may become visible later on situation change.
+                            if (suit != null)
+                            {
+                                newTexture = isEva ? suit.getEvaHelmet(kerbal.experienceLevel) : suit.getHelmet(kerbal.experienceLevel);
+                                newNormalMap = suit.helmetNRM;
+                            }
+                            break;
+
+                        case "visor":
+                        case "mesh_female_kerbalAstronaut01_visor":
+                            if (isEva)
+                                smr.enabled = needsSuit;
+                            else
+                                smr.sharedMesh = needsSuit ? visorMesh[(int)kerbal.gender] : null;
+
+                            // Textures have to be replaced even when hidden since it may become visible later on situation change.
+                            if (suit != null)
+                            {
+                                newTexture = isEva ? suit.evaVisor : suit.visor;
+
+                                if (newTexture != null)
+                                    material.color = Color.white;
+                            }
+                            break;
+
+                        default: // Jetpack.
+                            if (isEva)
+                            {
+                                smr.enabled = needsSuit;
+
+                                if (needsSuit && suit != null)
+                                {
+                                    newTexture = suit.evaJetpack;
+                                    newNormalMap = suit.evaJetpackNRM;
+                                }
+                            }
+                            break;
+                    }
+
+                    if (newTexture != null)
+                        material.mainTexture = newTexture;
+
+                    if (newNormalMap != null)
+                        material.SetTexture(Util.BUMPMAP_PROPERTY, newNormalMap);
+                }
+            }
+        }
+
         /**
          * Personalise Kerbals in an internal space of a vessel. Used by IvaModule.
          */
@@ -889,7 +1070,17 @@ namespace TextureReplacer
         {
             bool needsSuit = !isHelmetRemovalEnabled || !isSituationSafe(kerbal.InVessel);
 
-            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false);
+            Personaliser personaliser = Personaliser.instance;
+
+            // new suit State for TRR
+            if (personaliser.isNewSuitStateEnabled)
+            {
+                personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false);
+            }
+            else // Legacy suit state from TextureReplacer
+            {
+                personaliseKerbalLegacy(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit);
+            }
         }
 
         private void updateHelmets(GameEvents.HostedFromToAction<Vessel, Vessel.Situations> action)
@@ -927,7 +1118,6 @@ namespace TextureReplacer
          * does a loop between EVA->EVAground suits outside of breathable atmosphere. 
          * This function is used by EvaModule.
          */
-
         private int personaliseEva(Part evaPart, int suitSelection)
         {
 
@@ -962,7 +1152,30 @@ namespace TextureReplacer
             }
             return selection;
         }
-        
+
+        /**
+         * Legacy suit state from TextureReplacer
+         * Set external EVA/IVA suit. Fails and return false iff trying to remove EVA suit outside of breathable atmosphere.
+         * This function is used by EvaModule.
+         */
+        private bool personaliseEvaLegacy(Part evaPart, bool evaSuit)
+        {
+            bool success = true;
+
+            List<ProtoCrewMember> crew = evaPart.protoModuleCrew;
+            if (crew.Count != 0)
+            {
+                if (!evaSuit && !isAtmBreathable())
+                {
+                    evaSuit = true;
+                    success = false;
+                }
+
+                personaliseKerbalLegacy(evaPart, crew[0], null, evaSuit);
+            }
+            return success;
+        }
+
 
         /**
          * Load per-game custom kerbals mapping.

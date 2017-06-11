@@ -305,7 +305,6 @@ namespace TextureReplacer
 
                 GUI.color = Color.white;
             }
-
             GUILayout.EndVertical();
             GUILayout.EndHorizontal();
             GUILayout.Space(10);
