@@ -413,71 +413,7 @@ namespace TextureReplacer
                         if (reflectionScript != null)
                             reflectionScript.setActive(hasEvaSuit);
                         break;
-                }
-
-                /* switch (personaliser.personaliseEva(part, !hasEvaSuit, !hasEvaGroundSuit))
-                 {
-
-                 }
-                     {
-
-                     /* the methodoly is (f=false, t=true) :  
-                     * old toggleEvaSuit(hasEvaSuit,hasEvaGroundsuit,isBreathable)-> new toggleEvaSuit (hasEvaSuit,hasEvaGroundsuit,isBreathable) = curent booleans state = old state -> new state (in human readable text)
-                     * we use the code sent from personaliseEva to adjust the booleans to maintain the logic                    
-                     * the order wanted for the user is : IVA -> EVA -> EVAground -> IVA ...
-                     * we make a loop with EVA and EVAground when isBreathable is false 
-                     */
-                /*  case 7: // f,f,t -> t,t,t = t,f,t = IVA air -> EVA air
-                      hasEvaSuit = !hasEvaSuit;                       
-
-                      if (reflectionScript != null)
-                          reflectionScript.setActive(hasEvaSuit);    
-
-                      break;
-
-                  case 6: // t,f,t    No use / don't happen                    
-                      break;
-
-                  case 5: // t,f,t -> f,t,t = t,t,t = EVA air -> EVAground air                        
-                      hasEvaGroundSuit = !hasEvaGroundSuit;
-
-                      if (reflectionScript != null)
-                          reflectionScript.setActive(hasEvaSuit);
-                      break;
-
-                  case 4: // t,t,t -> f,f,t = f,f,t = EVAground air -> IVA air
-                      hasEvaSuit = !hasEvaSuit;
-                      hasEvaGroundSuit = !hasEvaGroundSuit;
-
-                      if (reflectionScript != null)
-                          reflectionScript.setActive(hasEvaSuit);
-                      break;
-
-                  case 3: // f,f,t -> t,t,f = t,f,f = IVA -> EVA NoAir
-                      hasEvaSuit = !hasEvaSuit;
-
-                      if (reflectionScript != null)
-                          reflectionScript.setActive(hasEvaSuit);
-                      break;
-
-                  case 2: // t,f,f     No use / don't happen                        
-                      break;
-
-                  case 1: // t,f,f -> f,t,f = t,t,f = EVA NoAir -> EVAground NoAir                        
-                      hasEvaGroundSuit = !hasEvaGroundSuit;
-
-                      if (reflectionScript != null)
-                          reflectionScript.setActive(hasEvaSuit);
-                      break;
-
-                  case 0: // t,t,f -> f,f,f = t,f,f = EVAground NoAir -> IVA NoAir = IMPOSSIBLE : EVAground NoAir -> EVA NoAir                        
-                      hasEvaGroundSuit = !hasEvaGroundSuit;
-                      ScreenMessages.PostScreenMessage("No breathable atmosphere", 5.0f, ScreenMessageStyle.UPPER_CENTER);
-                      if (reflectionScript != null)
-                          reflectionScript.setActive(hasEvaSuit);
-                      break;
-
-                  }*/
+                }                                
             }
 
             public override void OnStart(StartState state)
@@ -494,31 +430,13 @@ namespace TextureReplacer
                     }
 
                     isInitialised = true;
-                }
-
-                // if (personaliser.personaliseEva(part, hasEvaSuit,hasEvaGroundSuit)==0)
-                // hasEvaSuit = true;
-                /*switch (personaliser.personaliseEva(part, actualSuitState)){
-                    case 0:
-                        actualSuitState = 0;
-                        break;
-                    case 1:
-                        actualSuitState = 1;
-                        break;
-                    case 2:
-                        actualSuitState = 2;
-                        break;
-                }*/
+                }                       
 
                 if (personaliser.personaliseEva(part, actualSuitState) == 2)
                 {
                     actualSuitState = 2;
                     hasEvaSuit = true;
-                }
-                /*if (vessel.situation == Vessel.Situations.LANDED )
-                {
-                    hasEvaGroundSuit = true;
-                } */
+                }               
 
                 if (Reflections.instance.isVisorReflectionEnabled
                 && Reflections.instance.reflectionType == Reflections.Type.REAL)
@@ -530,12 +448,7 @@ namespace TextureReplacer
 
             public void Update()
             {
-                Personaliser personaliser = Personaliser.instance;
-
-                /*if (!personaliser.isAtmBreathable())
-                {
-                    personaliser.isUnderSubOrbit(GetComponent<Kerbal>());
-                }*/
+                Personaliser personaliser = Personaliser.instance;                             
 
                 if (personaliser.isUnderSubOrbit(GetComponent<Kerbal>()))
                 {
@@ -562,29 +475,7 @@ namespace TextureReplacer
                     if (reflectionScript != null)
                         reflectionScript.setActive(true);
                 }
-                personaliser.personaliseEva(part, actualSuitState);
-
-                //Kerbal kerbal = personaliser.GetComponent<Kerbal>;
-
-
-                /* if (personaliser.personaliseEva(part, actualSuitState) == 1)
-                 {
-                     actualSuitState = 1;
-                     hasEvaSuit = true;
-                     hasEvaGroundSuit = true;
-
-                     if (reflectionScript != null)
-                         reflectionScript.setActive(true);
-                 }*/
-
-                /*if (!hasEvaSuit && !personaliser.isAtmBreathable())
-                {
-                    personaliser.personaliseEva(part, true, hasEvaGroundSuit);
-                    hasEvaSuit = true;
-
-                    if (reflectionScript != null)
-                        reflectionScript.setActive(true);
-                }*/
+                personaliser.personaliseEva(part, actualSuitState);                
             }
 
             public void OnDestroy()
@@ -900,9 +791,7 @@ namespace TextureReplacer
 
                             // Textures have to be replaced even when hidden since it may become visible later on situation change.
                             if (suit != null)
-                            {
-                                //newTexture = isEva ? suit.getEvaHelmet(kerbal.experienceLevel) : suit.getHelmet(kerbal.experienceLevel);
-                                //newNormalMap = suit.helmetNRM;
+                            {                                
                                 if (isEva && needGroundSuit)
                                 {
                                     newTexture = suit.getEvaGroundHelmet(kerbal.experienceLevel);
@@ -927,17 +816,7 @@ namespace TextureReplacer
                             if (suit != null)
                             {
                                 newTexture = isEva ? suit.getEvaVisor(kerbal.experienceLevel) : suit.getEvaVisor(kerbal.experienceLevel);
-                                /*if (isEva && needGroundSuit)
-                                {
-                                    newTexture = suit.getEvaVisor(kerbal.experienceLevel);
-                                    //newNormalMap = suit.getEvaVisorNRM;
-                                }
-                                else if (isEva)
-                                {
-                                    newTexture = suit.getEvaVisor(kerbal.experienceLevel);
-                                    //newNormalMap = suit.getEvaVisorNRM;
-                                }*/
-
+                                
                                 if (newTexture != null)
                                     material.color = Color.white;
                             }
@@ -960,12 +839,7 @@ namespace TextureReplacer
                                         newTexture = suit.getEvaJetpack(kerbal.experienceLevel);
                                         newNormalMap = suit.evaJetpackNRM;
                                     }
-                                }
-                                /*if (needsSuit && suit != null)
-                                {
-                                    newTexture = isEva ? suit.getEvaJetpack(kerbal.experienceLevel) : suit.getEvaJetpack(kerbal.experienceLevel);
-                                    newNormalMap = suit.evaJetpackNRM;
-                                }*/
+                                }                                
                             }
 
                             break;
@@ -1085,63 +959,7 @@ namespace TextureReplacer
             }
             return selection;
         }
-        /* private int personaliseEva(Part evaPart, bool evaSuit, bool evaGroundSuit)
-         {
-             int success = 8;
-
-             List<ProtoCrewMember> crew = evaPart.protoModuleCrew;
-             if (crew.Count != 0)
-             {
-                 if (evaSuit && evaGroundSuit && isAtmBreathable())
-                 {
-                     evaGroundSuit = false;
-                     success = 7; // IVA air -> EVA air
-
-                 }
-                 else if (evaSuit && !evaGroundSuit && isAtmBreathable())
-                 {
-                     success = 6; // no use / don't happen
-
-                 }
-                 else if (!evaSuit && evaGroundSuit && isAtmBreathable())
-                 {
-                     evaSuit = true;
-                     success = 5;  // EVA air -> EVAground air                  
-
-                 }
-                 else if (!evaSuit && !evaGroundSuit && isAtmBreathable())
-                 {
-                     evaSuit = false;
-                     success = 4; // EVAground air -> IVA air
-                 }
-
-                 if (evaSuit && evaGroundSuit && !isAtmBreathable())
-                 {
-
-                     success = 3; // IVA -> EVA NoAir
-
-                 }
-                 else if (evaSuit && !evaGroundSuit && !isAtmBreathable())
-                 {
-                     success = 2; // no use / don't happen
-
-                 }
-                 else if (!evaSuit && evaGroundSuit && !isAtmBreathable())
-                 {
-                     evaSuit = true;
-                     success = 1; // EVA NoO2 -> EVAground NoAir
-
-                 }
-                 else if (!evaSuit && !evaGroundSuit && !isAtmBreathable())
-                 {
-                     evaSuit = true;
-                     success = 0; //EVAground NoAir -> IVA NoAir = IMPOSSIBLE : EVAground NoAir -> EVA NoAir
-                 }
-
-                 personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit);
-             }
-             return success;
-         }*/
+        
 
         /**
          * Load per-game custom kerbals mapping.
@@ -1279,7 +1097,7 @@ namespace TextureReplacer
             var femaleSuits = new List<string>();
             var eyelessHeads = new List<string>();
 
-            foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacer"))
+            foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
             {
                 ConfigNode customNode = file.config.GetNode("CustomKerbals");
                 if (customNode != null)
