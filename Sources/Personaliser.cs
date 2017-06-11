@@ -547,7 +547,7 @@ namespace TextureReplacer
         public bool isAtmSuitEnabled = true;
 
         // use of the legacy suit state from TextureReplacer
-        public bool isNewSuitStateEnabled = true;
+        public bool isNewSuitStateEnabled = false;
 
         private double atmSuitPressure = 50.0;
         private readonly HashSet<string> atmSuitBodies = new HashSet<string>();
