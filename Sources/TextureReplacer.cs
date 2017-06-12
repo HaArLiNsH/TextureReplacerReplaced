@@ -23,7 +23,6 @@
 
 using System.Reflection;
 using UnityEngine;
-using System.Linq;
 
 namespace TextureReplacer
 {
@@ -31,36 +30,15 @@ namespace TextureReplacer
     public class TextureReplacer : MonoBehaviour
     {
         // Status.
-        public static bool hasStarted = false;
-
         public static bool isInitialised = false;
 
         public static bool isLoaded = false;
 
-        void Start()
+        public void Start()
         {
-            DontDestroyOnLoad(this);
-            if (AssemblyLoader.loadedAssemblies.FirstOrDefault(a => a.name == "ModuleManager") == null)
-            {
-                Util.log("ModuleManager is not installed. TR can start now.");
-                StartTR();
-            }
-            else
-            {
-                Util.log("ModuleManager is installed. Waiting until MM is done.");
-            }
-        }
-
-        public void ModuleManagerPostLoad()
-        {
-            Util.log("ModuleManager is done. TR can start now.");
-            StartTR();
-        }
-
-        void StartTR()
-        {
-            hasStarted = true;
             Util.log("Started {0}", Assembly.GetExecutingAssembly().GetName().Version);
+
+            DontDestroyOnLoad(this);
 
             isInitialised = false;
             isLoaded = false;
@@ -84,30 +62,27 @@ namespace TextureReplacer
             Loader.instance.configure();
         }
 
-        void LateUpdate()
+        public void LateUpdate()
         {
-            if (hasStarted)
+            if (!isInitialised)
             {
-                if (!isInitialised)
-                {
-                    // Compress textures, generate mipmaps, convert DXT5 -> DXT1 if necessary etc.
-                    Loader.instance.processTextures();
+                // Compress textures, generate mipmaps, convert DXT5 -> DXT1 if necessary etc.
+                Loader.instance.processTextures();
 
-                    if (GameDatabase.Instance.IsReady())
-                    {
-                        Loader.instance.initialise();
-                        isInitialised = true;
-                    }
-                }
-                else if (PartLoader.Instance.IsReady())
+                if (GameDatabase.Instance.IsReady())
                 {
-                    Replacer.instance.load();
-                    Reflections.instance.load();
-                    Personaliser.instance.load();
-
-                    isLoaded = true;
-                    Destroy(this);
+                    Loader.instance.initialise();
+                    isInitialised = true;
                 }
+            }
+            else if (PartLoader.Instance.IsReady())
+            {
+                Replacer.instance.load();
+                Reflections.instance.load();
+                Personaliser.instance.load();
+
+                isLoaded = true;
+                Destroy(this);
             }
         }
     }
