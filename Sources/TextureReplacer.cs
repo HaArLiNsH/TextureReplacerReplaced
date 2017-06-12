@@ -23,16 +23,19 @@
 
 using System.Reflection;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace TextureReplacer
 {
-    [KSPAddon(KSPAddon.Startup.Instantly, true)]
+    // start at Mainmenu, so everythin else is finished loading. We don't need to be the early bird.
+    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
     public class TextureReplacer : MonoBehaviour
     {
         // Status.
         public static bool isInitialised = false;
 
         public static bool isLoaded = false;
+        private static Dictionary<string, Shader> allShaders = new Dictionary<string, Shader>();
 
         public void Start()
         {
@@ -42,6 +45,7 @@ namespace TextureReplacer
 
             isInitialised = false;
             isLoaded = false;
+            LoadShaders();
 
             if (Reflections.instance != null)
                 Reflections.instance.destroy();
@@ -64,26 +68,67 @@ namespace TextureReplacer
 
         public void LateUpdate()
         {
-            if (!isInitialised)
+            // only initialize once
+            if (!isLoaded)
             {
-                // Compress textures, generate mipmaps, convert DXT5 -> DXT1 if necessary etc.
-                Loader.instance.processTextures();
-
-                if (GameDatabase.Instance.IsReady())
+                if (!isInitialised)
                 {
-                    Loader.instance.initialise();
-                    isInitialised = true;
+                    // Compress textures, generate mipmaps, convert DXT5 -> DXT1 if necessary etc.
+                    Loader.instance.processTextures();
+
+                    if (GameDatabase.Instance.IsReady())
+                    {
+                        Loader.instance.initialise();
+                        isInitialised = true;
+                    }
+                }
+                else if (PartLoader.Instance.IsReady())
+                {
+                    Replacer.instance.load();
+                    Reflections.instance.load();
+                    Personaliser.instance.load();
+
+                    isLoaded = true;
+                    // we need this to stay alive, because it contains our shadersTable
+                    //Destroy(this);
                 }
             }
-            else if (PartLoader.Instance.IsReady())
-            {
-                Replacer.instance.load();
-                Reflections.instance.load();
-                Personaliser.instance.load();
+        }
 
-                isLoaded = true;
-                Destroy(this);
+        /// <summary>
+        /// Load all known shaders into the internal lookup table
+        /// </summary>
+        internal static void LoadShaders()
+        {
+            // force unity to load up any shader, even they are not used by any material on any asset
+            Shader.WarmupAllShaders();
+            foreach (var shader in Resources.FindObjectsOfTypeAll<Shader>())
+            {
+                if (!allShaders.ContainsKey(shader.name))
+                {
+                    allShaders.Add(shader.name, shader);
+                    //Util.log("loaded shader: " + shader.name);
+                }
             }
         }
+
+        /// <summary>
+        /// Drop in replacement for Shader.find(). Shader.find() cannot see not buildin shaders
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        internal static Shader GetShader(string name)
+        {
+            if (allShaders.ContainsKey(name))
+            {
+                return allShaders[name];
+            }
+            else
+            {
+                Util.log("shader: " + name + " not found: ");
+                return null;
+            }
+        }
+
     }
 }
