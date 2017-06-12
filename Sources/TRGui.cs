@@ -305,18 +305,16 @@ namespace TextureReplacer
 
                 GUI.color = Color.white;
             }
+
             GUILayout.EndVertical();
             GUILayout.EndHorizontal();
             GUILayout.Space(10);
 
             personaliser.isHelmetRemovalEnabled = GUILayout.Toggle(
-              personaliser.isHelmetRemovalEnabled, "Remove helmets in safe situations");
+              personaliser.isHelmetRemovalEnabled, "Remove IVA helmets in safe situations");
 
             personaliser.isAtmSuitEnabled = GUILayout.Toggle(
               personaliser.isAtmSuitEnabled, "Spawn Kerbals in IVA suits when in breathable atmosphere");
-
-            personaliser.isNewSuitStateEnabled = GUILayout.Toggle(
-              personaliser.isNewSuitStateEnabled, "Kerbals use another EVA suit when on the ground and with no air");
 
             Reflections.Type reflectionType = reflections.reflectionType;
 
@@ -400,7 +398,7 @@ namespace TextureReplacer
             if (isEnabled)
             {
                 GUI.skin = HighLogic.Skin;
-                windowRect = GUILayout.Window(WINDOW_ID, windowRect, windowHandler, "TextureReplacerReplaced");
+                windowRect = GUILayout.Window(WINDOW_ID, windowRect, windowHandler, "TextureReplacer");
                 windowRect.x = Math.Max(0, Math.Min(Screen.width - 30, windowRect.x));
                 windowRect.y = Math.Max(0, Math.Min(Screen.height - 30, windowRect.y));
             }
