@@ -9,7 +9,7 @@ TextureReplacerReplaced
 TextureReplacerReplaced is a plugin for Kerbal Space Program that allows you to replace
 stock textures and customise your Kerbals. 
 
-This is the continuation of [TextureReplacer](https://github.com/ducakar/TextureReplacer) made by Davorin Učakar. 
+This is the continuation of [TextureReplacer](https://github.com/ducakar/TextureReplacer) made by Davorin Učakar alias Shaw. 
 
 More specifically, it can:
 
@@ -26,7 +26,7 @@ More specifically, it can:
 
 Special thanks to:
 
-* Davorin Učakar for making TextureReplacer in the first place, You rock man ! 
+* Shaw for making TextureReplacer in the first place, You rock man ! 
 * RangeMachine who kept this mod alive,
 * rbray89 who contributed a reflective visor shader and for Active Texture
   Management and Visual Enhancements where some code has been borrowed from,
