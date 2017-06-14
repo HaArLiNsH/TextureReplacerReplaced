@@ -23,29 +23,47 @@
 
 using System.Reflection;
 using UnityEngine;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace TextureReplacer
 {
-    // start at Mainmenu, so everythin else is finished loading. We don't need to be the early bird.
-    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
+    [KSPAddon(KSPAddon.Startup.Instantly, true)]
     public class TextureReplacer : MonoBehaviour
     {
         // Status.
+        public static bool hasStarted = false;
+
         public static bool isInitialised = false;
 
         public static bool isLoaded = false;
-        private static Dictionary<string, Shader> allShaders = new Dictionary<string, Shader>();
 
-        public void Start()
+        void Start()
         {
-            Util.log("Started {0}", Assembly.GetExecutingAssembly().GetName().Version);
-
             DontDestroyOnLoad(this);
+            if (AssemblyLoader.loadedAssemblies.FirstOrDefault(a => a.name == "ModuleManager") == null)
+            {
+                Util.log("ModuleManager is not installed. TR can start now.");
+                StartTR();
+            }
+            else
+            {
+                Util.log("ModuleManager is installed. Waiting until MM is done.");
+            }
+        }
+
+        public void ModuleManagerPostLoad()
+        {
+            Util.log("ModuleManager is done. TR can start now.");
+            StartTR();
+        }
+
+        void StartTR()
+        {
+            hasStarted = true;
+            Util.log("Started {0}", Assembly.GetExecutingAssembly().GetName().Version);
 
             isInitialised = false;
             isLoaded = false;
-            LoadShaders();
 
             if (Reflections.instance != null)
                 Reflections.instance.destroy();
@@ -66,10 +84,9 @@ namespace TextureReplacer
             Loader.instance.configure();
         }
 
-        public void LateUpdate()
+        void LateUpdate()
         {
-            // only initialize once
-            if (!isLoaded)
+            if (hasStarted)
             {
                 if (!isInitialised)
                 {
@@ -89,46 +106,9 @@ namespace TextureReplacer
                     Personaliser.instance.load();
 
                     isLoaded = true;
-                    // we need this to stay alive, because it contains our shadersTable
-                    //Destroy(this);
+                    Destroy(this);
                 }
             }
         }
-
-        /// <summary>
-        /// Load all known shaders into the internal lookup table
-        /// </summary>
-        internal static void LoadShaders()
-        {
-            // force unity to load up any shader, even they are not used by any material on any asset
-            Shader.WarmupAllShaders();
-            foreach (var shader in Resources.FindObjectsOfTypeAll<Shader>())
-            {
-                if (!allShaders.ContainsKey(shader.name))
-                {
-                    allShaders.Add(shader.name, shader);
-                    //Util.log("loaded shader: " + shader.name);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Drop in replacement for Shader.find(). Shader.find() cannot see not buildin shaders
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        internal static Shader GetShader(string name)
-        {
-            if (allShaders.ContainsKey(name))
-            {
-                return allShaders[name];
-            }
-            else
-            {
-                Util.log("shader: " + name + " not found: ");
-                return null;
-            }
-        }
-
     }
 }
