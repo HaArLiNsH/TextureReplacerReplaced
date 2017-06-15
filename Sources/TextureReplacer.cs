@@ -24,49 +24,35 @@
 using System.Reflection;
 using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace TextureReplacer
 {
-    [KSPAddon(KSPAddon.Startup.Instantly, true)]
+    // delay the initialization to the MainMenu, so we have everything (ModuleManager, GameDatabase) loaded
+    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
     public class TextureReplacer : MonoBehaviour
     {
         // Status.
-        public static bool hasStarted = false;
-
-        public static bool isInitialised = false;
-
         public static bool isLoaded = false;
+        // shader DB
+        private static Dictionary<string, Shader> allShaders = new Dictionary<string, Shader>();
 
-        void Start()
+
+        /// <summary>
+        /// Unity MoneBehaviour Awake call, this is when all the modules wake up and get loaded
+        /// </summary>
+        public void Awake()
         {
             DontDestroyOnLoad(this);
-            if (AssemblyLoader.loadedAssemblies.FirstOrDefault(a => a.name == "ModuleManager") == null)
-            {
-                Util.log("ModuleManager is not installed. TR can start now.");
-                StartTR();
-            }
-            else
-            {
-                Util.log("ModuleManager is installed. Waiting until MM is done.");
-            }
-        }
 
-        public void ModuleManagerPostLoad()
-        {
-            Util.log("ModuleManager is done. TR can start now.");
-            StartTR();
-        }
+            // initilaize shaderdb
+            LoadShaders();
 
-        void StartTR()
-        {
-            hasStarted = true;
-            Util.log("Started {0}", Assembly.GetExecutingAssembly().GetName().Version);
-
-            isInitialised = false;
-            isLoaded = false;
-
+            // this will never happen, but I leave this here for now.
             if (Reflections.instance != null)
                 Reflections.instance.destroy();
+
+            Util.log("Started {0}", Assembly.GetExecutingAssembly().GetName().Version);
 
             Loader.instance = new Loader();
             Replacer.instance = new Replacer();
@@ -84,31 +70,67 @@ namespace TextureReplacer
             Loader.instance.configure();
         }
 
-        void LateUpdate()
+
+        /// <summary>
+        /// Unity MoneBehaviour start call, all module assemblies are present 
+        /// </summary>
+        void Start()
         {
-            if (hasStarted)
+
+            Loader.instance.processTextures();
+
+            Loader.instance.initialise();
+
+            Replacer.instance.load();
+            Reflections.instance.load();
+            Personaliser.instance.load();
+
+            isLoaded = true;
+
+        }
+
+
+        /// <summary>
+        /// Load all shaders into the system and fill our shader database.
+        /// </summary>
+        internal void LoadShaders()
+        {
+            // the most importent call: Loads all shaders into the memory, even, when they are not used by any GameObject
+            Shader.WarmupAllShaders();
+            foreach (var shader in Resources.FindObjectsOfTypeAll<Shader>())
             {
-                if (!isInitialised)
+                if (!allShaders.ContainsKey(shader.name))
                 {
-                    // Compress textures, generate mipmaps, convert DXT5 -> DXT1 if necessary etc.
-                    Loader.instance.processTextures();
-
-                    if (GameDatabase.Instance.IsReady())
-                    {
-                        Loader.instance.initialise();
-                        isInitialised = true;
-                    }
-                }
-                else if (PartLoader.Instance.IsReady())
-                {
-                    Replacer.instance.load();
-                    Reflections.instance.load();
-                    Personaliser.instance.load();
-
-                    isLoaded = true;
-                    Destroy(this);
+                    allShaders.Add(shader.name, shader);
+                    //Util.log("Loaded shader: " + shader.name);
                 }
             }
         }
+
+        /// <summary>
+        /// Replacement for Shader.Find() function, as we return also shaders, that are through KSP asset bundles (with autoload on)
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        internal static Shader GetShader(string name)
+        {
+            if (allShaders.ContainsKey(name))
+            {
+                return allShaders[name];
+            }
+            else
+            {
+                Util.log("Error: Shader not found: " + name);
+                // return the error Shader, if we have one
+                if (allShaders.ContainsKey("Hidden/InternalErrorShader"))
+                {
+                    return allShaders["Hidden/InternalErrorShader"];
+                } else
+                {
+                    return null;
+                }
+            }
+        }
+
     }
 }
