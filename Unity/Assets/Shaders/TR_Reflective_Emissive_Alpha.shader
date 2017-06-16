@@ -130,5 +130,5 @@
 	}
 	ENDCG
 	}
-		Fallback "Diffuse"
+		Fallback "KSP/Emissive/Bumped Specular"
 }
