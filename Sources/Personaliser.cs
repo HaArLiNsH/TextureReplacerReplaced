@@ -468,31 +468,44 @@ namespace TextureReplacer
             public void Update()
             {
                 Personaliser personaliser = Personaliser.instance;
-
-                if (personaliser.isUnderSubOrbit(GetComponent<Kerbal>()))
+                if (personaliser.isNewSuitStateEnabled)
                 {
-                    if (personaliser.isAtmBreathable())
+                    if (personaliser.isUnderSubOrbit(GetComponent<Vessel>()))
                     {
-                        actualSuitState = 0; //IVA suit
-                        hasEvaSuit = false;
-                        hasEvaGroundSuit = false;
+                        if (personaliser.isAtmBreathable())
+                        {
+                            actualSuitState = 0; //IVA suit
+                            hasEvaSuit = false;
+                            hasEvaGroundSuit = false;
+                        }
+                        else
+                        {
+                            actualSuitState = 1; //EVAground suit
+                            hasEvaSuit = true;
+                            hasEvaGroundSuit = true;
+                            if (reflectionScript != null)
+                                reflectionScript.setActive(true);
+                        }
                     }
                     else
                     {
-                        actualSuitState = 1; //EVAground suit
+                        actualSuitState = 2; //EVA suit
                         hasEvaSuit = true;
-                        hasEvaGroundSuit = true;
+                        hasEvaGroundSuit = false;
                         if (reflectionScript != null)
                             reflectionScript.setActive(true);
                     }
-                }
-                else
-                {
-                    actualSuitState = 2; //EVA suit
-                    hasEvaSuit = true;
-                    hasEvaGroundSuit = false;
-                    if (reflectionScript != null)
-                        reflectionScript.setActive(true);
+                } else
+                {// legacy system from TR
+                    if (!hasEvaSuit && !personaliser.isAtmBreathable())
+                    {
+                        personaliser.personaliseEvaLegacy(part, true);
+                        hasEvaSuit = true;
+
+                        if (reflectionScript != null)
+                            reflectionScript.setActive(true);
+                    }
+
                 }
                 personaliser.personaliseEva(part, actualSuitState);
             }
@@ -579,12 +592,15 @@ namespace TextureReplacer
          * used to change automatically suits.
          */
 
-        public bool isUnderSubOrbit(Kerbal kerbal)
+        public bool isUnderSubOrbit(Vessel vessel)
         {
             bool value = false;
-            Vessel vessel = kerbal.InVessel;
+            //Vessel vessel = kerbal.InVessel;
             if (vessel == null)
+            {
                 return value;
+            }
+                
             switch (vessel.situation)
             {
                 case Vessel.Situations.PRELAUNCH:
@@ -1383,6 +1399,7 @@ namespace TextureReplacer
             Util.parse(rootNode.GetValue("atmSuitPressure"), ref atmSuitPressure);
             Util.addLists(rootNode.GetValues("atmSuitBodies"), atmSuitBodies);
             Util.parse(rootNode.GetValue("forceLegacyFemales"), ref forceLegacyFemales);
+            Util.parse(rootNode.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
         }
 
         /**
@@ -1563,6 +1580,7 @@ namespace TextureReplacer
 
             Util.parse(node.GetValue("isHelmetRemovalEnabled"), ref isHelmetRemovalEnabled);
             Util.parse(node.GetValue("isAtmSuitEnabled"), ref isAtmSuitEnabled);
+            Util.parse(node.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
         }
 
         public void saveScenario(ConfigNode node)
@@ -1572,6 +1590,7 @@ namespace TextureReplacer
 
             node.AddValue("isHelmetRemovalEnabled", isHelmetRemovalEnabled);
             node.AddValue("isAtmSuitEnabled", isAtmSuitEnabled);
+            node.AddValue("isNewSuitStateEnabled", isNewSuitStateEnabled);
         }
 
         public void resetKerbals()
