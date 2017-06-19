@@ -96,7 +96,7 @@ namespace TextureReplacer
         internal void LoadShaders()
         {
             // the most importent call: Loads all shaders into the memory, even, when they are not used by any GameObject
-            Shader.WarmupAllShaders();
+            //Shader.WarmupAllShaders();
             foreach (var shader in Resources.FindObjectsOfTypeAll<Shader>())
             {
                 if (!allShaders.ContainsKey(shader.name))
