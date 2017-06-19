@@ -122,7 +122,7 @@
 		float3 worldRefl = WorldReflectionVector(IN, o.Normal);
 		fixed4 reflcol = texCUBE(_Cube, worldRefl);
 
-		o.Emission = emission + (reflcol.rgb  * color.a);
+		o.Emission = emission + (reflcol.rgb * (color.rgb * 3 ) * color.a);
 
 		o.Emission *= _Opacity * fog.a * emissive.a;
 		o.Alpha = _Opacity * fog.a * emissive.a;
