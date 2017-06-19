@@ -4,6 +4,7 @@ Shader "KSP/TR/Visor"
 	Properties
 	{
 		_Color("Main Color", Color) = (1,1,1,1)
+		_BumpMap("_BumpMap", 2D) = "bump" {}
 		_SpecColor("Specular Color", Color) = (0.5, 0.5, 0.5, 0)
 		_Shininess("Shininess", Range(0.01, 1)) = 0.078125
 		_ReflectColor("Reflection Color", Color) = (1,1,1,0.5)
@@ -20,6 +21,7 @@ Shader "KSP/TR/Visor"
 #pragma target 3.0
 
 		sampler2D _MainTex;
+		sampler2D _BumpMap;
 	samplerCUBE _Cube;
 
 	fixed4 _Color;
@@ -29,17 +31,23 @@ Shader "KSP/TR/Visor"
 	struct Input
 	{
 		float2 uv_MainTex;
+		float2 uv_BumpMap;
 		float3 worldRefl;
+		INTERNAL_DATA
 	};
 
 	void surf(Input IN, inout SurfaceOutput o)
 	{
 		fixed4 tex = tex2D(_MainTex, IN.uv_MainTex);
+		float3 normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
+
 
 		o.Albedo = tex.rgb * _Color.rgb;
-		o.Specular = _Shininess;
+		o.Specular = max(0.01, _Shininess);
+		o.Normal = normal;
 
-		fixed4 reflcol = texCUBE(_Cube, IN.worldRefl);
+		float3 worldRefl = WorldReflectionVector(IN, o.Normal);
+		fixed4 reflcol = texCUBE(_Cube, worldRefl);
 
 		o.Emission = reflcol.rgb * _ReflectColor.rgb;
 		o.Alpha = tex.a;
