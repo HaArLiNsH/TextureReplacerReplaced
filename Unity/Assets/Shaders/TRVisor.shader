@@ -49,7 +49,7 @@ Shader "KSP/TR/Visor"
 		float3 worldRefl = WorldReflectionVector(IN, o.Normal);
 		fixed4 reflcol = texCUBE(_Cube, worldRefl);
 
-		o.Emission = reflcol.rgb * _ReflectColor.rgb;
+		o.Emission = reflcol.rgb * _ReflectColor.rgb * tex.a;
 		o.Alpha = tex.a;
 	}
 
