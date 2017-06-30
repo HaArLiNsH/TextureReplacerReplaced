@@ -29,8 +29,14 @@ using UnityEngine;
 
 namespace TextureReplacer
 {
+    /// <summary>
+    /// This class handle shaders and the reflections on visors and windows
+    /// </summary>
     internal class Reflections
     {
+        /// <summary>
+        /// the different type of reflection we can use: NONE, STATIC, REAL
+        /// </summary>
         public enum Type
         {
             NONE,
@@ -39,13 +45,118 @@ namespace TextureReplacer
         }
 
         /// <summary>
+        /// EnvMap folder path
+        /// </summary>
+        public static readonly string DIR_ENVMAP = Util.DIR + "EnvMap/";
+
+        /// <summary>
+        /// Reflective shader mapping.
+        /// </summary>
+        private static Dictionary<string, string> shaderMappingConfig = new Dictionary<string, string> {
+            { "KSP/Diffuse", "Reflective/Bumped Diffuse" },
+            { "KSP/Specular", "Reflective/Bumped Diffuse" },
+            { "KSP/Bumped", "Reflective/Bumped Diffuse" },
+            { "KSP/Bumped Specular", "Reflective/Bumped Diffuse" },
+            { "KSP/Alpha/Translucent", "KSP/TR/Visor" },
+            { "KSP/Alpha/Translucent Specular", "KSP/TR/Visor" }
+        };
+
+        /// <summary>
+        /// The cull distances for the different parts
+        /// <para>Render layers: </para>
+        /// <para>0 - parts </para>
+        /// <para>1 - RCS jets </para>
+        /// <para>5 - engine exhaust </para>
+        /// <para>9 - sky/atmosphere </para>
+        /// <para>10 - scaled space bodies </para>
+        /// <para>15 - buildings, terrain </para>
+        /// <para>18 - skybox </para>
+        /// <para>23 - sun </para>        
+        /// </summary>
+        private static readonly float[] CULL_DISTANCES = {
+            1000.0f, 100.0f, 0.0f, 0.0f, 0.0f, 100.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+        };
+
+        /// <summary>
+        /// The basic transparent Specular Shader found in unity
+        /// </summary>
+        private static readonly Shader transparentSpecularShader = Shader.Find("Transparent/Specular");
+
+        /// <summary>
+        /// The list of all the shaders we use
+        /// </summary>
+        private readonly Dictionary<Shader, Shader> shaderMappings = new Dictionary<Shader, Shader>();
+
+        /// <summary>
+        /// Reflective shader material.
+        /// </summary>
+        private Material shaderMaterial = null;
+
+        /// <summary>
+        /// Reflection camera.
+        /// </summary>
+        private static Camera camera = null;
+
+        /// <summary>
+        /// Environment map textures.
+        /// </summary>
+        private Cubemap staticEnvMap = null;
+
+        /// <summary>
+        /// Reflection type.
+        /// </summary>
+        public Type reflectionType = Type.REAL;
+
+        /// <summary>
+        /// Real reflection resolution.
+        /// </summary>
+        private static int reflectionResolution = 128;
+
+        /// <summary>
+        /// Interval in frames for updating environment map faces.
+        /// </summary>
+        private static int reflectionInterval = 2;
+
+        /// <summary>
+        /// Reflection colour of the visor.
+        /// </summary>
+        private static Color visorReflectionColour = new Color(0.5f, 0.5f, 0.5f);
+
+        /// <summary>
+        /// Visor reflection feature.
+        /// </summary>
+        public bool isVisorReflectionEnabled = true;
+
+        /// <summary>
+        /// Print names of meshes and their shaders in parts with TRReflection module.
+        /// </summary>
+        public bool logReflectiveMeshes = false;
+
+        /// <summary>
+        /// Reflective shader.
+        /// </summary>
+        private Shader visorShader = null;
+
+        /// <summary>
+        /// Instance.
+        /// </summary>
+        public static Reflections instance = null;
+
+        /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
         /// nooed some comments 
         /// a class within an class might need some rework. Maybe make it an own monobehavior which is attached to the modules as components
         /// remove this comment with something more explaining why this is good
         /// </summary>
+        /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public class Script
         {
-            // List of all created reflection scripts.
+            /// <summary>
+            /// List of all created reflection scripts.
+            /// </summary>
             private static readonly List<Script> scripts = new List<Script>();
 
             private static int currentScript = 0;
@@ -58,6 +169,13 @@ namespace TextureReplacer
             private int currentFace;
             private bool isActive = true;
 
+            /// ************************************************************************************
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="part"></param>
+            /// <param name="updateInterval"></param>
+            /// ************************************************************************************
             public Script(Part part, int updateInterval)
             {
                 envMap = new Cubemap(reflectionResolution, TextureFormat.ARGB32, true);
@@ -94,6 +212,15 @@ namespace TextureReplacer
                 scripts.Add(this);
             }
 
+            /// ************************************************************************************
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="material"></param>
+            /// <param name="shader"></param>
+            /// <param name="reflectionColour"></param>
+            /// <returns></returns>
+            /// ************************************************************************************
             public bool apply(Material material, Shader shader, Color reflectionColour)
             {
                 Shader reflectiveShader = shader ?? instance.toReflective(material.shader);
@@ -108,6 +235,11 @@ namespace TextureReplacer
                 return false;
             }
 
+            /// ************************************************************************************
+            /// <summary>
+            /// 
+            /// </summary>
+            /// ************************************************************************************
             public void destroy()
             {
                 scripts.Remove(this);
@@ -115,6 +247,12 @@ namespace TextureReplacer
                 Object.DestroyImmediate(envMap);
             }
 
+            /// ************************************************************************************
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="force"></param>
+            /// ************************************************************************************
             private void update(bool force)
             {
                 int faceMask = force ? 0x3f : 1 << currentFace;
@@ -154,6 +292,12 @@ namespace TextureReplacer
                 currentFace = (currentFace + 1) % 6;
             }
 
+            /// ************************************************************************************
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="value"></param>
+            /// ************************************************************************************
             public void setActive(bool value)
             {
                 if (!isActive && value)
@@ -162,6 +306,11 @@ namespace TextureReplacer
                 isActive = value;
             }
 
+            /// ************************************************************************************
+            /// <summary>
+            /// 
+            /// </summary>
+            /// ************************************************************************************
             public static void updateScripts()
             {
                 if (scripts.Count != 0 && Time.frameCount % reflectionInterval == 0)
@@ -189,69 +338,11 @@ namespace TextureReplacer
             }
         }
 
-        public static readonly string DIR_ENVMAP = Util.DIR + "EnvMap/";
-
-        // Reflective shader mappin.
-        private static Dictionary<string, string> shaderMappingConfig = new Dictionary<string, string> {
-      { "KSP/Diffuse", "Reflective/Bumped Diffuse" },
-      { "KSP/Specular", "Reflective/Bumped Diffuse" },
-      { "KSP/Bumped", "Reflective/Bumped Diffuse" },
-      { "KSP/Bumped Specular", "Reflective/Bumped Diffuse" },
-      { "KSP/Alpha/Translucent", "KSP/TR/Visor" },
-      { "KSP/Alpha/Translucent Specular", "KSP/TR/Visor" }
-        };
-
-        // Render layers:
-        //  0 - parts
-        //  1 - RCS jets
-        //  5 - engine exhaust
-        //  9 - sky/atmosphere
-        // 10 - scaled space bodies
-        // 15 - buildings, terrain
-        // 18 - skybox
-        // 23 - sun
-        private static readonly float[] CULL_DISTANCES = {
-      1000.0f, 100.0f, 0.0f, 0.0f, 0.0f, 100.0f, 0.0f, 0.0f,
-      0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-      0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-      0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-    };
-
-        private static readonly Shader transparentSpecularShader = Shader.Find("Transparent/Specular");
-        private readonly Dictionary<Shader, Shader> shaderMappings = new Dictionary<Shader, Shader>();
-        // Reflective shader material.
-        private Material shaderMaterial = null;
-
-        // Reflection camera.
-        private static Camera camera = null;
-
-        // Environment map textures.
-        private Cubemap staticEnvMap = null;
-
-        // Reflection type.
-        public Type reflectionType = Type.REAL;
-
-        // Real reflection resolution.
-        private static int reflectionResolution = 128;
-
-        // Interval in frames for updating environment map faces.
-        private static int reflectionInterval = 2;
-
-        // Reflection colour.
-        private static Color visorReflectionColour = new Color(0.5f, 0.5f, 0.5f);
-
-        // Visor reflection feature.
-        public bool isVisorReflectionEnabled = true;
-
-        // Print names of meshes and their shaders in parts with TRReflection module.
-        public bool logReflectiveMeshes = false;
-
-        // Reflective shader.
-        private Shader visorShader = null;
-
-        // Instance.
-        public static Reflections instance = null;
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// 
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         private static void ensureCamera()
         {
             if (camera == null)
@@ -265,10 +356,13 @@ namespace TextureReplacer
             }
         }
 
-        /**
-         * Get reflective version of a shader.
-         */
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Get reflective version of a shader.
+        /// </summary>
+        /// <param name="shader"></param>
+        /// <returns></returns>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public Shader toReflective(Shader shader)
         {
             Shader newShader;
@@ -276,6 +370,15 @@ namespace TextureReplacer
             return newShader;
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="material"></param>
+        /// <param name="shader"></param>
+        /// <param name="reflectionColour"></param>
+        /// <returns></returns>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public bool applyStatic(Material material, Shader shader, Color reflectionColour)
         {
             Shader reflectiveShader = shader ?? toReflective(material.shader);
@@ -290,6 +393,12 @@ namespace TextureReplacer
             return false;
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void setReflectionType(Type type)
         {
             if (type == Type.STATIC && staticEnvMap == null)
@@ -298,9 +407,9 @@ namespace TextureReplacer
             reflectionType = type;
 
             Part[] evas = {
-        PartLoader.getPartInfoByName("kerbalEVA").partPrefab,
-        PartLoader.getPartInfoByName("kerbalEVAfemale").partPrefab
-      };
+                PartLoader.getPartInfoByName("kerbalEVA").partPrefab,
+                PartLoader.getPartInfoByName("kerbalEVAfemale").partPrefab
+            };
 
             for (int i = 0; i < 2; ++i)
             {
@@ -315,9 +424,9 @@ namespace TextureReplacer
                 // want corrupted reflections in the main menu.
                 material.shader = enableStatic ? visorShader : transparentSpecularShader;
 
-                ///////////////////////////////////////////////////////////////////////////////////////////
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 // In 1.2 visor texture some reason want load by default way
-                ///////////////////////////////////////////////////////////////////////////////////////////
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 Texture visorTex = GameDatabase.Instance.GetTexture(Util.DIR + "Default/EVAVisor", false);
 
                 if (visorTex != null)
@@ -325,17 +434,19 @@ namespace TextureReplacer
                     material.SetTexture("_MainTex", visorTex);
                     material.color = Color.white;
                 }
-                ///////////////////////////////////////////////////////////////////////////////////////////
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 material.SetTexture(Util.CUBE_PROPERTY, enableStatic ? staticEnvMap : null);
                 material.SetColor(Util.REFLECT_COLOR_PROPERTY, visorReflectionColour);
             }
         }
 
-        /**
-         * Read configuration and perform pre-load initialisation.
-         */
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Read configuration and perform pre-load initialisation.
+        /// </summary>
+        /// <param name="rootNode"></param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void readConfig(ConfigNode rootNode)
         {
             Util.parse(rootNode.GetValue("reflectionType"), ref reflectionType);
@@ -346,10 +457,11 @@ namespace TextureReplacer
             Util.parse(rootNode.GetValue("logReflectiveMeshes"), ref logReflectiveMeshes);
         }
 
-        /**
-         * Post-load initialisation.
-         */
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Post-load initialisation.
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void load()
         {
             Texture2D[] envMapFaces = new Texture2D[6];
@@ -459,7 +571,11 @@ namespace TextureReplacer
             setReflectionType(reflectionType);
         }
 
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Called when we need to clean up
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void destroy()
         {
             if (staticEnvMap != null)
@@ -472,6 +588,12 @@ namespace TextureReplacer
                 Object.DestroyImmediate(shaderMaterial);
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// This is used to load the reflection type saved in the .cfg and persistant save
+        /// </summary>
+        /// <param name="node"></param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void loadScenario(ConfigNode node)
         {
             Type type = reflectionType;
@@ -481,6 +603,12 @@ namespace TextureReplacer
                 setReflectionType(type);
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// This is used to save the reflection type persistant save
+        /// </summary>
+        /// <param name="node"></param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void saveScenario(ConfigNode node)
         {
             node.AddValue("reflectionType", reflectionType);

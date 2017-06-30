@@ -28,30 +28,89 @@ using UnityEngine;
 
 namespace TextureReplacer
 {
+    /// <summary>
+    /// The configuration windows in the space center scene
+    /// </summary>
     [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
     public class TRGui : MonoBehaviour
     {
+        /// <summary>
+        /// icon for the toolbar
+        /// </summary>
         private static readonly string APP_ICON_PATH = Util.DIR + "Plugins/AppIcon";
+
+        /// <summary>
+        /// The 3 types of reflections : "None", "Static", "Real"
+        /// </summary>
         private static readonly string[] REFLECTION_TYPES = { "None", "Static", "Real" };
+
+        /// <summary>
+        /// the color of the selected item
+        /// </summary>
         private static readonly Color SELECTED_COLOUR = new Color(0.7f, 0.9f, 1.0f);
+
+        /// <summary>
+        /// the color for the class
+        /// </summary>
         private static readonly Color CLASS_COLOUR = new Color(1.0f, 0.8f, 1.0f);
+
+        /// <summary>
+        /// unique ID of the window of the GUI
+        /// </summary>
         private const int WINDOW_ID = 107056;
-        // Classes from config files.
+
+        /// <summary>
+        /// Classes from config files.
+        /// </summary>
         private readonly List<string> classes = new List<string>();
 
-        // UI state.
+        /// <summary>
+        /// Ui window size
+        /// </summary>
         private Rect windowRect = new Rect(Screen.width - 600, 60, 580, 610);
 
+        /// <summary>
+        /// vector used for the scroll in the roster aera of the GUI
+        /// </summary>
         private Vector2 rosterScroll = Vector2.zero;
+
+        /// <summary>
+        /// helper for the selected kerbal
+        /// </summary>
         private ProtoCrewMember selectedKerbal = null;
+
+        /// <summary>
+        /// helper for the selected class
+        /// </summary>
         private string selectedClass = null;
+
+        /// <summary>
+        /// check to open or close the GUI
+        /// </summary>
         private bool isEnabled = false;
-        // Application launcher icon.
+
+        /// <summary>
+        /// Application launcher icon.
+        /// </summary>
         private Texture2D appIcon = null;
 
+        /// <summary>
+        /// Application launcher button.
+        /// </summary>
         private ApplicationLauncherButton appButton = null;
+
+        /// <summary>
+        /// Checker to see if we use the GUI or not 
+        /// <para> used in the @default.cfg file (default = true)</para>
+        /// </summary>
         private bool isGuiEnabled = true;
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// The method that populate the GUI window
+        /// </summary>
+        /// <param name="id"></param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         private void windowHandler(int id)
         {
             Reflections reflections = Reflections.instance;
@@ -331,7 +390,11 @@ namespace TextureReplacer
             GUILayout.EndVertical();
             GUI.DragWindow(new Rect(0, 0, Screen.width, 30));
         }
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Called when we enable (open) the GUI.
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         private void enable()
         {
             isEnabled = true;
@@ -339,6 +402,11 @@ namespace TextureReplacer
             selectedClass = null;
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Called when we disable (close) the GUI.
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         private void disable()
         {
             isEnabled = false;
@@ -348,6 +416,11 @@ namespace TextureReplacer
             rosterScroll = Vector2.zero;
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Add the button to open the GUI in the toolbar when in the Space center scene
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         private void addAppButton()
         {
             if (appButton == null)
@@ -357,6 +430,12 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Remove the button to open the GUI in the toolbar when not in the Space center scene
+        /// </summary>
+        /// <param name="scenes"></param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         private void removeAppButton(GameScenes scenes)
         {
             if (appButton != null)
@@ -366,6 +445,11 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Load the configurations at the Awake()
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void Awake()
         {
             if (isGuiEnabled)
@@ -389,12 +473,22 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Add the GUI button at the Start()
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void Start()
         {
             if (ApplicationLauncher.Ready)
                 addAppButton();
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Open the GUI when we push the button
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void OnGUI()
         {
             if (isEnabled)
@@ -406,6 +500,11 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Cleaning at OnDestroy()
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void OnDestroy()
         {
             GameEvents.onGUIApplicationLauncherReady.Remove(addAppButton);
