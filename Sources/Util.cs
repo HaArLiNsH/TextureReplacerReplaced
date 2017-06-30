@@ -31,43 +31,87 @@ using UnityEngine;
 
 namespace TextureReplacer
 {
+    /// <summary>
+    /// Utilitarian class. Here you find all the utility method to make your life easier
+    /// </summary>
     internal static class Util
     {
+        /// <summary>
+        /// Delimiters used to split a string composed of multiple words
+        /// </summary>
         private static readonly char[] CONFIG_DELIMITERS = { ' ', '\t', ',' };
+
+        /// <summary>
+        /// name of the install directory of TextureReplacerReplaced
+        /// </summary>
         public static readonly string DIR = "TextureReplacerReplaced/";
+        //public static readonly List<string> DIR = Personaliser.instance.installDirectory;
+        //public static readonly string[] DIR = Personaliser.instance.installDirectory;
+
+        /// <summary>
+        /// The id of the BumpMap property
+        /// </summary>
         public static readonly int BUMPMAP_PROPERTY = Shader.PropertyToID("_BumpMap");
+
+        /// <summary>
+        /// The id of the Cube property
+        /// </summary>
         public static readonly int CUBE_PROPERTY = Shader.PropertyToID("_Cube");
+
+        /// <summary>
+        /// The id of the Reflect color property
+        /// </summary>
         public static readonly int REFLECT_COLOR_PROPERTY = Shader.PropertyToID("_ReflectColor");
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly System.Random random = new System.Random();
 
-        /**
-         * True iff `i` is a power of two.
-         */
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        ///  True if `i` is a power of two.
+        /// </summary>
+        /// <param name="i">The number we need to check</param>
+        /// <returns></returns>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public static bool isPow2(int i)
         {
             return i > 0 && (i & (i - 1)) == 0;
         }
 
-        /**
-         * Split a space- and/or comma-separated configuration file value into its tokens.
-         */
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Split a space- and/or comma-separated configuration file value into its tokens.
+        /// </summary>
+        /// <param name="value">The string we need to split</param>
+        /// <returns></returns>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public static string[] splitConfigValue(string value)
         {
             return value.Split(CONFIG_DELIMITERS, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        /**
-         * Print a log entry for TextureReplacer. `String.Format()`-style formatting is supported.
-         */
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Print a log entry for TextureReplacer. `String.Format()`-style formatting is supported.
+        /// </summary>
+        /// <param name="s">The message we want to log</param>
+        /// <param name="args">the argument of the message</param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public static void log(string s, params object[] args)
         {
             Type callerClass = new StackTrace(1, false).GetFrame(0).GetMethod().DeclaringType;
-            UnityEngine.Debug.Log("[TR." + callerClass.Name + "] " + String.Format(s, args));
+            UnityEngine.Debug.Log("[TRR." + callerClass.Name + "] " + String.Format(s, args));
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// convert the specified string representation of a logical value to its Boolean equivalent
+        /// </summary>
+        /// <param name="name">the name of the string we want to try to parse</param>
+        /// <param name="variable">the output value of the parsing, here a bool</param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public static void parse(string name, ref bool variable)
         {
             bool value;
@@ -75,6 +119,13 @@ namespace TextureReplacer
                 variable = value;
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// convert the specified string representation of a logical value to its integer equivalent
+        /// </summary>
+        /// <param name="name">the name of the string we want to try to parse</param>
+        /// <param name="variable">the output value of the parsing, here a int</param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public static void parse(string name, ref int variable)
         {
             int value;
@@ -82,6 +133,13 @@ namespace TextureReplacer
                 variable = value;
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// convert the specified string representation of a logical value to its double equivalent
+        /// </summary>
+        /// <param name="name">the name of the string we want to try to parse</param>
+        /// <param name="variable">the output value of the parsing, here a double</param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public static void parse(string name, ref double variable)
         {
             double value;
@@ -89,6 +147,13 @@ namespace TextureReplacer
                 variable = value;
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// convert the specified string representation of a logical value to its user determined variable equivalent
+        /// </summary>
+        /// <param name="name">the name of the string we want to try to parse</param>
+        /// <param name="variable">the output value of the parsing, here a user determined variable</param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public static void parse<E>(string name, ref E variable)
         {
             try
@@ -103,6 +168,13 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// convert the specified string representation of a logical value to its Color equivalent
+        /// </summary>
+        /// <param name="name">the name of the string we want to try to parse</param>
+        /// <param name="variable">the output value of the parsing, here a Color</param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public static void parse(string name, ref Color variable)
         {
             if (name != null)
@@ -119,6 +191,13 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// convert the specified string list representation of a logical value to its user determined string list equivalent
+        /// </summary>
+        /// <param name="lists">the name of the string list we want to try to parse</param>
+        /// <param name="variable">the output value of the parsing, here a user determined string list</param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public static void addLists(string[] lists, ICollection<string> variable)
         {
             foreach (string list in lists)
@@ -131,6 +210,13 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// convert the specified string list representation of a logical value to its user determined Regex list equivalent
+        /// </summary>
+        /// <param name="lists">the name of the string list we want to try to parse</param>
+        /// <param name="variable">the output value of the parsing, here a user determined Regex list</param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public static void addRELists(string[] lists, ICollection<Regex> variable)
         {
             foreach (string list in lists)

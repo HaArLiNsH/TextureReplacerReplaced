@@ -29,32 +29,55 @@ using UnityEngine;
 
 namespace TextureReplacer
 {
+    /// <summary>
+    /// class used to replace a texture other than the suit or the head. Like the Navball or another custom texture
+    /// </summary>
     internal class Replacer
     {
         public static readonly string DIR_TEXTURES = Util.DIR + "Default/";
         public static readonly string HUD_NAVBALL = "HUDNavBall";
         public static readonly string IVA_NAVBALL = "IVANavBall";
-        // General texture replacements.
+
+        /// <summary>
+        /// The list of paths for the "Default/" folder
+        /// </summary>
         private readonly List<string> paths = new List<string> { DIR_TEXTURES };
 
+        /// <summary>
+        /// List of mapped Texture
+        /// </summary>
         private readonly Dictionary<string, Texture2D> mappedTextures = new Dictionary<string, Texture2D>();
-        // NavBalls' textures.
+
+        /// <summary>
+        /// hud NavBall textures.
+        /// </summary>
         private Texture2D hudNavBallTexture = null;
 
+        /// <summary>
+        /// IVA NavBall textures.
+        /// </summary>
         private Texture2D ivaNavBallTexture = null;
-        // Change shinning quality.
+
+        /// <summary>
+        /// Change shinning quality.
+        /// </summary>
         private SkinQuality skinningQuality = SkinQuality.Auto;
 
-        // Print material/texture names when performing texture replacement pass.
-        private bool logTextures = false;
+        /// <summary>
+        /// Print material/texture names when performing texture replacement pass.(default false)
+        /// </summary>
+        private bool logTextures = true;
 
-        // Instance.
+        /// <summary>
+        /// Instance.
+        /// </summary>
         public static Replacer instance = null;
 
-        /**
-         * General texture replacement step.
-         */
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// General texture replacement step.
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         private void replaceTextures()
         {
             foreach (Material material in Resources.FindObjectsOfTypeAll<Material>())
@@ -103,10 +126,12 @@ namespace TextureReplacer
             }
         }
 
-        /**
-         * Replace NavBalls' textures.
-         */
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        ///  Replace NavBalls' textures.
+        /// </summary>
+        /// <param name="vessel"></param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         private void updateNavball(Vessel vessel)
         {
             if (hudNavBallTexture != null)
@@ -126,10 +151,12 @@ namespace TextureReplacer
             }
         }
 
-        /**
-         * Read configuration and perform pre-load initialisation.
-         */
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Read configuration and perform pre-load initialization.
+        /// </summary>
+        /// <param name="rootNode"></param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void readConfig(ConfigNode rootNode)
         {
             Util.addLists(rootNode.GetValues("paths"), paths);
@@ -137,10 +164,11 @@ namespace TextureReplacer
             Util.parse(rootNode.GetValue("logTextures"), ref logTextures);
         }
 
-        /**
-         * Post-load initialisation.
-         */
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Post-load initialization.
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void load()
         {
             foreach (SkinnedMeshRenderer smr in Resources.FindObjectsOfTypeAll<SkinnedMeshRenderer>())
@@ -204,14 +232,14 @@ namespace TextureReplacer
             Part femaleEva = PartLoader.getPartInfoByName("kerbalEVAfemale").partPrefab;
 
             SkinnedMeshRenderer[][] maleMeshes = {
-        maleIva.GetComponentsInChildren<SkinnedMeshRenderer>(true),
-        maleEva.GetComponentsInChildren<SkinnedMeshRenderer>(true)
-      };
+                maleIva.GetComponentsInChildren<SkinnedMeshRenderer>(true),
+                maleEva.GetComponentsInChildren<SkinnedMeshRenderer>(true)
+            };
 
             SkinnedMeshRenderer[][] femaleMeshes = {
-        femaleIva.GetComponentsInChildren<SkinnedMeshRenderer>(true),
-        femaleEva.GetComponentsInChildren<SkinnedMeshRenderer>(true)
-      };
+                femaleIva.GetComponentsInChildren<SkinnedMeshRenderer>(true),
+                femaleEva.GetComponentsInChildren<SkinnedMeshRenderer>(true)
+            };
 
             // Male materials to be copied to females to fix tons of female issues (missing normal maps, non-bumpmapped
             // shaders, missing teeth texture ...)
@@ -276,7 +304,7 @@ namespace TextureReplacer
             {
                 foreach (SkinnedMeshRenderer smr in femaleMeshes[i])
                 {
-                    // Here we must enumarate all meshes wherever we are replacing the material.
+                    // Here we must enumerate all meshes wherever we are replacing the material.
                     switch (smr.name)
                     {
                         case "headMesh":
@@ -337,6 +365,11 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Add an event handler to update the Navball texture
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void beginFlight()
         {
             if (hudNavBallTexture != null || ivaNavBallTexture != null)
@@ -346,12 +379,22 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Remove the event handler that update the Navball texture
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void endFlight()
         {
             if (hudNavBallTexture != null || ivaNavBallTexture != null)
                 GameEvents.onVesselChange.Remove(updateNavball);
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Method to start the texture replacement
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void beginScene()
         {
             replaceTextures();

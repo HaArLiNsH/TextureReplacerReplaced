@@ -23,15 +23,26 @@
 
 namespace TextureReplacer
 {
+    /// <summary>
+    /// This class handle the load and save of the configuration data in the persistant.sfs save
+    /// </summary>
     [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.SPACECENTER)]
     public class TRScenario : ScenarioModule
     {
+        /// <summary>
+        /// called at the OnLoad()
+        /// </summary>
+        /// <param name="node">The name of the config node</param>
         public override void OnLoad(ConfigNode node)
         {
             Reflections.instance.loadScenario(node);
             Personaliser.instance.loadScenario(node);
         }
 
+        /// <summary>
+        /// called at the OnSave()
+        /// </summary>
+        /// <param name="node">The name of the config node</param>
         public override void OnSave(ConfigNode node)
         {
             Reflections.instance.saveScenario(node);

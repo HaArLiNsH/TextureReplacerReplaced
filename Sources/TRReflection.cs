@@ -28,29 +28,59 @@ using UnityEngine;
 
 namespace TextureReplacer
 {
+    /// <summary>
+    /// The reflection part module, handle all the reflections and shaders
+    /// </summary>
     public class TRReflection : PartModule
     {
+        /// <summary>
+        /// The script that will handle the reflections on the object. 
+        /// </summary>
         private Reflections.Script script = null;
 
+        /// <summary>
+        /// The shader used for the reflection
+        /// </summary>
         [KSPField(isPersistant = false)]
         public string shader = "";
 
+        /// <summary>
+        /// The color for the reflection (double unused ?) 
+        /// </summary>
         [KSPField(isPersistant = false)]
         public string colour = "";
 
+        /// <summary>
+        /// The interval to redraw the reflections
+        /// </summary>
         [KSPField(isPersistant = false)]
         public string interval = "";
 
+        /// <summary>
+        /// The meshes where the reflection is applied
+        /// </summary>
         [KSPField(isPersistant = false)]
         public string meshes = "";
 
-        // ReflectionPlugin parameters.
+        /// <summary>
+        /// The color for the reflection
+        /// </summary>
         [KSPField(isPersistant = false)]
         public string ReflectionColor = "";
 
+        /// <summary>
+        /// meshes to change for the reflection (?) 
+        /// </summary>
         [KSPField(isPersistant = false)]
         public string MeshesToChange = "all";
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Called at the Onstart() and override it. <see cref="TRReflection"/>
+        /// And do the reflection stuff
+        /// </summary>
+        /// <param name="state"></param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public override void OnStart(StartState state)
         {
             Reflections reflections = Reflections.instance;
@@ -109,6 +139,11 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Called at the OnDestroy()
+        /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void OnDestroy()
         {
             if (script != null)

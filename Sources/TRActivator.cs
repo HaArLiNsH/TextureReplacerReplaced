@@ -28,22 +28,35 @@ namespace TextureReplacer
     [KSPAddon(KSPAddon.Startup.EveryScene, false)]
     public class TRActivator : MonoBehaviour
     {
-        /**
-         * Reflection updater. We don't want this to run every frame unless real reflections are enabled
-         * so it's wrapped inside another component and enabled only when needed.
-         */
+        /// <summary>
+        /// status check for in flight situation
+        /// </summary>
+        private bool hasFlightHandlers = false;
 
+        /// <summary>
+        /// the object to call the reflection update
+        /// </summary>
+        private TRReflectionUpdater reflectionUpdater = null;
+
+        /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /// <summary>
+        /// Reflection updater. We don't want this to run every frame unless real reflections are enabled
+        /// so it's wrapped inside another component and enabled only when needed.
+        /// </summary>
+        /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private class TRReflectionUpdater : MonoBehaviour
         {
             public void Update()
             {
                 Reflections.Script.updateScripts();
             }
-        }
+        }        
 
-        private bool hasFlightHandlers = false;
-        private TRReflectionUpdater reflectionUpdater = null;
-
+        /// ****************************************************************************************
+        /// <summary>
+        /// Start() <see cref="TRActivator.TRReflectionUpdater"/>
+        /// </summary>
+        /// ****************************************************************************************
         public void Start()
         {
             if (!TextureReplacer.isLoaded)
@@ -66,6 +79,11 @@ namespace TextureReplacer
             }
         }
 
+        /// ****************************************************************************************
+        /// <summary>
+        /// OnDestroy() <see cref="TRActivator.TRReflectionUpdater"/>
+        /// </summary>
+        /// ****************************************************************************************
         public void OnDestroy()
         {
             if (hasFlightHandlers)

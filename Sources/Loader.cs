@@ -32,45 +32,78 @@ namespace TextureReplacer
 {
 	internal class Loader
 	{
+		/// <summary>
+		/// Hud navball path
+		/// </summary>
 		private static readonly string HUD_NAVBALL = Replacer.DIR_TEXTURES + Replacer.HUD_NAVBALL;
+
+		/// <summary>
+		/// IVA navball path
+		/// </summary>
 		private static readonly string IVA_NAVBALL = Replacer.DIR_TEXTURES + Replacer.IVA_NAVBALL;
-		// Texture compression and mipmap generation parameters.
+
+		/// <summary>
+		/// Texture compression and mipmap generation parameters.
+		/// </summary>
 		private int lastTextureCount = 0;
 
-		// List of substrings for paths where mipmap generating is enabled.
+		/// <summary>
+		/// List of substrings for paths where mipmap generating is enabled.
+		/// </summary>
 		private readonly List<Regex> generateMipmaps = new List<Regex> {
-	  new Regex("^" + Util.DIR + "(Default|Heads|Suits)/")
-	};
+			new Regex("^" + Util.DIR + "(Default|Heads|Suits)/")
+		};
 
-		// List of substrings for paths where textures shouldn't be unloaded.
+		/// <summary>
+		///  List of substrings for paths where textures shouldn't be unloaded.
+		/// </summary>
 		private readonly List<Regex> keepLoaded = new List<Regex> {
-	  new Regex("^" + Reflections.DIR_ENVMAP)
-	};
+			new Regex("^" + Reflections.DIR_ENVMAP)
+		};
 
-		// Features.
+		/// <summary>
+		/// Checker to see if compression is enabled
+		/// <para> used in the @default.cfg file </para>
+		/// </summary>
 		private bool? isCompressionEnabled = null;
 
+		/// <summary>
+		/// Checker to see if Mipmap generation is enabled
+		/// <para> used in the @default.cfg file </para>
+		/// </summary>
 		private bool? isMipmapGenEnabled = null;
+
+		/// <summary>
+		/// Checker to see if unloading the textures from RAM is enabled
+		/// <para> used in the @default.cfg file </para>
+		/// </summary>
 		private bool? isUnloadingEnabled = null;
-		// Instance.
+
+		/// <summary>
+		/// Instance of Loader.
+		/// </summary>
 		public static Loader instance = null;
 
-		/**
-		 * Estimate texture size in system RAM.
-		 *
-		 * This is only a rough estimate. It doesn't bother with details like the padding bytes.
-		 */
-
+		/// ////////////////////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Estimate texture size in system RAM.
+		/// <para>This is only a rough estimate. It doesn't bother with details like the padding bytes.</para>
+		/// </summary>
+		/// <param name="texture"></param>
+		/// <returns></returns>
+		/// ////////////////////////////////////////////////////////////////////////////////////////
 		private static int textureSize(Texture2D texture)
 		{
 			int nPixels = texture.width * texture.height;
 			return texture.format == TextureFormat.DXT1 || texture.format == TextureFormat.RGB24 ? nPixels * 3 : nPixels * 4;
 		}
 
-		/**
-		 * Read configuration and perform pre-load initialisation.
-		 */
-
+		/// ////////////////////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Read configuration and perform pre-load initialisation.
+		/// </summary>
+		/// <param name="rootNode"></param>
+		/// ////////////////////////////////////////////////////////////////////////////////////////
 		public void readConfig(ConfigNode rootNode)
 		{
 			string sIsCompressionEnabled = rootNode.GetValue("isCompressionEnabled");
@@ -147,10 +180,11 @@ namespace TextureReplacer
 			Util.addRELists(rootNode.GetValues("keepLoaded"), keepLoaded);
 		}
 
-		/**
-		 * This must be run only once after all configuration files are read.
-		 */
-
+		/// ////////////////////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// This must be run only once after all configuration files are read.
+		/// </summary>
+		/// ////////////////////////////////////////////////////////////////////////////////////////
 		public void configure()
 		{
 			// Prevent conflicts with TextureCompressor. If it is found among loaded plugins, texture
@@ -187,12 +221,12 @@ namespace TextureReplacer
 			}
 		}
 
-		/**
-		 * Texture compression & mipmap generation pass.
-		 *
-		 * This is run on each game update until game database is loaded.
-		 */
-
+		/// ////////////////////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Texture compression and mipmap generation pass.
+		/// <para>This is run on each game update until game database is loaded.</para>
+		/// </summary>
+		/// ////////////////////////////////////////////////////////////////////////////////////////
 		public void processTextures()
 		{
 			List<GameDatabase.TextureInfo> texInfos = GameDatabase.Instance.databaseTexture;
@@ -283,10 +317,11 @@ namespace TextureReplacer
 			lastTextureCount = texInfos.Count;
 		}
 
-		/**
-		 * Unload textures.
-		 */
-
+		/// ////////////////////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Unload textures
+		/// </summary>
+		/// ////////////////////////////////////////////////////////////////////////////////////////
 		public void initialise()
 		{
 			List<GameDatabase.TextureInfo> texInfos = GameDatabase.Instance.databaseTexture;

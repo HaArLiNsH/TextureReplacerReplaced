@@ -32,20 +32,26 @@ namespace TextureReplacer
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
     public class TextureReplacer : MonoBehaviour
     {
-        // Status.
+        /// <summary>
+        /// Status of the loading
+        /// </summary>
         public static bool isLoaded = false;
-        // shader DB
+
+        /// <summary>
+        /// shader database
+        /// </summary>
         private static Dictionary<string, Shader> allShaders = new Dictionary<string, Shader>();
 
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Unity MoneBehaviour Awake call, this is when all the modules wake up and get loaded
         /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         public void Awake()
         {
             DontDestroyOnLoad(this);
 
-            // initilaize shaderdb
+            // initialize the shader database
             LoadShaders();
 
             // this will never happen, but I leave this here for now.
@@ -59,7 +65,7 @@ namespace TextureReplacer
             Reflections.instance = new Reflections();
             Personaliser.instance = new Personaliser();
 
-            foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacer"))
+            foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
             {
                 Loader.instance.readConfig(file.config);
                 Replacer.instance.readConfig(file.config);
@@ -70,10 +76,11 @@ namespace TextureReplacer
             Loader.instance.configure();
         }
 
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Unity MoneBehaviour start call, all module assemblies are present 
         /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         void Start()
         {
 
@@ -89,13 +96,14 @@ namespace TextureReplacer
 
         }
 
-
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Load all shaders into the system and fill our shader database.
         /// </summary>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         internal void LoadShaders()
         {
-            // the most importent call: Loads all shaders into the memory, even, when they are not used by any GameObject
+            // the most important call: Loads all shaders into the memory, even, when they are not used by any GameObject
             //Shader.WarmupAllShaders();
             foreach (var shader in Resources.FindObjectsOfTypeAll<Shader>())
             {
@@ -107,11 +115,13 @@ namespace TextureReplacer
             }
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Replacement for Shader.Find() function, as we return also shaders, that are through KSP asset bundles (with autoload on)
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         internal static Shader GetShader(string name)
         {
             if (allShaders.ContainsKey(name))
