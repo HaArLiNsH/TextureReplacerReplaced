@@ -66,7 +66,7 @@ namespace TextureReplacer
         /// <summary>
         /// Print material/texture names when performing texture replacement pass.(default false)
         /// </summary>
-        private bool logTextures = true;
+        private bool logTextures = false;
 
         /// <summary>
         /// Instance.
@@ -319,7 +319,7 @@ namespace TextureReplacer
                         case "upTeeth01":
                         case "downTeeth01":
                             // Females don't have textured teeth, they use the same material as for the eyeballs. Extending female
-                            // head material/texture to their teeth is not possible since teeth overlap with some ponytail subtexture.
+                            // head material/texture to their teeth is not possible since teeth overlap with some ponytail sub texture.
                             // However, female teeth map to the same texture coordinates as male teeth, so we fix this by applying
                             // male head & teeth material for female teeth.
                             smr.sharedMaterial = headMaterial;
