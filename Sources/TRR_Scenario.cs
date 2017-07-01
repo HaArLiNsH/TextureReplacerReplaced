@@ -21,13 +21,13 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-namespace TextureReplacer
+namespace TextureReplacerReplaced
 {
     /// <summary>
     /// This class handle the load and save of the configuration data in the persistant.sfs save
     /// </summary>
     [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.SPACECENTER)]
-    public class TRScenario : ScenarioModule
+    public class TRR_Scenario : ScenarioModule
     {
         /// <summary>
         /// called at the OnLoad()

@@ -26,7 +26,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace TextureReplacer
+namespace TextureReplacerReplaced
 {
     // delay the initialization to the MainMenu, so we have everything (ModuleManager, GameDatabase) loaded
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
@@ -58,7 +58,7 @@ namespace TextureReplacer
             if (Reflections.instance != null)
                 Reflections.instance.destroy();
 
-            Util.log("Started {0}", Assembly.GetExecutingAssembly().GetName().Version);
+            Util.log("Started V{0}", Assembly.GetExecutingAssembly().GetName().Version);
 
             Loader.instance = new Loader();
             Replacer.instance = new Replacer();
@@ -110,7 +110,7 @@ namespace TextureReplacer
                 if (!allShaders.ContainsKey(shader.name))
                 {
                     allShaders.Add(shader.name, shader);
-                    //Util.log("Loaded shader: " + shader.name);
+                    Util.log("Loaded shader: " + shader.name);
                 }
             }
         }

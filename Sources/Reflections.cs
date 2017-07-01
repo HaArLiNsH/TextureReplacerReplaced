@@ -27,7 +27,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace TextureReplacer
+namespace TextureReplacerReplaced
 {
     /// <summary>
     /// This class handle shaders and the reflections on visors and windows
@@ -550,7 +550,7 @@ namespace TextureReplacer
                 }
             }
            
-            // we now save the visor shader in the placeholer. The shader got loaded through the ksp asset bundle
+            // we now save the visor shader in the placeholder. The shader got loaded through the ksp asset bundle
             visorShader = TextureReplacer.GetShader("KSP/TR/Visor");
 
             // fill the shaderMappings dict, if we find the right shader from the mapping config. 

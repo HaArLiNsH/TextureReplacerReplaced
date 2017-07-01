@@ -26,12 +26,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace TextureReplacer
+namespace TextureReplacerReplaced
 {
     /// <summary>
     /// The reflection part module, handle all the reflections and shaders
     /// </summary>
-    public class TRReflection : PartModule
+    public class TRR_Reflection : PartModule
     {
         /// <summary>
         /// The script that will handle the reflections on the object. 
@@ -76,7 +76,7 @@ namespace TextureReplacer
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Called at the Onstart() and override it. <see cref="TRReflection"/>
+        /// Called at the Onstart() and override it. <see cref="TRR_Reflection"/>
         /// And do the reflection stuff
         /// </summary>
         /// <param name="state"></param>

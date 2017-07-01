@@ -26,13 +26,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TextureReplacer
+namespace TextureReplacerReplaced
 {
     /// <summary>
     /// The configuration windows in the space center scene
     /// </summary>
     [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
-    public class TRGui : MonoBehaviour
+    public class TRR_Gui : MonoBehaviour
     {
         /// <summary>
         /// icon for the toolbar

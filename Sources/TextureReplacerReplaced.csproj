@@ -26,10 +26,10 @@
     <Compile Include="Reflections.cs" />
     <Compile Include="Replacer.cs" />
     <Compile Include="TextureReplacer.cs" />
-    <Compile Include="TRActivator.cs" />
-    <Compile Include="TRGui.cs" />
-    <Compile Include="TRReflection.cs" />
-    <Compile Include="TRScenario.cs" />
+    <Compile Include="TRR_Activator.cs" />
+    <Compile Include="TRR_Gui.cs" />
+    <Compile Include="TRR_Reflection.cs" />
+    <Compile Include="TRR_Scenario.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>

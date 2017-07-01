@@ -27,15 +27,26 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace TextureReplacer
+namespace TextureReplacerReplaced
 {
     /// <summary>
     /// class used to replace a texture other than the suit or the head. Like the Navball or another custom texture
     /// </summary>
     internal class Replacer
     {
+        /// <summary>
+        /// path of the Default folder (from <see cref="Util.DIR"/> + Default/ )
+        /// </summary>
         public static readonly string DIR_TEXTURES = Util.DIR + "Default/";
+
+        /// <summary>
+        /// HUD NavBall string name
+        /// </summary>
         public static readonly string HUD_NAVBALL = "HUDNavBall";
+
+        /// <summary>
+        /// IVA NavBall string name
+        /// </summary>
         public static readonly string IVA_NAVBALL = "IVANavBall";
 
         /// <summary>
