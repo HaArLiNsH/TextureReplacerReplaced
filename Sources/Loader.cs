@@ -28,17 +28,17 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine; 
 
-namespace TextureReplacer
+namespace TextureReplacerReplaced
 {
 	internal class Loader
 	{
 		/// <summary>
-		/// Hud navball path
+		/// Hud Navball path
 		/// </summary>
 		private static readonly string HUD_NAVBALL = Replacer.DIR_TEXTURES + Replacer.HUD_NAVBALL;
 
 		/// <summary>
-		/// IVA navball path
+		/// IVA Navball path
 		/// </summary>
 		private static readonly string IVA_NAVBALL = Replacer.DIR_TEXTURES + Replacer.IVA_NAVBALL;
 
@@ -335,7 +335,7 @@ namespace TextureReplacer
 					continue;
 
 				// Following line makes sure that buttons aren't unloaded from memory
-				// Needed to allow other mods to manipulate the toolbar buttons (ie: Janitor's Closet
+				// Needed to allow other mods to manipulate the toolbar buttons (ex: Janitor's Closet
 				if (texture.width <= 38 && texture.height <= 38)
 					continue;
 
@@ -368,6 +368,9 @@ namespace TextureReplacer
 			if (memorySpared > 0)
 			{
 				Util.log("Texture unloading freed approximately {0:0.0} MiB = {1:0.0} MB of system RAM",
+						 memorySpared / 1024.0 / 1024.0, memorySpared / 1000.0 / 1000.0);
+				// to print this log on the screen if "Show all Log errors on the Screen" is checked in the Debugging option window in game
+				Util.logConsole("TRR : Texture unloading freed approximately {1:0.0} MB of system RAM",
 						 memorySpared / 1024.0 / 1024.0, memorySpared / 1000.0 / 1000.0);
 			}
 		}

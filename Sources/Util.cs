@@ -29,7 +29,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-namespace TextureReplacer
+namespace TextureReplacerReplaced
 {
     /// <summary>
     /// Utilitarian class. Here you find all the utility method to make your life easier
@@ -103,6 +103,20 @@ namespace TextureReplacer
         {
             Type callerClass = new StackTrace(1, false).GetFrame(0).GetMethod().DeclaringType;
             UnityEngine.Debug.Log("[TRR." + callerClass.Name + "] " + String.Format(s, args));
+        }
+
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Print a log entry for TextureReplacer in the console. `String.Format()`-style formatting is supported.
+        /// <para>Log as an error but this is a trick to make this log appears on the screen</para>
+        /// </summary>
+        /// <param name="s">The message we want to log</param>
+        /// <param name="args">the argument of the message</param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        public static void logConsole(string s, params object[] args)
+        {
+            Type callerClass = new StackTrace(1, false).GetFrame(0).GetMethod().DeclaringType;
+            UnityEngine.Debug.LogError("[TRR." + callerClass.Name + "] " + String.Format(s, args));
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////

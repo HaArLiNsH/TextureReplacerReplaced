@@ -23,10 +23,10 @@
 
 using UnityEngine;
 
-namespace TextureReplacer
+namespace TextureReplacerReplaced
 {
     [KSPAddon(KSPAddon.Startup.EveryScene, false)]
-    public class TRActivator : MonoBehaviour
+    public class TRR_Activator : MonoBehaviour
     {
         /// <summary>
         /// status check for in flight situation
@@ -54,7 +54,7 @@ namespace TextureReplacer
 
         /// ****************************************************************************************
         /// <summary>
-        /// Start() <see cref="TRActivator.TRReflectionUpdater"/>
+        /// Start() <see cref="TRR_Activator.TRReflectionUpdater"/>
         /// </summary>
         /// ****************************************************************************************
         public void Start()
@@ -81,7 +81,7 @@ namespace TextureReplacer
 
         /// ****************************************************************************************
         /// <summary>
-        /// OnDestroy() <see cref="TRActivator.TRReflectionUpdater"/>
+        /// OnDestroy() <see cref="TRR_Activator.TRReflectionUpdater"/>
         /// </summary>
         /// ****************************************************************************************
         public void OnDestroy()

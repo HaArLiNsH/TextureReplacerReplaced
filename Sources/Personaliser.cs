@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace TextureReplacer
+namespace TextureReplacerReplaced
 {
     /// <summary>
     /// This class is used to personalize the head and the suit of your kerbal
@@ -949,7 +949,7 @@ namespace TextureReplacer
         /// when the internal model changes.
         /// </summary>
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        private class TRIvaModule : MonoBehaviour
+        private class TRR_IvaModule : MonoBehaviour
         {
             public void Start()
             {
@@ -963,7 +963,7 @@ namespace TextureReplacer
         /// This is the module used when in EVA        
         /// </summary>
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        private class TREvaModule : PartModule
+        private class TRR_EvaModule : PartModule
         {
             private Reflections.Script reflectionScript = null;
 
@@ -1046,7 +1046,7 @@ namespace TextureReplacer
 
             /// ************************************************************************************
             /// <summary>
-            /// Override the OnStart(). <see cref="Personaliser.TREvaModule"/>
+            /// Override the OnStart(). <see cref="Personaliser.TRR_EvaModule"/>
             /// </summary>
             /// ************************************************************************************
             public override void OnStart(StartState state)
@@ -1833,7 +1833,7 @@ namespace TextureReplacer
         /// Set external IVA//EVAground/EVAspace suits. 
         /// <para>The different codes send are used to maintain the logic to switch suits. (IVA->EVAground->EVAspace)</para>
         /// <para>Does a loop between EVA->EVAground suits outside of breathable atmosphere.</para>
-        /// This function is used by <see cref="Personaliser.TREvaModule"/>.
+        /// This function is used by <see cref="Personaliser.TRR_EvaModule"/>.
         /// </summary>
         /// <param name="evaPart"></param>
         /// <param name="suitSelection"></param>
@@ -2262,8 +2262,8 @@ namespace TextureReplacer
                 kerbal.textureStandard = defaultSuit.suit;
                 kerbal.textureVeteran = defaultSuit.suitVeteran;
 
-                if (kerbal.GetComponent<TRIvaModule>() == null)
-                    kerbal.gameObject.AddComponent<TRIvaModule>();
+                if (kerbal.GetComponent<TRR_IvaModule>() == null)
+                    kerbal.gameObject.AddComponent<TRR_IvaModule>();
             }
 
             Part[] evas = {
@@ -2273,8 +2273,8 @@ namespace TextureReplacer
 
             foreach (Part eva in evas)
             {
-                if (eva.GetComponent<TREvaModule>() == null)
-                    eva.gameObject.AddComponent<TREvaModule>();
+                if (eva.GetComponent<TRR_EvaModule>() == null)
+                    eva.gameObject.AddComponent<TRR_EvaModule>();
             }
 
             // Re-read scenario if database is reloaded during the space center scene to avoid losing all per-game settings.
