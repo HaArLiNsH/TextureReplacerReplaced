@@ -20,14 +20,11 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-//#define TR_LOG_HIERARCHY
-
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text.RegularExpressions;
 using UnityEngine;
+
 
 namespace TextureReplacerReplaced
 {
@@ -92,50 +89,14 @@ namespace TextureReplacerReplaced
         /// </summary>
         internal static void LoadFolders()
         {
-            UnityEngine.Debug.Log("SigmaLog: Loading Folders...");
             foreach (ConfigNode TRR_NODE in TextureReplacerReplaced.SETTINGS.Where(n => n.HasNode("Folders")))
             {
-                UnityEngine.Debug.Log("SigmaLog: Found NODE: " + TRR_NODE.name);
-
-                UnityEngine.Debug.Log("SigmaLog: Loading Default Folders...");
                 DEFAULT.AddRange(TRR_NODE.GetNode("Folders").GetValues("Default"));
-                UnityEngine.Debug.Log("SigmaLog: Loading EnvMap Folders...");
                 ENVMAP.AddRange(TRR_NODE.GetNode("Folders").GetValues("EnvMap"));
-                UnityEngine.Debug.Log("SigmaLog: Loading Heads Folders...");
                 HEADS.AddRange(TRR_NODE.GetNode("Folders").GetValues("Heads"));
-                UnityEngine.Debug.Log("SigmaLog: Loading Suits Folders...");
                 SUITS.AddRange(TRR_NODE.GetNode("Folders").GetValues("Suits"));
-                UnityEngine.Debug.Log("SigmaLog: Loading KeepLoaded Folders...");
                 KEEPLOADED.AddRange(TRR_NODE.GetNode("Folders").GetValues("KeepLoaded"));
             }
-            // DEBUG
-            UnityEngine.Debug.Log("SigmaLog: List of Loaded Folders:");
-            UnityEngine.Debug.Log("SigmaLog: >>> DEFAULT <<<");
-            foreach (string s in DEFAULT)
-            {
-                UnityEngine.Debug.Log("SigmaLog:     > " + s);
-            }
-            UnityEngine.Debug.Log("SigmaLog: >>> ENVMAP <<<");
-            foreach (string s in ENVMAP)
-            {
-                UnityEngine.Debug.Log("SigmaLog:     > " + s);
-            }
-            UnityEngine.Debug.Log("SigmaLog: >>> HEADS <<<");
-            foreach (string s in HEADS)
-            {
-                UnityEngine.Debug.Log("SigmaLog:     > " + s);
-            }
-            UnityEngine.Debug.Log("SigmaLog: >>> SUITS <<<");
-            foreach (string s in SUITS)
-            {
-                UnityEngine.Debug.Log("SigmaLog:     > " + s);
-            }
-            UnityEngine.Debug.Log("SigmaLog: >>> KEEPLOADED <<<");
-            foreach (string s in KEEPLOADED)
-            {
-                UnityEngine.Debug.Log("SigmaLog:     > " + s);
-            }
-            UnityEngine.Debug.Log("SigmaLog: End Debug.");
         }
     }
 
@@ -184,7 +145,7 @@ namespace TextureReplacerReplaced
         {
             return Load(EnvMapDictionary, Folders.ENVMAP);
         }
-        
+
 
         /// <summary>
         /// Loads all Heads into a non gender-specific list and in two gender-specific lists
@@ -197,19 +158,28 @@ namespace TextureReplacerReplaced
             {
                 foreach (string folder in Folders.HEADS)
                 {
-                    foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture.Where(t => t.texture != null && t.name.StartsWith(folder + gender[i] + "/", StringComparison.Ordinal) && !t.name.EndsWith("NRM")))
+                    foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture.Where(t => t.texture != null && t.name.StartsWith((folder + gender[i] + "/"), StringComparison.Ordinal) && !t.name.EndsWith("NRM")))
                     {
-                        string headName = texInfo.name.Substring(folder.Length);
-                        if (!FullList.Any(t => t.name == headName)) continue;
+                        string headName = texInfo.name.Substring((folder + gender[i] + "/").Length);
+                        if (FullList.Any(t => t.name == headName)) continue;
 
                         Texture2D texture = texInfo.texture;
-                        Texture2D normal = GameDatabase.Instance.databaseTexture?.FirstOrDefault(t => t.texture != null && t.name == (texInfo.name + "NRM"))?.texture;
-                        
                         texture.wrapMode = TextureWrapMode.Clamp;
-                        normal.wrapMode = TextureWrapMode.Clamp;
 
-                        Personaliser.Head head = new Personaliser.Head { name = headName, head = texture, isFemale = (i == 1) };
-                        if (normal != null) head.headNRM = normal;
+                        Personaliser.Head head = new Personaliser.Head
+                        {
+                            name = headName,
+                            head = texture,
+                            isFemale = (i == 1)
+                        };
+
+                        Texture2D normal = GameDatabase.Instance.databaseTexture.FirstOrDefault(t => t.name == (texInfo.name + "NRM"))?.texture;
+
+                        if (normal != null)
+                        {
+                            normal.wrapMode = TextureWrapMode.Clamp;
+                            head.headNRM = normal;
+                        }
 
                         FullList.Add(head);
                         GenderList[i].Add(head);
