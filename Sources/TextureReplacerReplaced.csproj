@@ -26,7 +26,7 @@
     <Compile Include="Personaliser.cs" />
     <Compile Include="Reflections.cs" />
     <Compile Include="Replacer.cs" />
-    <Compile Include="TextureReplacer.cs" />
+    <Compile Include="TextureReplacerReplaced.cs" />
     <Compile Include="TRR_Activator.cs" />
     <Compile Include="TRR_Gui.cs" />
     <Compile Include="TRR_Reflection.cs" />
