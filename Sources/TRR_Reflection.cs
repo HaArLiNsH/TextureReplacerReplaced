@@ -85,7 +85,7 @@ namespace TextureReplacerReplaced
         {
             Reflections reflections = Reflections.instance;
 
-            Shader reflectiveShader = shader.Length == 0 ? null : TextureReplacer.GetShader(shader);
+            Shader reflectiveShader = shader.Length == 0 ? null : TextureReplacerReplaced.GetShader(shader);
             Color reflectionColour = new Color(0.5f, 0.5f, 0.5f);
             int updateInterval = 1;
 

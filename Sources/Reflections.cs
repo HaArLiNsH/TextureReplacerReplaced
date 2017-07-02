@@ -45,11 +45,6 @@ namespace TextureReplacerReplaced
         }
 
         /// <summary>
-        /// EnvMap folder path
-        /// </summary>
-        public static readonly string DIR_ENVMAP = Util.DIR + "EnvMap/";
-
-        /// <summary>
         /// Reflective shader mapping.
         /// </summary>
         private static Dictionary<string, string> shaderMappingConfig = new Dictionary<string, string> {
@@ -466,14 +461,11 @@ namespace TextureReplacerReplaced
         {
             Texture2D[] envMapFaces = new Texture2D[6];
 
-            foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
+            // Foreach non-null Texture2D in any of the EnvMap Folders
+            foreach (KeyValuePair<Texture2D, string> EnvMapTexture in Folders.ENVMAP_TEXTURES())
             {
-                Texture2D texture = texInfo.texture;
-
-                if (texture == null || !texture.name.StartsWith(DIR_ENVMAP, System.StringComparison.Ordinal))
-                    continue;
-
-                string originalName = texture.name.Substring(DIR_ENVMAP.Length);
+                Texture2D texture = EnvMapTexture.Key;
+                string originalName = EnvMapTexture.Value;
 
                 switch (originalName)
                 {
@@ -551,14 +543,14 @@ namespace TextureReplacerReplaced
             }
            
             // we now save the visor shader in the placeholder. The shader got loaded through the ksp asset bundle
-            visorShader = TextureReplacer.GetShader("KSP/TR/Visor");
+            visorShader = TextureReplacerReplaced.GetShader("KSP/TR/Visor");
 
             // fill the shaderMappings dict, if we find the right shader from the mapping config. 
             // we could have used names here, but it is not in the fast path, so it is ok to leave it this way
             foreach (string origShaderName in shaderMappingConfig.Keys)
             {
-                Shader original = TextureReplacer.GetShader(origShaderName);
-                Shader reflective = TextureReplacer.GetShader(shaderMappingConfig[origShaderName]);
+                Shader original = TextureReplacerReplaced.GetShader(origShaderName);
+                Shader reflective = TextureReplacerReplaced.GetShader(shaderMappingConfig[origShaderName]);
 
                 if (original == null || original.name == "Hidden/InternalErrorShader")
                     Util.log("Shader \"{0}\" missing", origShaderName);
