@@ -82,7 +82,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// The list of paths for the "KeepLoaded/" folders
         /// </summary>
-        internal static readonly List<string> KEEPLOADED = new List<string>(ENVMAP);
+        internal static readonly List<string> KEEPLOADED = new List<string>();
 
         /// <summary>
         /// Load the paths to all folders used in TRR
@@ -96,6 +96,7 @@ namespace TextureReplacerReplaced
                 HEADS.AddRange(TRR_NODE.GetNode("Folders").GetValues("Heads"));
                 SUITS.AddRange(TRR_NODE.GetNode("Folders").GetValues("Suits"));
                 KEEPLOADED.AddRange(TRR_NODE.GetNode("Folders").GetValues("KeepLoaded"));
+                KEEPLOADED.AddRange(ENVMAP);
             }
         }
     }
