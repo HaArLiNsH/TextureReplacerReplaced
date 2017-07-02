@@ -39,9 +39,9 @@ namespace TextureReplacerReplaced
         private static readonly string[] VETERANS = { "Jebediah Kerman", "Bill Kerman", "Bob Kerman", "Valentina Kerman" };
         
         /// <summary>
-        /// Default head textures (from `Default/`).
+        /// Default Male and Female head set (from `Default/`).
         /// </summary>
-        public readonly Head[] defaultHead = { new Head { name = "DEFAULT" }, new Head { name = "DEFAULT" } };
+        public readonly Head[] defaulMaleAndFemaleHeads = { new Head { name = "DEFAULT" }, new Head { name = "DEFAULT" } };
 
         /// <summary>
         /// Default suit textures (from `Default/`).
@@ -51,31 +51,27 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Heads textures, including excluded by configuration.
         /// </summary>
-        public readonly List<Head> heads = new List<Head>();
+        public readonly List<Head> KerbalHeadsDB_full = new List<Head>();
 
         /// <summary>
         /// Suits textures, including excluded by configuration.
         /// </summary>
-        public readonly List<Suit> suits = new List<Suit>();
+        public readonly List<Suit> KerbalSuitsDB_full = new List<Suit>();
 
         /// <summary>
-        /// Male and female heads textures (minus excluded).        
-        /// <typeparamref name="Male"/>
-        /// <typeparamref name="Female"/>
+        /// Male and female heads textures (minus excluded).
         /// </summary>
-        private readonly List<Head>[] kerbalHeads = { new List<Head>(), new List<Head>() };
+        private readonly List<Head>[] maleAndfemaleHeadsDB_cleaned = { new List<Head>(), new List<Head>() };
 
         /// <summary>
-        /// Male and female suits textures (minus excluded).        
-        /// <typeparamref name="Male"/>
-        /// <typeparamref name="Female"/>
+        /// Male and female suits textures (minus excluded).  
         /// </summary>
-        private readonly List<Suit>[] kerbalSuits = { new List<Suit>(), new List<Suit>() };
+        private readonly List<Suit>[] maleAndfemaleSuitsDB_cleaned = { new List<Suit>(), new List<Suit>() };
 
         /// <summary>
         /// List of your personalized Kerbals with their KerbalData
         /// </summary>
-        private readonly Dictionary<string, KerbalData> gameKerbals = new Dictionary<string, KerbalData>();
+        private readonly Dictionary<string, KerbalData> gameKerbalsDB = new Dictionary<string, KerbalData>();
 
         /// <summary>
         /// Backed-up personalized textures from main configuration files.
@@ -88,7 +84,7 @@ namespace TextureReplacerReplaced
         /// <para> This list is first loaded from the file @default.cfg</para>
         /// <para>Then this is saved and loaded in the persistent.sfs save</para>
         /// </summary>
-        public readonly Dictionary<string, Suit> classSuits = new Dictionary<string, Suit>();
+        public readonly Dictionary<string, Suit> classSuitsDB = new Dictionary<string, Suit>();
 
         /// <summary>
         /// List of the default class specific suits
@@ -285,7 +281,8 @@ namespace TextureReplacerReplaced
 
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
-        /// Contain the configuration data of a head texture
+        /// Contain the configuration data and textures of the head set
+        /// <para>Here you will find all the textures for a head set and their functions </para>
         /// </summary>
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public class Head
@@ -934,12 +931,34 @@ namespace TextureReplacerReplaced
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public class KerbalData
         {
+            /// <summary>
+            /// The hash code of the kerbal
+            /// </summary>
             public int hash;
+
+            /// <summary>
+            /// The gender of the kerbal
+            /// </summary>
             public int gender;
+
+            /// <summary>
+            /// Is the kerbal a veteran?
+            /// </summary>
             public bool isVeteran;
 
+            /// <summary>
+            /// The head of the kerbal
+            /// </summary>
             public Head head;
+
+            /// <summary>
+            /// The suit set of the kerbal
+            /// </summary>
             public Suit suit;
+
+            /// <summary>
+            /// The forced cabin suit (IVA) of the kerbal
+            /// </summary>
             public Suit cabinSuit;
         }
 
@@ -951,6 +970,9 @@ namespace TextureReplacerReplaced
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private class TRR_IvaModule : MonoBehaviour
         {
+            /// <summary>
+            /// Called at the Start() <see cref="Personaliser.TRR_IvaModule"/>
+            /// </summary>
             public void Start()
             {
                 Personaliser.instance.personaliseIva(GetComponent<Kerbal>());
@@ -965,17 +987,36 @@ namespace TextureReplacerReplaced
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private class TRR_EvaModule : PartModule
         {
+            /// <summary>
+            /// The script for the part that handle the reflections and shaders
+            /// </summary>
             private Reflections.Script reflectionScript = null;
 
+            /// <summary>
+            /// To check if the PartModule has been initialized
+            /// </summary>
             [KSPField(isPersistant = true)]
             private bool isInitialised = false;
 
+
+            /// <summary>
+            /// To check if your kerbal need his EVA space suit
+            /// </summary>
             [KSPField(isPersistant = true)]
             public bool hasEvaSuit = false;
 
+            /// <summary>
+            /// To check if your kerbal need his EVA ground suit.
+            /// </summary>
             [KSPField(isPersistant = true)]
             public bool hasEvaGroundSuit = false;
 
+            /// <summary>
+            /// The actual selection of the suit. The suit selection goes like this : 
+            /// <para>0 = IVA suit</para>
+            /// <para>1 = EVA ground suit</para>
+            /// <para>2 = EVA space suit</para>
+            /// </summary>
             [KSPField(isPersistant = true)]
             public int actualSuitState = 0;
 
@@ -1081,7 +1122,7 @@ namespace TextureReplacerReplaced
 
             /// ************************************************************************************
             /// <summary>
-            /// Update()
+            /// Update() <see cref="Personaliser.TRR_EvaModule"/>
             /// </summary>
             /// ************************************************************************************
             public void Update()
@@ -1131,7 +1172,7 @@ namespace TextureReplacerReplaced
 
             /// ************************************************************************************
             /// <summary>
-            /// OnDestroy()
+            /// OnDestroy() <see cref="Personaliser.TRR_EvaModule"/>
             /// </summary>
             /// ************************************************************************************
             public void OnDestroy()
@@ -1206,8 +1247,8 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Whether a vessel is in a "safe" situation, so Kerbals don't need helmets (landed/splashed or in orbit).
         /// </summary>
-        /// <param name="vessel"></param>
-        /// <returns></returns>
+        /// <param name="vessel">The vessel you want to test</param>
+        /// <returns>True if the vessel is not in flying or suborbital situation</returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private static bool isSituationSafe(Vessel vessel)
         {
@@ -1218,7 +1259,8 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Whether atmosphere is breathable.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if the actual air pressure is superior to <see cref="Personaliser.atmSuitPressure"/>
+        /// and were are on a planet listed in <see cref="Personaliser.atmSuitBodies"/></returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public bool isAtmBreathable()
         {
@@ -1233,8 +1275,8 @@ namespace TextureReplacerReplaced
         /// Whether we are under sub orbit.
         /// <para>Used to change automatically suits.</para>        
         /// </summary>        
-        /// <param name="vessel"></param>
-        /// <returns></returns>
+        /// <param name="vessel">The vessel we want to test</param>
+        /// <returns>True if the vessel is under suborbital situation</returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public bool isUnderSubOrbit(Vessel vessel)
         {
@@ -1272,29 +1314,30 @@ namespace TextureReplacerReplaced
         /// Search the classSuits list and return the suit set selected for this class
         /// <para> if no suit set selected for this class, return the default one</para>
         /// </summary>
-        /// <param name="kerbal"></param>
-        /// <returns></returns>     
+        /// <param name="kerbal">The kerbal we want to get his class suit</param>
+        /// <returns>The suit set selected for this kerbal class 
+        /// or the default one if no suit select for this class</returns>     
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private Suit getClassSuit(ProtoCrewMember kerbal)
         {
             Suit suit;
-            classSuits.TryGetValue(kerbal.experienceTrait.Config.Name, out suit);
+            classSuitsDB.TryGetValue(kerbal.experienceTrait.Config.Name, out suit);
             return suit;
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Return the kerbalData of a kerbal
+        /// Return the <see cref="KerbalData"/> of a kerbal
         /// <para> </para>
         /// </summary>
-        /// <param name="kerbal"></param>
-        /// <returns></returns>     
+        /// <param name="kerbal">The kerbal we want the data</param>
+        /// <returns>the <see cref="KerbalData"/> of the kerbal</returns>     
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public KerbalData getKerbalData(ProtoCrewMember kerbal)
         {
             KerbalData kerbalData;
 
-            if (!gameKerbals.TryGetValue(kerbal.name, out kerbalData))
+            if (!gameKerbalsDB.TryGetValue(kerbal.name, out kerbalData))
             {
                 kerbalData = new KerbalData
                 {
@@ -1302,7 +1345,7 @@ namespace TextureReplacerReplaced
                     gender = (int)kerbal.gender,
                     isVeteran = VETERANS.Any(n => n == kerbal.name)
                 };
-                gameKerbals.Add(kerbal.name, kerbalData);
+                gameKerbalsDB.Add(kerbal.name, kerbalData);
 
                 if (forceLegacyFemales)
                     kerbal.gender = ProtoCrewMember.Gender.Male;
@@ -1312,21 +1355,24 @@ namespace TextureReplacerReplaced
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Return the head chosen for the kerbal
-        /// <para> If no head chosen, pick a random one</para>
+        /// Return the <see cref="Personaliser.KerbalData.head"/> chosen for the kerbal (with gender)
+        /// <para> If no head already chosen, pick a random one from <see cref="Personaliser.maleAndfemaleHeadsDB_cleaned"/></para>
+        /// <para>If nothing in the db, return <see cref="Personaliser.defaulMaleAndFemaleHeads"/></para>
         /// </summary>
-        /// <param name="kerbal"></param>
-        /// <param name="kerbalData"></param>
-        /// <returns></returns>
+        /// <param name="kerbal">The kerbal we want the head</param>
+        /// <param name="kerbalData">The <see cref="KerbalData"/> of the kerbal we want the head</param>
+        /// <returns>the <see cref="Personaliser.KerbalData.head"/> chosen for the kerbal (with gender)
+        /// If none, select a random one from <see cref="Personaliser.maleAndfemaleHeadsDB_cleaned"/>
+        /// If nothing in the db, return <see cref="Personaliser.defaulMaleAndFemaleHeads"/></returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public Head getKerbalHead(ProtoCrewMember kerbal, KerbalData kerbalData)
         {
             if (kerbalData.head != null)
                 return kerbalData.head;
 
-            List<Head> genderHeads = kerbalHeads[kerbalData.gender];
+            List<Head> genderHeads = maleAndfemaleHeadsDB_cleaned[kerbalData.gender];
             if (genderHeads.Count == 0)
-                return defaultHead[(int)kerbal.gender];
+                return defaulMaleAndFemaleHeads[(int)kerbal.gender];
 
             // Hash is multiplied with a large prime to increase randomisation, since hashes returned by `GetHashCode()` are
             // close together if strings only differ in the last (few) char(s).
@@ -1337,12 +1383,15 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Search the KerbalData of a kerbal and return his suit set
-        /// <para>If no suit set for this kerbal, search the classSuit list and return the list for his class </para>
-        /// <para>If no suit set for his class in the classSuit list, give the kerbal a random suit</para>
+        /// <para>If no suit set for this kerbal, search <see cref="classSuitsDB"/> and return the suit set for his class </para>
+        /// <para>If no suit set for his class, give the kerbal a random suit from from <see cref="maleAndfemaleSuitsDB_cleaned"/></para>
+        /// <para>If <see cref="maleAndfemaleSuitsDB_cleaned"/> is empty, return <see cref="defaultSuit"/> </para>
         /// </summary>
-        /// <param name="kerbal"></param>
-        /// <param name="kerbalData"></param>
-        /// <returns></returns>
+        /// <param name="kerbal">The kerbal we want the suit set</param>
+        /// <param name="kerbalData">The <see cref="KerbalData"/> of the kerbal we want the suit set</param>
+        /// <returns>The suit set of the kerbal saved in his <see cref="KerbalData"/>
+        /// If none, select a random one from <see cref="maleAndfemaleSuitsDB_cleaned"/>
+        /// If nothing in the db, return <see cref="defaultSuit"/></returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public Suit getKerbalSuit(ProtoCrewMember kerbal, KerbalData kerbalData)
         {
@@ -1350,11 +1399,11 @@ namespace TextureReplacerReplaced
             if (suit != null)
                 return suit;
 
-            List<Suit> genderSuits = kerbalSuits[0];
+            List<Suit> genderSuits = maleAndfemaleSuitsDB_cleaned[0];
 
             // Use female suits only if available, fall back to male suits otherwise.
-            if (kerbalData.gender != 0 && kerbalSuits[1].Count != 0)
-                genderSuits = kerbalSuits[1];
+            if (kerbalData.gender != 0 && maleAndfemaleSuitsDB_cleaned[1].Count != 0)
+                genderSuits = maleAndfemaleSuitsDB_cleaned[1];
             else if (genderSuits.Count == 0)
                 return defaultSuit;
 
@@ -1368,32 +1417,33 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// This is the main method that personalize and change the texture of your kerbal. 
         /// </summary>
-        /// <param name="component"></param>
-        /// <param name="kerbal"></param>
-        /// <param name="cabin"></param>
-        /// <param name="needsSuit"></param>
-        /// <param name="needGroundSuit"></param>
+        /// <param name="component">The kerbal we want to personalize, in term of <see cref="Component"/></param>
+        /// <param name="protoKerbal">The <see cref="ProtoCrewMember"/> data of the kerbal we want to personalize</param>
+        /// <param name="cabin">A handle to the part that contains this Kerbal</param>
+        /// <param name="needsEVASuit">Does the kerbal need a EVA suit? (space or ground)</param>
+        /// <param name="needsEVAgroundSuit">Does the kerbal need a EVA ground suit ?</param>
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
-        private void personaliseKerbal(Component component, ProtoCrewMember kerbal, Part cabin, bool needsSuit, bool needGroundSuit)
+        private void personaliseKerbal(Component component, ProtoCrewMember protoKerbal, Part cabin, bool needsEVASuit, bool needsEVAgroundSuit)
         {
-            KerbalData kerbalData = getKerbalData(kerbal);
+            KerbalData kerbalData = getKerbalData(protoKerbal);
+            
             bool isEva = cabin == null;
 
-            Head head = getKerbalHead(kerbal, kerbalData);
-            Suit suit = null;
+            Head personaliseKerbal_Head = getKerbalHead(protoKerbal, kerbalData);
+            Suit personaliseKerbal_Suit = null;
 
             if (isEva || !cabinSuits.TryGetValue(cabin.partInfo.name, out kerbalData.cabinSuit))
-                suit = getKerbalSuit(kerbal, kerbalData);
+                personaliseKerbal_Suit = getKerbalSuit(protoKerbal, kerbalData);
 
-            head = head == defaultHead[(int)kerbal.gender] ? null : head;
-            suit = (isEva && needsSuit) || kerbalData.cabinSuit == null ? suit : kerbalData.cabinSuit;
-            suit = suit == defaultSuit ? null : suit;
+            personaliseKerbal_Head = personaliseKerbal_Head == defaulMaleAndFemaleHeads[(int)protoKerbal.gender] ? null : personaliseKerbal_Head;
+            personaliseKerbal_Suit = (isEva && needsEVASuit) || kerbalData.cabinSuit == null ? personaliseKerbal_Suit : kerbalData.cabinSuit;
+            personaliseKerbal_Suit = personaliseKerbal_Suit == defaultSuit ? null : personaliseKerbal_Suit;
 
             Transform model = isEva ? component.transform.Find("model01") : component.transform.Find("kbIVA@idle/model01");
             Transform flag = isEva ? component.transform.Find("model/kbEVA_flagDecals") : null;
 
             if (isEva)
-                flag.GetComponent<Renderer>().enabled = needsSuit;
+                flag.GetComponent<Renderer>().enabled = needsEVASuit;
 
             // We must include hidden meshes, since flares are hidden when light is turned off.
             // All other meshes are always visible, so no performance hit here.
@@ -1405,7 +1455,7 @@ namespace TextureReplacerReplaced
                 if (smr == null)
                 {
                     if (renderer.name != "screenMessage")
-                        renderer.enabled = needsSuit;
+                        renderer.enabled = needsEVASuit;
                 }
                 else
                 {
@@ -1423,7 +1473,7 @@ namespace TextureReplacerReplaced
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballRight":
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilLeft":
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilRight":
-                            if (head != null && head.isEyeless)
+                            if (personaliseKerbal_Head != null && personaliseKerbal_Head.isEyeless)
                                 smr.sharedMesh = null;
 
                             break;
@@ -1433,10 +1483,10 @@ namespace TextureReplacerReplaced
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_polySurface51":
                         case "headMesh":
                         case "ponytail":
-                            if (head != null)
+                            if (personaliseKerbal_Head != null)
                             {
-                                newTexture = head.head;
-                                newNormalMap = head.headNRM;
+                                newTexture = personaliseKerbal_Head.head;
+                                newNormalMap = personaliseKerbal_Head.headNRM;
                             }
                             break;
 
@@ -1450,36 +1500,36 @@ namespace TextureReplacerReplaced
 
                         case "body01":
                         case "mesh_female_kerbalAstronaut01_body01":
-                            bool isEvaSuit = isEva && needsSuit;
+                            bool isEvaSuit = isEva && needsEVASuit;
                             //bool isEVAGroundSuit = isEva && needsSuit && needGroundSuit;
 
-                            if (suit != null)
+                            if (personaliseKerbal_Suit != null)
                             {
                                 // newTexture = isEvaSuit ? suit.getEvaSuit(kerbal.experienceLevel) : suit.getSuit(kerbal.experienceLevel);
                                 // newNormalMap = isEvaSuit ? suit.evaSuitNRM : suit.suitNRM;
 
                                 if (isEva)
                                 {
-                                    if (needsSuit && needGroundSuit)
+                                    if (needsEVASuit && needsEVAgroundSuit)
                                     {
-                                        newTexture = suit.getEvaGroundSuit(kerbal.experienceLevel);
-                                        newNormalMap = suit.evaGroundSuitNRM;
+                                        newTexture = personaliseKerbal_Suit.getEvaGroundSuit(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.evaGroundSuitNRM;
                                     }
-                                    else if (needsSuit)
+                                    else if (needsEVASuit)
                                     {
-                                        newTexture = suit.getEvaSuit(kerbal.experienceLevel);
-                                        newNormalMap = suit.evaSuitNRM;
+                                        newTexture = personaliseKerbal_Suit.getEvaSuit(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.evaSuitNRM;
                                     }
                                     else
                                     {
-                                        newTexture = suit.getSuit(kerbal.experienceLevel);
-                                        newNormalMap = suit.suitNRM;
+                                        newTexture = personaliseKerbal_Suit.getSuit(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.suitNRM;
                                     }
                                 }
                                 else
                                 {
-                                    newTexture = suit.getSuit(kerbal.experienceLevel);
-                                    newNormalMap = suit.suitNRM;
+                                    newTexture = personaliseKerbal_Suit.getSuit(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.suitNRM;
                                 }
                             }
                             if (newTexture == null)
@@ -1507,22 +1557,22 @@ namespace TextureReplacerReplaced
                         case "helmet":
                         case "mesh_female_kerbalAstronaut01_helmet":
                             if (isEva)
-                                smr.enabled = needsSuit;
+                                smr.enabled = needsEVASuit;
                             else
-                                smr.sharedMesh = needsSuit ? helmetMesh[(int)kerbal.gender] : null;
+                                smr.sharedMesh = needsEVASuit ? helmetMesh[(int)protoKerbal.gender] : null;
 
                             // Textures have to be replaced even when hidden since it may become visible later on situation change.
-                            if (suit != null)
+                            if (personaliseKerbal_Suit != null)
                             {
-                                if (isEva && needGroundSuit)
+                                if (isEva && needsEVAgroundSuit)
                                 {
-                                    newTexture = suit.getEvaGroundHelmet(kerbal.experienceLevel);
-                                    newNormalMap = suit.evaGroundHelmetNRM;
+                                    newTexture = personaliseKerbal_Suit.getEvaGroundHelmet(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.evaGroundHelmetNRM;
                                 }
                                 else if (isEva)
                                 {
-                                    newTexture = suit.getEvaHelmet(kerbal.experienceLevel);
-                                    newNormalMap = suit.helmetNRM;
+                                    newTexture = personaliseKerbal_Suit.getEvaHelmet(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.helmetNRM;
                                 }
                             }
                             break;
@@ -1530,14 +1580,14 @@ namespace TextureReplacerReplaced
                         case "visor":
                         case "mesh_female_kerbalAstronaut01_visor":
                             if (isEva)
-                                smr.enabled = needsSuit;
+                                smr.enabled = needsEVASuit;
                             else
-                                smr.sharedMesh = needsSuit ? visorMesh[(int)kerbal.gender] : null;
+                                smr.sharedMesh = needsEVASuit ? visorMesh[(int)protoKerbal.gender] : null;
 
                             // Textures have to be replaced even when hidden since it may become visible later on situation change.
-                            if (suit != null)
+                            if (personaliseKerbal_Suit != null)
                             {
-                                newTexture = isEva ? suit.getEvaVisor(kerbal.experienceLevel) : suit.getEvaVisor(kerbal.experienceLevel);
+                                newTexture = isEva ? personaliseKerbal_Suit.getEvaVisor(protoKerbal.experienceLevel) : personaliseKerbal_Suit.getEvaVisor(protoKerbal.experienceLevel);
 
                                 if (newTexture != null)
                                     material.color = Color.white;
@@ -1548,18 +1598,18 @@ namespace TextureReplacerReplaced
                         case "mesh_female_kerbalAstronaut01_jetpack":
                             if (isEva)
                             {
-                                smr.enabled = needsSuit;
-                                if (suit != null)
+                                smr.enabled = needsEVASuit;
+                                if (personaliseKerbal_Suit != null)
                                 {
-                                    if (needsSuit && needGroundSuit)
+                                    if (needsEVASuit && needsEVAgroundSuit)
                                     {
-                                        newTexture = suit.getEvaGroundJetpack(kerbal.experienceLevel);
-                                        newNormalMap = suit.evaGroundJetpackNRM;
+                                        newTexture = personaliseKerbal_Suit.getEvaGroundJetpack(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.evaGroundJetpackNRM;
                                     }
-                                    else if (needsSuit)
+                                    else if (needsEVASuit)
                                     {
-                                        newTexture = suit.getEvaJetpack(kerbal.experienceLevel);
-                                        newNormalMap = suit.evaJetpackNRM;
+                                        newTexture = personaliseKerbal_Suit.getEvaJetpack(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.evaJetpackNRM;
                                     }
                                 }
                             }
@@ -1568,18 +1618,18 @@ namespace TextureReplacerReplaced
                         default: // Jetpack.
                             if (isEva)
                             {
-                                smr.enabled = needsSuit;
-                                if (suit != null)
+                                smr.enabled = needsEVASuit;
+                                if (personaliseKerbal_Suit != null)
                                 {
-                                    if (needsSuit && needGroundSuit)
+                                    if (needsEVASuit && needsEVAgroundSuit)
                                     {
-                                        newTexture = suit.getEvaGroundJetpack(kerbal.experienceLevel);
-                                        newNormalMap = suit.evaGroundJetpackNRM;
+                                        newTexture = personaliseKerbal_Suit.getEvaGroundJetpack(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.evaGroundJetpackNRM;
                                     }
-                                    else if (needsSuit)
+                                    else if (needsEVASuit)
                                     {
-                                        newTexture = suit.getEvaJetpack(kerbal.experienceLevel);
-                                        newNormalMap = suit.evaJetpackNRM;
+                                        newTexture = personaliseKerbal_Suit.getEvaJetpack(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.evaJetpackNRM;
                                     }
                                 }
                                 /*if (needsSuit && suit != null)
@@ -1620,7 +1670,7 @@ namespace TextureReplacerReplaced
             if (isEva || !cabinSuits.TryGetValue(cabin.partInfo.name, out kerbalData.cabinSuit))
                 suit = getKerbalSuit(kerbal, kerbalData);
 
-            head = head == defaultHead[(int)kerbal.gender] ? null : head;
+            head = head == defaulMaleAndFemaleHeads[(int)kerbal.gender] ? null : head;
             suit = (isEva && needsSuit) || kerbalData.cabinSuit == null ? suit : kerbalData.cabinSuit;
             suit = suit == defaultSuit ? null : suit;
 
@@ -1772,9 +1822,9 @@ namespace TextureReplacerReplaced
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Personalize Kerbals in an internal space of a vessel. Used by IvaModule.
+        /// Personalize Kerbals in an internal space of a vessel. Used by <see cref="TRR_IvaModule"/>
         /// </summary>
-        /// <param name="kerbal"></param>
+        /// <param name="kerbal">The kerbal we want to personalize</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void personaliseIva(Kerbal kerbal)
         {
@@ -1797,7 +1847,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Method to show or hide the helmet and visor. Called on vessel state change event.
         /// </summary>
-        /// <param name="action"></param>
+        /// <param name="action">The game event handler for the change of situation of the vessel</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private void updateHelmets(GameEvents.HostedFromToAction<Vessel, Vessel.Situations> action)
         {
@@ -1830,18 +1880,21 @@ namespace TextureReplacerReplaced
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Set external IVA//EVAground/EVAspace suits. 
+        /// Set external IVA//EVAground/EVAspace suits by first testing the logic and <see cref="isAtmBreathable"/> . 
+        /// Then call <see cref="personaliseKerbal(Component, ProtoCrewMember, Part, bool, bool)"/> and return the selected suit number.
         /// <para>The different codes send are used to maintain the logic to switch suits. (IVA->EVAground->EVAspace)</para>
         /// <para>Does a loop between EVA->EVAground suits outside of breathable atmosphere.</para>
         /// This function is used by <see cref="Personaliser.TRR_EvaModule"/>.
         /// </summary>
-        /// <param name="evaPart"></param>
-        /// <param name="suitSelection"></param>
-        /// <returns></returns>
+        /// <param name="evaPart">The <see cref="Part"/> to which this <see cref="PartModule"/> is attached. Use this to reference the part from your module code. </param>
+        /// <param name="suitSelection">The actual selection of the suit before the test and configuration. The suit selection goes like this : 
+        /// <para>0 = IVA suit</para>
+        /// <para>1 = EVA ground suit</para>
+        /// <para>2 = EVA space suit</para></param>
+        /// <returns>The selected suit set after the <see cref="isAtmBreathable"/> test</returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private int personaliseEva(Part evaPart, int suitSelection)
         {
-
             int selection = suitSelection;
             bool evaSuit = false;
             bool evaGroundSuit = false;
@@ -1908,7 +1961,7 @@ namespace TextureReplacerReplaced
         /// <para> This list is first loaded from the file @default.cfg</para>
         /// <para>Then this loaded in the persistent.sfs save</para>
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="node">The <see cref="ConfigNode"/> that contain our saved data</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private void loadKerbals(ConfigNode node)
         {
@@ -1916,17 +1969,17 @@ namespace TextureReplacerReplaced
 
             KerbalRoster roster = HighLogic.CurrentGame.CrewRoster;
 
-            foreach (ProtoCrewMember kerbal in roster.Crew.Concat(roster.Tourist).Concat(roster.Unowned))
+            foreach (ProtoCrewMember ProtoKerbal in roster.Crew.Concat(roster.Tourist).Concat(roster.Unowned))
             {
-                if (kerbal.rosterStatus == ProtoCrewMember.RosterStatus.Dead
-                    && kerbal.type != ProtoCrewMember.KerbalType.Unowned)
+                if (ProtoKerbal.rosterStatus == ProtoCrewMember.RosterStatus.Dead
+                    && ProtoKerbal.type != ProtoCrewMember.KerbalType.Unowned)
                 {
                     continue;
                 }
 
-                KerbalData kerbalData = getKerbalData(kerbal);
+                KerbalData kerbalData = getKerbalData(ProtoKerbal);
 
-                string value = node.GetValue(kerbal.name);
+                string value = node.GetValue(ProtoKerbal.name);
                 if (value != null)
                 {
                     string[] tokens = Util.splitConfigValue(value);
@@ -1939,14 +1992,14 @@ namespace TextureReplacerReplaced
 
                     if (headName != null && headName != "GENERIC")
                     {
-                        kerbalData.head = headName == "DEFAULT" ? defaultHead[(int)kerbal.gender]
-                          : heads.Find(h => h.name == headName);
+                        kerbalData.head = headName == "DEFAULT" ? defaulMaleAndFemaleHeads[(int)ProtoKerbal.gender]
+                          : KerbalHeadsDB_full.Find(h => h.name == headName);
                     }
 
                     if (suitName != null && suitName != "GENERIC")
-                        kerbalData.suit = suitName == "DEFAULT" ? defaultSuit : suits.Find(s => s.name == suitName);
+                        kerbalData.suit = suitName == "DEFAULT" ? defaultSuit : KerbalSuitsDB_full.Find(s => s.name == suitName);
 
-                    kerbal.gender = forceLegacyFemales ? ProtoCrewMember.Gender.Male : (ProtoCrewMember.Gender)kerbalData.gender;
+                    ProtoKerbal.gender = forceLegacyFemales ? ProtoCrewMember.Gender.Male : (ProtoCrewMember.Gender)kerbalData.gender;
                 }
             }
         }
@@ -1956,7 +2009,7 @@ namespace TextureReplacerReplaced
         /// Save per-game custom Kerbals mapping.        
         /// <para>Then this is saved in the persistent.sfs save</para>
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="node">The <see cref="ConfigNode"/> that contain our saved data</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private void saveKerbals(ConfigNode node)
         {
@@ -1982,11 +2035,11 @@ namespace TextureReplacerReplaced
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Load suit mapping.
+        /// Used to load the mapping of our suit databases
         /// </summary>
-        /// <param name="node"></param>
-        /// <param name="map"></param>
-        /// <param name="defaultMap"></param>
+        /// <param name="node">The <see cref="ConfigNode"/> that contain our saved data</param>
+        /// <param name="map">The database we want to map</param>
+        /// <param name="defaultMap">If this one is not empty, map the value from here to the other parameter</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private void loadSuitMap(ConfigNode node, IDictionary<string, Suit> map, IDictionary<string, Suit> defaultMap = null)
         {
@@ -2014,7 +2067,7 @@ namespace TextureReplacerReplaced
                         }
                         else
                         {
-                            Suit suit = suits.Find(s => s.name == suitName);
+                            Suit suit = KerbalSuitsDB_full.Find(s => s.name == suitName);
                             if (suit != null)
                                 map[entry.name] = suit;
                         }
@@ -2025,10 +2078,10 @@ namespace TextureReplacerReplaced
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Save suit mapping.
+        /// Used to save the mapping of our suit databases
         /// </summary>
-        /// <param name="map"></param>
-        /// <param name="node"></param>
+        /// <param name="map">The database we want to map</param>
+        /// <param name="node">The <see cref="ConfigNode"/> that contain our saved data</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private static void saveSuitMap(Dictionary<string, Suit> map, ConfigNode node)
         {
@@ -2086,37 +2139,37 @@ namespace TextureReplacerReplaced
             }
 
             // Tag female and eye-less heads.
-            foreach (Head head in heads)
+            foreach (Head head in KerbalHeadsDB_full)
             {
                 head.isFemale = femaleHeads.Contains(head.name);
                 head.isEyeless = eyelessHeads.Contains(head.name);
             }
             // Tag female suits.
-            foreach (Suit suit in suits)
+            foreach (Suit suit in KerbalSuitsDB_full)
                 suit.isFemale = femaleSuits.Contains(suit.name);
 
             // Create lists of male heads and suits.
-            kerbalHeads[0].AddRange(heads.Where(h => !h.isFemale && !excludedHeads.Contains(h.name)));
-            kerbalSuits[0].AddRange(suits.Where(s => !s.isFemale && !excludedSuits.Contains(s.name)));
+            maleAndfemaleHeadsDB_cleaned[0].AddRange(KerbalHeadsDB_full.Where(h => !h.isFemale && !excludedHeads.Contains(h.name)));
+            maleAndfemaleSuitsDB_cleaned[0].AddRange(KerbalSuitsDB_full.Where(s => !s.isFemale && !excludedSuits.Contains(s.name)));
 
             // Create lists of female heads and suits.
-            kerbalHeads[1].AddRange(heads.Where(h => h.isFemale && !excludedHeads.Contains(h.name)));
-            kerbalSuits[1].AddRange(suits.Where(s => s.isFemale && !excludedSuits.Contains(s.name)));
+            maleAndfemaleHeadsDB_cleaned[1].AddRange(KerbalHeadsDB_full.Where(h => h.isFemale && !excludedHeads.Contains(h.name)));
+            maleAndfemaleSuitsDB_cleaned[1].AddRange(KerbalSuitsDB_full.Where(s => s.isFemale && !excludedSuits.Contains(s.name)));
 
             // Trim lists.
-            heads.TrimExcess();
-            suits.TrimExcess();
-            kerbalHeads[0].TrimExcess();
-            kerbalSuits[0].TrimExcess();
-            kerbalHeads[1].TrimExcess();
-            kerbalSuits[1].TrimExcess();
+            KerbalHeadsDB_full.TrimExcess();
+            KerbalSuitsDB_full.TrimExcess();
+            maleAndfemaleHeadsDB_cleaned[0].TrimExcess();
+            maleAndfemaleSuitsDB_cleaned[0].TrimExcess();
+            maleAndfemaleHeadsDB_cleaned[1].TrimExcess();
+            maleAndfemaleSuitsDB_cleaned[1].TrimExcess();
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Read configuration and perform pre-load initialization.
         /// </summary>
-        /// <param name="rootNode"></param>
+        /// <param name="rootNode">The <see cref="ConfigNode"/> that contain our saved data</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void readConfig(ConfigNode rootNode)
         {
@@ -2155,14 +2208,14 @@ namespace TextureReplacerReplaced
                     {
                         string baseName = headName.Substring(0, headName.Length - 3);
 
-                        Head head = heads.Find(h => h.name == baseName);
+                        Head head = KerbalHeadsDB_full.Find(h => h.name == baseName);
                         if (head != null)
                             head.headNRM = texture;
                     }
-                    else if (heads.All(h => h.name != headName))
+                    else if (KerbalHeadsDB_full.All(h => h.name != headName))
                     {
                         Head head = new Head { name = headName, head = texture };
-                        heads.Add(head);
+                        KerbalHeadsDB_full.Add(head);
                     }
                 }
                 // Add a suit texture.
@@ -2185,12 +2238,12 @@ namespace TextureReplacerReplaced
                         int index;
                         if (!suitDirs.TryGetValue(dirName, out index))
                         {
-                            index = suits.Count;
-                            suits.Add(new Suit { name = dirName });
+                            index = KerbalSuitsDB_full.Count;
+                            KerbalSuitsDB_full.Add(new Suit { name = dirName });
                             suitDirs.Add(dirName, index);
                         }
 
-                        Suit suit = suits[index];
+                        Suit suit = KerbalSuitsDB_full[index];
                         if (!suit.setTexture(originalName, texture))
                             Util.log("Unknown suit texture name \"{0}\": {1}", originalName, texture.name);
                     }
@@ -2202,22 +2255,22 @@ namespace TextureReplacerReplaced
 
                     if (originalName == "kerbalHead")
                     {
-                        defaultHead[0].head = texture;
+                        defaulMaleAndFemaleHeads[0].head = texture;
                         texture.wrapMode = TextureWrapMode.Clamp;
                     }
                     else if (originalName == "kerbalHeadNRM")
                     {
-                        defaultHead[0].headNRM = texture;
+                        defaulMaleAndFemaleHeads[0].headNRM = texture;
                         texture.wrapMode = TextureWrapMode.Clamp;
                     }
                     else if (originalName == "kerbalGirl_06_BaseColor")
                     {
-                        defaultHead[1].head = texture;
+                        defaulMaleAndFemaleHeads[1].head = texture;
                         texture.wrapMode = TextureWrapMode.Clamp;
                     }
                     else if (originalName == "kerbalGirl_06_BaseColorNRM")
                     {
-                        defaultHead[1].headNRM = texture;
+                        defaulMaleAndFemaleHeads[1].headNRM = texture;
                         texture.wrapMode = TextureWrapMode.Clamp;
                     }
                     else if (defaultSuit.setTexture(originalName, texture) || originalName == "kerbalMain")
@@ -2237,9 +2290,9 @@ namespace TextureReplacerReplaced
                 if (texture.name != null)
                 {
                     if (texture.name == "kerbalHead")
-                        defaultHead[0].head = defaultHead[0].head ?? texture;
+                        defaulMaleAndFemaleHeads[0].head = defaulMaleAndFemaleHeads[0].head ?? texture;
                     else if (texture.name == "kerbalGirl_06_BaseColor")
-                        defaultHead[1].head = defaultHead[1].head ?? texture;
+                        defaulMaleAndFemaleHeads[1].head = defaulMaleAndFemaleHeads[1].head ?? texture;
                     else
                         defaultSuit.setTexture(texture.name, texture);
                 }
@@ -2312,15 +2365,15 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Used to load the configuration data saved in the .cfg file and in persistent save
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="node">The <see cref="ConfigNode"/> that contain our saved data</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void loadScenario(ConfigNode node)
         {
-            gameKerbals.Clear();
-            classSuits.Clear();
+            gameKerbalsDB.Clear();
+            classSuitsDB.Clear();
 
             loadKerbals(node.GetNode("Kerbals"));
-            loadSuitMap(node.GetNode("ClassSuits"), classSuits, defaultClassSuits);
+            loadSuitMap(node.GetNode("ClassSuits"), classSuitsDB, defaultClassSuits);
 
             Util.parse(node.GetValue("isHelmetRemovalEnabled"), ref isHelmetRemovalEnabled);
             Util.parse(node.GetValue("isAtmSuitEnabled"), ref isAtmSuitEnabled);
@@ -2331,12 +2384,12 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Used to save the configuration data in the .cfg file and in persistent save
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="node">The <see cref="ConfigNode"/> that contain our saved data</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void saveScenario(ConfigNode node)
         {
             saveKerbals(node.AddNode("Kerbals"));
-            saveSuitMap(classSuits, node.AddNode("ClassSuits"));
+            saveSuitMap(classSuitsDB, node.AddNode("ClassSuits"));
 
             node.AddValue("isHelmetRemovalEnabled", isHelmetRemovalEnabled);
             node.AddValue("isAtmSuitEnabled", isAtmSuitEnabled);
@@ -2350,11 +2403,11 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void resetKerbals()
         {
-            gameKerbals.Clear();
-            classSuits.Clear();
+            gameKerbalsDB.Clear();
+            classSuitsDB.Clear();
 
             loadKerbals(null);
-            loadSuitMap(null, classSuits, defaultClassSuits);
+            loadSuitMap(null, classSuitsDB, defaultClassSuits);
         }
     }
 }

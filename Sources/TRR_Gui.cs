@@ -70,7 +70,7 @@ namespace TextureReplacerReplaced
         private Rect windowRect = new Rect(Screen.width - 600, 60, 580, 610);
 
         /// <summary>
-        /// vector used for the scroll in the roster aera of the GUI
+        /// vector used for the scroll in the roster area of the GUI
         /// </summary>
         private Vector2 rosterScroll = Vector2.zero;
 
@@ -194,7 +194,7 @@ namespace TextureReplacerReplaced
             GUILayout.EndVertical();
 
             // Textures.
-            Personaliser.Head defaultHead = personaliser.defaultHead[0];
+            Personaliser.Head defaultHead = personaliser.defaulMaleAndFemaleHeads[0];
             Personaliser.Suit defaultSuit = personaliser.defaultSuit;
             Personaliser.KerbalData kerbalData = null;
             Personaliser.Head head = null;
@@ -205,20 +205,20 @@ namespace TextureReplacerReplaced
             if (selectedKerbal != null)
             {
                 kerbalData = personaliser.getKerbalData(selectedKerbal);
-                defaultHead = personaliser.defaultHead[(int)selectedKerbal.gender];
+                defaultHead = personaliser.defaulMaleAndFemaleHeads[(int)selectedKerbal.gender];
 
                 head = personaliser.getKerbalHead(selectedKerbal, kerbalData);
                 suit = personaliser.getKerbalSuit(selectedKerbal, kerbalData);
 
-                headIndex = personaliser.heads.IndexOf(head);
-                suitIndex = personaliser.suits.IndexOf(suit);
+                headIndex = personaliser.KerbalHeadsDB_full.IndexOf(head);
+                suitIndex = personaliser.KerbalSuitsDB_full.IndexOf(suit);
             }
             else if (selectedClass != null)
             {
-                personaliser.classSuits.TryGetValue(selectedClass, out suit);
+                personaliser.classSuitsDB.TryGetValue(selectedClass, out suit);
 
                 if (suit != null)
-                    suitIndex = personaliser.suits.IndexOf(suit);
+                    suitIndex = personaliser.KerbalSuitsDB_full.IndexOf(suit);
             }
 
             GUILayout.Space(10);
@@ -262,20 +262,20 @@ namespace TextureReplacerReplaced
             if (kerbalData != null)
             {
                 GUILayout.BeginHorizontal();
-                GUI.enabled = personaliser.heads.Count != 0;
+                GUI.enabled = personaliser.KerbalHeadsDB_full.Count != 0;
 
                 if (GUILayout.Button("<"))
                 {
                     headIndex = headIndex == -1 ? 0 : headIndex;
-                    headIndex = (personaliser.heads.Count + headIndex - 1) % personaliser.heads.Count;
+                    headIndex = (personaliser.KerbalHeadsDB_full.Count + headIndex - 1) % personaliser.KerbalHeadsDB_full.Count;
 
-                    kerbalData.head = personaliser.heads[headIndex];
+                    kerbalData.head = personaliser.KerbalHeadsDB_full[headIndex];
                 }
                 if (GUILayout.Button(">"))
                 {
-                    headIndex = (headIndex + 1) % personaliser.heads.Count;
+                    headIndex = (headIndex + 1) % personaliser.KerbalHeadsDB_full.Count;
 
-                    kerbalData.head = personaliser.heads[headIndex];
+                    kerbalData.head = personaliser.KerbalHeadsDB_full[headIndex];
                 }
 
                 GUI.enabled = true;
@@ -297,35 +297,35 @@ namespace TextureReplacerReplaced
                 GUILayout.Space(130);
 
                 GUILayout.BeginHorizontal();
-                GUI.enabled = personaliser.suits.Count != 0;
+                GUI.enabled = personaliser.KerbalSuitsDB_full.Count != 0;
 
                 if (GUILayout.Button("<"))
                 {
                     suitIndex = suitIndex == -1 ? 0 : suitIndex;
-                    suitIndex = (personaliser.suits.Count + suitIndex - 1) % personaliser.suits.Count;
+                    suitIndex = (personaliser.KerbalSuitsDB_full.Count + suitIndex - 1) % personaliser.KerbalSuitsDB_full.Count;
 
                     if (kerbalData != null)
                     {
-                        kerbalData.suit = personaliser.suits[suitIndex];
+                        kerbalData.suit = personaliser.KerbalSuitsDB_full[suitIndex];
                         kerbalData.cabinSuit = null;
                     }
                     else
                     {
-                        personaliser.classSuits[selectedClass] = personaliser.suits[suitIndex];
+                        personaliser.classSuitsDB[selectedClass] = personaliser.KerbalSuitsDB_full[suitIndex];
                     }
                 }
                 if (GUILayout.Button(">"))
                 {
-                    suitIndex = (suitIndex + 1) % personaliser.suits.Count;
+                    suitIndex = (suitIndex + 1) % personaliser.KerbalSuitsDB_full.Count;
 
                     if (kerbalData != null)
                     {
-                        kerbalData.suit = personaliser.suits[suitIndex];
+                        kerbalData.suit = personaliser.KerbalSuitsDB_full[suitIndex];
                         kerbalData.cabinSuit = null;
                     }
                     else
                     {
-                        personaliser.classSuits[selectedClass] = personaliser.suits[suitIndex];
+                        personaliser.classSuitsDB[selectedClass] = personaliser.KerbalSuitsDB_full[suitIndex];
                     }
                 }
 
@@ -344,7 +344,7 @@ namespace TextureReplacerReplaced
                     }
                     else
                     {
-                        personaliser.classSuits[selectedClass] = defaultSuit;
+                        personaliser.classSuitsDB[selectedClass] = defaultSuit;
                     }
                 }
 
@@ -358,7 +358,7 @@ namespace TextureReplacerReplaced
                     }
                     else
                     {
-                        personaliser.classSuits[selectedClass] = null;
+                        personaliser.classSuitsDB[selectedClass] = null;
                     }
                 }
 
