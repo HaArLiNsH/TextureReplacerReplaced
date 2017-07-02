@@ -35,12 +35,12 @@ namespace TextureReplacerReplaced
 		/// <summary>
 		/// Hud Navball path
 		/// </summary>
-		private static readonly string HUD_NAVBALL = Replacer.DIR_TEXTURES + Replacer.HUD_NAVBALL;
+		private static readonly string HUD_NAVBALL = Folders.DIR_DEFAULT + Replacer.HUD_NAVBALL;
 
 		/// <summary>
 		/// IVA Navball path
 		/// </summary>
-		private static readonly string IVA_NAVBALL = Replacer.DIR_TEXTURES + Replacer.IVA_NAVBALL;
+		private static readonly string IVA_NAVBALL = Folders.DIR_DEFAULT + Replacer.IVA_NAVBALL;
 
 		/// <summary>
 		/// Texture compression and mipmap generation parameters.
@@ -54,12 +54,10 @@ namespace TextureReplacerReplaced
 			new Regex("^" + Util.DIR + "(Default|Heads|Suits)/")
 		};
 
-		/// <summary>
-		///  List of substrings for paths where textures shouldn't be unloaded.
-		/// </summary>
-		private readonly List<Regex> keepLoaded = new List<Regex> {
-			new Regex("^" + Reflections.DIR_ENVMAP)
-		};
+        /// <summary>
+        ///  List of substrings for paths where textures shouldn't be unloaded.
+        /// </summary>
+        private readonly List<Regex> keepLoaded = new List<Regex>();
 
 		/// <summary>
 		/// Checker to see if compression is enabled
@@ -177,7 +175,12 @@ namespace TextureReplacerReplaced
 				}
 			}
 
-			Util.addRELists(rootNode.GetValues("keepLoaded"), keepLoaded);
+            // Keep Loaded all "KeepLoaded" and "EnvMap" folders
+            foreach (string folder in Folders.KEEPLOADED)
+            {
+                Regex item = new Regex("^" + folder);
+                keepLoaded.Add(item);
+            }
 		}
 
 		/// ////////////////////////////////////////////////////////////////////////////////////////

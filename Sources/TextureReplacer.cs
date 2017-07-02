@@ -30,7 +30,7 @@ namespace TextureReplacerReplaced
 {
     // delay the initialization to the MainMenu, so we have everything (ModuleManager, GameDatabase) loaded
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
-    public class TextureReplacer : MonoBehaviour
+    public class TextureReplacerReplaced : MonoBehaviour
     {
         /// <summary>
         /// Status of the loading
@@ -41,6 +41,11 @@ namespace TextureReplacerReplaced
         /// shader database
         /// </summary>
         private static Dictionary<string, Shader> allShaders = new Dictionary<string, Shader>();
+
+        /// <summary>
+        /// User Settings
+        /// </summary>
+        internal static ConfigNode[] SETTINGS = new ConfigNode[] { };
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -65,13 +70,19 @@ namespace TextureReplacerReplaced
             Reflections.instance = new Reflections();
             Personaliser.instance = new Personaliser();
 
-            foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
+            SETTINGS = GameDatabase.Instance.GetConfigNodes("TextureReplacerReplaced");
+            Debug.Log("SigmaLog: SETTINGS NODES = " + SETTINGS.Length);
+
+            Folders.LoadFolders();
+
+            /*
+            foreach (UrlDir.UrlConfig file in )
             {
                 Loader.instance.readConfig(file.config);
                 Replacer.instance.readConfig(file.config);
                 Reflections.instance.readConfig(file.config);
                 Personaliser.instance.readConfig(file.config);
-            }
+            }*/
 
             Loader.instance.configure();
         }

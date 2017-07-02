@@ -59,7 +59,7 @@ namespace TextureReplacerReplaced
         /// ****************************************************************************************
         public void Start()
         {
-            if (!TextureReplacer.isLoaded)
+            if (!TextureReplacerReplaced.isLoaded)
                 return;
 
             Replacer.instance.beginScene();

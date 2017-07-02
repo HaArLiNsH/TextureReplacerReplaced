@@ -35,11 +35,6 @@ namespace TextureReplacerReplaced
     internal class Replacer
     {
         /// <summary>
-        /// path of the Default folder (from <see cref="Util.DIR"/> + Default/ )
-        /// </summary>
-        public static readonly string DIR_TEXTURES = Util.DIR + "Default/";
-
-        /// <summary>
         /// HUD NavBall string name
         /// </summary>
         public static readonly string HUD_NAVBALL = "HUDNavBall";
@@ -48,12 +43,7 @@ namespace TextureReplacerReplaced
         /// IVA NavBall string name
         /// </summary>
         public static readonly string IVA_NAVBALL = "IVANavBall";
-
-        /// <summary>
-        /// The list of paths for the "Default/" folder
-        /// </summary>
-        private readonly List<string> paths = new List<string> { DIR_TEXTURES };
-
+        
         /// <summary>
         /// List of mapped Texture
         /// </summary>
@@ -170,7 +160,6 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void readConfig(ConfigNode rootNode)
         {
-            Util.addLists(rootNode.GetValues("paths"), paths);
             Util.parse(rootNode.GetValue("skinningQuality"), ref skinningQuality);
             Util.parse(rootNode.GetValue("logTextures"), ref logTextures);
         }
@@ -200,7 +189,7 @@ namespace TextureReplacerReplaced
                 if (texture == null)
                     continue;
 
-                foreach (string path in paths)
+                foreach (string path in Folders.DEFAULT)
                 {
                     if (!texture.name.StartsWith(path, StringComparison.Ordinal))
                         continue;
