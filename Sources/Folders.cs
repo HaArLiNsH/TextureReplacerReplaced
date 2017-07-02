@@ -33,7 +33,7 @@ using UnityEngine;
 namespace TextureReplacerReplaced
 {
     /// <summary>
-    /// Utilitarian class. Here you find all the utility method to make your life easier
+    /// Folders class. Here you find all the folders needed by TRR
     /// </summary>
     internal static class Folders
     {
