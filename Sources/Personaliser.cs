@@ -32,12 +32,8 @@ namespace TextureReplacerReplaced
     /// This class is used to personalize the head and the suit of your kerbal
     /// </summary>
     public class Personaliser
-    {        
-        /// <summary>
-        /// List of the veterans
-        /// </summary>                      
-        private static readonly string[] VETERANS = { "Jebediah Kerman", "Bill Kerman", "Bob Kerman", "Valentina Kerman" };
-        
+    {
+
         /// <summary>
         /// Default Male and Female head set (from `Default/`).
         /// </summary>
@@ -1343,7 +1339,7 @@ namespace TextureReplacerReplaced
                 {
                     hash = kerbal.name.GetHashCode(),
                     gender = (int)kerbal.gender,
-                    isVeteran = VETERANS.Any(n => n == kerbal.name)
+                    isVeteran = kerbal.veteran
                 };
                 gameKerbalsDB.Add(kerbal.name, kerbalData);
 
