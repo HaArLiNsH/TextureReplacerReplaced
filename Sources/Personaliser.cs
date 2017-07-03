@@ -32,12 +32,8 @@ namespace TextureReplacerReplaced
     /// This class is used to personalize the head and the suit of your kerbal
     /// </summary>
     public class Personaliser
-    {        
-        /// <summary>
-        /// List of the veterans
-        /// </summary>                      
-        private static readonly string[] VETERANS = { "Jebediah Kerman", "Bill Kerman", "Bob Kerman", "Valentina Kerman" };
-        
+    {
+
         /// <summary>
         /// Default Male and Female head set (from `Default/`).
         /// </summary>
@@ -1343,7 +1339,7 @@ namespace TextureReplacerReplaced
                 {
                     hash = kerbal.name.GetHashCode(),
                     gender = (int)kerbal.gender,
-                    isVeteran = VETERANS.Any(n => n == kerbal.name)
+                    isVeteran = kerbal.veteran
                 };
                 gameKerbalsDB.Add(kerbal.name, kerbalData);
 
@@ -2102,7 +2098,6 @@ namespace TextureReplacerReplaced
         {
             var excludedHeads = new List<string>();
             var excludedSuits = new List<string>();
-            var femaleHeads = new List<string>();
             var femaleSuits = new List<string>();
             var eyelessHeads = new List<string>();
 
@@ -2124,7 +2119,6 @@ namespace TextureReplacerReplaced
                 {
                     Util.addLists(genericNode.GetValues("excludedHeads"), excludedHeads);
                     Util.addLists(genericNode.GetValues("excludedSuits"), excludedSuits);
-                    Util.addLists(genericNode.GetValues("femaleHeads"), femaleHeads);
                     Util.addLists(genericNode.GetValues("femaleSuits"), femaleSuits);
                     Util.addLists(genericNode.GetValues("eyelessHeads"), eyelessHeads);
                 }
@@ -2141,7 +2135,6 @@ namespace TextureReplacerReplaced
             // Tag female and eye-less heads.
             foreach (Head head in KerbalHeadsDB_full)
             {
-                head.isFemale = femaleHeads.Contains(head.name);
                 head.isEyeless = eyelessHeads.Contains(head.name);
             }
             // Tag female suits.
@@ -2192,34 +2185,18 @@ namespace TextureReplacerReplaced
             var suitDirs = new Dictionary<string, int>();
             string lastTextureName = "";
 
+            // Populate KerbalHeadsDB_full and defaulMaleAndFemaleHeads
+            Textures.LoadHeads(KerbalHeadsDB_full, maleAndfemaleHeadsDB_cleaned);
+            Textures.DefaultHeads(defaulMaleAndFemaleHeads);
+
             foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
             {
                 Texture2D texture = texInfo.texture;
                 if (texture == null || !texture.name.StartsWith(Util.DIR, StringComparison.Ordinal))
                     continue;
 
-                // Add a head texture.
-                if (texture.name.StartsWith(DIR_HEADS, StringComparison.Ordinal))
-                {
-                    texture.wrapMode = TextureWrapMode.Clamp;
-
-                    string headName = texture.name.Substring(DIR_HEADS.Length);
-                    if (headName.EndsWith("NRM", StringComparison.Ordinal))
-                    {
-                        string baseName = headName.Substring(0, headName.Length - 3);
-
-                        Head head = KerbalHeadsDB_full.Find(h => h.name == baseName);
-                        if (head != null)
-                            head.headNRM = texture;
-                    }
-                    else if (KerbalHeadsDB_full.All(h => h.name != headName))
-                    {
-                        Head head = new Head { name = headName, head = texture };
-                        KerbalHeadsDB_full.Add(head);
-                    }
-                }
                 // Add a suit texture.
-                else if (texture.name.StartsWith(DIR_SUITS, StringComparison.Ordinal))
+                if (texture.name.StartsWith(DIR_SUITS, StringComparison.Ordinal))
                 {
                     texture.wrapMode = TextureWrapMode.Clamp;
 
@@ -2253,27 +2230,7 @@ namespace TextureReplacerReplaced
                     int lastSlash = texture.name.LastIndexOf('/');
                     string originalName = texture.name.Substring(lastSlash + 1);
 
-                    if (originalName == "kerbalHead")
-                    {
-                        defaulMaleAndFemaleHeads[0].head = texture;
-                        texture.wrapMode = TextureWrapMode.Clamp;
-                    }
-                    else if (originalName == "kerbalHeadNRM")
-                    {
-                        defaulMaleAndFemaleHeads[0].headNRM = texture;
-                        texture.wrapMode = TextureWrapMode.Clamp;
-                    }
-                    else if (originalName == "kerbalGirl_06_BaseColor")
-                    {
-                        defaulMaleAndFemaleHeads[1].head = texture;
-                        texture.wrapMode = TextureWrapMode.Clamp;
-                    }
-                    else if (originalName == "kerbalGirl_06_BaseColorNRM")
-                    {
-                        defaulMaleAndFemaleHeads[1].headNRM = texture;
-                        texture.wrapMode = TextureWrapMode.Clamp;
-                    }
-                    else if (defaultSuit.setTexture(originalName, texture) || originalName == "kerbalMain")
+                    if (defaultSuit.setTexture(originalName, texture) || originalName == "kerbalMain")
                     {
                         texture.wrapMode = TextureWrapMode.Clamp;
                     }

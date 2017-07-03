@@ -20,14 +20,11 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-//#define TR_LOG_HIERARCHY
-
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text.RegularExpressions;
 using UnityEngine;
+
 
 namespace TextureReplacerReplaced
 {
@@ -85,76 +82,144 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// The list of paths for the "KeepLoaded/" folders
         /// </summary>
-        internal static readonly List<string> KEEPLOADED = new List<string>(ENVMAP);
+        internal static readonly List<string> KEEPLOADED = new List<string>();
 
         /// <summary>
         /// Load the paths to all folders used in TRR
         /// </summary>
         internal static void LoadFolders()
         {
-            UnityEngine.Debug.Log("SigmaLog: Loading Folders...");
             foreach (ConfigNode TRR_NODE in TextureReplacerReplaced.SETTINGS.Where(n => n.HasNode("Folders")))
             {
-                UnityEngine.Debug.Log("SigmaLog: Found NODE: " + TRR_NODE.name);
-
-                UnityEngine.Debug.Log("SigmaLog: Loading Default Folders...");
                 DEFAULT.AddRange(TRR_NODE.GetNode("Folders").GetValues("Default"));
-                UnityEngine.Debug.Log("SigmaLog: Loading EnvMap Folders...");
                 ENVMAP.AddRange(TRR_NODE.GetNode("Folders").GetValues("EnvMap"));
-                UnityEngine.Debug.Log("SigmaLog: Loading Heads Folders...");
                 HEADS.AddRange(TRR_NODE.GetNode("Folders").GetValues("Heads"));
-                UnityEngine.Debug.Log("SigmaLog: Loading Suits Folders...");
                 SUITS.AddRange(TRR_NODE.GetNode("Folders").GetValues("Suits"));
-                UnityEngine.Debug.Log("SigmaLog: Loading KeepLoaded Folders...");
                 KEEPLOADED.AddRange(TRR_NODE.GetNode("Folders").GetValues("KeepLoaded"));
+                KEEPLOADED.AddRange(ENVMAP);
             }
-            // DEBUG
-            UnityEngine.Debug.Log("SigmaLog: List of Loaded Folders:");
-            UnityEngine.Debug.Log("SigmaLog: >>> DEFAULT <<<");
-            foreach (string s in DEFAULT)
+        }
+    }
+
+    /// <summary>
+    /// Textures class. Here you find some lists of Textures needed by TRR
+    /// </summary>
+    internal static class Textures
+    {
+        /// <summary>
+        /// Generates and returns the required Dictionary
+        /// </summary>
+        static Dictionary<Texture2D, string> Load(Dictionary<Texture2D, string> dictionary, List<string> folders)
+        {
+            if (dictionary == null)
             {
-                UnityEngine.Debug.Log("SigmaLog:     > " + s);
+                dictionary = new Dictionary<Texture2D, string>();
+
+                foreach (string folder in folders)
+                {
+                    foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture.Where(t => t.name.StartsWith(folder, StringComparison.Ordinal)))
+                    {
+                        if (texInfo.texture != null && !dictionary.ContainsKey(texInfo.texture))
+                            dictionary.Add(texInfo.texture, texInfo.name.Substring(folder.Length));
+                    }
+                }
             }
-            UnityEngine.Debug.Log("SigmaLog: >>> ENVMAP <<<");
-            foreach (string s in ENVMAP)
+            return dictionary;
+        }
+
+
+        static Dictionary<Texture2D, string> DefaultDictionary = null;
+        /// <summary>
+        /// Dictionary of Texture2D from Default folders with their originalName
+        /// </summary>
+        internal static Dictionary<Texture2D, string> DEFAULT()
+        {
+            return Load(DefaultDictionary, Folders.DEFAULT);
+        }
+
+
+        static Dictionary<Texture2D, string> EnvMapDictionary = null;
+        /// <summary>
+        /// Dictionary of Texture2D from Default folders with their originalName
+        /// </summary>
+        internal static Dictionary<Texture2D, string> ENVMAP()
+        {
+            return Load(EnvMapDictionary, Folders.ENVMAP);
+        }
+
+
+        /// <summary>
+        /// Loads all Heads into a non gender-specific list and in two gender-specific lists
+        /// </summary>
+        internal static void LoadHeads(List<Personaliser.Head> FullList, List<Personaliser.Head>[] GenderList)
+        {
+            string[] gender = { "Male", "Female" };
+
+            for (int i = 0; i < 2; i++)
             {
-                UnityEngine.Debug.Log("SigmaLog:     > " + s);
+                foreach (string folder in Folders.HEADS)
+                {
+                    foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture.Where(t => t.texture != null && t.name.StartsWith((folder + gender[i] + "/"), StringComparison.Ordinal) && !t.name.EndsWith("NRM")))
+                    {
+                        string headName = texInfo.name.Substring((folder + gender[i] + "/").Length);
+                        if (FullList.Any(t => t.name == headName)) continue;
+
+                        Texture2D texture = texInfo.texture;
+                        texture.wrapMode = TextureWrapMode.Clamp;
+
+                        Personaliser.Head head = new Personaliser.Head
+                        {
+                            name = headName,
+                            head = texture,
+                            isFemale = (i == 1)
+                        };
+
+                        Texture2D normal = GameDatabase.Instance.databaseTexture.FirstOrDefault(t => t.name == (texInfo.name + "NRM"))?.texture;
+
+                        if (normal != null)
+                        {
+                            normal.wrapMode = TextureWrapMode.Clamp;
+                            head.headNRM = normal;
+                        }
+
+                        FullList.Add(head);
+                        GenderList[i].Add(head);
+                    }
+                }
             }
-            UnityEngine.Debug.Log("SigmaLog: >>> HEADS <<<");
-            foreach (string s in HEADS)
-            {
-                UnityEngine.Debug.Log("SigmaLog:     > " + s);
-            }
-            UnityEngine.Debug.Log("SigmaLog: >>> SUITS <<<");
-            foreach (string s in SUITS)
-            {
-                UnityEngine.Debug.Log("SigmaLog:     > " + s);
-            }
-            UnityEngine.Debug.Log("SigmaLog: >>> KEEPLOADED <<<");
-            foreach (string s in KEEPLOADED)
-            {
-                UnityEngine.Debug.Log("SigmaLog:     > " + s);
-            }
-            UnityEngine.Debug.Log("SigmaLog: End Debug.");
         }
 
         /// <summary>
-        /// List of GameDatabase.TextureInfo for textures in the EnvMap folders
+        /// Loads the Default heads
         /// </summary>
-        internal static Dictionary<Texture2D, string> ENVMAP_TEXTURES()
+        internal static void DefaultHeads(Personaliser.Head[] heads)
         {
-            Dictionary<Texture2D, string> EnvMapTextures = new Dictionary<Texture2D, string>();
-
-            foreach (string EnvMapFolder in ENVMAP)
+            foreach (KeyValuePair<Texture2D, string> texInfo in DEFAULT())
             {
-                foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture.Where(t => t.name.StartsWith(EnvMapFolder, StringComparison.Ordinal)))
+                Texture2D texture = texInfo.Key;
+                string originalName = texInfo.Value;
+
+                if (originalName == "kerbalHead")
                 {
-                    if (texInfo.texture != null && !EnvMapTextures.ContainsKey(texInfo.texture))
-                        EnvMapTextures.Add(texInfo.texture, texInfo.name.Substring(EnvMapFolder.Length));
+                    heads[0].head = texture;
+                    texture.wrapMode = TextureWrapMode.Clamp;
+                }
+                else if (originalName == "kerbalHeadNRM")
+                {
+                    heads[0].headNRM = texture;
+                    texture.wrapMode = TextureWrapMode.Clamp;
+                }
+                else if (originalName == "kerbalGirl_06_BaseColor")
+                {
+                    heads[1].head = texture;
+                    texture.wrapMode = TextureWrapMode.Clamp;
+                }
+                else if (originalName == "kerbalGirl_06_BaseColorNRM")
+                {
+                    heads[1].headNRM = texture;
+                    texture.wrapMode = TextureWrapMode.Clamp;
                 }
             }
-
-            return EnvMapTextures;
         }
     }
 }
