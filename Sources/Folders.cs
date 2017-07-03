@@ -162,15 +162,15 @@ namespace TextureReplacerReplaced
                     foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture.Where(t => t.texture != null && t.name.StartsWith((folder + gender[i] + "/"), StringComparison.Ordinal) && !t.name.EndsWith("NRM")))
                     {
                         string headName = texInfo.name.Substring((folder + gender[i] + "/").Length);
-                        if (FullList.Any(t => t.name == headName)) continue;
+                        if (FullList.Any(t => t.headName == headName)) continue;
 
                         Texture2D texture = texInfo.texture;
                         texture.wrapMode = TextureWrapMode.Clamp;
 
                         Personaliser.Head head = new Personaliser.Head
                         {
-                            name = headName,
-                            head = texture,
+                            headName = headName,
+                            headTexture = texture,
                             isFemale = (i == 1)
                         };
 
@@ -201,7 +201,7 @@ namespace TextureReplacerReplaced
 
                 if (originalName == "kerbalHead")
                 {
-                    heads[0].head = texture;
+                    heads[0].headTexture = texture;
                     texture.wrapMode = TextureWrapMode.Clamp;
                 }
                 else if (originalName == "kerbalHeadNRM")
@@ -211,7 +211,7 @@ namespace TextureReplacerReplaced
                 }
                 else if (originalName == "kerbalGirl_06_BaseColor")
                 {
-                    heads[1].head = texture;
+                    heads[1].headTexture = texture;
                     texture.wrapMode = TextureWrapMode.Clamp;
                 }
                 else if (originalName == "kerbalGirl_06_BaseColorNRM")

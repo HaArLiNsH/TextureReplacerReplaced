@@ -226,18 +226,18 @@ namespace TextureReplacerReplaced
 
             if (head != null)
             {
-                GUILayout.Box(head.head, GUILayout.Width(200), GUILayout.Height(200));
+                GUILayout.Box(head.headTexture, GUILayout.Width(200), GUILayout.Height(200));
 
-                GUILayout.Label(head.name);
+                GUILayout.Label(head.headName);
             }
 
             if (suit != null)
             {
                 Texture2D suitTex = suit == defaultSuit && kerbalData != null && kerbalData.isVeteran ?
-                                    defaultSuit.suitVeteran : (suit.suit ?? defaultSuit.suit);
-                Texture2D helmetTex = suit.helmet ?? defaultSuit.helmet;
-                Texture2D evaSuitTex = suit.evaSuit ?? defaultSuit.evaSuit;
-                Texture2D evaHelmetTex = suit.evaHelmet ?? defaultSuit.evaHelmet;
+                                    defaultSuit.suitVeteran : (suit.ivaSuit_Male ?? defaultSuit.ivaSuit_Male);
+                Texture2D helmetTex = suit.ivaHelmet ?? defaultSuit.ivaHelmet;
+                Texture2D evaSuitTex = suit.evaSpaceSuit_Male ?? defaultSuit.evaSpaceSuit_Male;
+                Texture2D evaHelmetTex = suit.evaSpaceHelmet ?? defaultSuit.evaSpaceHelmet;
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Box(suitTex, GUILayout.Width(100), GUILayout.Height(100));
@@ -253,7 +253,7 @@ namespace TextureReplacerReplaced
                 GUILayout.Box(evaHelmetTex, GUILayout.Width(100), GUILayout.Height(100));
                 GUILayout.EndHorizontal();
 
-                GUILayout.Label(suit.name);
+                GUILayout.Label(suit.suitSetName);
             }
 
             GUILayout.EndVertical();
