@@ -174,7 +174,8 @@ namespace TextureReplacerReplaced
         /// </summary>
         public bool isCollarRemovalEnabled = false;
 
-
+        // !!!!!!!!!!!!!!!!!!!!!!!!   Need to implement these options and make a GUI for them !!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!!!!!!!!!   Maybe a new class  ??                                    !!!!!!!!!!!!!!!
         /* =========================================================================================
          * personal suit options
          * used for each suit texture pack
