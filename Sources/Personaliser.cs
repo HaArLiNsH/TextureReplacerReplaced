@@ -390,7 +390,8 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Texture for the veteran suit
             /// </summary>
-            public Texture2D suitVeteran;
+            //public Texture2D suitVeteran;
+            //public Texture2D ivaSuit_Veteran_Male;
 
             /// <summary>
             /// Texture for the Male IVA suit
@@ -400,7 +401,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Male IVA suit
             /// </summary>
-            public Texture2D ivaSuitNRM_Male;
+            public Texture2D ivaSuit_Male_NRM;
 
             /// <summary>
             /// Texture for the veteran Male IVA suit
@@ -410,7 +411,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the veteran Male IVA suit
             /// </summary>
-            public Texture2D ivaSuitNRM_Veteran_Male;            
+            public Texture2D ivaSuit_Veteran_Male_NRM;            
 
             /// <summary>
             /// Texture for the Badass Male IVA suit
@@ -420,7 +421,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Badass Male IVA suit
             /// </summary>
-            public Texture2D ivaSuitNRM_Badass_Male;
+            public Texture2D ivaSuit_Badass_Male_NRM;
 
             /// <summary>
             /// Texture for the Veteran + Badass Male IVA suit
@@ -430,7 +431,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Veteran + Badass Male IVA suit
             /// </summary>
-            public Texture2D ivaSuitNRM_VetBad_Male;
+            public Texture2D ivaSuit_VetBad_Male_NRM;
 
             /// <summary>
             /// Texture for the Female IVA suit
@@ -440,7 +441,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Female IVA suit
             /// </summary>
-            public Texture2D ivaSuitNRM_Female;
+            public Texture2D ivaSuit_Female_NRM;
 
             /// <summary>
             /// Texture for the veteran Female IVA suit
@@ -450,7 +451,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the veteran Female IVA suit
             /// </summary>
-            public Texture2D ivaSuitNRM_Veteran_Female;
+            public Texture2D ivaSuit_Veteran_Female_NRM;
 
             /// <summary>
             /// Texture for the Badass Female IVA suit
@@ -460,7 +461,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Badass Female IVA suit
             /// </summary>
-            public Texture2D ivaSuitNRM_Badass_Female;
+            public Texture2D ivaSuit_Badass_Female_NRM;
 
             /// <summary>
             /// Texture for the Veteran + Badass Female IVA suit
@@ -470,7 +471,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Veteran + Badass Female IVA suit
             /// </summary>
-            public Texture2D ivaSuitNRM_VetBad_Female;
+            public Texture2D ivaSuit_VetBad_Female_NRM;
 
             /// <summary>
             /// Texture for the IVA helmet
@@ -500,7 +501,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Male EVA ground suit
             /// </summary>
-            public Texture2D evaGroundSuitNRM_Male;
+            public Texture2D evaGroundSuit_Male_NRM;
 
             /// <summary>
             /// Texture for the veteran Male EVA Ground suit
@@ -510,7 +511,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the veteran Male EVA Ground suit
             /// </summary>
-            public Texture2D evaGroundSuitNRM_Veteran_Male;
+            public Texture2D evaGroundSuit_Veteran_Male_NRM;
 
             /// <summary>
             /// Texture for the Badass Male EVA Ground suit
@@ -520,7 +521,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Badass Male EVA Ground suit
             /// </summary>
-            public Texture2D evaGroundSuitNRM_Badass_Male;
+            public Texture2D evaGroundSuit_Badass_Male_NRM;
 
             /// <summary>
             /// Texture for the Veteran + Badass Male EVA Ground suit
@@ -530,7 +531,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Veteran + Badass Male EVA Ground suit
             /// </summary>
-            public Texture2D evaGroundSuitNRM_VetBad_Male;
+            public Texture2D evaGroundSuit_VetBad_Male_NRM;
 
             /// <summary>
             /// Texture for the Female EVA ground suit
@@ -540,7 +541,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Female EVA ground suit
             /// </summary>
-            public Texture2D evaGroundSuitNRM_Female;
+            public Texture2D evaGroundSuit_Female_NRM;
 
             /// <summary>
             /// Texture for the veteran Female EVA Ground suit
@@ -550,7 +551,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the veteran Female EVA Ground suit
             /// </summary>
-            public Texture2D evaGroundSuitNRM_Veteran_Female;
+            public Texture2D evaGroundSuit_Veteran_Female_NRM;
 
             /// <summary>
             /// Texture for the Badass Female EVA Ground suit
@@ -560,7 +561,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Badass Female EVA Ground suit
             /// </summary>
-            public Texture2D evaGroundSuitNRM_Badass_Female;
+            public Texture2D evaGroundSuit_Badass_Female_NRM;
 
             /// <summary>
             /// Texture for the Veteran + Badass Female EVA Ground suit
@@ -570,7 +571,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Veteran + Badass Female EVA Ground suit
             /// </summary>
-            public Texture2D evaGroundSuitNRM_VetBad_Female;
+            public Texture2D evaGroundSuit_VetBad_Female_NRM;
 
             /// <summary>
             /// Texture for the EVA ground helmet
@@ -620,7 +621,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the veteran Male EVA space suit
             /// </summary>
-            public Texture2D evaSpaceSuitNRM_Veteran_Male;
+            public Texture2D evaSpaceSuit_Veteran_Male_NRM;
 
             /// <summary>
             /// Texture for the Badass Male EVA space suit
@@ -630,7 +631,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Badass Male EVA space suit
             /// </summary>
-            public Texture2D evaSpaceSuitNRM_Badass_Male;
+            public Texture2D evaSpaceSuit_Badass_Male_NRM;
 
             /// <summary>
             /// Texture for the Veteran + Badass Male EVA space suit
@@ -640,7 +641,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Veteran + Badass Male EVA space suit
             /// </summary>
-            public Texture2D evaSpaceSuitNRM_VetBad_Male;
+            public Texture2D evaSpaceSuit_VetBad_Male_NRM;
 
             /// <summary>
             /// Texture for the Female EVA space suit
@@ -650,7 +651,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Female EVA space suit
             /// </summary>
-            public Texture2D evaSpaceSuitNRM_Female;
+            public Texture2D evaSpaceSuit_Female_NRM;
 
             /// <summary>
             /// Texture for the veteran Female EVA space suit
@@ -660,7 +661,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the veteran Female EVA space suit
             /// </summary>
-            public Texture2D evaSpaceSuitNRM_Veteran_Female;
+            public Texture2D evaSpaceSuit_Veteran_Female_NRM;
 
             /// <summary>
             /// Texture for the Badass Female EVA space suit
@@ -670,7 +671,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Badass Female EVA space suit
             /// </summary>
-            public Texture2D evaSpaceSuitNRM_Badass_Female;
+            public Texture2D evaSpaceSuit_Badass_Female_NRM;
 
             /// <summary>
             /// Texture for the Veteran + Badass Female EVA space suit
@@ -680,7 +681,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Veteran + Badass Female EVA space suit
             /// </summary>
-            public Texture2D evaSpaceSuitNRM_VetBad_Female;
+            public Texture2D evaSpaceSuit_VetBad_Female_NRM;
 
             /// <summary>
             /// Texture for the EVA space helmet
@@ -996,24 +997,59 @@ namespace TextureReplacerReplaced
 
                 switch (originalName)
                 {
-                    case "kerbalMain":
-                        suitVeteran = suitVeteran ?? texture;
-                        return false;
-
+                    /* ========================================
+                    * IVA suit
+                    * =======================================*/
                     case "kerbalMainGrey":
+                    case "IvaSuit_Male":
                         ivaSuit_Male = ivaSuit_Male ?? texture;
                         return true;
 
                     case "kerbalMainNRM":
-                        ivaSuitNRM_Male = ivaSuitNRM_Male ?? texture;
+                    case "IvaSuit_MaleNRM":
+                        ivaSuit_Male_NRM = ivaSuit_Male_NRM ?? texture;
                         return true;
 
+                    case "kerbalMain":
+                    case "ivaSuit_Veteran_Male":
+                        ivaSuit_Veteran_Male = ivaSuit_Veteran_Male ?? texture;
+                        return false;
+
+                    case "ivaSuit_Veteran_Male_NRM":
+                        ivaSuit_Veteran_Male_NRM = ivaSuit_Veteran_Male_NRM ?? texture;
+                        return false;
+                    
+                    case "ivaSuit_Badass_Male":
+                        ivaSuit_Badass_Male = ivaSuit_Badass_Male ?? texture;
+                        return false;
+
+                    case "ivaSuit_Badass_Male_NRM":
+                        ivaSuit_Badass_Male_NRM = ivaSuit_Badass_Male_NRM ?? texture;
+                        return false;
+
+                    case "ivaSuit_Veteran_Female":
+                        ivaSuit_Veteran_Female = ivaSuit_Veteran_Female ?? texture;
+                        return false;
+
+                    case "ivaSuit_Veteran_Female_NRM":
+                        ivaSuit_Veteran_Female_NRM = ivaSuit_Veteran_Female_NRM ?? texture;
+                        return false;
+
+                    case "ivaSuit_Badass_Female":
+                        ivaSuit_Badass_Female = ivaSuit_Badass_Female ?? texture;
+                        return false;
+
+                    case "ivaSuit_Badass_Female_NRM":
+                        ivaSuit_Badass_Female_NRM = ivaSuit_Badass_Female_NRM ?? texture;
+                        return false;
+
                     case "kerbalHelmetGrey":
+                    case "IvaHelmet":
                         ivaHelmet = ivaHelmet ?? texture;
                         return true;
 
                     case "kerbalHelmetNRM":
-                    case "Ivahelmet.NRM":
+                    case "IvaHelmet.NRM":
                         ivaHelmetNRM = ivaHelmetNRM ?? texture;
                         return true;
 
@@ -1022,37 +1058,52 @@ namespace TextureReplacerReplaced
                         ivaVisor = ivaVisor ?? texture;
                         return true;
 
-                    case "EVAtexture":
-                        evaSpaceSuit_Male = evaSpaceSuit_Male ?? texture;
+                    case "kerbalVisorNRM":
+                    case "IvaVisorNRM":
+                        ivaVisorNRM = ivaVisorNRM ?? texture;
                         return true;
-
-                    case "EVAtextureNRM":
-                        evaSpaceSuitNRM_Male = evaSpaceSuitNRM_Male ?? texture;
-                        return true;
-
-                    case "EVAhelmet":
-                        evaSpaceHelmet = evaSpaceHelmet ?? texture;
-                        return true;
-
-                    case "EVAvisor":
-                        evaSpaceVisor = evaSpaceVisor ?? texture;
-                        return true;
-
-                    case "EVAjetpack":
-                        evaSpaceJetpack = evaSpaceJetpack ?? texture;
-                        return true;
-
-                    case "EVAjetpackNRM":
-                        evaSpaceJetpackNRM = evaSpaceJetpackNRM ?? texture;
-                        return true;
-
-                    case "EVAgroundTexture":
+                    /* ========================================
+                    * EVA ground suit
+                    * =======================================*/
+                    case "EvaGroundSuit_Male":
                         evaGroundSuit_Male = evaGroundSuit_Male ?? texture;
                         return true;
 
-                    case "EVAgroundTextureNRM":
-                        evaGroundSuitNRM_Male = evaGroundSuitNRM_Male ?? texture;
+                    case "EvaGroundSuit_Male_NRM":
+                        evaGroundSuit_Male_NRM = evaGroundSuit_Male_NRM ?? texture;
                         return true;
+
+                    case "EvaGroundSuit_Veteran_Male":
+                        evaGroundSuit_Veteran_Male = evaGroundSuit_Veteran_Male ?? texture;
+                        return false;
+
+                    case "EvaGroundSuit_Veteran_Male_NRM":
+                        evaGroundSuit_Veteran_Male_NRM = evaGroundSuit_Veteran_Male_NRM ?? texture;
+                        return false;
+
+                    case "EvaGroundSuit_Badass_Male":
+                        evaGroundSuit_Badass_Male = evaGroundSuit_Badass_Male ?? texture;
+                        return false;
+
+                    case "EvaGroundSuit_Badass_Male_NRM":
+                        evaGroundSuit_Badass_Male_NRM = evaGroundSuit_Badass_Male_NRM ?? texture;
+                        return false;
+
+                    case "EvaGroundSuit_Veteran_Female":
+                        evaGroundSuit_Veteran_Female = evaGroundSuit_Veteran_Female ?? texture;
+                        return false;
+
+                    case "EvaGroundSuit_Veteran_Female_NRM":
+                        evaGroundSuit_Veteran_Female_NRM = evaGroundSuit_Veteran_Female_NRM ?? texture;
+                        return false;
+
+                    case "EvaGroundSuit_Badass_Female":
+                        evaGroundSuit_Badass_Female = evaGroundSuit_Badass_Female ?? texture;
+                        return false;
+
+                    case "EvaGroundSuit_Badass_Female_NRM":
+                        evaGroundSuit_Badass_Female_NRM = evaGroundSuit_Badass_Female_NRM ?? texture;
+                        return false;
 
                     case "EVAgroundHelmet":
                         evaGroundHelmet = evaGroundHelmet ?? texture;
@@ -1074,6 +1125,74 @@ namespace TextureReplacerReplaced
                         evaGroundJetpackNRM = evaGroundJetpackNRM ?? texture;
                         return true;
 
+                    /* ========================================
+                    * EVA space suit
+                    * =======================================*/
+                    case "EVAtexture":
+                    case "EvaSpaceSuit_Male":
+                        evaSpaceSuit_Male = evaSpaceSuit_Male ?? texture;
+                        return true;
+
+                    case "EVAtextureNRM":
+                    case "EvaSpaceSuit_Male_NRM":
+                        evaSpaceSuitNRM_Male = evaSpaceSuitNRM_Male ?? texture;
+                        return true;
+
+                    case "EvaSpaceSuit_Veteran_Male":
+                        evaSpaceSuit_Veteran_Male = evaSpaceSuit_Veteran_Male ?? texture;
+                        return false;
+
+                    case "EvaSpaceSuit_Veteran_Male_NRM":
+                        evaSpaceSuit_Veteran_Male_NRM = evaSpaceSuit_Veteran_Male_NRM ?? texture;
+                        return false;
+
+                    case "EvaSpaceSuit_Badass_Male":
+                        evaSpaceSuit_Badass_Male = evaSpaceSuit_Badass_Male ?? texture;
+                        return false;
+
+                    case "EvaSpaceSuit_Badass_Male_NRM":
+                        evaSpaceSuit_Badass_Male_NRM = evaSpaceSuit_Badass_Male_NRM ?? texture;
+                        return false;
+
+                    case "EvaSpaceSuit_Veteran_Female":
+                        evaSpaceSuit_Veteran_Female = evaSpaceSuit_Veteran_Female ?? texture;
+                        return false;
+
+                    case "EvaSpaceSuit_Veteran_Female_NRM":
+                        evaSpaceSuit_Veteran_Female_NRM = evaSpaceSuit_Veteran_Female_NRM ?? texture;
+                        return false;
+
+                    case "EvaSpaceSuit_Badass_Female":
+                        evaSpaceSuit_Badass_Female = evaSpaceSuit_Badass_Female ?? texture;
+                        return false;
+
+                    case "EvaSpaceSuit_Badass_Female_NRM":
+                        evaSpaceSuit_Badass_Female_NRM = evaSpaceSuit_Badass_Female_NRM ?? texture;
+                        return false;
+
+                    case "EVAhelmet":
+                    case "EvaSpaceHelmet":
+                        evaSpaceHelmet = evaSpaceHelmet ?? texture;
+                        return true;
+
+                    case "EVAvisor":
+                    case "EvaSpaceVisor":
+                        evaSpaceVisor = evaSpaceVisor ?? texture;
+                        return true;
+
+                    case "EVAjetpack":
+                    case "EvaSpaceJetpack":
+                        evaSpaceJetpack = evaSpaceJetpack ?? texture;
+                        return true;
+
+                    case "EVAjetpackNRM":
+                    case "EvaSpaceJetpackNRM":
+                        evaSpaceJetpackNRM = evaSpaceJetpackNRM ?? texture;
+                        return true;
+                     // !!!!!!!!!!!!!!!!!!!!!!!!   need to fusion/disappear !!!!!!!!!!!!!!!!
+                    /* ========================================
+                    * LEVEL suit
+                    * =======================================*/
                     case "kerbalMainGrey1":
                     case "kerbalMainGrey2":
                     case "kerbalMainGrey3":
@@ -1801,7 +1920,7 @@ namespace TextureReplacerReplaced
                                     if (needsEVASuit && needsEVAgroundSuit)
                                     {
                                         newTexture = personaliseKerbal_Suit.getEvaGroundSuit(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.evaGroundSuitNRM_Male;
+                                        newNormalMap = personaliseKerbal_Suit.evaGroundSuit_Male_NRM;
                                     }
                                     else if (needsEVASuit)
                                     {
@@ -1811,13 +1930,13 @@ namespace TextureReplacerReplaced
                                     else
                                     {
                                         newTexture = personaliseKerbal_Suit.getIvaSuit(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.ivaSuitNRM_Male;
+                                        newNormalMap = personaliseKerbal_Suit.ivaSuit_Male_NRM;
                                     }
                                 }
                                 else
                                 {
                                     newTexture = personaliseKerbal_Suit.getIvaSuit(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.ivaSuitNRM_Male;
+                                    newNormalMap = personaliseKerbal_Suit.ivaSuit_Male_NRM;
                                 }
                             }
                             if (newTexture == null)
@@ -1825,12 +1944,12 @@ namespace TextureReplacerReplaced
                                 // This required for two reasons: to fix IVA suits after KSP resetting them to the stock ones all the
                                 // time and to fix the switch from non-default to default texture during EVA suit toggle.
                                 newTexture = isEvaSuit ? defaultSuit.evaSpaceSuit_Male
-                                  : kerbalData.isVeteran ? defaultSuit.suitVeteran
+                                  : kerbalData.isVeteran ? defaultSuit.ivaSuit_Veteran_Male
                                   : defaultSuit.ivaSuit_Male;
                             }
 
                             if (newNormalMap == null)
-                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuitNRM_Male : defaultSuit.ivaSuitNRM_Male;
+                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuitNRM_Male : defaultSuit.ivaSuit_Male_NRM;
 
                             // Update textures in Kerbal IVA object since KSP resets them to these values a few frames later.
                             if (!isEva)
@@ -2028,7 +2147,7 @@ namespace TextureReplacerReplaced
                             if (suit != null)
                             {
                                 newTexture = isEvaSuit ? suit.getEvaSpaceSuit(kerbal.experienceLevel) : suit.getIvaSuit(kerbal.experienceLevel);
-                                newNormalMap = isEvaSuit ? suit.evaSpaceSuitNRM_Male : suit.ivaSuitNRM_Male;
+                                newNormalMap = isEvaSuit ? suit.evaSpaceSuitNRM_Male : suit.ivaSuit_Male_NRM;
                             }
 
                             if (newTexture == null)
@@ -2036,12 +2155,12 @@ namespace TextureReplacerReplaced
                                 // This required for two reasons: to fix IVA suits after KSP resetting them to the stock ones all the
                                 // time and to fix the switch from non-default to default texture during EVA suit toggle.
                                 newTexture = isEvaSuit ? defaultSuit.evaSpaceSuit_Male
-                                  : kerbalData.isVeteran ? defaultSuit.suitVeteran
+                                  : kerbalData.isVeteran ? defaultSuit.ivaSuit_Veteran_Male
                                   : defaultSuit.ivaSuit_Male;
                             }
 
                             if (newNormalMap == null)
-                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuitNRM_Male : defaultSuit.ivaSuitNRM_Male;
+                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuitNRM_Male : defaultSuit.ivaSuit_Male_NRM;
 
                             // Update textures in Kerbal IVA object since KSP resets them to these values a few frames later.
                             if (!isEva)
@@ -2562,7 +2681,7 @@ namespace TextureReplacerReplaced
 
                 // After an IVA space is initialized, suits are reset to these values. Replace stock textures with default ones.
                 kerbal.textureStandard = defaultSuit.ivaSuit_Male;
-                kerbal.textureVeteran = defaultSuit.suitVeteran;
+                kerbal.textureVeteran = defaultSuit.ivaSuit_Veteran_Male;
 
                 if (kerbal.GetComponent<TRR_IvaModule>() == null)
                     kerbal.gameObject.AddComponent<TRR_IvaModule>();

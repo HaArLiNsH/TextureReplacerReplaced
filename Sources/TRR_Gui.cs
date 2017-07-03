@@ -234,7 +234,7 @@ namespace TextureReplacerReplaced
             if (suit != null)
             {
                 Texture2D suitTex = suit == defaultSuit && kerbalData != null && kerbalData.isVeteran ?
-                                    defaultSuit.suitVeteran : (suit.ivaSuit_Male ?? defaultSuit.ivaSuit_Male);
+                                    defaultSuit.ivaSuit_Veteran_Male : (suit.ivaSuit_Male ?? defaultSuit.ivaSuit_Male);
                 Texture2D helmetTex = suit.ivaHelmet ?? defaultSuit.ivaHelmet;
                 Texture2D evaSuitTex = suit.evaSpaceSuit_Male ?? defaultSuit.evaSpaceSuit_Male;
                 Texture2D evaHelmetTex = suit.evaSpaceHelmet ?? defaultSuit.evaSpaceHelmet;
