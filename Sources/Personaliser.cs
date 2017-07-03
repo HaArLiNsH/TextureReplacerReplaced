@@ -401,6 +401,36 @@ namespace TextureReplacerReplaced
             public Texture2D ivaSuitNRM_Male;
 
             /// <summary>
+            /// Texture for the veteran Male IVA suit
+            /// </summary>
+            public Texture2D ivaSuit_Veteran_Male;
+
+            /// <summary>
+            /// Normal map for the veteran Male IVA suit
+            /// </summary>
+            public Texture2D ivaSuitNRM_Veteran_Male;            
+
+            /// <summary>
+            /// Texture for the Badass Male IVA suit
+            /// </summary>
+            public Texture2D ivaSuit_Badass_Male;
+
+            /// <summary>
+            /// Normal map for the Badass Male IVA suit
+            /// </summary>
+            public Texture2D ivaSuitNRM_Badass_Male;
+
+            /// <summary>
+            /// Texture for the Veteran + Badass Male IVA suit
+            /// </summary>
+            public Texture2D ivaSuit_VetBad_Male;
+
+            /// <summary>
+            /// Normal map for the Veteran + Badass Male IVA suit
+            /// </summary>
+            public Texture2D ivaSuitNRM_VetBad_Male;
+
+            /// <summary>
             /// Texture for the Female IVA suit
             /// </summary>
             public Texture2D ivaSuit_Female;            
@@ -409,6 +439,36 @@ namespace TextureReplacerReplaced
             /// Normal map for the Female IVA suit
             /// </summary>
             public Texture2D ivaSuitNRM_Female;
+
+            /// <summary>
+            /// Texture for the veteran Female IVA suit
+            /// </summary>
+            public Texture2D ivaSuit_Veteran_Female;
+
+            /// <summary>
+            /// Normal map for the veteran Female IVA suit
+            /// </summary>
+            public Texture2D ivaSuitNRM_Veteran_Female;
+
+            /// <summary>
+            /// Texture for the Badass Female IVA suit
+            /// </summary>
+            public Texture2D ivaSuit_Badass_Female;
+
+            /// <summary>
+            /// Normal map for the Badass Female IVA suit
+            /// </summary>
+            public Texture2D ivaSuitNRM_Badass_Female;
+
+            /// <summary>
+            /// Texture for the Veteran + Badass Female IVA suit
+            /// </summary>
+            public Texture2D ivaSuit_VetBad_Female;
+
+            /// <summary>
+            /// Normal map for the Veteran + Badass Female IVA suit
+            /// </summary>
+            public Texture2D ivaSuitNRM_VetBad_Female;
 
             /// <summary>
             /// Texture for the IVA helmet
@@ -431,56 +491,6 @@ namespace TextureReplacerReplaced
             public Texture2D ivaVisorNRM;
 
             /// <summary>
-            /// Texture for the Male EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Male;            
-
-            /// <summary>
-            /// Normal map for the Male EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuitNRM_Male;
-
-            /// <summary>
-            /// Texture for the Female EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_female;
-
-            /// <summary>
-            /// Normal map for the Female EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuitNRM_Female;
-
-            /// <summary>
-            /// Texture for the EVA space helmet
-            /// </summary>
-            public Texture2D evaSpaceHelmet;
-
-            /// <summary>
-            /// Normal map for the EVA space helmet 
-            /// </summary>
-            public Texture2D evaSpaceHelmetNRM;
-
-            /// <summary>
-            /// Texture for the EVA space visor
-            /// </summary>
-            public Texture2D evaSpaceVisor;
-
-            /// <summary>
-            /// Normal map for the EVA space visor 
-            /// </summary>
-            public Texture2D evaSpaceVisorNRM;
-
-            /// <summary>
-            /// Texture for the EVA space jetpack
-            /// </summary>
-            public Texture2D evaSpaceJetpack;
-
-            /// <summary>
-            /// Normal map for the EVA space jetpack
-            /// </summary>
-            public Texture2D evaSpaceJetpackNRM;
-
-            /// <summary>
             /// Texture for the Male EVA ground suit
             /// </summary>
             public Texture2D evaGroundSuit_Male;
@@ -491,6 +501,36 @@ namespace TextureReplacerReplaced
             public Texture2D evaGroundSuitNRM_Male;
 
             /// <summary>
+            /// Texture for the veteran Male EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuit_Veteran_Male;
+
+            /// <summary>
+            /// Normal map for the veteran Male EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuitNRM_Veteran_Male;
+
+            /// <summary>
+            /// Texture for the Badass Male EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuit_Badass_Male;
+
+            /// <summary>
+            /// Normal map for the Badass Male EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuitNRM_Badass_Male;
+
+            /// <summary>
+            /// Texture for the Veteran + Badass Male EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuit_VetBad_Male;
+
+            /// <summary>
+            /// Normal map for the Veteran + Badass Male EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuitNRM_VetBad_Male;
+
+            /// <summary>
             /// Texture for the Female EVA ground suit
             /// </summary>
             public Texture2D evaGroundSuit_Female;
@@ -499,6 +539,36 @@ namespace TextureReplacerReplaced
             /// Normal map for the Female EVA ground suit
             /// </summary>
             public Texture2D evaGroundSuitNRM_Female;
+
+            /// <summary>
+            /// Texture for the veteran Female EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuit_Veteran_Female;
+
+            /// <summary>
+            /// Normal map for the veteran Female EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuitNRM_Veteran_Female;
+
+            /// <summary>
+            /// Texture for the Badass Female EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuit_Badass_Female;
+
+            /// <summary>
+            /// Normal map for the Badass Female EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuitNRM_Badass_Female;
+
+            /// <summary>
+            /// Texture for the Veteran + Badass Female EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuit_VetBad_Female;
+
+            /// <summary>
+            /// Normal map for the Veteran + Badass Female EVA Ground suit
+            /// </summary>
+            public Texture2D evaGroundSuitNRM_VetBad_Female;
 
             /// <summary>
             /// Texture for the EVA ground helmet
@@ -530,6 +600,116 @@ namespace TextureReplacerReplaced
             /// </summary>
             public Texture2D evaGroundJetpackNRM;
 
+            /// <summary>
+            /// Texture for the Male EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuit_Male;            
+
+            /// <summary>
+            /// Normal map for the Male EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuitNRM_Male;
+
+            /// <summary>
+            /// Texture for the veteran Male EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuit_Veteran_Male;
+
+            /// <summary>
+            /// Normal map for the veteran Male EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuitNRM_Veteran_Male;
+
+            /// <summary>
+            /// Texture for the Badass Male EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuit_Badass_Male;
+
+            /// <summary>
+            /// Normal map for the Badass Male EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuitNRM_Badass_Male;
+
+            /// <summary>
+            /// Texture for the Veteran + Badass Male EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuit_VetBad_Male;
+
+            /// <summary>
+            /// Normal map for the Veteran + Badass Male EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuitNRM_VetBad_Male;
+
+            /// <summary>
+            /// Texture for the Female EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuit_female;
+
+            /// <summary>
+            /// Normal map for the Female EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuitNRM_Female;
+
+            /// <summary>
+            /// Texture for the veteran Female EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuit_Veteran_Female;
+
+            /// <summary>
+            /// Normal map for the veteran Female EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuitNRM_Veteran_Female;
+
+            /// <summary>
+            /// Texture for the Badass Female EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuit_Badass_Female;
+
+            /// <summary>
+            /// Normal map for the Badass Female EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuitNRM_Badass_Female;
+
+            /// <summary>
+            /// Texture for the Veteran + Badass Female EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuit_VetBad_Female;
+
+            /// <summary>
+            /// Normal map for the Veteran + Badass Female EVA space suit
+            /// </summary>
+            public Texture2D evaSpaceSuitNRM_VetBad_Female;
+
+            /// <summary>
+            /// Texture for the EVA space helmet
+            /// </summary>
+            public Texture2D evaSpaceHelmet;
+
+            /// <summary>
+            /// Normal map for the EVA space helmet 
+            /// </summary>
+            public Texture2D evaSpaceHelmetNRM;
+
+            /// <summary>
+            /// Texture for the EVA space visor
+            /// </summary>
+            public Texture2D evaSpaceVisor;
+
+            /// <summary>
+            /// Normal map for the EVA space visor 
+            /// </summary>
+            public Texture2D evaSpaceVisorNRM;
+
+            /// <summary>
+            /// Texture for the EVA space jetpack
+            /// </summary>
+            public Texture2D evaSpaceJetpack;
+
+            /// <summary>
+            /// Normal map for the EVA space jetpack
+            /// </summary>
+            public Texture2D evaSpaceJetpackNRM;            
+
             /* =====================================================================================
              * Level 1-5 textures (Level textures)
              * =====================================================================================
@@ -538,7 +718,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// The texture list for the leveled IVA suit
             /// </summary>
-            private Texture2D[] levelVASuits;
+            private Texture2D[] levelIvaSuits;
 
             /// <summary>
             /// The texture list for the leveled IVA helmet
@@ -615,7 +795,7 @@ namespace TextureReplacerReplaced
             /// ************************************************************************************
             public Texture2D getIvaSuit(int level)
             {
-                return level != 0 && levelVASuits != null ? levelVASuits[level - 1] : ivaSuit_Male;
+                return level != 0 && levelIvaSuits != null ? levelIvaSuits[level - 1] : ivaSuit_Male;
                 /* if (level != 0 && levelSuits != null)                 
                  *      return levelSuits[level-1];
                  * else
@@ -893,10 +1073,10 @@ namespace TextureReplacerReplaced
                     case "kerbalMainGrey4":
                     case "kerbalMainGrey5":
                         level = originalName.Last() - 0x30;
-                        levelVASuits = levelVASuits ?? new Texture2D[5];
+                        levelIvaSuits = levelIvaSuits ?? new Texture2D[5];
 
                         for (int i = level - 1; i < 5; ++i)
-                            levelVASuits[i] = texture;
+                            levelIvaSuits[i] = texture;
                         return true;
 
                     case "kerbalHelmetGrey1":
@@ -920,7 +1100,7 @@ namespace TextureReplacerReplaced
                         levelIvaVisors = levelIvaVisors ?? new Texture2D[5];
 
                         for (int i = level - 1; i < 5; ++i)
-                            levelVASuits[i] = texture;
+                            levelIvaSuits[i] = texture;
                         return true;
 
                     case "EVAtexture1":
