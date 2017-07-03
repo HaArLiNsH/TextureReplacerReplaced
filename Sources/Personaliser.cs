@@ -381,6 +381,7 @@ namespace TextureReplacerReplaced
 
             /* =====================================================================================
              * Level 0 textures (default textures)
+             * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! all the Texture2D need to be converted to Texture2D[] !!!!!!!!!!!!!!!!!!!!!!!!!!!!
              * =====================================================================================
              */
 
@@ -712,6 +713,7 @@ namespace TextureReplacerReplaced
 
             /* =====================================================================================
              * Level 1-5 textures (Level textures)
+             * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   these will fusion /disappear !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
              * =====================================================================================
              */
 
@@ -784,6 +786,9 @@ namespace TextureReplacerReplaced
             /// The texture list for the leveled EVA ground jetpack
             /// </summary>
             private Texture2D[] levelEvaGroundJetpacks;
+
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!     need revamp of these functions !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             /// ************************************************************************************
             /// <summary>
@@ -973,6 +978,7 @@ namespace TextureReplacerReplaced
                 return level != 0 && levelEvaGroundJetpacks != null ? levelEvaGroundJetpacks[level - 1] : evaGroundJetpack;
             }
 
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    need revamp of the list with the new Texture2D[] and add the formatted new names for the texture like "ivaSuit_Male.dds" instead of "kerbalMainGrey.dds" !!!!!!!!!!!!!!!!!
             /// ************************************************************************************
             /// <summary>
             /// Search for the name of the texture, then set the good one in the suit set.
