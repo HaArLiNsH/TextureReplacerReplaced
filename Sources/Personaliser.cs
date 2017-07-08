@@ -401,42 +401,42 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Texture for the Male IVA suit
             /// </summary>
-            public Texture2D ivaSuit_Male;
+            public Texture2D Suit_Iva_Standard_Male0;
 
             /// <summary>
             /// Normal map for the Male IVA suit
             /// </summary>
-            public Texture2D ivaSuit_Male_NRM;
+            public Texture2D Suit_Iva_Standard_MaleNRM0;
 
             /// <summary>
             /// Texture for the veteran Male IVA suit
             /// </summary>
-            public Texture2D ivaSuit_Veteran_Male;
+            public Texture2D Suit_Iva_Veteran_Male0;
 
             /// <summary>
             /// Normal map for the veteran Male IVA suit
             /// </summary>
-            public Texture2D ivaSuit_Veteran_Male_NRM;            
+            public Texture2D Suit_Iva_Veteran_MaleNRM0;            
 
             /// <summary>
             /// Texture for the Badass Male IVA suit
             /// </summary>
-            public Texture2D ivaSuit_Badass_Male;
+            public Texture2D Suit_Iva_Badass_Male0;
 
             /// <summary>
             /// Normal map for the Badass Male IVA suit
             /// </summary>
-            public Texture2D ivaSuit_Badass_Male_NRM;
+            public Texture2D Suit_Iva_Badass_MaleNRM0;
 
             /// <summary>
             /// Texture for the Veteran + Badass Male IVA suit
             /// </summary>
-            public Texture2D ivaSuit_VetBad_Male;
+            public Texture2D Suit_Iva_VetBad_Male0;
 
             /// <summary>
             /// Normal map for the Veteran + Badass Male IVA suit
             /// </summary>
-            public Texture2D ivaSuit_VetBad_Male_NRM;
+            public Texture2D Suit_Iva_VetBad_MaleNRM0;
 
             /// <summary>
             /// Texture for the Female IVA suit
@@ -847,7 +847,7 @@ namespace TextureReplacerReplaced
             /// ************************************************************************************
             public Texture2D getIvaSuit(int level)
             {
-                return level != 0 && levelIvaSuits != null ? levelIvaSuits[level - 1] : ivaSuit_Male;
+                return level != 0 && levelIvaSuits != null ? levelIvaSuits[level - 1] : Suit_Iva_Standard_Male0;
                 /* if (level != 0 && levelSuits != null)                 
                  *      return levelSuits[level-1];
                  * else
@@ -865,7 +865,7 @@ namespace TextureReplacerReplaced
             /// ************************************************************************************
             public Texture2D getIvaSuitNRM(int level)
             {
-                return level != 0 && levelIvaSuitsNRM != null ? levelIvaSuitsNRM[level - 1] : ivaSuit_Male_NRM;
+                return level != 0 && levelIvaSuitsNRM != null ? levelIvaSuitsNRM[level - 1] : Suit_Iva_Standard_MaleNRM0;
                 /* if (level != 0 && levelSuits != null)                 
                  *      return levelSuits[level-1];
                  * else
@@ -1158,29 +1158,29 @@ namespace TextureReplacerReplaced
                     case "kerbalMainGrey":
                     case "IvaSuit_Male":
                     case "Suit_IVA_Standard_Male":
-                        ivaSuit_Male = ivaSuit_Male ?? texture;
+                        Suit_Iva_Standard_Male0 = Suit_Iva_Standard_Male0 ?? texture;
                         return true;
 
                     case "kerbalMainNRM":
                     case "IvaSuit_MaleNRM":
-                        ivaSuit_Male_NRM = ivaSuit_Male_NRM ?? texture;
+                        Suit_Iva_Standard_MaleNRM0 = Suit_Iva_Standard_MaleNRM0 ?? texture;
                         return true;
 
                     case "kerbalMain":
                     case "ivaSuit_Veteran_Male":
-                        ivaSuit_Veteran_Male = ivaSuit_Veteran_Male ?? texture;
+                        Suit_Iva_Veteran_Male0 = Suit_Iva_Veteran_Male0 ?? texture;
                         return false;
 
                     case "ivaSuit_Veteran_Male_NRM":
-                        ivaSuit_Veteran_Male_NRM = ivaSuit_Veteran_Male_NRM ?? texture;
+                        Suit_Iva_Veteran_MaleNRM0 = Suit_Iva_Veteran_MaleNRM0 ?? texture;
                         return false;
                     
                     case "ivaSuit_Badass_Male":
-                        ivaSuit_Badass_Male = ivaSuit_Badass_Male ?? texture;
+                        Suit_Iva_Badass_Male0 = Suit_Iva_Badass_Male0 ?? texture;
                         return false;
 
                     case "ivaSuit_Badass_Male_NRM":
-                        ivaSuit_Badass_Male_NRM = ivaSuit_Badass_Male_NRM ?? texture;
+                        Suit_Iva_Badass_MaleNRM0 = Suit_Iva_Badass_MaleNRM0 ?? texture;
                         return false;
 
                     case "ivaSuit_Veteran_Female":
@@ -2242,12 +2242,12 @@ namespace TextureReplacerReplaced
                                 // This required for two reasons: to fix IVA suits after KSP resetting them to the stock ones all the
                                 // time and to fix the switch from non-default to default texture during EVA suit toggle.
                                 newTexture = isEvaSuit ? defaultSuit.evaSpaceSuit_Male
-                                  : kerbalData.isVeteran ? defaultSuit.ivaSuit_Veteran_Male
-                                  : defaultSuit.ivaSuit_Male;
+                                  : kerbalData.isVeteran ? defaultSuit.Suit_Iva_Veteran_Male0
+                                  : defaultSuit.Suit_Iva_Standard_Male0;
                             }
 
                             if (newNormalMap == null)
-                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuit_Male_NRM : defaultSuit.ivaSuit_Male_NRM;
+                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuit_Male_NRM : defaultSuit.Suit_Iva_Standard_MaleNRM0;
 
                             // Update textures in Kerbal IVA object since KSP resets them to these values a few frames later.
                             if (!isEva)
@@ -3073,8 +3073,8 @@ namespace TextureReplacerReplaced
                 }
 
                 // After an IVA space is initialized, suits are reset to these values. Replace stock textures with default ones.
-                kerbal.textureStandard = defaultSuit.ivaSuit_Male;
-                kerbal.textureVeteran = defaultSuit.ivaSuit_Veteran_Male;
+                kerbal.textureStandard = defaultSuit.Suit_Iva_Standard_Male0;
+                kerbal.textureVeteran = defaultSuit.Suit_Iva_Veteran_Male0;
 
                 if (kerbal.GetComponent<TRR_IvaModule>() == null)
                     kerbal.gameObject.AddComponent<TRR_IvaModule>();
