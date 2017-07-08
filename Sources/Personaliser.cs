@@ -1002,6 +1002,7 @@ namespace TextureReplacerReplaced
                     * =======================================*/
                     case "kerbalMainGrey":
                     case "IvaSuit_Male":
+                    case "Suit_IVA_Standard_Male":
                         ivaSuit_Male = ivaSuit_Male ?? texture;
                         return true;
 
@@ -1048,6 +1049,7 @@ namespace TextureReplacerReplaced
                         ivaHelmet = ivaHelmet ?? texture;
                         return true;
 
+                    case "kerbalHelmetGreyNRM":
                     case "kerbalHelmetNRM":
                     case "IvaHelmet.NRM":
                         ivaHelmetNRM = ivaHelmetNRM ?? texture;
@@ -1066,10 +1068,12 @@ namespace TextureReplacerReplaced
                     * EVA ground suit
                     * =======================================*/
                     case "EvaGroundSuit_Male":
+                    case "EVAgroundTexture":
                         evaGroundSuit_Male = evaGroundSuit_Male ?? texture;
                         return true;
 
                     case "EvaGroundSuit_Male_NRM":
+                    case "EVAgroundTextureNRM":
                         evaGroundSuit_Male_NRM = evaGroundSuit_Male_NRM ?? texture;
                         return true;
 
@@ -1115,6 +1119,10 @@ namespace TextureReplacerReplaced
 
                     case "EVAgroundVisor":
                         evaGroundVisor = evaGroundVisor ?? texture;
+                        return true;
+
+                    case "EVAgroundVisorNRM":
+                        evaGroundVisorNRM = evaGroundVisorNRM ?? texture;
                         return true;
 
                     case "EVAgroundJetpack":
@@ -1175,9 +1183,19 @@ namespace TextureReplacerReplaced
                         evaSpaceHelmet = evaSpaceHelmet ?? texture;
                         return true;
 
+                    case "EVAhelmetNRM":
+                    case "EvaSpaceHelmetNRM":
+                        evaSpaceHelmetNRM = evaSpaceHelmetNRM ?? texture;
+                        return true;
+
                     case "EVAvisor":
                     case "EvaSpaceVisor":
                         evaSpaceVisor = evaSpaceVisor ?? texture;
+                        return true;
+
+                    case "EVAvisorNRM":
+                    case "EvaSpaceVisorNRM":
+                        evaSpaceVisorNRM = evaSpaceVisorNRM ?? texture;
                         return true;
 
                     case "EVAjetpack":
@@ -1222,11 +1240,33 @@ namespace TextureReplacerReplaced
                     case "IVAvisor3":
                     case "IVAvisor4":
                     case "IVAvisor5":
+                    case "kerbalVisor1":
+                    case "kerbalVisor2":
+                    case "kerbalVisor3":
+                    case "kerbalVisor4":
+                    case "kerbalVisor5":
                         level = originalName.Last() - 0x30;
                         levelIvaVisors = levelIvaVisors ?? new Texture2D[5];
 
                         for (int i = level - 1; i < 5; ++i)
-                            levelIvaSuits[i] = texture;
+                            levelIvaVisors[i] = texture;
+                        return true;
+
+                    case "IVAvisorNRM1":
+                    case "IVAvisorNRM2":
+                    case "IVAvisorNRM3":
+                    case "IVAvisorNRM4":
+                    case "IVAvisorNRM5":
+                    case "kerbalVisorNRM1":
+                    case "kerbalVisorNRM2":
+                    case "kerbalVisorNRM3":
+                    case "kerbalVisorNRM4":
+                    case "kerbalVisorNRM5":
+                        level = originalName.Last() - 0x30;
+                        levelIvaVisorsNRM = levelIvaVisorsNRM ?? new Texture2D[5];
+
+                        for (int i = level - 1; i < 5; ++i)
+                            levelIvaVisorsNRM[i] = texture;
                         return true;
 
                     case "EVAtexture1":
@@ -1263,6 +1303,23 @@ namespace TextureReplacerReplaced
 
                         for (int i = level - 1; i < 5; ++i)
                             levelEvaSpaceVisors[i] = texture;
+                        return true;
+
+                    case "EVAvisorNRM1":
+                    case "EVAvisorNRM2":
+                    case "EVAvisorNRM3":
+                    case "EVAvisorNRM4":
+                    case "EVAvisorNRM5":
+                    case "EVAspaceNRM1":
+                    case "EVAspaceNRM2":
+                    case "EVAspaceNRM3":
+                    case "EVAspaceNRM4":
+                    case "EVAspaceNRM5":
+                        level = originalName.Last() - 0x30;
+                        levelEvaSpaceVisorsNRM = levelEvaSpaceVisorsNRM ?? new Texture2D[5];
+
+                        for (int i = level - 1; i < 5; ++i)
+                            levelEvaSpaceVisorsNRM[i] = texture;
                         return true;
 
                     case "EVAjetpack1":
@@ -1310,6 +1367,18 @@ namespace TextureReplacerReplaced
 
                         for (int i = level - 1; i < 5; ++i)
                             levelEvaGroundVisors[i] = texture;
+                        return true;
+
+                    case "EVAgroundVisorNRM1":
+                    case "EVAgroundVisorNRM2":
+                    case "EVAgroundVisorNRM3":
+                    case "EVAgroundVisorNRM4":
+                    case "EVAgroundVisorNRM5":
+                        level = originalName.Last() - 0x30;
+                        levelEvaGroundVisorsNRM = levelEvaGroundVisorsNRM ?? new Texture2D[5];
+
+                        for (int i = level - 1; i < 5; ++i)
+                            levelEvaGroundVisorsNRM[i] = texture;
                         return true;
 
                     case "EVAgroundJetpack1":
@@ -1449,34 +1518,55 @@ namespace TextureReplacerReplaced
                     else
                     {
                         actualSuitState = 0;
-                    }
-
-                    switch (personaliser.personaliseEva(part, actualSuitState))
+                    }                    
+                }
+                else
+                {
+                    if (actualSuitState == 0)
                     {
-                        case 0:     //IVA suit, if no air switch to state 1 : EVAground
-                            actualSuitState = 0;
-                            hasEvaSuit = false;
-                            hasEvaGroundSuit = false;
-                            if (reflectionScript != null)
-                                reflectionScript.setActive(hasEvaSuit);
-                            break;
-                        case 1:     //EVAground suit
-                            actualSuitState = 1;
-                            hasEvaSuit = true;
-                            hasEvaGroundSuit = true;
-                            if (reflectionScript != null)
-                                reflectionScript.setActive(hasEvaSuit);
-                            break;
-                        case 2:     //EVA suit
-                            actualSuitState = 2;
-                            hasEvaSuit = true;
-                            hasEvaGroundSuit = false;
-                            if (reflectionScript != null)
-                                reflectionScript.setActive(hasEvaSuit);
-                            break;
+                        actualSuitState = 2;
+                    }
+                    else if (actualSuitState == 1)
+                    {
+                        actualSuitState = 2;
+                    }
+                    else if (actualSuitState >= 2)
+                    {
+                        actualSuitState = 0;
                     }
                 }
-                else // Legacy suit state from TextureReplacer
+                switch (personaliser.personaliseEva(part, actualSuitState))
+                {
+                    case 0:     //IVA suit, if no air switch to state 1 : EVAground
+                        actualSuitState = 0;
+                        hasEvaSuit = false;
+                        hasEvaGroundSuit = false;
+                        if (reflectionScript != null)
+                            reflectionScript.setActive(hasEvaSuit);
+                        //ScreenMessages.PostScreenMessage("IVA wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
+                        break;
+                    case 1:     //EVAground suit
+                        actualSuitState = 1;
+                        hasEvaSuit = true;
+                        hasEvaGroundSuit = true;
+                        if (reflectionScript != null)
+                            reflectionScript.setActive(hasEvaSuit);
+                        //ScreenMessages.PostScreenMessage("EVA ground wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
+                        break;
+                    case 2:     //EVA suit
+                        actualSuitState = 2;
+                        hasEvaSuit = true;
+                        hasEvaGroundSuit = false;
+                        if (reflectionScript != null)
+                            reflectionScript.setActive(hasEvaSuit);
+                        //ScreenMessages.PostScreenMessage("EVA space wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
+                        break;
+                }
+
+                
+            }
+        /*
+         * // Legacy suit state from TextureReplacer
                 {
                     if (personaliser.personaliseEvaLegacy(part, !hasEvaSuit))
                     {
@@ -1484,20 +1574,16 @@ namespace TextureReplacerReplaced
 
                         if (reflectionScript != null)
                             reflectionScript.setActive(hasEvaSuit);
-                    }
-                    else
+                    }else
                     {
                         ScreenMessages.PostScreenMessage("No breathable atmosphere", 5.0f, ScreenMessageStyle.UPPER_CENTER);
-                    }
-                }
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Override the OnStart(). <see cref="Personaliser.TRR_EvaModule"/>
-            /// </summary>
-            /// ************************************************************************************
-            public override void OnStart(StartState state)
+                    }*/
+        /// ************************************************************************************
+        /// <summary>
+        /// Override the OnStart(). <see cref="Personaliser.TRR_EvaModule"/>
+        /// </summary>
+        /// ************************************************************************************
+        public override void OnStart(StartState state)
             {
                 Personaliser personaliser = Personaliser.instance;
 
@@ -1534,10 +1620,40 @@ namespace TextureReplacerReplaced
             /// ************************************************************************************
             public void Update()
             {
+                
                 Personaliser personaliser = Personaliser.instance;
-                if (personaliser.isNewSuitStateEnabled)
+                
+                /*if (personaliser.isAutomaticSuitSwitchEnabled)
                 {
-                    if (personaliser.isUnderSubOrbit(GetComponent<Vessel>()))
+                    if (personaliser.isNewSuitStateEnabled)
+                    {
+                        if (personaliser.isUnderSubOrbit(GetComponent<Vessel>()))
+                        {
+                            if (personaliser.isAtmBreathable())
+                            {
+                                actualSuitState = 0; //IVA suit
+                                hasEvaSuit = false;
+                                hasEvaGroundSuit = false;
+                            }
+                            else
+                            {
+                                actualSuitState = 1; //EVAground suit
+                                hasEvaSuit = true;
+                                hasEvaGroundSuit = true;
+                                if (reflectionScript != null)
+                                    reflectionScript.setActive(true);
+                            }
+                        }
+                        else
+                        {
+                            actualSuitState = 2; //EVA suit
+                            hasEvaSuit = true;
+                            hasEvaGroundSuit = false;
+                            if (reflectionScript != null)
+                                reflectionScript.setActive(true);
+                        }
+                    }
+                    else
                     {
                         if (personaliser.isAtmBreathable())
                         {
@@ -1547,42 +1663,66 @@ namespace TextureReplacerReplaced
                         }
                         else
                         {
-                            actualSuitState = 1; //EVAground suit
+                            actualSuitState = 2; //EVA suit
                             hasEvaSuit = true;
-                            hasEvaGroundSuit = true;
+                            hasEvaGroundSuit = false;
                             if (reflectionScript != null)
                                 reflectionScript.setActive(true);
                         }
                     }
-                    else
-                    {
-                        actualSuitState = 2; //EVA suit
+                    
+                }
+                personaliser.personaliseEva(part, actualSuitState);*/
+
+               
+                switch (personaliser.personaliseEva(part, actualSuitState))
+                {
+                    case 0:     //IVA suit, if no air switch to state 1 : EVAground
+                        actualSuitState = 0;
+                        hasEvaSuit = false;
+                        hasEvaGroundSuit = false;
+                        if (reflectionScript != null)
+                            reflectionScript.setActive(hasEvaSuit);
+                        //ScreenMessages.PostScreenMessage("IVA wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
+                        break;
+                    case 1:     //EVAground suit
+                        actualSuitState = 1;
+                        hasEvaSuit = true;
+                        hasEvaGroundSuit = true;
+                        if (reflectionScript != null)
+                            reflectionScript.setActive(hasEvaSuit);
+                        //ScreenMessages.PostScreenMessage("EVA ground wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
+                        break;
+                    case 2:     //EVA suit
+                        actualSuitState = 2;
                         hasEvaSuit = true;
                         hasEvaGroundSuit = false;
                         if (reflectionScript != null)
-                            reflectionScript.setActive(true);
-                    }
-                } else
-                {// legacy system from TR
-                    if (!hasEvaSuit && !personaliser.isAtmBreathable())
-                    {
-                        personaliser.personaliseEvaLegacy(part, true);
-                        hasEvaSuit = true;
-
-                        if (reflectionScript != null)
-                            reflectionScript.setActive(true);
-                    }
-
+                            reflectionScript.setActive(hasEvaSuit);
+                        //ScreenMessages.PostScreenMessage("EVA space wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
+                        break;
                 }
-                personaliser.personaliseEva(part, actualSuitState);
             }
 
-            /// ************************************************************************************
-            /// <summary>
-            /// OnDestroy() <see cref="Personaliser.TRR_EvaModule"/>
-            /// </summary>
-            /// ************************************************************************************
-            public void OnDestroy()
+
+            /*
+             * // legacy system from TR
+                        if (!hasEvaSuit && !personaliser.isAtmBreathable())
+                        {
+                            personaliser.personaliseEvaLegacy(part, true);
+                            hasEvaSuit = true;
+
+                            if (reflectionScript != null)
+                                reflectionScript.setActive(true);
+                        }*/
+
+
+        /// ************************************************************************************
+        /// <summary>
+        /// OnDestroy() <see cref="Personaliser.TRR_EvaModule"/>
+        /// </summary>
+        /// ************************************************************************************
+        public void OnDestroy()
             {
                 if (reflectionScript != null)
                     reflectionScript.destroy();
@@ -1674,6 +1814,8 @@ namespace TextureReplacerReplaced
             bool value = !HighLogic.LoadedSceneIsFlight
                          || (FlightGlobals.getStaticPressure() >= atmSuitPressure
                          && atmSuitBodies.Contains(FlightGlobals.currentMainBody.bodyName));
+           
+            if (value == false) ScreenMessages.PostScreenMessage("Atmosphere non breathable !", 5.0f, ScreenMessageStyle.UPPER_CENTER);
             return value;
         }
         
@@ -1986,7 +2128,7 @@ namespace TextureReplacerReplaced
 
                         case "visor":
                         case "mesh_female_kerbalAstronaut01_visor":
-                            if (isEva)
+                          /*  if (isEva)
                                 smr.enabled = needsEVASuit;
                             else
                                 smr.sharedMesh = needsEVASuit ? visorMesh[(int)protoKerbal.gender] : null;
@@ -1996,9 +2138,40 @@ namespace TextureReplacerReplaced
                             {
                                 newTexture = isEva ? personaliseKerbal_Suit.getEvaSpaceVisor(protoKerbal.experienceLevel) : personaliseKerbal_Suit.getEvaSpaceVisor(protoKerbal.experienceLevel);
 
+                                
+
                                 if (newTexture != null)
                                     material.color = Color.white;
+                            }*/
+
+                            if (isEva)
+                            {
+                                smr.enabled = needsEVASuit;
+                                if (personaliseKerbal_Suit != null)
+                                {
+                                    if (needsEVASuit && needsEVAgroundSuit)
+                                    {
+                                        newTexture = personaliseKerbal_Suit.getEvaGroundVisor(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.getEvaGroundVisorNRM(protoKerbal.experienceLevel);
+                                    }
+                                    else if (needsEVASuit)
+                                    {
+                                        newTexture = personaliseKerbal_Suit.getEvaSpaceVisor(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.getEvaSpaceVisorNRM(protoKerbal.experienceLevel);
+                                    }
+                                    else
+                                    {
+                                        newTexture = personaliseKerbal_Suit.getIvavisor(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.getIvaVisorNRM(protoKerbal.experienceLevel);
+                                    }
+
+                                    if (newTexture != null)
+                                        material.color = Color.white;
+                                }
                             }
+
+
+
                             break;
 
                         case "jetpack":
@@ -2268,6 +2441,9 @@ namespace TextureReplacerReplaced
                 if (kerbals.Length != 0)
                 {
                     bool hideHelmets = isSituationSafe(vessel);
+                    //bool hideHelmets = (isSituationSafe(vessel) && isHelmetRemovalEnabled);
+                    //Util.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    //Util.log("hidehelmet = : {0}", hideHelmets);
 
                     foreach (Kerbal kerbal in kerbals.Where(k => k.showHelmet))
                     {
@@ -2306,29 +2482,77 @@ namespace TextureReplacerReplaced
             bool evaSuit = false;
             bool evaGroundSuit = false;
 
-            List<ProtoCrewMember> crew = evaPart.protoModuleCrew;
+            Personaliser personaliser = Personaliser.instance;
+
+            List<ProtoCrewMember> crew = evaPart.protoModuleCrew;         
+           
             if (crew.Count != 0)
-            {
+            {   
                 switch (selection)
                 {
                     case 0:  //IVA suit, if no air switch to state 1 : EVAground
-                        if (!isAtmBreathable())
+                        if (!personaliser.isAtmBreathable())                            
                         {
-                            evaSuit = true;
-                            selection = 1;
+                            if (isNewSuitStateEnabled)
+                            {
+                                if (personaliser.isUnderSubOrbit(evaPart.vessel)) // if no air and under suborbit : state 1 : EVA ground
+                                {
+                                    evaSuit = true;
+                                    evaGroundSuit = true;
+                                    selection = 1;
+                                    break;
+                                }
+                                else // if no air and space : sate : 2 EVA space
+                                {
+                                    evaSuit = true;
+                                    evaGroundSuit = false;
+                                    selection = 2;
+                                    break;
+                                }
+                            }
+                            else // if no air and space : sate : 2 EVA space
+                            {
+                                evaSuit = true;
+                                evaGroundSuit = false;
+                                selection = 2;
+                                break;
+                            }                            
                         }
                         break;
                     case 1: // EVA ground
-                        evaSuit = true;
-                        evaGroundSuit = true;
-                        break;
+                        if (isNewSuitStateEnabled)
+                        {
+                            if (personaliser.isUnderSubOrbit(evaPart.vessel))
+                            {
+                                evaSuit = true;
+                                evaGroundSuit = true;
+                                break;
+                            }
+                            else
+                            {
+                                evaSuit = true;
+                                evaGroundSuit = false;
+                                selection = 2;
+                                break;
+                            }
+
+                        }
+                        else
+                        {
+                            evaSuit = true;
+                            evaGroundSuit = true;
+                            selection = 2;
+                            break;
+                        }                        
                     case 2: // EVA
                         evaSuit = true;
-                        //evaGroundSuit = true;
+                        evaGroundSuit = false;                        
                         break;
 
                 }
-
+                if (selection == 0) ScreenMessages.PostScreenMessage("IVA suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
+                else if (selection== 1) ScreenMessages.PostScreenMessage("EVA Ground suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
+                else if (selection== 2) ScreenMessages.PostScreenMessage("EVA Space suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                 personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit);
             }
             return selection;
@@ -2583,7 +2807,10 @@ namespace TextureReplacerReplaced
             Util.addLists(rootNode.GetValues("atmSuitBodies"), atmSuitBodies);
             Util.parse(rootNode.GetValue("forceLegacyFemales"), ref forceLegacyFemales);
             Util.parse(rootNode.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
+            Util.parse(rootNode.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
             Util.addLists(rootNode.GetValues("installDirectory"), installDirectory);
+
+            
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -2593,6 +2820,7 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void load()
         {
+            
             var suitDirs = new Dictionary<string, int>();
             string lastTextureName = "";
 
@@ -2746,8 +2974,9 @@ namespace TextureReplacerReplaced
             Util.parse(node.GetValue("isHelmetRemovalEnabled"), ref isHelmetRemovalEnabled);
             Util.parse(node.GetValue("isAtmSuitEnabled"), ref isAtmSuitEnabled);
             Util.parse(node.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
+            Util.parse(node.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
         }
-
+                
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Used to save the configuration data in the .cfg file and in persistent save
@@ -2762,6 +2991,7 @@ namespace TextureReplacerReplaced
             node.AddValue("isHelmetRemovalEnabled", isHelmetRemovalEnabled);
             node.AddValue("isAtmSuitEnabled", isAtmSuitEnabled);
             node.AddValue("isNewSuitStateEnabled", isNewSuitStateEnabled);
+            node.AddValue("isAutomaticSuitSwitchEnabled", isAutomaticSuitSwitchEnabled);
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////

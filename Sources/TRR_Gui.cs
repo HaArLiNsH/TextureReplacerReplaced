@@ -377,6 +377,9 @@ namespace TextureReplacerReplaced
             personaliser.isNewSuitStateEnabled = GUILayout.Toggle(
               personaliser.isNewSuitStateEnabled, "Kerbals use another EVA suit when on the ground and with no air");
 
+            /*personaliser.isAutomaticSuitSwitchEnabled = GUILayout.Toggle(
+              personaliser.isAutomaticSuitSwitchEnabled, "Use the automatic switch system ? (disable the Toggle suit)");*/
+
             Reflections.Type reflectionType = reflections.reflectionType;
 
             GUILayout.BeginHorizontal();

@@ -75,14 +75,14 @@ namespace TextureReplacerReplaced
 
             Folders.LoadFolders();
 
-            /*
-            foreach (UrlDir.UrlConfig file in )
+            
+            foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
             {
                 Loader.instance.readConfig(file.config);
                 Replacer.instance.readConfig(file.config);
                 Reflections.instance.readConfig(file.config);
                 Personaliser.instance.readConfig(file.config);
-            }*/
+            }
 
             Loader.instance.configure();
         }
