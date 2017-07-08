@@ -194,11 +194,11 @@ namespace TextureReplacerReplaced
             GUILayout.EndVertical();
 
             // Textures.
-            Personaliser.Head defaultHead = personaliser.defaulMaleAndFemaleHeads[0];
-            Personaliser.Suit defaultSuit = personaliser.defaultSuit;
+            Personaliser.Head_Set defaultHead = personaliser.defaulMaleAndFemaleHeads[0];
+            Personaliser.Suit_Set defaultSuit = personaliser.defaultSuit;
             Personaliser.KerbalData kerbalData = null;
-            Personaliser.Head head = null;
-            Personaliser.Suit suit = null;
+            Personaliser.Head_Set head = null;
+            Personaliser.Suit_Set suit = null;
             int headIndex = -1;
             int suitIndex = -1;
 
@@ -226,18 +226,18 @@ namespace TextureReplacerReplaced
 
             if (head != null)
             {
-                GUILayout.Box(head.head, GUILayout.Width(200), GUILayout.Height(200));
+                GUILayout.Box(head.headTexture, GUILayout.Width(200), GUILayout.Height(200));
 
-                GUILayout.Label(head.name);
+                GUILayout.Label(head.headName);
             }
 
             if (suit != null)
             {
                 Texture2D suitTex = suit == defaultSuit && kerbalData != null && kerbalData.isVeteran ?
-                                    defaultSuit.suitVeteran : (suit.suit ?? defaultSuit.suit);
-                Texture2D helmetTex = suit.helmet ?? defaultSuit.helmet;
-                Texture2D evaSuitTex = suit.evaSuit ?? defaultSuit.evaSuit;
-                Texture2D evaHelmetTex = suit.evaHelmet ?? defaultSuit.evaHelmet;
+                                    defaultSuit.Suit_Iva_Veteran_Male0 : (suit.Suit_Iva_Standard_Male0 ?? defaultSuit.Suit_Iva_Standard_Male0);
+                Texture2D helmetTex = suit.ivaHelmet ?? defaultSuit.ivaHelmet;
+                Texture2D evaSuitTex = suit.evaSpaceSuit_Male ?? defaultSuit.evaSpaceSuit_Male;
+                Texture2D evaHelmetTex = suit.evaSpaceHelmet ?? defaultSuit.evaSpaceHelmet;
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Box(suitTex, GUILayout.Width(100), GUILayout.Height(100));
@@ -253,7 +253,7 @@ namespace TextureReplacerReplaced
                 GUILayout.Box(evaHelmetTex, GUILayout.Width(100), GUILayout.Height(100));
                 GUILayout.EndHorizontal();
 
-                GUILayout.Label(suit.name);
+                GUILayout.Label(suit.suitSetName);
             }
 
             GUILayout.EndVertical();
@@ -376,6 +376,9 @@ namespace TextureReplacerReplaced
 
             personaliser.isNewSuitStateEnabled = GUILayout.Toggle(
               personaliser.isNewSuitStateEnabled, "Kerbals use another EVA suit when on the ground and with no air");
+
+            /*personaliser.isAutomaticSuitSwitchEnabled = GUILayout.Toggle(
+              personaliser.isAutomaticSuitSwitchEnabled, "Use the automatic switch system ? (disable the Toggle suit)");*/
 
             Reflections.Type reflectionType = reflections.reflectionType;
 

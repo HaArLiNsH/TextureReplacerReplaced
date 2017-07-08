@@ -151,7 +151,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Loads all Heads into a non gender-specific list and in two gender-specific lists
         /// </summary>
-        internal static void LoadHeads(List<Personaliser.Head> FullList, List<Personaliser.Head>[] GenderList)
+        internal static void LoadHeads(List<Personaliser.Head_Set> FullList, List<Personaliser.Head_Set>[] GenderList)
         {
             string[] gender = { "Male", "Female" };
 
@@ -162,15 +162,15 @@ namespace TextureReplacerReplaced
                     foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture.Where(t => t.texture != null && t.name.StartsWith((folder + gender[i] + "/"), StringComparison.Ordinal) && !t.name.EndsWith("NRM")))
                     {
                         string headName = texInfo.name.Substring((folder + gender[i] + "/").Length);
-                        if (FullList.Any(t => t.name == headName)) continue;
+                        if (FullList.Any(t => t.headName == headName)) continue;
 
                         Texture2D texture = texInfo.texture;
                         texture.wrapMode = TextureWrapMode.Clamp;
 
-                        Personaliser.Head head = new Personaliser.Head
+                        Personaliser.Head_Set head = new Personaliser.Head_Set
                         {
-                            name = headName,
-                            head = texture,
+                            headName = headName,
+                            headTexture = texture,
                             isFemale = (i == 1)
                         };
 
@@ -192,7 +192,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Loads the Default heads
         /// </summary>
-        internal static void DefaultHeads(Personaliser.Head[] heads)
+        internal static void DefaultHeads(Personaliser.Head_Set[] heads)
         {
             foreach (KeyValuePair<Texture2D, string> texInfo in DEFAULT())
             {
@@ -201,7 +201,7 @@ namespace TextureReplacerReplaced
 
                 if (originalName == "kerbalHead")
                 {
-                    heads[0].head = texture;
+                    heads[0].headTexture = texture;
                     texture.wrapMode = TextureWrapMode.Clamp;
                 }
                 else if (originalName == "kerbalHeadNRM")
@@ -211,7 +211,7 @@ namespace TextureReplacerReplaced
                 }
                 else if (originalName == "kerbalGirl_06_BaseColor")
                 {
-                    heads[1].head = texture;
+                    heads[1].headTexture = texture;
                     texture.wrapMode = TextureWrapMode.Clamp;
                 }
                 else if (originalName == "kerbalGirl_06_BaseColorNRM")

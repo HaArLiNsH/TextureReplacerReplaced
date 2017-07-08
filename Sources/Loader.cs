@@ -54,10 +54,10 @@ namespace TextureReplacerReplaced
 			new Regex("^" + Util.DIR + "(Default|Heads|Suits)/")
 		};
 
-        /// <summary>
-        ///  List of substrings for paths where textures shouldn't be unloaded.
-        /// </summary>
-        private readonly List<Regex> keepLoaded = new List<Regex>();
+		/// <summary>
+		///  List of substrings for paths where textures shouldn't be unloaded.
+		/// </summary>
+		private readonly List<Regex> keepLoaded = new List<Regex>();
 
 		/// <summary>
 		/// Checker to see if compression is enabled
@@ -175,12 +175,12 @@ namespace TextureReplacerReplaced
 				}
 			}
 
-            // Keep Loaded all "KeepLoaded" and "EnvMap" folders
-            foreach (string folder in Folders.KEEPLOADED)
-            {
-                Regex item = new Regex("^" + folder);
-                keepLoaded.Add(item);
-            }
+			// Keep Loaded all "KeepLoaded" and "EnvMap" folders
+			foreach (string folder in Folders.KEEPLOADED)
+			{
+				Regex item = new Regex("^" + folder);
+				keepLoaded.Add(item);
+			}
 		}
 
 		/// ////////////////////////////////////////////////////////////////////////////////////////
