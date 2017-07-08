@@ -151,7 +151,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Loads all Heads into a non gender-specific list and in two gender-specific lists
         /// </summary>
-        internal static void LoadHeads(List<Personaliser.Head> FullList, List<Personaliser.Head>[] GenderList)
+        internal static void LoadHeads(List<Personaliser.Head_Set> FullList, List<Personaliser.Head_Set>[] GenderList)
         {
             string[] gender = { "Male", "Female" };
 
@@ -167,7 +167,7 @@ namespace TextureReplacerReplaced
                         Texture2D texture = texInfo.texture;
                         texture.wrapMode = TextureWrapMode.Clamp;
 
-                        Personaliser.Head head = new Personaliser.Head
+                        Personaliser.Head_Set head = new Personaliser.Head_Set
                         {
                             headName = headName,
                             headTexture = texture,
@@ -192,7 +192,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Loads the Default heads
         /// </summary>
-        internal static void DefaultHeads(Personaliser.Head[] heads)
+        internal static void DefaultHeads(Personaliser.Head_Set[] heads)
         {
             foreach (KeyValuePair<Texture2D, string> texInfo in DEFAULT())
             {

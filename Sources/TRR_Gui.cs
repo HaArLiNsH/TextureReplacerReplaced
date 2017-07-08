@@ -194,11 +194,11 @@ namespace TextureReplacerReplaced
             GUILayout.EndVertical();
 
             // Textures.
-            Personaliser.Head defaultHead = personaliser.defaulMaleAndFemaleHeads[0];
-            Personaliser.Suit defaultSuit = personaliser.defaultSuit;
+            Personaliser.Head_Set defaultHead = personaliser.defaulMaleAndFemaleHeads[0];
+            Personaliser.Suit_Set defaultSuit = personaliser.defaultSuit;
             Personaliser.KerbalData kerbalData = null;
-            Personaliser.Head head = null;
-            Personaliser.Suit suit = null;
+            Personaliser.Head_Set head = null;
+            Personaliser.Suit_Set suit = null;
             int headIndex = -1;
             int suitIndex = -1;
 

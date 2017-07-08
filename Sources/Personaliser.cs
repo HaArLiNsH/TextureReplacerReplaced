@@ -37,32 +37,32 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Default Male and Female head set (from `Default/`).
         /// </summary>
-        public readonly Head[] defaulMaleAndFemaleHeads = { new Head { headName = "DEFAULT" }, new Head { headName = "DEFAULT" } };
+        public readonly Head_Set[] defaulMaleAndFemaleHeads = { new Head_Set { headName = "DEFAULT" }, new Head_Set { headName = "DEFAULT" } };
 
         /// <summary>
         /// Default suit textures (from `Default/`).
         /// </summary>
-        public readonly Suit defaultSuit = new Suit { suitSetName = "DEFAULT" };
+        public readonly Suit_Set defaultSuit = new Suit_Set { suitSetName = "DEFAULT" };
         
         /// <summary>
         /// Heads textures, including excluded by configuration.
         /// </summary>
-        public readonly List<Head> KerbalHeadsDB_full = new List<Head>();
+        public readonly List<Head_Set> KerbalHeadsDB_full = new List<Head_Set>();
 
         /// <summary>
         /// Suits textures, including excluded by configuration.
         /// </summary>
-        public readonly List<Suit> KerbalSuitsDB_full = new List<Suit>();
+        public readonly List<Suit_Set> KerbalSuitsDB_full = new List<Suit_Set>();
 
         /// <summary>
         /// Male and female heads textures (minus excluded).
         /// </summary>
-        private readonly List<Head>[] maleAndfemaleHeadsDB_cleaned = { new List<Head>(), new List<Head>() };
+        private readonly List<Head_Set>[] maleAndfemaleHeadsDB_cleaned = { new List<Head_Set>(), new List<Head_Set>() };
 
         /// <summary>
         /// Male and female suits textures (minus excluded).  
         /// </summary>
-        private readonly List<Suit>[] maleAndfemaleSuitsDB_cleaned = { new List<Suit>(), new List<Suit>() };
+        private readonly List<Suit_Set>[] maleAndfemaleSuitsDB_cleaned = { new List<Suit_Set>(), new List<Suit_Set>() };
 
         /// <summary>
         /// List of your personalized Kerbals with their KerbalData
@@ -80,17 +80,17 @@ namespace TextureReplacerReplaced
         /// <para> This list is first loaded from the file @default.cfg</para>
         /// <para>Then this is saved and loaded in the persistent.sfs save</para>
         /// </summary>
-        public readonly Dictionary<string, Suit> classSuitsDB = new Dictionary<string, Suit>();
+        public readonly Dictionary<string, Suit_Set> classSuitsDB = new Dictionary<string, Suit_Set>();
 
         /// <summary>
         /// List of the default class specific suits
         /// </summary>
-        public readonly Dictionary<string, Suit> defaultClassSuits = new Dictionary<string, Suit>();
+        public readonly Dictionary<string, Suit_Set> defaultClassSuits = new Dictionary<string, Suit_Set>();
 
         /// <summary>
         /// List of cabin specific suits
         /// </summary>
-        private readonly Dictionary<string, Suit> cabinSuits = new Dictionary<string, Suit>();
+        private readonly Dictionary<string, Suit_Set> cabinSuits = new Dictionary<string, Suit_Set>();
 
         /// <summary>
         /// Used for the helmet removal
@@ -107,6 +107,11 @@ namespace TextureReplacerReplaced
         /// <para>This is only initial setting for new games! Use the GUI to change it later. </para>
         /// </summary>
         public bool isHelmetRemovalEnabled = true;
+
+        /// <summary>
+        /// Does the kerbal needs his helmet?
+        /// </summary>
+        public bool needHelmet = true;
 
         /// <summary>
         /// Convert all females to males but apply female textures on them to emulate pre-1.0 females. 
@@ -333,7 +338,7 @@ namespace TextureReplacerReplaced
         /// <para>Here you will find all the textures for a head set and their functions </para>
         /// </summary>
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        public class Head
+        public class Head_Set
         {
             /// <summary>
             /// the name of the head texture
@@ -367,7 +372,7 @@ namespace TextureReplacerReplaced
         /// <para>Here you will find all the textures for a suit set and their functions </para>
         /// </summary>
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        public class Suit
+        public class Suit_Set
         {
             /// <summary>
             /// The name of the suit set
@@ -611,7 +616,7 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// Normal map for the Male EVA space suit
             /// </summary>
-            public Texture2D evaSpaceSuitNRM_Male;
+            public Texture2D evaSpaceSuit_Male_NRM;
 
             /// <summary>
             /// Texture for the veteran Male EVA space suit
@@ -725,9 +730,19 @@ namespace TextureReplacerReplaced
             private Texture2D[] levelIvaSuits;
 
             /// <summary>
+            /// Normal map list for the leveled IVA suit
+            /// </summary>
+            private Texture2D[] levelIvaSuitsNRM;
+
+            /// <summary>
             /// The texture list for the leveled IVA helmet
             /// </summary>
             private Texture2D[] levelIvaHelmets;
+
+            /// <summary>
+            /// Normal map list for the leveled IVA helmet
+            /// </summary>
+            private Texture2D[] levelIvaHelmetsNRM;
 
             /// <summary>
             /// The texture list for the leveled IVA visor
@@ -745,9 +760,19 @@ namespace TextureReplacerReplaced
             private Texture2D[] levelEvaSpaceSuits;
 
             /// <summary>
+            /// Normal map list for the leveled EVA space suit
+            /// </summary>
+            private Texture2D[] levelEvaSpaceSuitsNRM;
+
+            /// <summary>
             /// The texture list for the leveled EVA space helmet
             /// </summary>
             private Texture2D[] levelEvaSpaceHelmets;
+
+            /// <summary>
+            /// Normal map list for the leveled EVA space helmet
+            /// </summary>
+            private Texture2D[] levelEvaSpaceHelmetsNRM;
 
             /// <summary>
             /// The texture list for the leveled EVA space visor
@@ -762,7 +787,12 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// The texture list for the leveled EVA space jetpack
             /// </summary>
-            private Texture2D[] levelEvaJetpacks;
+            private Texture2D[] levelEvaSpaceJetpacks;
+
+            /// <summary>
+            /// Normal map list for the leveled EVA space jetpack
+            /// </summary>
+            private Texture2D[] levelEvaSpaceJetpacksNRM;
 
             /// <summary>
             /// The texture list for the leveled EVA ground suit
@@ -770,9 +800,19 @@ namespace TextureReplacerReplaced
             private Texture2D[] levelEvaGroundSuits;
 
             /// <summary>
+            /// Normal map list for the leveled EVA ground suit
+            /// </summary>
+            private Texture2D[] levelEvaGroundSuitsNRM;
+
+            /// <summary>
             /// The texture list for the leveled EVA ground helmet
             /// </summary>
             private Texture2D[] levelEvaGroundHelmets;
+
+            /// <summary>
+            /// Normal map list for the leveled EVA Ground helmet
+            /// </summary>
+            private Texture2D[] levelEvaGroundHelmetsNRM;
 
             /// <summary>
             /// The texture list for the leveled EVA ground visor
@@ -788,6 +828,11 @@ namespace TextureReplacerReplaced
             /// The texture list for the leveled EVA ground jetpack
             /// </summary>
             private Texture2D[] levelEvaGroundJetpacks;
+
+            /// <summary>
+            /// Normal Map list for the leveled EVA ground jetpack
+            /// </summary>
+            private Texture2D[] levelEvaGroundJetpacksNRM;
 
 
             // !!!!!!!!!!!!!!!!!!!!!!!!     need revamp of these functions !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -812,6 +857,24 @@ namespace TextureReplacerReplaced
 
             /// ************************************************************************************
             /// <summary>
+            /// Used to get the IVA suit Normal Map for the level of the kerbal
+            /// </summary>
+            /// <param name="level">The level of the kerbal</param>
+            /// <returns>The IVA suit texture for the level of the kerbal 
+            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
+            /// ************************************************************************************
+            public Texture2D getIvaSuitNRM(int level)
+            {
+                return level != 0 && levelIvaSuitsNRM != null ? levelIvaSuitsNRM[level - 1] : ivaSuit_Male_NRM;
+                /* if (level != 0 && levelSuits != null)                 
+                 *      return levelSuits[level-1];
+                 * else
+                 *      return suit;
+                */
+            }
+
+            /// ************************************************************************************
+            /// <summary>
             /// Used to get the IVA helmet for the level of the kerbal
             /// </summary>
             /// <param name="level">The level of the kerbal</param>
@@ -821,6 +884,19 @@ namespace TextureReplacerReplaced
             public Texture2D getIvaHelmet(int level)
             {
                 return level != 0 && levelIvaHelmets != null ? levelIvaHelmets[level - 1] : ivaHelmet;
+            }
+
+            /// ************************************************************************************
+            /// <summary>
+            /// Used to get the IVA helmet Normal Map for the level of the kerbal
+            /// </summary>
+            /// <param name="level">The level of the kerbal</param>
+            /// <returns>The IVA helmet texture for the level of the kerbal 
+            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
+            /// ************************************************************************************
+            public Texture2D getIvaHelmetNRM(int level)
+            {
+                return level != 0 && levelIvaHelmetsNRM != null ? levelIvaHelmetsNRM[level - 1] : ivaHelmetNRM;
             }
 
             /// ************************************************************************************
@@ -865,6 +941,19 @@ namespace TextureReplacerReplaced
 
             /// ************************************************************************************
             /// <summary>
+            /// Used to get the EVA space suit Normal map for the level of the kerbal
+            /// </summary>
+            /// <param name="level">The level of the kerbal</param>
+            /// <returns>The EVA space suit texture for the level of the kerbal 
+            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
+            /// ************************************************************************************
+            public Texture2D getEvaSpaceSuitNRM(int level)
+            {
+                return level != 0 && levelEvaSpaceSuitsNRM != null ? levelEvaSpaceSuitsNRM[level - 1] : evaSpaceSuit_Male_NRM;
+            }
+
+            /// ************************************************************************************
+            /// <summary>
             /// Used to get the EVA space helmet for the level of the kerbal
             /// </summary>
             /// <param name="level">The level of the kerbal</param>
@@ -874,6 +963,19 @@ namespace TextureReplacerReplaced
             public Texture2D getEvaSpaceHelmet(int level)
             {
                 return level != 0 && levelEvaSpaceHelmets != null ? levelEvaSpaceHelmets[level - 1] : evaSpaceHelmet;
+            }
+
+            /// ************************************************************************************
+            /// <summary>
+            /// Used to get the EVA space helmet normal map for the level of the kerbal
+            /// </summary>
+            /// <param name="level">The level of the kerbal</param>
+            /// <returns>The EVA space helmet texture for the level of the kerbal 
+            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
+            /// ************************************************************************************
+            public Texture2D getEvaSpaceHelmetNRM(int level)
+            {
+                return level != 0 && levelEvaSpaceHelmetsNRM != null ? levelEvaSpaceHelmetsNRM[level - 1] : evaSpaceHelmetNRM;
             }
 
             /// ************************************************************************************
@@ -912,7 +1014,20 @@ namespace TextureReplacerReplaced
             /// ************************************************************************************
             public Texture2D getEvaSpaceJetpack(int level)
             {
-                return level != 0 && levelEvaJetpacks != null ? levelEvaJetpacks[level - 1] : evaSpaceJetpack;
+                return level != 0 && levelEvaSpaceJetpacks != null ? levelEvaSpaceJetpacks[level - 1] : evaSpaceJetpack;
+            }
+
+            /// ************************************************************************************
+            /// <summary>
+            /// Used to get the EVA space jetpack normal map for the level of the kerbal
+            /// </summary>
+            /// <param name="level">The level of the kerbal</param>
+            /// <returns>The EVA space jetpack texture for the level of the kerbal 
+            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
+            /// ************************************************************************************
+            public Texture2D getEvaSpaceJetpackNRM(int level)
+            {
+                return level != 0 && levelEvaSpaceJetpacksNRM != null ? levelEvaSpaceJetpacksNRM[level - 1] : evaSpaceJetpackNRM;
             }
 
             /// ************************************************************************************
@@ -930,6 +1045,19 @@ namespace TextureReplacerReplaced
 
             /// ************************************************************************************
             /// <summary>
+            /// Used to get the EVA ground suit Normal Map for the level of the kerbal
+            /// </summary>
+            /// <param name="level">The level of the kerbal</param>
+            /// <returns>The EVA ground texture for the level of the kerbal 
+            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
+            /// ************************************************************************************
+            public Texture2D getEvaGroundSuitNRM(int level)
+            {
+                return level != 0 && levelEvaGroundSuitsNRM != null ? levelEvaGroundSuitsNRM[level - 1] : evaGroundSuit_Male_NRM;
+            }
+
+            /// ************************************************************************************
+            /// <summary>
             /// Used to get the EVA ground helmet for the level of the kerbal
             /// </summary>
             /// <param name="level">The level of the kerbal</param>
@@ -940,6 +1068,20 @@ namespace TextureReplacerReplaced
             {
                 return level != 0 && levelEvaGroundHelmets != null ? levelEvaGroundHelmets[level - 1] : evaGroundHelmet;
             }
+
+            /// ************************************************************************************
+            /// <summary>
+            /// Used to get the EVA ground helmet Normal Map for the level of the kerbal
+            /// </summary>
+            /// <param name="level">The level of the kerbal</param>
+            /// <returns>The EVA ground helmet texture for the level of the kerbal 
+            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
+            /// ************************************************************************************
+            public Texture2D getEvaGroundHelmetNRM(int level)
+            {
+                return level != 0 && levelEvaGroundHelmetsNRM != null ? levelEvaGroundHelmetsNRM[level - 1] : evaGroundHelmetNRM;
+            }
+
 
             /// ************************************************************************************
             /// <summary>
@@ -978,6 +1120,19 @@ namespace TextureReplacerReplaced
             public Texture2D getEvaGroundJetpack(int level)
             {
                 return level != 0 && levelEvaGroundJetpacks != null ? levelEvaGroundJetpacks[level - 1] : evaGroundJetpack;
+            }
+
+            /// ************************************************************************************
+            /// <summary>
+            /// Used to get the EVA ground jetpack Normal Map for the level of the kerbal
+            /// </summary>
+            /// <param name="level">The level of the kerbal</param>
+            /// <returns>The EVA ground jetpack texture for the level of the kerbal 
+            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
+            /// ************************************************************************************
+            public Texture2D getEvaGroundJetpackNRM(int level)
+            {
+                return level != 0 && levelEvaGroundJetpacksNRM != null ? levelEvaGroundJetpacksNRM[level - 1] : evaGroundJetpackNRM;
             }
 
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    need revamp of the list with the new Texture2D[] and add the formatted new names for the texture like "ivaSuit_Male.dds" instead of "kerbalMainGrey.dds" !!!!!!!!!!!!!!!!!
@@ -1143,7 +1298,7 @@ namespace TextureReplacerReplaced
 
                     case "EVAtextureNRM":
                     case "EvaSpaceSuit_Male_NRM":
-                        evaSpaceSuitNRM_Male = evaSpaceSuitNRM_Male ?? texture;
+                        evaSpaceSuit_Male_NRM = evaSpaceSuit_Male_NRM ?? texture;
                         return true;
 
                     case "EvaSpaceSuit_Veteran_Male":
@@ -1328,10 +1483,10 @@ namespace TextureReplacerReplaced
                     case "EVAjetpack4":
                     case "EVAjetpack5":
                         level = originalName.Last() - 0x30;
-                        levelEvaJetpacks = levelEvaJetpacks ?? new Texture2D[5];
+                        levelEvaSpaceJetpacks = levelEvaSpaceJetpacks ?? new Texture2D[5];
 
                         for (int i = level - 1; i < 5; ++i)
-                            levelEvaJetpacks[i] = texture;
+                            levelEvaSpaceJetpacks[i] = texture;
                         return true;
                     case "EVAgroundTexture1":
                     case "EVAgroundTexture2":
@@ -1425,17 +1580,17 @@ namespace TextureReplacerReplaced
             /// <summary>
             /// The head of the kerbal
             /// </summary>
-            public Head head;
+            public Head_Set head;
 
             /// <summary>
             /// The suit set of the kerbal
             /// </summary>
-            public Suit suit;
+            public Suit_Set suit;
 
             /// <summary>
             /// The forced cabin suit (IVA) of the kerbal
             /// </summary>
-            public Suit cabinSuit;
+            public Suit_Set cabinSuit;
         }
 
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1867,9 +2022,9 @@ namespace TextureReplacerReplaced
         /// <returns>The suit set selected for this kerbal class 
         /// or the default one if no suit select for this class</returns>     
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        private Suit getClassSuit(ProtoCrewMember kerbal)
+        private Suit_Set getClassSuit(ProtoCrewMember kerbal)
         {
-            Suit suit;
+            Suit_Set suit;
             classSuitsDB.TryGetValue(kerbal.experienceTrait.Config.Name, out suit);
             return suit;
         }
@@ -1914,12 +2069,12 @@ namespace TextureReplacerReplaced
         /// If none, select a random one from <see cref="Personaliser.maleAndfemaleHeadsDB_cleaned"/>
         /// If nothing in the db, return <see cref="Personaliser.defaulMaleAndFemaleHeads"/></returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        public Head getKerbalHead(ProtoCrewMember kerbal, KerbalData kerbalData)
+        public Head_Set getKerbalHead(ProtoCrewMember kerbal, KerbalData kerbalData)
         {
             if (kerbalData.head != null)
                 return kerbalData.head;
 
-            List<Head> genderHeads = maleAndfemaleHeadsDB_cleaned[kerbalData.gender];
+            List<Head_Set> genderHeads = maleAndfemaleHeadsDB_cleaned[kerbalData.gender];
             if (genderHeads.Count == 0)
                 return defaulMaleAndFemaleHeads[(int)kerbal.gender];
 
@@ -1942,13 +2097,13 @@ namespace TextureReplacerReplaced
         /// If none, select a random one from <see cref="maleAndfemaleSuitsDB_cleaned"/>
         /// If nothing in the db, return <see cref="defaultSuit"/></returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        public Suit getKerbalSuit(ProtoCrewMember kerbal, KerbalData kerbalData)
+        public Suit_Set getKerbalSuit(ProtoCrewMember kerbal, KerbalData kerbalData)
         {
-            Suit suit = kerbalData.suit ?? getClassSuit(kerbal);
+            Suit_Set suit = kerbalData.suit ?? getClassSuit(kerbal);
             if (suit != null)
                 return suit;
 
-            List<Suit> genderSuits = maleAndfemaleSuitsDB_cleaned[0];
+            List<Suit_Set> genderSuits = maleAndfemaleSuitsDB_cleaned[0];
 
             // Use female suits only if available, fall back to male suits otherwise.
             if (kerbalData.gender != 0 && maleAndfemaleSuitsDB_cleaned[1].Count != 0)
@@ -1974,12 +2129,14 @@ namespace TextureReplacerReplaced
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
         private void personaliseKerbal(Component component, ProtoCrewMember protoKerbal, Part cabin, bool needsEVASuit, bool needsEVAgroundSuit)
         {
+            Personaliser personaliser = Personaliser.instance;
+
             KerbalData kerbalData = getKerbalData(protoKerbal);
             
             bool isEva = cabin == null;
 
-            Head personaliseKerbal_Head = getKerbalHead(protoKerbal, kerbalData);
-            Suit personaliseKerbal_Suit = null;
+            Head_Set personaliseKerbal_Head = getKerbalHead(protoKerbal, kerbalData);
+            Suit_Set personaliseKerbal_Suit = null;
 
             if (isEva || !cabinSuits.TryGetValue(cabin.partInfo.name, out kerbalData.cabinSuit))
                 personaliseKerbal_Suit = getKerbalSuit(protoKerbal, kerbalData);
@@ -2049,8 +2206,7 @@ namespace TextureReplacerReplaced
 
                         case "body01":
                         case "mesh_female_kerbalAstronaut01_body01":
-                            bool isEvaSuit = isEva && needsEVASuit;
-                            //bool isEVAGroundSuit = isEva && needsSuit && needGroundSuit;
+                            bool isEvaSuit = isEva && needsEVASuit;                            
 
                             if (personaliseKerbal_Suit != null)
                             {
@@ -2062,23 +2218,23 @@ namespace TextureReplacerReplaced
                                     if (needsEVASuit && needsEVAgroundSuit)
                                     {
                                         newTexture = personaliseKerbal_Suit.getEvaGroundSuit(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.evaGroundSuit_Male_NRM;
+                                        newNormalMap = personaliseKerbal_Suit.getEvaGroundSuitNRM(protoKerbal.experienceLevel);
                                     }
                                     else if (needsEVASuit)
                                     {
                                         newTexture = personaliseKerbal_Suit.getEvaSpaceSuit(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.evaSpaceSuitNRM_Male;
+                                        newNormalMap = personaliseKerbal_Suit.getEvaSpaceSuitNRM(protoKerbal.experienceLevel);
                                     }
                                     else
                                     {
                                         newTexture = personaliseKerbal_Suit.getIvaSuit(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.ivaSuit_Male_NRM;
+                                        newNormalMap = personaliseKerbal_Suit.getIvaSuitNRM(protoKerbal.experienceLevel);
                                     }
                                 }
                                 else
                                 {
                                     newTexture = personaliseKerbal_Suit.getIvaSuit(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.ivaSuit_Male_NRM;
+                                    newNormalMap = personaliseKerbal_Suit.getIvaSuitNRM(protoKerbal.experienceLevel);
                                 }
                             }
                             if (newTexture == null)
@@ -2091,7 +2247,7 @@ namespace TextureReplacerReplaced
                             }
 
                             if (newNormalMap == null)
-                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuitNRM_Male : defaultSuit.ivaSuit_Male_NRM;
+                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuit_Male_NRM : defaultSuit.ivaSuit_Male_NRM;
 
                             // Update textures in Kerbal IVA object since KSP resets them to these values a few frames later.
                             if (!isEva)
@@ -2116,12 +2272,17 @@ namespace TextureReplacerReplaced
                                 if (isEva && needsEVAgroundSuit)
                                 {
                                     newTexture = personaliseKerbal_Suit.getEvaGroundHelmet(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.evaGroundHelmetNRM;
+                                    newNormalMap = personaliseKerbal_Suit.getEvaGroundHelmetNRM(protoKerbal.experienceLevel);
                                 }
                                 else if (isEva)
                                 {
                                     newTexture = personaliseKerbal_Suit.getEvaSpaceHelmet(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.ivaHelmetNRM;
+                                    newNormalMap = personaliseKerbal_Suit.getEvaSpaceHelmetNRM(protoKerbal.experienceLevel);
+                                }
+                                else
+                                {
+                                    newTexture = personaliseKerbal_Suit.getIvaHelmet(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.getIvaHelmetNRM(protoKerbal.experienceLevel);
                                 }
                             }
                             break;
@@ -2143,34 +2304,32 @@ namespace TextureReplacerReplaced
                                 if (newTexture != null)
                                     material.color = Color.white;
                             }*/
+                            
 
                             if (isEva)
-                            {
                                 smr.enabled = needsEVASuit;
-                                if (personaliseKerbal_Suit != null)
-                                {
-                                    if (needsEVASuit && needsEVAgroundSuit)
-                                    {
-                                        newTexture = personaliseKerbal_Suit.getEvaGroundVisor(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.getEvaGroundVisorNRM(protoKerbal.experienceLevel);
-                                    }
-                                    else if (needsEVASuit)
-                                    {
-                                        newTexture = personaliseKerbal_Suit.getEvaSpaceVisor(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.getEvaSpaceVisorNRM(protoKerbal.experienceLevel);
-                                    }
-                                    else
-                                    {
-                                        newTexture = personaliseKerbal_Suit.getIvavisor(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.getIvaVisorNRM(protoKerbal.experienceLevel);
-                                    }
+                            else
+                                smr.sharedMesh = needsEVASuit ? visorMesh[(int)protoKerbal.gender] : null;
 
-                                    if (newTexture != null)
-                                        material.color = Color.white;
+                            // Textures have to be replaced even when hidden since it may become visible later on situation change.
+                            if (personaliseKerbal_Suit != null)
+                            {
+                                if (isEva && needsEVAgroundSuit)
+                                {
+                                    newTexture = personaliseKerbal_Suit.getEvaGroundVisor(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.getEvaGroundVisorNRM(protoKerbal.experienceLevel);
+                                }
+                                else if (isEva)
+                                {
+                                    newTexture = personaliseKerbal_Suit.getEvaSpaceVisor(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.getEvaSpaceVisorNRM(protoKerbal.experienceLevel);
+                                }
+                                else
+                                {
+                                    newTexture = personaliseKerbal_Suit.getIvavisor(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.getIvaVisorNRM(protoKerbal.experienceLevel);
                                 }
                             }
-
-
 
                             break;
 
@@ -2184,12 +2343,12 @@ namespace TextureReplacerReplaced
                                     if (needsEVASuit && needsEVAgroundSuit)
                                     {
                                         newTexture = personaliseKerbal_Suit.getEvaGroundJetpack(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.evaGroundJetpackNRM;
+                                        newNormalMap = personaliseKerbal_Suit.getEvaGroundJetpackNRM(protoKerbal.experienceLevel);
                                     }
                                     else if (needsEVASuit)
                                     {
                                         newTexture = personaliseKerbal_Suit.getEvaSpaceJetpack(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.evaSpaceJetpackNRM;
+                                        newNormalMap = personaliseKerbal_Suit.getEvaSpaceJetpackNRM(protoKerbal.experienceLevel);
                                     }
                                 }
                             }
@@ -2204,12 +2363,12 @@ namespace TextureReplacerReplaced
                                     if (needsEVASuit && needsEVAgroundSuit)
                                     {
                                         newTexture = personaliseKerbal_Suit.getEvaGroundJetpack(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.evaGroundJetpackNRM;
+                                        newNormalMap = personaliseKerbal_Suit.getEvaGroundJetpackNRM(protoKerbal.experienceLevel);
                                     }
                                     else if (needsEVASuit)
                                     {
                                         newTexture = personaliseKerbal_Suit.getEvaSpaceJetpack(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.evaSpaceJetpackNRM;
+                                        newNormalMap = personaliseKerbal_Suit.getEvaSpaceJetpackNRM(protoKerbal.experienceLevel);
                                     }
                                 }
                                 /*if (needsSuit && suit != null)
@@ -2239,7 +2398,7 @@ namespace TextureReplacerReplaced
         /// <param name="cabin"></param>
         /// <param name="needsSuit"></param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        private void personaliseKerbalLegacy(Component component, ProtoCrewMember kerbal, Part cabin, bool needsSuit)
+        /*private void personaliseKerbalLegacy(Component component, ProtoCrewMember kerbal, Part cabin, bool needsSuit)
         {
             KerbalData kerbalData = getKerbalData(kerbal);
             bool isEva = cabin == null;
@@ -2320,7 +2479,7 @@ namespace TextureReplacerReplaced
                             if (suit != null)
                             {
                                 newTexture = isEvaSuit ? suit.getEvaSpaceSuit(kerbal.experienceLevel) : suit.getIvaSuit(kerbal.experienceLevel);
-                                newNormalMap = isEvaSuit ? suit.evaSpaceSuitNRM_Male : suit.ivaSuit_Male_NRM;
+                                newNormalMap = isEvaSuit ? suit.getEvaSpaceSuitNRM(kerbal.experienceLevel) : suit.getIvaSuitNRM(kerbal.experienceLevel);
                             }
 
                             if (newTexture == null)
@@ -2333,7 +2492,7 @@ namespace TextureReplacerReplaced
                             }
 
                             if (newNormalMap == null)
-                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuitNRM_Male : defaultSuit.ivaSuit_Male_NRM;
+                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuit_Male_NRM : defaultSuit.ivaSuit_Male_NRM;
 
                             // Update textures in Kerbal IVA object since KSP resets them to these values a few frames later.
                             if (!isEva)
@@ -2398,7 +2557,7 @@ namespace TextureReplacerReplaced
                         material.SetTexture(Util.BUMPMAP_PROPERTY, newNormalMap);
                 }
             }
-        }
+        }*/
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -2412,7 +2571,12 @@ namespace TextureReplacerReplaced
 
             Personaliser personaliser = Personaliser.instance;
 
-            // new suit State for TRR
+
+
+
+
+
+            /*// new suit State for TRR
             if (personaliser.isNewSuitStateEnabled)
             {
                 personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false);
@@ -2420,7 +2584,8 @@ namespace TextureReplacerReplaced
             else // Legacy suit state from TextureReplacer
             {
                 personaliseKerbalLegacy(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit);
-            }
+            }*/
+            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false);
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -2568,7 +2733,7 @@ namespace TextureReplacerReplaced
         /// <param name="evaSuit"></param>
         /// <returns></returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        private bool personaliseEvaLegacy(Part evaPart, bool evaSuit)
+       /* private bool personaliseEvaLegacy(Part evaPart, bool evaSuit)
         {
             bool success = true;
 
@@ -2584,7 +2749,7 @@ namespace TextureReplacerReplaced
                 personaliseKerbalLegacy(evaPart, crew[0], null, evaSuit);
             }
             return success;
-        }
+        }*/
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -2672,7 +2837,7 @@ namespace TextureReplacerReplaced
         /// <param name="map">The database we want to map</param>
         /// <param name="defaultMap">If this one is not empty, map the value from here to the other parameter</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        private void loadSuitMap(ConfigNode node, IDictionary<string, Suit> map, IDictionary<string, Suit> defaultMap = null)
+        private void loadSuitMap(ConfigNode node, IDictionary<string, Suit_Set> map, IDictionary<string, Suit_Set> defaultMap = null)
         {
             if (node == null)
             {
@@ -2698,7 +2863,7 @@ namespace TextureReplacerReplaced
                         }
                         else
                         {
-                            Suit suit = KerbalSuitsDB_full.Find(s => s.suitSetName == suitName);
+                            Suit_Set suit = KerbalSuitsDB_full.Find(s => s.suitSetName == suitName);
                             if (suit != null)
                                 map[entry.name] = suit;
                         }
@@ -2714,7 +2879,7 @@ namespace TextureReplacerReplaced
         /// <param name="map">The database we want to map</param>
         /// <param name="node">The <see cref="ConfigNode"/> that contain our saved data</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        private static void saveSuitMap(Dictionary<string, Suit> map, ConfigNode node)
+        private static void saveSuitMap(Dictionary<string, Suit_Set> map, ConfigNode node)
         {
             foreach (var entry in map)
             {
@@ -2768,12 +2933,12 @@ namespace TextureReplacerReplaced
             }
 
             // Tag female and eye-less heads.
-            foreach (Head head in KerbalHeadsDB_full)
+            foreach (Head_Set head in KerbalHeadsDB_full)
             {
                 head.isEyeless = eyelessHeads.Contains(head.headName);
             }
             // Tag female suits.
-            foreach (Suit suit in KerbalSuitsDB_full)
+            foreach (Suit_Set suit in KerbalSuitsDB_full)
                 suit.isFemale = femaleSuits.Contains(suit.suitSetName);
 
             // Create lists of male heads and suits.
@@ -2855,11 +3020,11 @@ namespace TextureReplacerReplaced
                         if (!suitDirs.TryGetValue(dirName, out index))
                         {
                             index = KerbalSuitsDB_full.Count;
-                            KerbalSuitsDB_full.Add(new Suit { suitSetName = dirName });
+                            KerbalSuitsDB_full.Add(new Suit_Set { suitSetName = dirName });
                             suitDirs.Add(dirName, index);
                         }
 
-                        Suit suit = KerbalSuitsDB_full[index];
+                        Suit_Set suit = KerbalSuitsDB_full[index];
                         if (!suit.setTexture(originalName, texture))
                             Util.log("Unknown suit texture name \"{0}\": {1}", originalName, texture.name);
                     }
