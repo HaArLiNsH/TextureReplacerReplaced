@@ -221,5 +221,67 @@ namespace TextureReplacerReplaced
                 }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="suitsList"></param>
+        internal static void LoadSuits (List<Personaliser.Suit_Set> suitsList, Personaliser.Suit_Set defaultSuit)
+        {
+            var suitDirs = new Dictionary<string, int>();
+            string lastTextureName = "";
+            foreach (string folder in Folders.SUITS)
+            {
+                foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
+                {
+                    Texture2D texture = texInfo.texture;
+                    if (texture == null || !texture.name.StartsWith(folder, StringComparison.Ordinal))
+                        continue;
+
+                    // Add a suit texture.
+                    if (texture.name.StartsWith(folder, StringComparison.Ordinal))
+                    {
+                        texture.wrapMode = TextureWrapMode.Clamp;
+
+                        int lastSlash = texture.name.LastIndexOf('/');
+                        int dirNameLength = lastSlash - folder.Length;
+                        string originalName = texture.name.Substring(lastSlash + 1);
+
+                        if (dirNameLength < 1)
+                        {
+                            Util.log("Suit texture should be inside a subdirectory: {0}", texture.name);
+                        }
+                        else
+                        {
+                            string dirName = texture.name.Substring(folder.Length, dirNameLength);
+
+                            int index;
+                            if (!suitDirs.TryGetValue(dirName, out index))
+                            {
+                                index = suitsList.Count;
+                                suitsList.Add(new Personaliser.Suit_Set { suitSetName = dirName });
+                                suitDirs.Add(dirName, index);
+                            }
+
+                            Personaliser.Suit_Set suit = suitsList[index];
+                            if (!suit.setTexture(originalName, texture))
+                                Util.log("Unknown suit texture name \"{0}\": {1}", originalName, texture.name);
+                        }
+                    }
+                    else foreach (string suitFolder in Folders.DEFAULT) if (texture.name.StartsWith(suitFolder, StringComparison.Ordinal))
+                    {
+                        int lastSlash = texture.name.LastIndexOf('/');
+                        string originalName = texture.name.Substring(lastSlash + 1);
+
+                        if (defaultSuit.setTexture(originalName, texture) || originalName == "kerbalMain")
+                        {
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+                    }
+
+                    lastTextureName = texture.name;
+                }
+            }
+        }
     }
 }

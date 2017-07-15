@@ -390,14 +390,7 @@ namespace TextureReplacerReplaced
              * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! all the Texture2D need to be converted to Texture2D[] !!!!!!!!!!!!!!!!!!!!!!!!!!!!
              * =====================================================================================
              */
-
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  This will disappear !!!!!!!!!!!!!!!!!!!!!!!  
-            /// <summary>
-            /// Texture for the veteran suit
-            /// </summary>
-            //public Texture2D suitVeteran;
-            //public Texture2D ivaSuit_Veteran_Male;
-
+                        
             /// <summary>
             /// Texture for the Male IVA suit
             /// </summary>
@@ -1389,17 +1382,17 @@ namespace TextureReplacerReplaced
                         for (int i = level - 1; i < 5; ++i)
                             levelIvaHelmets[i] = texture;
                         return true;
-
-                    case "IVAvisor1":
-                    case "IVAvisor2":
-                    case "IVAvisor3":
-                    case "IVAvisor4":
-                    case "IVAvisor5":
+                                            
                     case "kerbalVisor1":
                     case "kerbalVisor2":
                     case "kerbalVisor3":
                     case "kerbalVisor4":
                     case "kerbalVisor5":
+                    case "IVAvisor1":
+                    case "IVAvisor2":
+                    case "IVAvisor3":
+                    case "IVAvisor4":
+                    case "IVAvisor5":
                         level = originalName.Last() - 0x30;
                         levelIvaVisors = levelIvaVisors ?? new Texture2D[5];
 
@@ -1407,16 +1400,17 @@ namespace TextureReplacerReplaced
                             levelIvaVisors[i] = texture;
                         return true;
 
-                    case "IVAvisorNRM1":
-                    case "IVAvisorNRM2":
-                    case "IVAvisorNRM3":
-                    case "IVAvisorNRM4":
-                    case "IVAvisorNRM5":
                     case "kerbalVisorNRM1":
                     case "kerbalVisorNRM2":
                     case "kerbalVisorNRM3":
                     case "kerbalVisorNRM4":
                     case "kerbalVisorNRM5":
+                    case "IVAvisorNRM1":
+                    case "IVAvisorNRM2":
+                    case "IVAvisorNRM3":
+                    case "IVAvisorNRM4":
+                    case "IVAvisorNRM5":
+                    
                         level = originalName.Last() - 0x30;
                         levelIvaVisorsNRM = levelIvaVisorsNRM ?? new Texture2D[5];
 
@@ -1941,9 +1935,9 @@ namespace TextureReplacerReplaced
             }
             return suits_dir;
         }*/
-        private static readonly string DIR_DEFAULT = Util.DIR + "Default/";
-        private static readonly string DIR_HEADS = Util.DIR + "Heads/";
-        private static readonly string DIR_SUITS = Util.DIR + "Suits/";
+       // private static readonly string DIR_DEFAULT = Util.DIR + "Default/";
+       // private static readonly string DIR_HEADS = Util.DIR + "Heads/";
+       // private static readonly string DIR_SUITS = Util.DIR + "Suits/";
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -2992,8 +2986,9 @@ namespace TextureReplacerReplaced
             // Populate KerbalHeadsDB_full and defaulMaleAndFemaleHeads
             Textures.LoadHeads(KerbalHeadsDB_full, maleAndfemaleHeadsDB_cleaned);
             Textures.DefaultHeads(defaulMaleAndFemaleHeads);
+            Textures.LoadSuits(KerbalSuitsDB_full, defaultSuit);
 
-            foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
+            /*foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
             {
                 Texture2D texture = texInfo.texture;
                 if (texture == null || !texture.name.StartsWith(Util.DIR, StringComparison.Ordinal))
@@ -3041,7 +3036,7 @@ namespace TextureReplacerReplaced
                 }
 
                 lastTextureName = texture.name;
-            }
+            }*/
 
             readKerbalsConfigs();
 
