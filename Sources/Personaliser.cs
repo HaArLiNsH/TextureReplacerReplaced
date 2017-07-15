@@ -1338,6 +1338,7 @@ namespace TextureReplacerReplaced
 
                     case "EVAvisor":
                     case "EvaSpaceVisor":
+                    case "Visor_EvaSpace_Standard_Male0":
                         evaSpaceVisor = evaSpaceVisor ?? texture;
                         return true;
 
@@ -1714,19 +1715,7 @@ namespace TextureReplacerReplaced
 
                 
             }
-        /*
-         * // Legacy suit state from TextureReplacer
-                {
-                    if (personaliser.personaliseEvaLegacy(part, !hasEvaSuit))
-                    {
-                        hasEvaSuit = !hasEvaSuit;
 
-                        if (reflectionScript != null)
-                            reflectionScript.setActive(hasEvaSuit);
-                    }else
-                    {
-                        ScreenMessages.PostScreenMessage("No breathable atmosphere", 5.0f, ScreenMessageStyle.UPPER_CENTER);
-                    }*/
         /// ************************************************************************************
         /// <summary>
         /// Override the OnStart(). <see cref="Personaliser.TRR_EvaModule"/>
@@ -1770,59 +1759,7 @@ namespace TextureReplacerReplaced
             public void Update()
             {
                 
-                Personaliser personaliser = Personaliser.instance;
-                
-                /*if (personaliser.isAutomaticSuitSwitchEnabled)
-                {
-                    if (personaliser.isNewSuitStateEnabled)
-                    {
-                        if (personaliser.isUnderSubOrbit(GetComponent<Vessel>()))
-                        {
-                            if (personaliser.isAtmBreathable())
-                            {
-                                actualSuitState = 0; //IVA suit
-                                hasEvaSuit = false;
-                                hasEvaGroundSuit = false;
-                            }
-                            else
-                            {
-                                actualSuitState = 1; //EVAground suit
-                                hasEvaSuit = true;
-                                hasEvaGroundSuit = true;
-                                if (reflectionScript != null)
-                                    reflectionScript.setActive(true);
-                            }
-                        }
-                        else
-                        {
-                            actualSuitState = 2; //EVA suit
-                            hasEvaSuit = true;
-                            hasEvaGroundSuit = false;
-                            if (reflectionScript != null)
-                                reflectionScript.setActive(true);
-                        }
-                    }
-                    else
-                    {
-                        if (personaliser.isAtmBreathable())
-                        {
-                            actualSuitState = 0; //IVA suit
-                            hasEvaSuit = false;
-                            hasEvaGroundSuit = false;
-                        }
-                        else
-                        {
-                            actualSuitState = 2; //EVA suit
-                            hasEvaSuit = true;
-                            hasEvaGroundSuit = false;
-                            if (reflectionScript != null)
-                                reflectionScript.setActive(true);
-                        }
-                    }
-                    
-                }
-                personaliser.personaliseEva(part, actualSuitState);*/
-
+                Personaliser personaliser = Personaliser.instance;  
                
                 switch (personaliser.personaliseEva(part, actualSuitState))
                 {
@@ -1851,21 +1788,8 @@ namespace TextureReplacerReplaced
                         //ScreenMessages.PostScreenMessage("EVA space wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                         break;
                 }
-            }
-
-
-            /*
-             * // legacy system from TR
-                        if (!hasEvaSuit && !personaliser.isAtmBreathable())
-                        {
-                            personaliser.personaliseEvaLegacy(part, true);
-                            hasEvaSuit = true;
-
-                            if (reflectionScript != null)
-                                reflectionScript.setActive(true);
-                        }*/
-
-
+            }          
+            
         /// ************************************************************************************
         /// <summary>
         /// OnDestroy() <see cref="Personaliser.TRR_EvaModule"/>
@@ -1876,68 +1800,7 @@ namespace TextureReplacerReplaced
                 if (reflectionScript != null)
                     reflectionScript.destroy();
             }
-        }        
-
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>
-        /// List of the different installDirectory
-        /// </summary>        
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        public readonly List<string> installDirectory = new List<string>();
-        // public readonly string[] TRRinstallDirectory = new string[] { };
-        /*
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>
-        /// List of the Default folder
-        /// </summary>
-        /// <param name="install_dir"></param>        
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        private static List<string> DIR_DEFAULT(List<string> install_dir)
-        {
-            List<string> default_dir = new List<string>() ;            
-            foreach (string install_path in install_dir)
-            {
-                default_dir.Add(install_path + "Default/");
-            }
-            return default_dir;
-        }                
-
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>
-        /// List of the Heads folder
-        /// </summary>
-        /// <param name="install_dir"></param>
-        /// <returns></returns>
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        private static List<string> DIR_HEADS(List<string> install_dir)
-        {
-            List<string> heads_dir = new List<string>();
-            foreach (string install_path in install_dir)
-            {
-                heads_dir.Add(install_path + "Default/");
-            }
-            return heads_dir;
-        }
-             
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>
-        /// List of the Suits folder
-        /// </summary>
-        /// <param name="install_dir"></param>
-        /// <returns></returns>
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        private static List<string> DIR_SUITS(List<string> install_dir)
-        {
-            List<string> suits_dir = new List<string>();
-            foreach (string install_path in install_dir)
-            {
-                suits_dir.Add(install_path + "Default/");
-            }
-            return suits_dir;
-        }*/
-       // private static readonly string DIR_DEFAULT = Util.DIR + "Default/";
-       // private static readonly string DIR_HEADS = Util.DIR + "Heads/";
-       // private static readonly string DIR_SUITS = Util.DIR + "Suits/";
+        }                     
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -2283,7 +2146,7 @@ namespace TextureReplacerReplaced
 
                         case "visor":
                         case "mesh_female_kerbalAstronaut01_visor":
-                          /*  if (isEva)
+                            if (isEva)
                                 smr.enabled = needsEVASuit;
                             else
                                 smr.sharedMesh = needsEVASuit ? visorMesh[(int)protoKerbal.gender] : null;
@@ -2297,7 +2160,7 @@ namespace TextureReplacerReplaced
 
                                 if (newTexture != null)
                                     material.color = Color.white;
-                            }*/
+                            }
                             
 
                             if (isEva)
@@ -2382,177 +2245,7 @@ namespace TextureReplacerReplaced
                 }
             }
         }
-
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>
-        /// Legacy texture replacer
-        /// </summary>
-        /// <param name="component"></param>
-        /// <param name="kerbal"></param>
-        /// <param name="cabin"></param>
-        /// <param name="needsSuit"></param>
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        /*private void personaliseKerbalLegacy(Component component, ProtoCrewMember kerbal, Part cabin, bool needsSuit)
-        {
-            KerbalData kerbalData = getKerbalData(kerbal);
-            bool isEva = cabin == null;
-
-            Head head = getKerbalHead(kerbal, kerbalData);
-            Suit suit = null;
-
-            if (isEva || !cabinSuits.TryGetValue(cabin.partInfo.name, out kerbalData.cabinSuit))
-                suit = getKerbalSuit(kerbal, kerbalData);
-
-            head = head == defaulMaleAndFemaleHeads[(int)kerbal.gender] ? null : head;
-            suit = (isEva && needsSuit) || kerbalData.cabinSuit == null ? suit : kerbalData.cabinSuit;
-            suit = suit == defaultSuit ? null : suit;
-
-            Transform model = isEva ? component.transform.Find("model01") : component.transform.Find("kbIVA@idle/model01");
-            Transform flag = isEva ? component.transform.Find("model/kbEVA_flagDecals") : null;
-
-            if (isEva)
-                flag.GetComponent<Renderer>().enabled = needsSuit;
-
-            // We must include hidden meshes, since flares are hidden when light is turned off.
-            // All other meshes are always visible, so no performance hit here.
-            foreach (Renderer renderer in model.GetComponentsInChildren<Renderer>(true))
-            {
-                var smr = renderer as SkinnedMeshRenderer;
-
-                // Thruster jets, flag decals and headlight flares.
-                if (smr == null)
-                {
-                    if (renderer.name != "screenMessage")
-                        renderer.enabled = needsSuit;
-                }
-                else
-                {
-                    Material material = renderer.material;
-                    Texture2D newTexture = null;
-                    Texture2D newNormalMap = null;
-
-                    switch (smr.name)
-                    {
-                        case "eyeballLeft":
-                        case "eyeballRight":
-                        case "pupilLeft":
-                        case "pupilRight":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballLeft":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballRight":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilLeft":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilRight":
-                            if (head != null && head.isEyeless)
-                                smr.sharedMesh = null;
-
-                            break;
-
-                        case "headMesh01":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pCube1":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_polySurface51":
-                        case "headMesh":
-                        case "ponytail":
-                            if (head != null)
-                            {
-                                newTexture = head.headTexture;
-                                newNormalMap = head.headNRM;
-                            }
-                            break;
-
-                        case "tongue":
-                        case "upTeeth01":
-                        case "upTeeth02":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth01":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth01":
-                        case "downTeeth01":
-                            break;
-
-                        case "body01":
-                        case "mesh_female_kerbalAstronaut01_body01":
-                            bool isEvaSuit = isEva && needsSuit;
-
-                            if (suit != null)
-                            {
-                                newTexture = isEvaSuit ? suit.getEvaSpaceSuit(kerbal.experienceLevel) : suit.getIvaSuit(kerbal.experienceLevel);
-                                newNormalMap = isEvaSuit ? suit.getEvaSpaceSuitNRM(kerbal.experienceLevel) : suit.getIvaSuitNRM(kerbal.experienceLevel);
-                            }
-
-                            if (newTexture == null)
-                            {
-                                // This required for two reasons: to fix IVA suits after KSP resetting them to the stock ones all the
-                                // time and to fix the switch from non-default to default texture during EVA suit toggle.
-                                newTexture = isEvaSuit ? defaultSuit.evaSpaceSuit_Male
-                                  : kerbalData.isVeteran ? defaultSuit.ivaSuit_Veteran_Male
-                                  : defaultSuit.ivaSuit_Male;
-                            }
-
-                            if (newNormalMap == null)
-                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuit_Male_NRM : defaultSuit.ivaSuit_Male_NRM;
-
-                            // Update textures in Kerbal IVA object since KSP resets them to these values a few frames later.
-                            if (!isEva)
-                            {
-                                Kerbal kerbalIVA = (Kerbal)component;
-
-                                kerbalIVA.textureStandard = newTexture;
-                                kerbalIVA.textureVeteran = newTexture;
-                            }
-                            break;
-
-                        case "helmet":
-                        case "mesh_female_kerbalAstronaut01_helmet":
-                            if (isEva)
-                                smr.enabled = needsSuit;
-                            else
-                                smr.sharedMesh = needsSuit ? helmetMesh[(int)kerbal.gender] : null;
-
-                            // Textures have to be replaced even when hidden since it may become visible later on situation change.
-                            if (suit != null)
-                            {
-                                newTexture = isEva ? suit.getEvaSpaceHelmet(kerbal.experienceLevel) : suit.getIvaHelmet(kerbal.experienceLevel);
-                                newNormalMap = suit.ivaHelmetNRM;
-                            }
-                            break;
-
-                        case "visor":
-                        case "mesh_female_kerbalAstronaut01_visor":
-                            if (isEva)
-                                smr.enabled = needsSuit;
-                            else
-                                smr.sharedMesh = needsSuit ? visorMesh[(int)kerbal.gender] : null;
-
-                            // Textures have to be replaced even when hidden since it may become visible later on situation change.
-                            if (suit != null)
-                            {
-                                newTexture = isEva ? suit.evaSpaceVisor : suit.ivaVisor;
-
-                                if (newTexture != null)
-                                    material.color = Color.white;
-                            }
-                            break;
-
-                        default: // Jetpack.
-                            if (isEva)
-                            {
-                                smr.enabled = needsSuit;
-
-                                if (needsSuit && suit != null)
-                                {
-                                    newTexture = suit.evaSpaceJetpack;
-                                    newNormalMap = suit.evaSpaceJetpackNRM;
-                                }
-                            }
-                            break;
-                    }
-
-                    if (newTexture != null)
-                        material.mainTexture = newTexture;
-
-                    if (newNormalMap != null)
-                        material.SetTexture(Util.BUMPMAP_PROPERTY, newNormalMap);
-                }
-            }
-        }*/
-
+        
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Personalize Kerbals in an internal space of a vessel. Used by <see cref="TRR_IvaModule"/>
@@ -2715,35 +2408,7 @@ namespace TextureReplacerReplaced
                 personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit);
             }
             return selection;
-        }
-
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>
-        /// Legacy suit state from TextureReplacer
-        /// Set external EVA/IVA suit. Fails and return false if trying to remove EVA suit outside of breathable atmosphere.
-        /// This function is used by EvaModule.
-        /// </summary>
-        /// <param name="evaPart"></param>
-        /// <param name="evaSuit"></param>
-        /// <returns></returns>
-        /// ////////////////////////////////////////////////////////////////////////////////////////
-       /* private bool personaliseEvaLegacy(Part evaPart, bool evaSuit)
-        {
-            bool success = true;
-
-            List<ProtoCrewMember> crew = evaPart.protoModuleCrew;
-            if (crew.Count != 0)
-            {
-                if (!evaSuit && !isAtmBreathable())
-                {
-                    evaSuit = true;
-                    success = false;
-                }
-
-                personaliseKerbalLegacy(evaPart, crew[0], null, evaSuit);
-            }
-            return success;
-        }*/
+        }        
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -2967,7 +2632,7 @@ namespace TextureReplacerReplaced
             Util.parse(rootNode.GetValue("forceLegacyFemales"), ref forceLegacyFemales);
             Util.parse(rootNode.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
             Util.parse(rootNode.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
-            Util.addLists(rootNode.GetValues("installDirectory"), installDirectory);
+            
 
             
         }
@@ -2988,7 +2653,7 @@ namespace TextureReplacerReplaced
             Textures.DefaultHeads(defaulMaleAndFemaleHeads);
             Textures.LoadSuits(KerbalSuitsDB_full, defaultSuit);
 
-            /*foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
+           /* foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
             {
                 Texture2D texture = texInfo.texture;
                 if (texture == null || !texture.name.StartsWith(Util.DIR, StringComparison.Ordinal))
