@@ -226,25 +226,26 @@ namespace TextureReplacerReplaced
         /// 
         /// </summary>
         /// <param name="suitsList"></param>
+        /// <param name="defaultSuit"></param>
         internal static void LoadSuits (List<Personaliser.Suit_Set> suitsList, Personaliser.Suit_Set defaultSuit)
         {
             var suitDirs = new Dictionary<string, int>();
             string lastTextureName = "";
-            foreach (string folder in Folders.SUITS)
+            foreach (string suitSetFolder in Folders.SUITS)
             {
                 foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
                 {
                     Texture2D texture = texInfo.texture;
-                    if (texture == null || !texture.name.StartsWith(folder, StringComparison.Ordinal))
+                    if (texture == null || !texture.name.StartsWith(suitSetFolder, StringComparison.Ordinal))
                         continue;
 
                     // Add a suit texture.
-                    if (texture.name.StartsWith(folder, StringComparison.Ordinal))
+                    if (texture.name.StartsWith(suitSetFolder, StringComparison.Ordinal))
                     {
                         texture.wrapMode = TextureWrapMode.Clamp;
 
                         int lastSlash = texture.name.LastIndexOf('/');
-                        int dirNameLength = lastSlash - folder.Length;
+                        int dirNameLength = lastSlash - suitSetFolder.Length;
                         string originalName = texture.name.Substring(lastSlash + 1);
 
                         if (dirNameLength < 1)
@@ -253,7 +254,7 @@ namespace TextureReplacerReplaced
                         }
                         else
                         {
-                            string dirName = texture.name.Substring(folder.Length, dirNameLength);
+                            string dirName = texture.name.Substring(suitSetFolder.Length, dirNameLength);
 
                             int index;
                             if (!suitDirs.TryGetValue(dirName, out index))
@@ -267,8 +268,20 @@ namespace TextureReplacerReplaced
                             if (!suit.setTexture(originalName, texture))
                                 Util.log("Unknown suit texture name \"{0}\": {1}", originalName, texture.name);
                         }
-                    }
-                    else foreach (string suitFolder in Folders.DEFAULT) if (texture.name.StartsWith(suitFolder, StringComparison.Ordinal))
+                    }                   
+
+                    lastTextureName = texture.name;
+                }
+            }
+            foreach (string defaultFolders in Folders.DEFAULT)
+            {
+                foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
+                {
+                    Texture2D texture = texInfo.texture;
+                    if (texture == null || !texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
+                        continue;
+
+                    if (texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
                     {
                         int lastSlash = texture.name.LastIndexOf('/');
                         string originalName = texture.name.Substring(lastSlash + 1);
@@ -281,7 +294,11 @@ namespace TextureReplacerReplaced
 
                     lastTextureName = texture.name;
                 }
+                
+                    
+
             }
+           
         }
     }
 }
