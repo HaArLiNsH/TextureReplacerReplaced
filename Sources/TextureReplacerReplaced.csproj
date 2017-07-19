@@ -20,6 +20,11 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="KerbalData.cs" />
+    <Compile Include="Textures_Loader.cs" />
+    <Compile Include="Class3.cs" />
+    <Compile Include="Head_Set.cs" />
+    <Compile Include="Suit_Set.cs" />
     <Compile Include="Folders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Loader.cs" />

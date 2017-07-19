@@ -194,11 +194,11 @@ namespace TextureReplacerReplaced
             GUILayout.EndVertical();
 
             // Textures.
-            Personaliser.Head_Set defaultHead = personaliser.defaulMaleAndFemaleHeads[0];
-            Personaliser.Suit_Set defaultSuit = personaliser.defaultSuit;
-            Personaliser.KerbalData kerbalData = null;
-            Personaliser.Head_Set head = null;
-            Personaliser.Suit_Set suit = null;
+            Head_Set defaultHead = personaliser.defaulMaleAndFemaleHeads[0];
+            Suit_Set defaultSuit = personaliser.defaultSuit;
+            KerbalData kerbalData = null;
+            Head_Set head = null;
+            Suit_Set suit = null;
             int headIndex = -1;
             int suitIndex = -1;
 
@@ -234,10 +234,10 @@ namespace TextureReplacerReplaced
             if (suit != null)
             {
                 Texture2D suitTex = suit == defaultSuit && kerbalData != null && kerbalData.isVeteran ?
-                                    defaultSuit.Suit_Iva_Veteran_Male0 : (suit.Suit_Iva_Standard_Male0 ?? defaultSuit.Suit_Iva_Standard_Male0);
-                Texture2D helmetTex = suit.ivaHelmet ?? defaultSuit.ivaHelmet;
-                Texture2D evaSuitTex = suit.evaSpaceSuit_Male ?? defaultSuit.evaSpaceSuit_Male;
-                Texture2D evaHelmetTex = suit.evaSpaceHelmet ?? defaultSuit.evaSpaceHelmet;
+                                    defaultSuit.get_suit_Iva_Standard_Male(0) : (suit.get_suit_Iva_Standard_Male(0) ?? defaultSuit.get_suit_Iva_Standard_Male(0));
+                Texture2D helmetTex = suit.get_helmet_Iva_Standard_Male(0) ?? defaultSuit.get_helmet_Iva_Standard_Male(0);
+                Texture2D evaSuitTex = suit.get_suit_EvaSpace_Standard_Male(0) ?? defaultSuit.get_suit_EvaSpace_Standard_Male(0);
+                Texture2D evaHelmetTex = suit.get_helmet_EvaSpace_Standard_Male(0) ?? defaultSuit.get_helmet_EvaSpace_Standard_Male(0);
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Box(suitTex, GUILayout.Width(100), GUILayout.Height(100));

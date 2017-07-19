@@ -462,7 +462,7 @@ namespace TextureReplacerReplaced
             Texture2D[] envMapFaces = new Texture2D[6];
 
             // Foreach non-null Texture2D in any of the EnvMap Folders
-            foreach (KeyValuePair<Texture2D, string> EnvMapTexture in Textures.ENVMAP())
+            foreach (KeyValuePair<Texture2D, string> EnvMapTexture in Textures_Loader.ENVMAP())
             {
                 Texture2D texture = EnvMapTexture.Key;
                 string originalName = EnvMapTexture.Value;

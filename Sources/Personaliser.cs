@@ -64,6 +64,8 @@ namespace TextureReplacerReplaced
         /// </summary>
         private readonly List<Suit_Set>[] maleAndfemaleSuitsDB_cleaned = { new List<Suit_Set>(), new List<Suit_Set>() };
 
+        private readonly List<Suit_Set> KerbalSuitsDB_cleaned = new List<Suit_Set>();
+
         /// <summary>
         /// List of your personalized Kerbals with their KerbalData
         /// </summary>
@@ -330,1264 +332,8 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Force IVA suit in space
         /// </summary>
-        public bool ForceIVAspaceSuit = false;
-
-        /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        /// <summary>
-        /// Contain the configuration data and textures of the head set
-        /// <para>Here you will find all the textures for a head set and their functions </para>
-        /// </summary>
-        /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        public class Head_Set
-        {
-            /// <summary>
-            /// the name of the head texture
-            /// </summary>
-            public string headName;
-
-            /// <summary>
-            /// Is the head texture for a female model ?
-            /// </summary>
-            public bool isFemale;
-
-            /// <summary>
-            /// Is the head texture made to be used without the eyes 3D meshes ?
-            /// </summary>
-            public bool isEyeless;
-
-            /// <summary>
-            /// The head texture itself
-            /// </summary>
-            public Texture2D headTexture;
-
-            /// <summary>
-            /// The head normal map
-            /// </summary>
-            public Texture2D headNRM;
-        }
-
-        /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        /// <summary>
-        /// Contain the configuration data and textures of the suit set
-        /// <para>Here you will find all the textures for a suit set and their functions </para>
-        /// </summary>
-        /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        public class Suit_Set
-        {
-            /// <summary>
-            /// The name of the suit set
-            /// </summary>
-            public string suitSetName;
-
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  This will disappear !!!!!!!!!!!!!!!!!!!!!!!
-            /// <summary>
-            /// Is the suit set made for female kerbal?
-            /// </summary>
-            public bool isFemale;
-
-            /* =====================================================================================
-             * Level 0 textures (default textures)
-             * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! all the Texture2D need to be converted to Texture2D[] !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-             * =====================================================================================
-             */
-                        
-            /// <summary>
-            /// Texture for the Male IVA suit
-            /// </summary>
-            public Texture2D Suit_Iva_Standard_Male0;
-
-            /// <summary>
-            /// Normal map for the Male IVA suit
-            /// </summary>
-            public Texture2D Suit_Iva_Standard_MaleNRM0;
-
-            /// <summary>
-            /// Texture for the veteran Male IVA suit
-            /// </summary>
-            public Texture2D Suit_Iva_Veteran_Male0;
-
-            /// <summary>
-            /// Normal map for the veteran Male IVA suit
-            /// </summary>
-            public Texture2D Suit_Iva_Veteran_MaleNRM0;            
-
-            /// <summary>
-            /// Texture for the Badass Male IVA suit
-            /// </summary>
-            public Texture2D Suit_Iva_Badass_Male0;
-
-            /// <summary>
-            /// Normal map for the Badass Male IVA suit
-            /// </summary>
-            public Texture2D Suit_Iva_Badass_MaleNRM0;
-
-            /// <summary>
-            /// Texture for the Veteran + Badass Male IVA suit
-            /// </summary>
-            public Texture2D Suit_Iva_VetBad_Male0;
-
-            /// <summary>
-            /// Normal map for the Veteran + Badass Male IVA suit
-            /// </summary>
-            public Texture2D Suit_Iva_VetBad_MaleNRM0;
-
-            /// <summary>
-            /// Texture for the Female IVA suit
-            /// </summary>
-            public Texture2D ivaSuit_Female;            
-
-            /// <summary>
-            /// Normal map for the Female IVA suit
-            /// </summary>
-            public Texture2D ivaSuit_Female_NRM;
-
-            /// <summary>
-            /// Texture for the veteran Female IVA suit
-            /// </summary>
-            public Texture2D ivaSuit_Veteran_Female;
-
-            /// <summary>
-            /// Normal map for the veteran Female IVA suit
-            /// </summary>
-            public Texture2D ivaSuit_Veteran_Female_NRM;
-
-            /// <summary>
-            /// Texture for the Badass Female IVA suit
-            /// </summary>
-            public Texture2D ivaSuit_Badass_Female;
-
-            /// <summary>
-            /// Normal map for the Badass Female IVA suit
-            /// </summary>
-            public Texture2D ivaSuit_Badass_Female_NRM;
-
-            /// <summary>
-            /// Texture for the Veteran + Badass Female IVA suit
-            /// </summary>
-            public Texture2D ivaSuit_VetBad_Female;
-
-            /// <summary>
-            /// Normal map for the Veteran + Badass Female IVA suit
-            /// </summary>
-            public Texture2D ivaSuit_VetBad_Female_NRM;
-
-            /// <summary>
-            /// Texture for the IVA helmet
-            /// </summary>
-            public Texture2D ivaHelmet;
-
-            /// <summary>
-            /// Normal map for the IVA helmet
-            /// </summary>
-            public Texture2D ivaHelmetNRM;
-
-            /// <summary>
-            /// Texture for the IVA visor
-            /// </summary>
-            public Texture2D ivaVisor;
-
-            /// <summary>
-            /// Normal map for the IVA visor 
-            /// </summary>
-            public Texture2D ivaVisorNRM;
-
-            /// <summary>
-            /// Texture for the Male EVA ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Male;
-
-            /// <summary>
-            /// Normal map for the Male EVA ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Male_NRM;
-
-            /// <summary>
-            /// Texture for the veteran Male EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Veteran_Male;
-
-            /// <summary>
-            /// Normal map for the veteran Male EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Veteran_Male_NRM;
-
-            /// <summary>
-            /// Texture for the Badass Male EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Badass_Male;
-
-            /// <summary>
-            /// Normal map for the Badass Male EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Badass_Male_NRM;
-
-            /// <summary>
-            /// Texture for the Veteran + Badass Male EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_VetBad_Male;
-
-            /// <summary>
-            /// Normal map for the Veteran + Badass Male EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_VetBad_Male_NRM;
-
-            /// <summary>
-            /// Texture for the Female EVA ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Female;
-
-            /// <summary>
-            /// Normal map for the Female EVA ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Female_NRM;
-
-            /// <summary>
-            /// Texture for the veteran Female EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Veteran_Female;
-
-            /// <summary>
-            /// Normal map for the veteran Female EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Veteran_Female_NRM;
-
-            /// <summary>
-            /// Texture for the Badass Female EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Badass_Female;
-
-            /// <summary>
-            /// Normal map for the Badass Female EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_Badass_Female_NRM;
-
-            /// <summary>
-            /// Texture for the Veteran + Badass Female EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_VetBad_Female;
-
-            /// <summary>
-            /// Normal map for the Veteran + Badass Female EVA Ground suit
-            /// </summary>
-            public Texture2D evaGroundSuit_VetBad_Female_NRM;
-
-            /// <summary>
-            /// Texture for the EVA ground helmet
-            /// </summary>
-            public Texture2D evaGroundHelmet;
-
-            /// <summary>
-            /// normal map for the EVA ground helmet
-            /// </summary>
-            public Texture2D evaGroundHelmetNRM;
-
-            /// <summary>
-            /// Texture for the EVA ground visor
-            /// </summary>
-            public Texture2D evaGroundVisor;
-
-            /// <summary>
-            /// Normal map for the EVA ground visor 
-            /// </summary>
-            public Texture2D evaGroundVisorNRM;
-
-            /// <summary>
-            /// Texture for the EVA ground jetpack
-            /// </summary>
-            public Texture2D evaGroundJetpack;
-
-            /// <summary>
-            /// normal map for the EVA ground jetpack
-            /// </summary>
-            public Texture2D evaGroundJetpackNRM;
-
-            /// <summary>
-            /// Texture for the Male EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Male;            
-
-            /// <summary>
-            /// Normal map for the Male EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Male_NRM;
-
-            /// <summary>
-            /// Texture for the veteran Male EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Veteran_Male;
-
-            /// <summary>
-            /// Normal map for the veteran Male EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Veteran_Male_NRM;
-
-            /// <summary>
-            /// Texture for the Badass Male EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Badass_Male;
-
-            /// <summary>
-            /// Normal map for the Badass Male EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Badass_Male_NRM;
-
-            /// <summary>
-            /// Texture for the Veteran + Badass Male EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_VetBad_Male;
-
-            /// <summary>
-            /// Normal map for the Veteran + Badass Male EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_VetBad_Male_NRM;
-
-            /// <summary>
-            /// Texture for the Female EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_female;
-
-            /// <summary>
-            /// Normal map for the Female EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Female_NRM;
-
-            /// <summary>
-            /// Texture for the veteran Female EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Veteran_Female;
-
-            /// <summary>
-            /// Normal map for the veteran Female EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Veteran_Female_NRM;
-
-            /// <summary>
-            /// Texture for the Badass Female EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Badass_Female;
-
-            /// <summary>
-            /// Normal map for the Badass Female EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_Badass_Female_NRM;
-
-            /// <summary>
-            /// Texture for the Veteran + Badass Female EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_VetBad_Female;
-
-            /// <summary>
-            /// Normal map for the Veteran + Badass Female EVA space suit
-            /// </summary>
-            public Texture2D evaSpaceSuit_VetBad_Female_NRM;
-
-            /// <summary>
-            /// Texture for the EVA space helmet
-            /// </summary>
-            public Texture2D evaSpaceHelmet;
-
-            /// <summary>
-            /// Normal map for the EVA space helmet 
-            /// </summary>
-            public Texture2D evaSpaceHelmetNRM;
-
-            /// <summary>
-            /// Texture for the EVA space visor
-            /// </summary>
-            public Texture2D evaSpaceVisor;
-
-            /// <summary>
-            /// Normal map for the EVA space visor 
-            /// </summary>
-            public Texture2D evaSpaceVisorNRM;
-
-            /// <summary>
-            /// Texture for the EVA space jetpack
-            /// </summary>
-            public Texture2D evaSpaceJetpack;
-
-            /// <summary>
-            /// Normal map for the EVA space jetpack
-            /// </summary>
-            public Texture2D evaSpaceJetpackNRM;            
-
-            /* =====================================================================================
-             * Level 1-5 textures (Level textures)
-             * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   these will fusion /disappear !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-             * =====================================================================================
-             */
-
-            /// <summary>
-            /// The texture list for the leveled IVA suit
-            /// </summary>
-            private Texture2D[] levelIvaSuits;
-
-            /// <summary>
-            /// Normal map list for the leveled IVA suit
-            /// </summary>
-            private Texture2D[] levelIvaSuitsNRM;
-
-            /// <summary>
-            /// The texture list for the leveled IVA helmet
-            /// </summary>
-            private Texture2D[] levelIvaHelmets;
-
-            /// <summary>
-            /// Normal map list for the leveled IVA helmet
-            /// </summary>
-            private Texture2D[] levelIvaHelmetsNRM;
-
-            /// <summary>
-            /// The texture list for the leveled IVA visor
-            /// </summary>
-            private Texture2D[] levelIvaVisors;
-
-            /// <summary>
-            /// Normal map list for the leveled IVA visor
-            /// </summary>
-            private Texture2D[] levelIvaVisorsNRM;
-
-            /// <summary>
-            /// The texture list for the leveled EVA space suit
-            /// </summary>
-            private Texture2D[] levelEvaSpaceSuits;
-
-            /// <summary>
-            /// Normal map list for the leveled EVA space suit
-            /// </summary>
-            private Texture2D[] levelEvaSpaceSuitsNRM;
-
-            /// <summary>
-            /// The texture list for the leveled EVA space helmet
-            /// </summary>
-            private Texture2D[] levelEvaSpaceHelmets;
-
-            /// <summary>
-            /// Normal map list for the leveled EVA space helmet
-            /// </summary>
-            private Texture2D[] levelEvaSpaceHelmetsNRM;
-
-            /// <summary>
-            /// The texture list for the leveled EVA space visor
-            /// </summary>
-            private Texture2D[] levelEvaSpaceVisors;
-
-            /// <summary>
-            /// Normal map list for the leveled EVA space visor
-            /// </summary>
-            private Texture2D[] levelEvaSpaceVisorsNRM;
-
-            /// <summary>
-            /// The texture list for the leveled EVA space jetpack
-            /// </summary>
-            private Texture2D[] levelEvaSpaceJetpacks;
-
-            /// <summary>
-            /// Normal map list for the leveled EVA space jetpack
-            /// </summary>
-            private Texture2D[] levelEvaSpaceJetpacksNRM;
-
-            /// <summary>
-            /// The texture list for the leveled EVA ground suit
-            /// </summary>
-            private Texture2D[] levelEvaGroundSuits;
-
-            /// <summary>
-            /// Normal map list for the leveled EVA ground suit
-            /// </summary>
-            private Texture2D[] levelEvaGroundSuitsNRM;
-
-            /// <summary>
-            /// The texture list for the leveled EVA ground helmet
-            /// </summary>
-            private Texture2D[] levelEvaGroundHelmets;
-
-            /// <summary>
-            /// Normal map list for the leveled EVA Ground helmet
-            /// </summary>
-            private Texture2D[] levelEvaGroundHelmetsNRM;
-
-            /// <summary>
-            /// The texture list for the leveled EVA ground visor
-            /// </summary>
-            private Texture2D[] levelEvaGroundVisors;
-
-            /// <summary>
-            /// Normal map list for the leveled EVA ground visor
-            /// </summary>
-            private Texture2D[] levelEvaGroundVisorsNRM;
-
-            /// <summary>
-            /// The texture list for the leveled EVA ground jetpack
-            /// </summary>
-            private Texture2D[] levelEvaGroundJetpacks;
-
-            /// <summary>
-            /// Normal Map list for the leveled EVA ground jetpack
-            /// </summary>
-            private Texture2D[] levelEvaGroundJetpacksNRM;
-
-
-            // !!!!!!!!!!!!!!!!!!!!!!!!     need revamp of these functions !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the IVA suit for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The IVA suit texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getIvaSuit(int level)
-            {
-                return level != 0 && levelIvaSuits != null ? levelIvaSuits[level - 1] : Suit_Iva_Standard_Male0;
-                /* if (level != 0 && levelSuits != null)                 
-                 *      return levelSuits[level-1];
-                 * else
-                 *      return suit;
-                */
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the IVA suit Normal Map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The IVA suit texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getIvaSuitNRM(int level)
-            {
-                return level != 0 && levelIvaSuitsNRM != null ? levelIvaSuitsNRM[level - 1] : Suit_Iva_Standard_MaleNRM0;
-                /* if (level != 0 && levelSuits != null)                 
-                 *      return levelSuits[level-1];
-                 * else
-                 *      return suit;
-                */
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the IVA helmet for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The IVA helmet texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getIvaHelmet(int level)
-            {
-                return level != 0 && levelIvaHelmets != null ? levelIvaHelmets[level - 1] : ivaHelmet;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the IVA helmet Normal Map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The IVA helmet texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getIvaHelmetNRM(int level)
-            {
-                return level != 0 && levelIvaHelmetsNRM != null ? levelIvaHelmetsNRM[level - 1] : ivaHelmetNRM;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the IVA visor for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The IVA visor texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getIvavisor(int level)
-            {
-                return level != 0 && levelIvaVisors != null ? levelIvaVisors[level - 1] : ivaVisor;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the IVA visor normal map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The IVA visor normal map for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getIvaVisorNRM (int level)
-            {
-                return level != 0 && levelIvaVisorsNRM != null ? levelIvaVisorsNRM[level - 1] : ivaVisorNRM;
-            }
-
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA space suit for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA space suit texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaSpaceSuit(int level)
-            {
-                return level != 0 && levelEvaSpaceSuits != null ? levelEvaSpaceSuits[level - 1] : evaSpaceSuit_Male;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA space suit Normal map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA space suit texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaSpaceSuitNRM(int level)
-            {
-                return level != 0 && levelEvaSpaceSuitsNRM != null ? levelEvaSpaceSuitsNRM[level - 1] : evaSpaceSuit_Male_NRM;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA space helmet for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA space helmet texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaSpaceHelmet(int level)
-            {
-                return level != 0 && levelEvaSpaceHelmets != null ? levelEvaSpaceHelmets[level - 1] : evaSpaceHelmet;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA space helmet normal map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA space helmet texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaSpaceHelmetNRM(int level)
-            {
-                return level != 0 && levelEvaSpaceHelmetsNRM != null ? levelEvaSpaceHelmetsNRM[level - 1] : evaSpaceHelmetNRM;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA space visor for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA space visor texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaSpaceVisor(int level)
-            {
-                return level != 0 && levelEvaSpaceVisors != null ? levelEvaSpaceVisors[level - 1] : evaSpaceVisor;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA space visor normal map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA space visor normal map for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaSpaceVisorNRM(int level)
-            {
-                return level != 0 && levelEvaSpaceVisorsNRM != null ? levelEvaSpaceVisorsNRM[level - 1] : evaSpaceVisorNRM;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA space jetpack for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA space jetpack texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaSpaceJetpack(int level)
-            {
-                return level != 0 && levelEvaSpaceJetpacks != null ? levelEvaSpaceJetpacks[level - 1] : evaSpaceJetpack;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA space jetpack normal map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA space jetpack texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaSpaceJetpackNRM(int level)
-            {
-                return level != 0 && levelEvaSpaceJetpacksNRM != null ? levelEvaSpaceJetpacksNRM[level - 1] : evaSpaceJetpackNRM;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA ground suit for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA ground texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaGroundSuit(int level)
-            {
-                return level != 0 && levelEvaGroundSuits != null ? levelEvaGroundSuits[level - 1] : evaGroundSuit_Male;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA ground suit Normal Map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA ground texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaGroundSuitNRM(int level)
-            {
-                return level != 0 && levelEvaGroundSuitsNRM != null ? levelEvaGroundSuitsNRM[level - 1] : evaGroundSuit_Male_NRM;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA ground helmet for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA ground helmet texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaGroundHelmet(int level)
-            {
-                return level != 0 && levelEvaGroundHelmets != null ? levelEvaGroundHelmets[level - 1] : evaGroundHelmet;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA ground helmet Normal Map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA ground helmet texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaGroundHelmetNRM(int level)
-            {
-                return level != 0 && levelEvaGroundHelmetsNRM != null ? levelEvaGroundHelmetsNRM[level - 1] : evaGroundHelmetNRM;
-            }
-
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA ground visor for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA ground visor texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaGroundVisor(int level)
-            {
-                return level != 0 && levelEvaGroundVisors != null ? levelEvaGroundVisors[level - 1] : evaGroundVisor;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA ground visor normal map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA ground visor normal map for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaGroundVisorNRM(int level)
-            {
-                return level != 0 && levelEvaGroundVisorsNRM != null ? levelEvaGroundVisorsNRM[level - 1] : evaGroundVisorNRM;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA ground jetpack for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA ground jetpack texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaGroundJetpack(int level)
-            {
-                return level != 0 && levelEvaGroundJetpacks != null ? levelEvaGroundJetpacks[level - 1] : evaGroundJetpack;
-            }
-
-            /// ************************************************************************************
-            /// <summary>
-            /// Used to get the EVA ground jetpack Normal Map for the level of the kerbal
-            /// </summary>
-            /// <param name="level">The level of the kerbal</param>
-            /// <returns>The EVA ground jetpack texture for the level of the kerbal 
-            /// (if no texture for his level, it return the last one saved in the class parameter)</returns>
-            /// ************************************************************************************
-            public Texture2D getEvaGroundJetpackNRM(int level)
-            {
-                return level != 0 && levelEvaGroundJetpacksNRM != null ? levelEvaGroundJetpacksNRM[level - 1] : evaGroundJetpackNRM;
-            }
-
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    need revamp of the list with the new Texture2D[] and add the formatted new names for the texture like "ivaSuit_Male.dds" instead of "kerbalMainGrey.dds" !!!!!!!!!!!!!!!!!
-            /// ************************************************************************************
-            /// <summary>
-            /// Search for the name of the texture, then set the good one in the suit set.
-            /// <para>Related to <see cref="Personaliser.Suit"/> class. </para> 
-            /// </summary>
-            /// <param name="originalName">The name of the texture file (like KerbalMain.dds) 
-            /// we want to save in the suit set.</param>
-            /// <param name="texture">The texture we want to save in the suit set.</param>
-            /// <returns>True if the texture is found and saved and false if not.</returns>
-            /// ************************************************************************************
-            public bool setTexture(string originalName, Texture2D texture)
-            {
-                int level;
-
-                switch (originalName)
-                {
-                    /* ========================================
-                    * IVA suit
-                    * =======================================*/
-                    case "kerbalMainGrey":
-                    case "IvaSuit_Male":
-                    case "Suit_IVA_Standard_Male":
-                        Suit_Iva_Standard_Male0 = Suit_Iva_Standard_Male0 ?? texture;
-                        return true;
-
-                    case "kerbalMainNRM":
-                    case "IvaSuit_MaleNRM":
-                        Suit_Iva_Standard_MaleNRM0 = Suit_Iva_Standard_MaleNRM0 ?? texture;
-                        return true;
-
-                    case "kerbalMain":
-                    case "ivaSuit_Veteran_Male":
-                        Suit_Iva_Veteran_Male0 = Suit_Iva_Veteran_Male0 ?? texture;
-                        return false;
-
-                    case "ivaSuit_Veteran_Male_NRM":
-                        Suit_Iva_Veteran_MaleNRM0 = Suit_Iva_Veteran_MaleNRM0 ?? texture;
-                        return false;
-                    
-                    case "ivaSuit_Badass_Male":
-                        Suit_Iva_Badass_Male0 = Suit_Iva_Badass_Male0 ?? texture;
-                        return false;
-
-                    case "ivaSuit_Badass_Male_NRM":
-                        Suit_Iva_Badass_MaleNRM0 = Suit_Iva_Badass_MaleNRM0 ?? texture;
-                        return false;
-
-                    case "ivaSuit_Veteran_Female":
-                        ivaSuit_Veteran_Female = ivaSuit_Veteran_Female ?? texture;
-                        return false;
-
-                    case "ivaSuit_Veteran_Female_NRM":
-                        ivaSuit_Veteran_Female_NRM = ivaSuit_Veteran_Female_NRM ?? texture;
-                        return false;
-
-                    case "ivaSuit_Badass_Female":
-                        ivaSuit_Badass_Female = ivaSuit_Badass_Female ?? texture;
-                        return false;
-
-                    case "ivaSuit_Badass_Female_NRM":
-                        ivaSuit_Badass_Female_NRM = ivaSuit_Badass_Female_NRM ?? texture;
-                        return false;
-
-                    case "kerbalHelmetGrey":
-                    case "IvaHelmet":
-                        ivaHelmet = ivaHelmet ?? texture;
-                        return true;
-
-                    case "kerbalHelmetGreyNRM":
-                    case "kerbalHelmetNRM":
-                    case "IvaHelmet.NRM":
-                        ivaHelmetNRM = ivaHelmetNRM ?? texture;
-                        return true;
-
-                    case "kerbalVisor":
-                    case "IvaVisor":
-                        ivaVisor = ivaVisor ?? texture;
-                        return true;
-
-                    case "kerbalVisorNRM":
-                    case "IvaVisorNRM":
-                        ivaVisorNRM = ivaVisorNRM ?? texture;
-                        return true;
-                    /* ========================================
-                    * EVA ground suit
-                    * =======================================*/
-                    case "EvaGroundSuit_Male":
-                    case "EVAgroundTexture":
-                        evaGroundSuit_Male = evaGroundSuit_Male ?? texture;
-                        return true;
-
-                    case "EvaGroundSuit_Male_NRM":
-                    case "EVAgroundTextureNRM":
-                        evaGroundSuit_Male_NRM = evaGroundSuit_Male_NRM ?? texture;
-                        return true;
-
-                    case "EvaGroundSuit_Veteran_Male":
-                        evaGroundSuit_Veteran_Male = evaGroundSuit_Veteran_Male ?? texture;
-                        return false;
-
-                    case "EvaGroundSuit_Veteran_Male_NRM":
-                        evaGroundSuit_Veteran_Male_NRM = evaGroundSuit_Veteran_Male_NRM ?? texture;
-                        return false;
-
-                    case "EvaGroundSuit_Badass_Male":
-                        evaGroundSuit_Badass_Male = evaGroundSuit_Badass_Male ?? texture;
-                        return false;
-
-                    case "EvaGroundSuit_Badass_Male_NRM":
-                        evaGroundSuit_Badass_Male_NRM = evaGroundSuit_Badass_Male_NRM ?? texture;
-                        return false;
-
-                    case "EvaGroundSuit_Veteran_Female":
-                        evaGroundSuit_Veteran_Female = evaGroundSuit_Veteran_Female ?? texture;
-                        return false;
-
-                    case "EvaGroundSuit_Veteran_Female_NRM":
-                        evaGroundSuit_Veteran_Female_NRM = evaGroundSuit_Veteran_Female_NRM ?? texture;
-                        return false;
-
-                    case "EvaGroundSuit_Badass_Female":
-                        evaGroundSuit_Badass_Female = evaGroundSuit_Badass_Female ?? texture;
-                        return false;
-
-                    case "EvaGroundSuit_Badass_Female_NRM":
-                        evaGroundSuit_Badass_Female_NRM = evaGroundSuit_Badass_Female_NRM ?? texture;
-                        return false;
-
-                    case "EVAgroundHelmet":
-                        evaGroundHelmet = evaGroundHelmet ?? texture;
-                        return true;
-
-                    case "EVAgroundHelmetNRM":
-                        evaGroundHelmetNRM = evaGroundHelmetNRM ?? texture;
-                        return true;
-
-                    case "EVAgroundVisor":
-                        evaGroundVisor = evaGroundVisor ?? texture;
-                        return true;
-
-                    case "EVAgroundVisorNRM":
-                        evaGroundVisorNRM = evaGroundVisorNRM ?? texture;
-                        return true;
-
-                    case "EVAgroundJetpack":
-                        evaGroundJetpack = evaGroundJetpack ?? texture;
-                        return true;
-
-                    case "EVAgroundJetpackNRM":
-                        evaGroundJetpackNRM = evaGroundJetpackNRM ?? texture;
-                        return true;
-
-                    /* ========================================
-                    * EVA space suit
-                    * =======================================*/
-                    case "EVAtexture":
-                    case "EvaSpaceSuit_Male":
-                        evaSpaceSuit_Male = evaSpaceSuit_Male ?? texture;
-                        return true;
-
-                    case "EVAtextureNRM":
-                    case "EvaSpaceSuit_Male_NRM":
-                        evaSpaceSuit_Male_NRM = evaSpaceSuit_Male_NRM ?? texture;
-                        return true;
-
-                    case "EvaSpaceSuit_Veteran_Male":
-                        evaSpaceSuit_Veteran_Male = evaSpaceSuit_Veteran_Male ?? texture;
-                        return false;
-
-                    case "EvaSpaceSuit_Veteran_Male_NRM":
-                        evaSpaceSuit_Veteran_Male_NRM = evaSpaceSuit_Veteran_Male_NRM ?? texture;
-                        return false;
-
-                    case "EvaSpaceSuit_Badass_Male":
-                        evaSpaceSuit_Badass_Male = evaSpaceSuit_Badass_Male ?? texture;
-                        return false;
-
-                    case "EvaSpaceSuit_Badass_Male_NRM":
-                        evaSpaceSuit_Badass_Male_NRM = evaSpaceSuit_Badass_Male_NRM ?? texture;
-                        return false;
-
-                    case "EvaSpaceSuit_Veteran_Female":
-                        evaSpaceSuit_Veteran_Female = evaSpaceSuit_Veteran_Female ?? texture;
-                        return false;
-
-                    case "EvaSpaceSuit_Veteran_Female_NRM":
-                        evaSpaceSuit_Veteran_Female_NRM = evaSpaceSuit_Veteran_Female_NRM ?? texture;
-                        return false;
-
-                    case "EvaSpaceSuit_Badass_Female":
-                        evaSpaceSuit_Badass_Female = evaSpaceSuit_Badass_Female ?? texture;
-                        return false;
-
-                    case "EvaSpaceSuit_Badass_Female_NRM":
-                        evaSpaceSuit_Badass_Female_NRM = evaSpaceSuit_Badass_Female_NRM ?? texture;
-                        return false;
-
-                    case "EVAhelmet":
-                    case "EvaSpaceHelmet":
-                        evaSpaceHelmet = evaSpaceHelmet ?? texture;
-                        return true;
-
-                    case "EVAhelmetNRM":
-                    case "EvaSpaceHelmetNRM":
-                        evaSpaceHelmetNRM = evaSpaceHelmetNRM ?? texture;
-                        return true;
-
-                    case "EVAvisor":
-                    case "EvaSpaceVisor":
-                    case "Visor_EvaSpace_Standard_Male0":
-                        evaSpaceVisor = evaSpaceVisor ?? texture;
-                        return true;
-
-                    case "EVAvisorNRM":
-                    case "EvaSpaceVisorNRM":
-                        evaSpaceVisorNRM = evaSpaceVisorNRM ?? texture;
-                        return true;
-
-                    case "EVAjetpack":
-                    case "EvaSpaceJetpack":
-                        evaSpaceJetpack = evaSpaceJetpack ?? texture;
-                        return true;
-
-                    case "EVAjetpackNRM":
-                    case "EvaSpaceJetpackNRM":
-                        evaSpaceJetpackNRM = evaSpaceJetpackNRM ?? texture;
-                        return true;
-                     // !!!!!!!!!!!!!!!!!!!!!!!!   need to fusion/disappear !!!!!!!!!!!!!!!!
-                    /* ========================================
-                    * LEVEL suit
-                    * =======================================*/
-                    case "kerbalMainGrey1":
-                    case "kerbalMainGrey2":
-                    case "kerbalMainGrey3":
-                    case "kerbalMainGrey4":
-                    case "kerbalMainGrey5":
-                        level = originalName.Last() - 0x30;
-                        levelIvaSuits = levelIvaSuits ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelIvaSuits[i] = texture;
-                        return true;
-
-                    case "kerbalHelmetGrey1":
-                    case "kerbalHelmetGrey2":
-                    case "kerbalHelmetGrey3":
-                    case "kerbalHelmetGrey4":
-                    case "kerbalHelmetGrey5":
-                        level = originalName.Last() - 0x30;
-                        levelIvaHelmets = levelIvaHelmets ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelIvaHelmets[i] = texture;
-                        return true;
-                                            
-                    case "kerbalVisor1":
-                    case "kerbalVisor2":
-                    case "kerbalVisor3":
-                    case "kerbalVisor4":
-                    case "kerbalVisor5":
-                    case "IVAvisor1":
-                    case "IVAvisor2":
-                    case "IVAvisor3":
-                    case "IVAvisor4":
-                    case "IVAvisor5":
-                        level = originalName.Last() - 0x30;
-                        levelIvaVisors = levelIvaVisors ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelIvaVisors[i] = texture;
-                        return true;
-
-                    case "kerbalVisorNRM1":
-                    case "kerbalVisorNRM2":
-                    case "kerbalVisorNRM3":
-                    case "kerbalVisorNRM4":
-                    case "kerbalVisorNRM5":
-                    case "IVAvisorNRM1":
-                    case "IVAvisorNRM2":
-                    case "IVAvisorNRM3":
-                    case "IVAvisorNRM4":
-                    case "IVAvisorNRM5":
-                    
-                        level = originalName.Last() - 0x30;
-                        levelIvaVisorsNRM = levelIvaVisorsNRM ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelIvaVisorsNRM[i] = texture;
-                        return true;
-
-                    case "EVAtexture1":
-                    case "EVAtexture2":
-                    case "EVAtexture3":
-                    case "EVAtexture4":
-                    case "EVAtexture5":
-                        level = originalName.Last() - 0x30;
-                        levelEvaSpaceSuits = levelEvaSpaceSuits ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelEvaSpaceSuits[i] = texture;
-                        return true;
-
-                    case "EVAhelmet1":
-                    case "EVAhelmet2":
-                    case "EVAhelmet3":
-                    case "EVAhelmet4":
-                    case "EVAhelmet5":
-                        level = originalName.Last() - 0x30;
-                        levelEvaSpaceHelmets = levelEvaSpaceHelmets ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelEvaSpaceHelmets[i] = texture;
-                        return true;
-
-                    case "EVAvisor1":
-                    case "EVAvisor2":
-                    case "EVAvisor3":
-                    case "EVAvisor4":
-                    case "EVAvisor5":
-                        level = originalName.Last() - 0x30;
-                        levelEvaSpaceVisors = levelEvaSpaceVisors ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelEvaSpaceVisors[i] = texture;
-                        return true;
-
-                    case "EVAvisorNRM1":
-                    case "EVAvisorNRM2":
-                    case "EVAvisorNRM3":
-                    case "EVAvisorNRM4":
-                    case "EVAvisorNRM5":
-                    case "EVAspaceNRM1":
-                    case "EVAspaceNRM2":
-                    case "EVAspaceNRM3":
-                    case "EVAspaceNRM4":
-                    case "EVAspaceNRM5":
-                        level = originalName.Last() - 0x30;
-                        levelEvaSpaceVisorsNRM = levelEvaSpaceVisorsNRM ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelEvaSpaceVisorsNRM[i] = texture;
-                        return true;
-
-                    case "EVAjetpack1":
-                    case "EVAjetpack2":
-                    case "EVAjetpack3":
-                    case "EVAjetpack4":
-                    case "EVAjetpack5":
-                        level = originalName.Last() - 0x30;
-                        levelEvaSpaceJetpacks = levelEvaSpaceJetpacks ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelEvaSpaceJetpacks[i] = texture;
-                        return true;
-                    case "EVAgroundTexture1":
-                    case "EVAgroundTexture2":
-                    case "EVAgroundTexture3":
-                    case "EVAgroundTexture4":
-                    case "EVAgroundTexture5":
-                        level = originalName.Last() - 0x30;
-                        levelEvaGroundSuits = levelEvaGroundSuits ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelEvaGroundSuits[i] = texture;
-                        return true;
-
-                    case "EVAgroundHelmet1":
-                    case "EVAgroundHelmet2":
-                    case "EVAgroundHelmet3":
-                    case "EVAgroundHelmet4":
-                    case "EVAgroundHelmet5":
-                        level = originalName.Last() - 0x30;
-                        levelEvaGroundHelmets = levelEvaGroundHelmets ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelEvaGroundHelmets[i] = texture;
-                        return true;
-
-                    case "EVAgroundVisor1":
-                    case "EVAgroundVisor2":
-                    case "EVAgroundVisor3":
-                    case "EVAgroundVisor4":
-                    case "EVAgroundVisor5":
-                        level = originalName.Last() - 0x30;
-                        levelEvaGroundVisors = levelEvaGroundVisors ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelEvaGroundVisors[i] = texture;
-                        return true;
-
-                    case "EVAgroundVisorNRM1":
-                    case "EVAgroundVisorNRM2":
-                    case "EVAgroundVisorNRM3":
-                    case "EVAgroundVisorNRM4":
-                    case "EVAgroundVisorNRM5":
-                        level = originalName.Last() - 0x30;
-                        levelEvaGroundVisorsNRM = levelEvaGroundVisorsNRM ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelEvaGroundVisorsNRM[i] = texture;
-                        return true;
-
-                    case "EVAgroundJetpack1":
-                    case "EVAgroundJetpack2":
-                    case "EVAgroundJetpack3":
-                    case "EVAgroundJetpack4":
-                    case "EVAgroundJetpack5":
-                        level = originalName.Last() - 0x30;
-                        levelEvaGroundJetpacks = levelEvaGroundJetpacks ?? new Texture2D[5];
-
-                        for (int i = level - 1; i < 5; ++i)
-                            levelEvaGroundJetpacks[i] = texture;
-                        return true;
-
-                    default:
-                        return false;
-                }
-            }
-        }
-
-        /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        /// <summary>
-        /// The data of a kerbal
-        /// <para>Contain the head and suit texture used by the kerbal</para>   
-        /// </summary>
-        /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        public class KerbalData
-        {
-            /// <summary>
-            /// The hash code of the kerbal
-            /// </summary>
-            public int hash;
-
-            /// <summary>
-            /// The gender of the kerbal
-            /// </summary>
-            public int gender;
-
-            /// <summary>
-            /// Is the kerbal a veteran?
-            /// </summary>
-            public bool isVeteran;
-
-            /// <summary>
-            /// The head of the kerbal
-            /// </summary>
-            public Head_Set head;
-
-            /// <summary>
-            /// The suit set of the kerbal
-            /// </summary>
-            public Suit_Set suit;
-
-            /// <summary>
-            /// The forced cabin suit (IVA) of the kerbal
-            /// </summary>
-            public Suit_Set cabinSuit;
-        }
-
+        public bool ForceIVAspaceSuit = false;          
+                
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
         /// Component bound to internal models that triggers Kerbal texture personalization
@@ -1960,18 +706,21 @@ namespace TextureReplacerReplaced
             if (suit != null)
                 return suit;
 
-            List<Suit_Set> genderSuits = maleAndfemaleSuitsDB_cleaned[0];
+            if (KerbalSuitsDB_cleaned.Count == 0)
+                return defaultSuit;
+
+            /*List<Suit_Set> genderSuits = maleAndfemaleSuitsDB_cleaned[0];
 
             // Use female suits only if available, fall back to male suits otherwise.
             if (kerbalData.gender != 0 && maleAndfemaleSuitsDB_cleaned[1].Count != 0)
                 genderSuits = maleAndfemaleSuitsDB_cleaned[1];
             else if (genderSuits.Count == 0)
-                return defaultSuit;
+                return defaultSuit;*/
 
             // We must use a different prime here to increase randomization so that the same head is not always combined with
             // the same suit.
             int number = ((kerbalData.hash + kerbal.name.Length) * 2053) & 0x7fffffff;
-            return genderSuits[number % genderSuits.Count];
+            return KerbalSuitsDB_cleaned[number % KerbalSuitsDB_cleaned.Count];
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -2061,50 +810,105 @@ namespace TextureReplacerReplaced
                         case "downTeeth01":
                             break;
 
-                        case "body01":
                         case "mesh_female_kerbalAstronaut01_body01":
-                            bool isEvaSuit = isEva && needsEVASuit;                            
+                            bool isEvaSuit = isEva && needsEVASuit;
 
                             if (personaliseKerbal_Suit != null)
                             {
-                                // newTexture = isEvaSuit ? suit.getEvaSuit(kerbal.experienceLevel) : suit.getSuit(kerbal.experienceLevel);
-                                // newNormalMap = isEvaSuit ? suit.evaSuitNRM : suit.suitNRM;
-
                                 if (isEva)
                                 {
                                     if (needsEVASuit && needsEVAgroundSuit)
                                     {
-                                        newTexture = personaliseKerbal_Suit.getEvaGroundSuit(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.getEvaGroundSuitNRM(protoKerbal.experienceLevel);
+                                        newTexture = personaliseKerbal_Suit.get_suit_EvaGround_Standard_Female(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.get_suit_EvaGround_Standard_FemaleNRM(protoKerbal.experienceLevel);
                                     }
                                     else if (needsEVASuit)
                                     {
-                                        newTexture = personaliseKerbal_Suit.getEvaSpaceSuit(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.getEvaSpaceSuitNRM(protoKerbal.experienceLevel);
+                                        newTexture = personaliseKerbal_Suit.get_suit_EvaSpace_Standard_Female(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.get_suit_EvaSpace_Standard_FemaleNRM(protoKerbal.experienceLevel);
                                     }
                                     else
                                     {
-                                        newTexture = personaliseKerbal_Suit.getIvaSuit(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.getIvaSuitNRM(protoKerbal.experienceLevel);
+                                        newTexture = personaliseKerbal_Suit.get_suit_Iva_Standard_Female(protoKerbal.experienceLevel);
+                                        //Util.log("personaliseKerbal getIvaSuit called level  = " + protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Standard_FemaleNRM(protoKerbal.experienceLevel);
                                     }
                                 }
                                 else
                                 {
-                                    newTexture = personaliseKerbal_Suit.getIvaSuit(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.getIvaSuitNRM(protoKerbal.experienceLevel);
+                                    newTexture = personaliseKerbal_Suit.get_suit_Iva_Standard_Female(protoKerbal.experienceLevel);
+                                    //Util.log("personaliseKerbal getIvaSuit called level  = " + protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Standard_FemaleNRM(protoKerbal.experienceLevel);
                                 }
                             }
+                            //else
+                            //Util.log("personaliseKerbal personaliseKerbal_Suit is null !!!!!!");
                             if (newTexture == null)
                             {
                                 // This required for two reasons: to fix IVA suits after KSP resetting them to the stock ones all the
                                 // time and to fix the switch from non-default to default texture during EVA suit toggle.
-                                newTexture = isEvaSuit ? defaultSuit.evaSpaceSuit_Male
-                                  : kerbalData.isVeteran ? defaultSuit.Suit_Iva_Veteran_Male0
-                                  : defaultSuit.Suit_Iva_Standard_Male0;
+                                newTexture = isEvaSuit ? defaultSuit.get_suit_EvaSpace_Standard_Female(protoKerbal.experienceLevel)
+                                  : kerbalData.isVeteran ? defaultSuit.get_suit_Iva_Veteran_Female(protoKerbal.experienceLevel)
+                                  : defaultSuit.get_suit_Iva_Standard_Female(protoKerbal.experienceLevel);
                             }
 
                             if (newNormalMap == null)
-                                newNormalMap = isEvaSuit ? defaultSuit.evaSpaceSuit_Male_NRM : defaultSuit.Suit_Iva_Standard_MaleNRM0;
+                                newNormalMap = isEvaSuit ? defaultSuit.get_suit_EvaSpace_Standard_FemaleNRM(protoKerbal.experienceLevel) : defaultSuit.get_suit_Iva_Standard_FemaleNRM(protoKerbal.experienceLevel);
+
+                            // Update textures in Kerbal IVA object since KSP resets them to these values a few frames later.
+                            if (!isEva)
+                            {
+                                Kerbal kerbalIVA = (Kerbal)component;
+
+                                kerbalIVA.textureStandard = newTexture;
+                                kerbalIVA.textureVeteran = newTexture;
+                            }
+                            break;
+
+                        case "body01":                        
+                            isEvaSuit = isEva && needsEVASuit;                            
+
+                            if (personaliseKerbal_Suit != null)
+                            {   
+                                if (isEva)
+                                {
+                                    if (needsEVASuit && needsEVAgroundSuit)
+                                    {
+                                        newTexture = personaliseKerbal_Suit.get_suit_EvaGround_Standard_Male(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.get_suit_EvaGround_Standard_MaleNRM(protoKerbal.experienceLevel);
+                                    }
+                                    else if (needsEVASuit)
+                                    {
+                                        newTexture = personaliseKerbal_Suit.get_suit_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.get_suit_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
+                                    }
+                                    else
+                                    {
+                                        newTexture = personaliseKerbal_Suit.get_suit_Iva_Standard_Male(protoKerbal.experienceLevel);
+                                        //Util.log("personaliseKerbal getIvaSuit called level  = " + protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Standard_MaleNRM(protoKerbal.experienceLevel);
+                                    }
+                                }
+                                else
+                                {
+                                    newTexture = personaliseKerbal_Suit.get_suit_Iva_Standard_Male(protoKerbal.experienceLevel);
+                                    //Util.log("personaliseKerbal getIvaSuit called level  = " + protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Standard_MaleNRM(protoKerbal.experienceLevel);
+                                }
+                            }
+                            //else
+                                //Util.log("personaliseKerbal personaliseKerbal_Suit is null !!!!!!");
+                            if (newTexture == null)
+                            {
+                                // This required for two reasons: to fix IVA suits after KSP resetting them to the stock ones all the
+                                // time and to fix the switch from non-default to default texture during EVA suit toggle.
+                                newTexture = isEvaSuit ? defaultSuit.get_suit_EvaSpace_Standard_Male(protoKerbal.experienceLevel)
+                                  : kerbalData.isVeteran ? defaultSuit.get_suit_Iva_Veteran_Male(protoKerbal.experienceLevel)
+                                  : defaultSuit.get_suit_Iva_Standard_Male(protoKerbal.experienceLevel);
+                            }
+
+                            if (newNormalMap == null)
+                                newNormalMap = isEvaSuit ? defaultSuit.get_suit_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel) : defaultSuit.get_suit_Iva_Standard_MaleNRM(protoKerbal.experienceLevel);
 
                             // Update textures in Kerbal IVA object since KSP resets them to these values a few frames later.
                             if (!isEva)
@@ -2128,40 +932,24 @@ namespace TextureReplacerReplaced
                             {
                                 if (isEva && needsEVAgroundSuit)
                                 {
-                                    newTexture = personaliseKerbal_Suit.getEvaGroundHelmet(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.getEvaGroundHelmetNRM(protoKerbal.experienceLevel);
+                                    newTexture = personaliseKerbal_Suit.get_helmet_EvaGround_Standard_Male(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.get_helmet_EvaGround_Standard_MaleNRM(protoKerbal.experienceLevel);
                                 }
                                 else if (isEva)
                                 {
-                                    newTexture = personaliseKerbal_Suit.getEvaSpaceHelmet(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.getEvaSpaceHelmetNRM(protoKerbal.experienceLevel);
+                                    newTexture = personaliseKerbal_Suit.get_helmet_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.get_helmet_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
                                 }
                                 else
                                 {
-                                    newTexture = personaliseKerbal_Suit.getIvaHelmet(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.getIvaHelmetNRM(protoKerbal.experienceLevel);
+                                    newTexture = personaliseKerbal_Suit.get_helmet_Iva_Standard_Male(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Standard_MaleNRM(protoKerbal.experienceLevel);
                                 }
                             }
                             break;
 
                         case "visor":
-                        case "mesh_female_kerbalAstronaut01_visor":
-                            if (isEva)
-                                smr.enabled = needsEVASuit;
-                            else
-                                smr.sharedMesh = needsEVASuit ? visorMesh[(int)protoKerbal.gender] : null;
-
-                            // Textures have to be replaced even when hidden since it may become visible later on situation change.
-                            if (personaliseKerbal_Suit != null)
-                            {
-                                newTexture = isEva ? personaliseKerbal_Suit.getEvaSpaceVisor(protoKerbal.experienceLevel) : personaliseKerbal_Suit.getEvaSpaceVisor(protoKerbal.experienceLevel);
-
-                                
-
-                                if (newTexture != null)
-                                    material.color = Color.white;
-                            }
-                            
+                        case "mesh_female_kerbalAstronaut01_visor": 
 
                             if (isEva)
                                 smr.enabled = needsEVASuit;
@@ -2173,18 +961,18 @@ namespace TextureReplacerReplaced
                             {
                                 if (isEva && needsEVAgroundSuit)
                                 {
-                                    newTexture = personaliseKerbal_Suit.getEvaGroundVisor(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.getEvaGroundVisorNRM(protoKerbal.experienceLevel);
+                                    newTexture = personaliseKerbal_Suit.get_visor_EvaGround_Standard_Male(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.get_visor_EvaGround_Standard_MaleNRM(protoKerbal.experienceLevel);
                                 }
                                 else if (isEva)
                                 {
-                                    newTexture = personaliseKerbal_Suit.getEvaSpaceVisor(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.getEvaSpaceVisorNRM(protoKerbal.experienceLevel);
+                                    newTexture = personaliseKerbal_Suit.get_visor_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.get_visor_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
                                 }
                                 else
                                 {
-                                    newTexture = personaliseKerbal_Suit.getIvavisor(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Suit.getIvaVisorNRM(protoKerbal.experienceLevel);
+                                    newTexture = personaliseKerbal_Suit.get_visor_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Suit.get_visor_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
                                 }
                             }
 
@@ -2199,13 +987,13 @@ namespace TextureReplacerReplaced
                                 {
                                     if (needsEVASuit && needsEVAgroundSuit)
                                     {
-                                        newTexture = personaliseKerbal_Suit.getEvaGroundJetpack(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.getEvaGroundJetpackNRM(protoKerbal.experienceLevel);
+                                        newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_Male(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_MaleNRM(protoKerbal.experienceLevel);
                                     }
                                     else if (needsEVASuit)
                                     {
-                                        newTexture = personaliseKerbal_Suit.getEvaSpaceJetpack(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.getEvaSpaceJetpackNRM(protoKerbal.experienceLevel);
+                                        newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
                                     }
                                 }
                             }
@@ -2219,13 +1007,13 @@ namespace TextureReplacerReplaced
                                 {
                                     if (needsEVASuit && needsEVAgroundSuit)
                                     {
-                                        newTexture = personaliseKerbal_Suit.getEvaGroundJetpack(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.getEvaGroundJetpackNRM(protoKerbal.experienceLevel);
+                                        newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_Male(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_MaleNRM(protoKerbal.experienceLevel);
                                     }
                                     else if (needsEVASuit)
                                     {
-                                        newTexture = personaliseKerbal_Suit.getEvaSpaceJetpack(protoKerbal.experienceLevel);
-                                        newNormalMap = personaliseKerbal_Suit.getEvaSpaceJetpackNRM(protoKerbal.experienceLevel);
+                                        newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
                                     }
                                 }
                                 /*if (needsSuit && suit != null)
@@ -2257,21 +1045,7 @@ namespace TextureReplacerReplaced
             bool needsSuit = !isHelmetRemovalEnabled || !isSituationSafe(kerbal.InVessel);
 
             Personaliser personaliser = Personaliser.instance;
-
-
-
-
-
-
-            /*// new suit State for TRR
-            if (personaliser.isNewSuitStateEnabled)
-            {
-                personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false);
-            }
-            else // Legacy suit state from TextureReplacer
-            {
-                personaliseKerbalLegacy(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit);
-            }*/
+           
             personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false);
         }
 
@@ -2601,20 +1375,22 @@ namespace TextureReplacerReplaced
                 suit.isFemale = femaleSuits.Contains(suit.suitSetName);
 
             // Create lists of male heads and suits.
-            maleAndfemaleHeadsDB_cleaned[0].AddRange(KerbalHeadsDB_full.Where(h => !h.isFemale && !excludedHeads.Contains(h.headName)));
-            maleAndfemaleSuitsDB_cleaned[0].AddRange(KerbalSuitsDB_full.Where(s => !s.isFemale && !excludedSuits.Contains(s.suitSetName)));
+           // maleAndfemaleHeadsDB_cleaned[0].AddRange(KerbalHeadsDB_full.Where(h => !h.isFemale && !excludedHeads.Contains(h.headName)));
+            //maleAndfemaleSuitsDB_cleaned[0].AddRange(KerbalSuitsDB_full.Where(s => !s.isFemale && !excludedSuits.Contains(s.suitSetName)));
+            KerbalSuitsDB_cleaned.AddRange(KerbalSuitsDB_full.Where(s => !excludedSuits.Contains(s.suitSetName)));
 
             // Create lists of female heads and suits.
-            maleAndfemaleHeadsDB_cleaned[1].AddRange(KerbalHeadsDB_full.Where(h => h.isFemale && !excludedHeads.Contains(h.headName)));
-            maleAndfemaleSuitsDB_cleaned[1].AddRange(KerbalSuitsDB_full.Where(s => s.isFemale && !excludedSuits.Contains(s.suitSetName)));
+            //maleAndfemaleHeadsDB_cleaned[1].AddRange(KerbalHeadsDB_full.Where(h => h.isFemale && !excludedHeads.Contains(h.headName)));
+            //maleAndfemaleSuitsDB_cleaned[1].AddRange(KerbalSuitsDB_full.Where(s => s.isFemale && !excludedSuits.Contains(s.suitSetName)));
 
             // Trim lists.
             KerbalHeadsDB_full.TrimExcess();
             KerbalSuitsDB_full.TrimExcess();
+            KerbalSuitsDB_cleaned.TrimExcess();
             maleAndfemaleHeadsDB_cleaned[0].TrimExcess();
-            maleAndfemaleSuitsDB_cleaned[0].TrimExcess();
+            //maleAndfemaleSuitsDB_cleaned[0].TrimExcess();
             maleAndfemaleHeadsDB_cleaned[1].TrimExcess();
-            maleAndfemaleSuitsDB_cleaned[1].TrimExcess();
+            //maleAndfemaleSuitsDB_cleaned[1].TrimExcess();
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -2649,75 +1425,11 @@ namespace TextureReplacerReplaced
             string lastTextureName = "";
 
             // Populate KerbalHeadsDB_full and defaulMaleAndFemaleHeads
-            Textures.LoadHeads(KerbalHeadsDB_full, maleAndfemaleHeadsDB_cleaned);
-            Textures.DefaultHeads(defaulMaleAndFemaleHeads);
-            Textures.LoadSuits(KerbalSuitsDB_full, defaultSuit);
+            Textures_Loader.LoadHeads(KerbalHeadsDB_full, maleAndfemaleHeadsDB_cleaned);
+            Textures_Loader.DefaultHeads(defaulMaleAndFemaleHeads);
+            Textures_Loader.LoadSuits(KerbalSuitsDB_full, defaultSuit);           
 
-           /* foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
-            {
-                Texture2D texture = texInfo.texture;
-                if (texture == null || !texture.name.StartsWith(Util.DIR, StringComparison.Ordinal))
-                    continue;
-
-                // Add a suit texture.
-                if (texture.name.StartsWith(DIR_SUITS, StringComparison.Ordinal))
-                {
-                    texture.wrapMode = TextureWrapMode.Clamp;
-
-                    int lastSlash = texture.name.LastIndexOf('/');
-                    int dirNameLength = lastSlash - DIR_SUITS.Length;
-                    string originalName = texture.name.Substring(lastSlash + 1);
-
-                    if (dirNameLength < 1)
-                    {
-                        Util.log("Suit texture should be inside a subdirectory: {0}", texture.name);
-                    }
-                    else
-                    {
-                        string dirName = texture.name.Substring(DIR_SUITS.Length, dirNameLength);
-
-                        int index;
-                        if (!suitDirs.TryGetValue(dirName, out index))
-                        {
-                            index = KerbalSuitsDB_full.Count;
-                            KerbalSuitsDB_full.Add(new Suit_Set { suitSetName = dirName });
-                            suitDirs.Add(dirName, index);
-                        }
-
-                        Suit_Set suit = KerbalSuitsDB_full[index];
-                        if (!suit.setTexture(originalName, texture))
-                            Util.log("Unknown suit texture name \"{0}\": {1}", originalName, texture.name);
-                    }
-                }
-                else if (texture.name.StartsWith(DIR_DEFAULT, StringComparison.Ordinal))
-                {
-                    int lastSlash = texture.name.LastIndexOf('/');
-                    string originalName = texture.name.Substring(lastSlash + 1);
-
-                    if (defaultSuit.setTexture(originalName, texture) || originalName == "kerbalMain")
-                    {
-                        texture.wrapMode = TextureWrapMode.Clamp;
-                    }
-                }
-
-                lastTextureName = texture.name;
-            }*/
-
-            readKerbalsConfigs();
-
-            // Initialize default Kerbal, which is only loaded when the main menu shows.
-            foreach (Texture2D texture in Resources.FindObjectsOfTypeAll<Texture2D>())
-            {
-                if (texture.name != null)
-                {
-                    if (texture.name == "kerbalHead")
-                        defaulMaleAndFemaleHeads[0].headTexture = defaulMaleAndFemaleHeads[0].headTexture ?? texture;
-                    else if (texture.name == "kerbalGirl_06_BaseColor")
-                        defaulMaleAndFemaleHeads[1].headTexture = defaulMaleAndFemaleHeads[1].headTexture ?? texture;
-                    else
-                        defaultSuit.setTexture(texture.name, texture);
-                }
-            }
+            readKerbalsConfigs();            
 
             foreach (Kerbal kerbal in Resources.FindObjectsOfTypeAll<Kerbal>())
             {
@@ -2733,8 +1445,8 @@ namespace TextureReplacerReplaced
                 }
 
                 // After an IVA space is initialized, suits are reset to these values. Replace stock textures with default ones.
-                kerbal.textureStandard = defaultSuit.Suit_Iva_Standard_Male0;
-                kerbal.textureVeteran = defaultSuit.Suit_Iva_Veteran_Male0;
+                kerbal.textureStandard = defaultSuit.get_suit_Iva_Standard_Male(0);
+                kerbal.textureVeteran = defaultSuit.get_suit_Iva_Veteran_Male(0);                
 
                 if (kerbal.GetComponent<TRR_IvaModule>() == null)
                     kerbal.gameObject.AddComponent<TRR_IvaModule>();
