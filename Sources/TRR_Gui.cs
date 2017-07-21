@@ -307,7 +307,7 @@ namespace TextureReplacerReplaced
                     if (kerbalData != null)
                     {
                         kerbalData.suit = personaliser.KerbalSuitsDB_full[suitIndex];
-                        kerbalData.cabinSuit = null;
+                        //kerbalData.cabinSuit = null;
                     }
                     else
                     {
@@ -321,7 +321,7 @@ namespace TextureReplacerReplaced
                     if (kerbalData != null)
                     {
                         kerbalData.suit = personaliser.KerbalSuitsDB_full[suitIndex];
-                        kerbalData.cabinSuit = null;
+                        //kerbalData.cabinSuit = null;
                     }
                     else
                     {
@@ -340,7 +340,7 @@ namespace TextureReplacerReplaced
                     if (kerbalData != null)
                     {
                         kerbalData.suit = defaultSuit;
-                        kerbalData.cabinSuit = null;
+                        //kerbalData.cabinSuit = null;
                     }
                     else
                     {
@@ -354,7 +354,7 @@ namespace TextureReplacerReplaced
                     if (kerbalData != null)
                     {
                         kerbalData.suit = null;
-                        kerbalData.cabinSuit = null;
+                        //kerbalData.cabinSuit = null;
                     }
                     else
                     {

@@ -921,8 +921,17 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Normal map list for the visor_Iva_Veteran_Male
         /// </summary>
-        private Texture2D[] visor_Iva_Veteran_MaleNRM;      
-        
+        private Texture2D[] visor_Iva_Veteran_MaleNRM;
+
+
+        ////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ///// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ///////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!     
+
+        ////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ///// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ///////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/*
         /// ************************************************************************************
         /// <summary>
         /// Used to get the helmet_EvaGround_Badass_Female for the level of the kerbal
@@ -932,14 +941,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Badass_Female(int level)
         {
-            if (helmet_EvaGround_Badass_Female != null)
-                return helmet_EvaGround_Badass_Female[level];
-            else if (helmet_EvaGround_Standard_Female != null)
-                return helmet_EvaGround_Standard_Female[level];
-            else if (helmet_EvaGround_Badass_Male != null)
-                return helmet_EvaGround_Badass_Male[level];
-            else
-                return helmet_EvaGround_Standard_Male[level];
+            return helmet_EvaGround_Badass_Female[level];
         }
 
         /// ************************************************************************************
@@ -951,14 +953,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Badass_FemaleNRM(int level)
         {
-            if (helmet_EvaGround_Badass_FemaleNRM != null)
-                return helmet_EvaGround_Badass_FemaleNRM[level];
-            else if (helmet_EvaGround_Standard_FemaleNRM != null)
-                return helmet_EvaGround_Standard_FemaleNRM[level];
-            else if (helmet_EvaGround_Badass_MaleNRM != null)
-                return helmet_EvaGround_Badass_MaleNRM[level];
-            else
-                return helmet_EvaGround_Standard_MaleNRM[level];
+            return helmet_EvaGround_Badass_FemaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -970,10 +965,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Badass_Male(int level)
         {
-            if (helmet_EvaGround_Badass_Male != null)
-                return helmet_EvaGround_Badass_Male[level];
-            else
-                return helmet_EvaGround_Standard_Male[level];
+            return helmet_EvaGround_Badass_Male[level];
         }
 
         /// ************************************************************************************
@@ -985,10 +977,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Badass_MaleNRM(int level)
         {
-            if (helmet_EvaGround_Badass_MaleNRM != null)
-                return helmet_EvaGround_Badass_MaleNRM[level];
-            else
-                return helmet_EvaGround_Standard_MaleNRM[level];
+            return helmet_EvaGround_Badass_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1000,10 +989,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Standard_Female(int level)
         {
-            if (helmet_EvaGround_Standard_Female != null)
-                return helmet_EvaGround_Standard_Female[level];
-            else
-                return helmet_EvaGround_Standard_Male[level];
+            return helmet_EvaGround_Standard_Female[level];
         }
 
         /// ************************************************************************************
@@ -1015,11 +1001,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Standard_FemaleNRM(int level)
         {
-            if (helmet_EvaGround_Standard_FemaleNRM != null)
-                return helmet_EvaGround_Standard_FemaleNRM[level];
-            else
-                return helmet_EvaGround_Standard_MaleNRM[level];
-
+            return helmet_EvaGround_Standard_FemaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1055,23 +1037,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_VetBad_Female(int level)
         {
-            if (helmet_EvaGround_VetBad_Female != null)
-                return helmet_EvaGround_VetBad_Female[level];
-
-            else if (helmet_EvaGround_Veteran_Female != null)
-                return helmet_EvaGround_Veteran_Female[level];
-
-            else if (helmet_EvaGround_Standard_Female != null)
-                return helmet_EvaGround_Standard_Female[level];
-
-            else if (helmet_EvaGround_VetBad_Male != null)
-                return helmet_EvaGround_VetBad_Male[level];
-
-            else if (helmet_EvaGround_Veteran_Male != null)
-                return helmet_EvaGround_Veteran_Male[level];
-
-            else
-                return helmet_EvaGround_Standard_Male[level];
+            return helmet_EvaGround_VetBad_Female[level];
         }
 
         /// ************************************************************************************
@@ -1083,23 +1049,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_VetBad_FemaleNRM(int level)
         {
-            if (helmet_EvaGround_VetBad_FemaleNRM != null)
-                return helmet_EvaGround_VetBad_FemaleNRM[level];
-
-            else if (helmet_EvaGround_Veteran_FemaleNRM != null)
-                return helmet_EvaGround_Veteran_FemaleNRM[level];
-
-            else if (helmet_EvaGround_Standard_FemaleNRM != null)
-                return helmet_EvaGround_Standard_FemaleNRM[level];
-
-            else if (helmet_EvaGround_VetBad_MaleNRM != null)
-                return helmet_EvaGround_VetBad_MaleNRM[level];
-
-            else if (helmet_EvaGround_Veteran_MaleNRM != null)
-                return helmet_EvaGround_Veteran_MaleNRM[level];
-
-            else
-                return helmet_EvaGround_Standard_MaleNRM[level];
+            return helmet_EvaGround_VetBad_FemaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1111,14 +1061,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_VetBad_Male(int level)
         {
-            if (helmet_EvaGround_VetBad_Male != null)
-                return helmet_EvaGround_VetBad_Male[level];
-
-            else if (helmet_EvaGround_Veteran_Male != null)
-                return helmet_EvaGround_Veteran_Male[level];
-
-            else
-                return helmet_EvaGround_Standard_Male[level];
+            return helmet_EvaGround_VetBad_Male[level];
         }
 
         /// ************************************************************************************
@@ -1130,14 +1073,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_VetBad_MaleNRM(int level)
         {
-            if (helmet_EvaGround_VetBad_MaleNRM != null)
-                return helmet_EvaGround_VetBad_MaleNRM[level];
-
-            else if (helmet_EvaGround_Veteran_MaleNRM != null)
-                return helmet_EvaGround_Veteran_MaleNRM[level];
-
-            else
-                return helmet_EvaGround_Standard_MaleNRM[level];
+            return helmet_EvaGround_VetBad_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1149,14 +1085,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Veteran_Female(int level)
         {
-            if (helmet_EvaGround_Veteran_Female != null)
-                return helmet_EvaGround_Veteran_Female[level];
-            else if (helmet_EvaGround_Standard_Female != null)
-                return helmet_EvaGround_Standard_Female[level];
-            else if (helmet_EvaGround_Veteran_Male != null)
-                return helmet_EvaGround_Veteran_Male[level];
-            else
-                return helmet_EvaGround_Standard_Male[level];
+            return helmet_EvaGround_Veteran_Female[level];
         }
 
         /// ************************************************************************************
@@ -1168,14 +1097,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Veteran_FemaleNRM(int level)
         {
-            if (helmet_EvaGround_Veteran_FemaleNRM != null)
-                return helmet_EvaGround_Veteran_FemaleNRM[level];
-            else if (helmet_EvaGround_Standard_FemaleNRM != null)
-                return helmet_EvaGround_Standard_FemaleNRM[level];
-            else if (helmet_EvaGround_Veteran_MaleNRM != null)
-                return helmet_EvaGround_Veteran_MaleNRM[level];
-            else
-                return helmet_EvaGround_Standard_MaleNRM[level];
+            return helmet_EvaGround_Veteran_FemaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1187,10 +1109,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Veteran_Male(int level)
         {
-            if (helmet_EvaGround_Veteran_Male != null)
-                return helmet_EvaGround_Veteran_Male[level];
-            else
-                return helmet_EvaGround_Standard_Male[level];
+            return helmet_EvaGround_Veteran_Male[level];
         }
 
         /// ************************************************************************************
@@ -1202,10 +1121,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Veteran_MaleNRM(int level)
         {
-            if (helmet_EvaGround_Veteran_MaleNRM != null)
-                return helmet_EvaGround_Veteran_MaleNRM[level];
-            else
-                return helmet_EvaGround_Standard_MaleNRM[level];
+            return helmet_EvaGround_Veteran_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1217,11 +1133,2451 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_Badass_Female(int level)
         {
-            if (helmet_EvaSpace_Badass_Female != null)
+            return helmet_EvaSpace_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Badass_FemaleNRM(int level)
+        {
+            return helmet_EvaSpace_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Badass_Male(int level)
+        {
+            return helmet_EvaSpace_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Badass_MaleNRM(int level)
+        {
+            return helmet_EvaSpace_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Standard_Female(int level)
+        {
+            return helmet_EvaSpace_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Standard_FemaleNRM(int level)
+        {
+            return helmet_EvaSpace_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Standard_Male(int level)
+        {
+            return helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Standard_MaleNRM(int level)
+        {
+            return helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_VetBad_Female(int level)
+        {
+            return helmet_EvaSpace_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_VetBad_FemaleNRM(int level)
+        {
+            return helmet_EvaSpace_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_VetBad_Male(int level)
+        {
+            return helmet_EvaSpace_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_VetBad_MaleNRM(int level)
+        {
+            return helmet_EvaSpace_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Veteran_Female(int level)
+        {
+            return helmet_EvaSpace_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Veteran_FemaleNRM(int level)
+        {
+            return helmet_EvaSpace_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Veteran_Male(int level)
+        {
+            return helmet_EvaSpace_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Veteran_MaleNRM(int level)
+        {
+            return helmet_EvaSpace_Veteran_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Badass_Female(int level)
+        {
+            return helmet_Iva_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Badass_FemaleNRM(int level)
+        {
+            return helmet_Iva_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Badass_Male(int level)
+        {
+            return helmet_Iva_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Badass_MaleNRM(int level)
+        {
+            return helmet_Iva_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Standard_Female(int level)
+        {
+            return helmet_Iva_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Standard_FemaleNRM(int level)
+        {
+            return helmet_Iva_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Standard_Male(int level)
+        {
+            return helmet_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Standard_MaleNRM(int level)
+        {
+            return helmet_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_VetBad_Female(int level)
+        {
+            return helmet_Iva_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_VetBad_FemaleNRM(int level)
+        {
+            return helmet_Iva_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_VetBad_Male(int level)
+        {
+            return helmet_Iva_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_VetBad_MaleNRM(int level)
+        {
+            return helmet_Iva_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Veteran_Female(int level)
+        {
+            return helmet_Iva_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Veteran_FemaleNRM(int level)
+        {
+            return helmet_Iva_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Veteran_Male(int level)
+        {
+            return helmet_Iva_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Veteran_MaleNRM(int level)
+        {
+            return helmet_Iva_Veteran_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Badass_Female(int level)
+        {
+            return jetpack_EvaGround_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Badass_FemaleNRM(int level)
+        {
+            return jetpack_EvaGround_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Badass_Male(int level)
+        {
+            return jetpack_EvaGround_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Badass_MaleNRM(int level)
+        {
+            return jetpack_EvaGround_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Standard_Female(int level)
+        {
+            return jetpack_EvaGround_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Standard_FemaleNRM(int level)
+        {
+            return jetpack_EvaGround_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Standard_Male(int level)
+        {
+            return jetpack_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Standard_MaleNRM(int level)
+        {
+            return jetpack_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_VetBad_Female(int level)
+        {
+            return jetpack_EvaGround_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_VetBad_FemaleNRM(int level)
+        {
+            return jetpack_EvaGround_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_VetBad_Male(int level)
+        {
+            return jetpack_EvaGround_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_VetBad_MaleNRM(int level)
+        {
+            return jetpack_EvaGround_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Veteran_Female(int level)
+        {
+            return jetpack_EvaGround_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Veteran_FemaleNRM(int level)
+        {
+            return jetpack_EvaGround_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Veteran_Male(int level)
+        {
+            return jetpack_EvaGround_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Veteran_MaleNRM(int level)
+        {
+            return jetpack_EvaGround_Veteran_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Badass_Female(int level)
+        {
+            return jetpack_EvaSpace_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Badass_FemaleNRM(int level)
+        {
+            return jetpack_EvaSpace_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Badass_Male(int level)
+        {
+            return jetpack_EvaSpace_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Badass_MaleNRM(int level)
+        {
+            return jetpack_EvaSpace_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Standard_Female(int level)
+        {
+            return jetpack_EvaSpace_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Standard_FemaleNRM(int level)
+        {
+            return jetpack_EvaSpace_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Standard_Male(int level)
+        {
+            return jetpack_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Standard_MaleNRM(int level)
+        {
+            return jetpack_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_VetBad_Female(int level)
+        {
+            return jetpack_EvaSpace_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_VetBad_FemaleNRM(int level)
+        {
+            return jetpack_EvaSpace_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_VetBad_Male(int level)
+        {
+            return jetpack_EvaSpace_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_VetBad_MaleNRM(int level)
+        {
+            return jetpack_EvaSpace_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Veteran_Female(int level)
+        {
+            return jetpack_EvaSpace_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Veteran_FemaleNRM(int level)
+        {
+            return jetpack_EvaSpace_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Veteran_Male(int level)
+        {
+            return jetpack_EvaSpace_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Veteran_MaleNRM(int level)
+        {
+            return jetpack_EvaSpace_Veteran_MaleNRM[level];
+        }
+        /*
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Badass_Female(int level)
+        {
+            return jetpack_Iva_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Badass_FemaleNRM(int level)
+        {
+            return jetpack_Iva_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Badass_Male(int level)
+        {
+            return jetpack_Iva_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Badass_MaleNRM(int level)
+        {
+            return jetpack_Iva_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Standard_Female(int level)
+        {
+            return jetpack_Iva_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Standard_FemaleNRM(int level)
+        {
+            return jetpack_Iva_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Standard_Male(int level)
+        {
+            return jetpack_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Standard_MaleNRM(int level)
+        {
+            return jetpack_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_VetBad_Female(int level)
+        {
+            return jetpack_Iva_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_VetBad_FemaleNRM(int level)
+        {
+            return jetpack_Iva_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_VetBad_Male(int level)
+        {
+            return jetpack_Iva_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_VetBad_MaleNRM(int level)
+        {
+            return jetpack_Iva_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Veteran_Female(int level)
+        {
+            return jetpack_Iva_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Veteran_FemaleNRM(int level)
+        {
+            return jetpack_Iva_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Veteran_Male(int level)
+        {
+            return jetpack_Iva_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_Iva_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_Iva_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_Iva_Veteran_MaleNRM(int level)
+        {
+            return jetpack_Iva_Veteran_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Badass_Female(int level)
+        {
+            return suit_EvaGround_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Badass_FemaleNRM(int level)
+        {
+            return suit_EvaGround_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Badass_Male(int level)
+        {
+            return suit_EvaGround_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Badass_MaleNRM(int level)
+        {
+            return suit_EvaGround_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Standard_Female(int level)
+        {
+            return suit_EvaGround_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Standard_FemaleNRM(int level)
+        {
+            return suit_EvaGround_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Standard_Male(int level)
+        {
+            return suit_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Standard_MaleNRM(int level)
+        {
+            return suit_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_VetBad_Female(int level)
+        {
+            return suit_EvaGround_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_VetBad_FemaleNRM(int level)
+        {
+            return suit_EvaGround_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_VetBad_Male(int level)
+        {
+            return suit_EvaGround_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_VetBad_MaleNRM(int level)
+        {
+            return suit_EvaGround_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Veteran_Female(int level)
+        {
+            return suit_EvaGround_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Veteran_FemaleNRM(int level)
+        {
+            return suit_EvaGround_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Veteran_Male(int level)
+        {
+            return suit_EvaGround_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Veteran_MaleNRM(int level)
+        {
+            return suit_EvaGround_Veteran_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Badass_Female(int level)
+        {
+            return suit_EvaSpace_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Badass_FemaleNRM(int level)
+        {
+            return suit_EvaSpace_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Badass_Male(int level)
+        {
+            return suit_EvaSpace_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Badass_MaleNRM(int level)
+        {
+            return suit_EvaSpace_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Standard_Female(int level)
+        {
+            return suit_EvaSpace_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Standard_FemaleNRM(int level)
+        {
+            return suit_EvaSpace_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Standard_Male(int level)
+        {
+            return suit_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Standard_MaleNRM(int level)
+        {
+            return suit_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_VetBad_Female(int level)
+        {
+            return suit_EvaSpace_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_VetBad_FemaleNRM(int level)
+        {
+            return suit_EvaSpace_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_VetBad_Male(int level)
+        {
+            return suit_EvaSpace_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_VetBad_MaleNRM(int level)
+        {
+            return suit_EvaSpace_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Veteran_Female(int level)
+        {
+            return suit_EvaSpace_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Veteran_FemaleNRM(int level)
+        {
+            return suit_EvaSpace_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Veteran_Male(int level)
+        {
+            return suit_EvaSpace_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Veteran_MaleNRM(int level)
+        {
+            return suit_EvaSpace_Veteran_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Badass_Female(int level)
+        {
+            return suit_Iva_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Badass_FemaleNRM(int level)
+        {
+            return suit_Iva_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Badass_Male(int level)
+        {
+            return suit_Iva_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Badass_MaleNRM(int level)
+        {
+            return suit_Iva_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Standard_Female(int level)
+        {
+            return suit_Iva_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Standard_FemaleNRM(int level)
+        {
+            return suit_Iva_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Standard_Male(int level)
+        {
+            return suit_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Standard_MaleNRM(int level)
+        {
+            return suit_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_VetBad_Female(int level)
+        {
+            return suit_Iva_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_VetBad_FemaleNRM(int level)
+        {
+            return suit_Iva_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_VetBad_Male(int level)
+        {
+            return suit_Iva_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_VetBad_MaleNRM(int level)
+        {
+            return suit_Iva_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Veteran_Female(int level)
+        {
+            return suit_Iva_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Veteran_FemaleNRM(int level)
+        {
+            return suit_Iva_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Veteran_Male(int level)
+        {
+            return suit_Iva_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Veteran_MaleNRM(int level)
+        {
+            return suit_Iva_Veteran_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Badass_Female(int level)
+        {
+            return visor_EvaGround_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Badass_FemaleNRM(int level)
+        {
+            return visor_EvaGround_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Badass_Male(int level)
+        {
+            return visor_EvaGround_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Badass_MaleNRM(int level)
+        {
+            return visor_EvaGround_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Standard_Female(int level)
+        {
+            return visor_EvaGround_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Standard_FemaleNRM(int level)
+        {
+            return visor_EvaGround_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Standard_Male(int level)
+        {
+            return visor_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Standard_MaleNRM(int level)
+        {
+            return visor_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_VetBad_Female(int level)
+        {
+            return visor_EvaGround_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_VetBad_FemaleNRM(int level)
+        {
+            return visor_EvaGround_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_VetBad_Male(int level)
+        {
+            return visor_EvaGround_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_VetBad_MaleNRM(int level)
+        {
+            return visor_EvaGround_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Veteran_Female(int level)
+        {
+            return visor_EvaGround_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Veteran_FemaleNRM(int level)
+        {
+            return visor_EvaGround_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Veteran_Male(int level)
+        {
+            return visor_EvaGround_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Veteran_MaleNRM(int level)
+        {
+            return visor_EvaGround_Veteran_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Badass_Female(int level)
+        {
+            return visor_EvaSpace_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Badass_FemaleNRM(int level)
+        {
+            return visor_EvaSpace_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Badass_Male(int level)
+        {
+            return visor_EvaSpace_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Badass_MaleNRM(int level)
+        {
+            return visor_EvaSpace_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Standard_Female(int level)
+        {
+            return visor_EvaSpace_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Standard_FemaleNRM(int level)
+        {
+            return visor_EvaSpace_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Standard_Male(int level)
+        {
+            return visor_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Standard_MaleNRM(int level)
+        {
+            return visor_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_VetBad_Female(int level)
+        {
+            return visor_EvaSpace_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_VetBad_FemaleNRM(int level)
+        {
+            return visor_EvaSpace_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_VetBad_Male(int level)
+        {
+            return visor_EvaSpace_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_VetBad_MaleNRM(int level)
+        {
+            return visor_EvaSpace_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Veteran_Female(int level)
+        {
+            return visor_EvaSpace_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Veteran_FemaleNRM(int level)
+        {
+            return visor_EvaSpace_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Veteran_Male(int level)
+        {
+            return visor_EvaSpace_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Veteran_MaleNRM(int level)
+        {
+            return visor_EvaSpace_Veteran_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Badass_Female(int level)
+        {
+            return visor_Iva_Badass_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Badass_FemaleNRM(int level)
+        {
+            return visor_Iva_Badass_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Badass_Male(int level)
+        {
+            return visor_Iva_Badass_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Badass_MaleNRM(int level)
+        {
+            return visor_Iva_Badass_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Standard_Female(int level)
+        {
+            return visor_Iva_Standard_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Standard_FemaleNRM(int level)
+        {
+            return visor_Iva_Standard_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Standard_Male(int level)
+        {
+            return visor_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Standard_MaleNRM(int level)
+        {
+            return visor_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_VetBad_Female(int level)
+        {
+            return visor_Iva_VetBad_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_VetBad_FemaleNRM(int level)
+        {
+            return visor_Iva_VetBad_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_VetBad_Male(int level)
+        {
+            return visor_Iva_VetBad_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_VetBad_MaleNRM(int level)
+        {
+            return visor_Iva_VetBad_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Veteran_Female(int level)
+        {
+            return visor_Iva_Veteran_Female[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Veteran_FemaleNRM(int level)
+        {
+            return visor_Iva_Veteran_FemaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Veteran_Male(int level)
+        {
+            return visor_Iva_Veteran_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Veteran_MaleNRM(int level)
+        {
+            return visor_Iva_Veteran_MaleNRM[level];
+        }*/
+
+        //////////// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        ////////     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        ////// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        //////////// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        ////////     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        ////// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+            
+
+        
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Badass_Female(int level)
+        {
+            if (helmet_EvaGround_Badass_Female[level] != null)
+                return helmet_EvaGround_Badass_Female[level];
+            else if (helmet_EvaGround_Standard_Female[level] != null)
+                return helmet_EvaGround_Standard_Female[level];
+            else if (helmet_EvaGround_Badass_Male[level] != null)
+                return helmet_EvaGround_Badass_Male[level];
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+            else
+                return helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Badass_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Badass_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Badass_FemaleNRM(int level)
+        {
+            if (helmet_EvaGround_Badass_FemaleNRM[level] != null)
+                return helmet_EvaGround_Badass_FemaleNRM[level];
+            else if (helmet_EvaGround_Standard_FemaleNRM[level] != null)
+                return helmet_EvaGround_Standard_FemaleNRM[level];
+            else if (helmet_EvaGround_Badass_MaleNRM[level] != null)
+                return helmet_EvaGround_Badass_MaleNRM[level];
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+            else
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Badass_Male(int level)
+        {
+            if (helmet_EvaGround_Badass_Male[level] != null)
+                return helmet_EvaGround_Badass_Male[level];
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+            else
+                return helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Badass_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Badass_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Badass_MaleNRM(int level)
+        {
+            if (helmet_EvaGround_Badass_MaleNRM[level] != null)
+                return helmet_EvaGround_Badass_MaleNRM[level];
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+            else
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Standard_Female(int level)
+        {
+            if (helmet_EvaGround_Standard_Female[level] != null)
+                return helmet_EvaGround_Standard_Female[level];
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+            else
+                return helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Standard_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Standard_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Standard_FemaleNRM(int level)
+        {
+            if (helmet_EvaGround_Standard_FemaleNRM[level] != null)
+                return helmet_EvaGround_Standard_FemaleNRM[level];
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+            else
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Standard_Male(int level)
+        {
+            if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+            else
+                return helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Standard_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Standard_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Standard_MaleNRM(int level)
+        {
+            if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+            else
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_VetBad_Female(int level)
+        {
+            if (helmet_EvaGround_VetBad_Female[level] != null)
+                return helmet_EvaGround_VetBad_Female[level];
+
+            else if (helmet_EvaGround_Veteran_Female[level] != null)
+                return helmet_EvaGround_Veteran_Female[level];
+
+            else if (helmet_EvaGround_Standard_Female[level] != null)
+                return helmet_EvaGround_Standard_Female[level];
+
+            else if (helmet_EvaGround_VetBad_Male[level] != null)
+                return helmet_EvaGround_VetBad_Male[level];
+
+            else if (helmet_EvaGround_Veteran_Male[level] != null)
+                return helmet_EvaGround_Veteran_Male[level];
+
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+            else
+                return helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_VetBad_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_VetBad_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_VetBad_FemaleNRM(int level)
+        {
+            if (helmet_EvaGround_VetBad_FemaleNRM[level] != null)
+                return helmet_EvaGround_VetBad_FemaleNRM[level];
+
+            else if (helmet_EvaGround_Veteran_FemaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_FemaleNRM[level];
+
+            else if (helmet_EvaGround_Standard_FemaleNRM[level] != null)
+                return helmet_EvaGround_Standard_FemaleNRM[level];
+
+            else if (helmet_EvaGround_VetBad_MaleNRM[level] != null)
+                return helmet_EvaGround_VetBad_MaleNRM[level];
+
+            else if (helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_MaleNRM[level];
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+            else
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_VetBad_Male(int level)
+        {
+            if (helmet_EvaGround_VetBad_Male[level] != null)
+                return helmet_EvaGround_VetBad_Male[level];
+
+            else if (helmet_EvaGround_Veteran_Male[level] != null)
+                return helmet_EvaGround_Veteran_Male[level];
+
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+            else
+                return helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_VetBad_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_VetBad_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_VetBad_MaleNRM(int level)
+        {
+            if (helmet_EvaGround_VetBad_MaleNRM[level] != null)
+                return helmet_EvaGround_VetBad_MaleNRM[level];
+
+            else if (helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_MaleNRM[level];
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+            else
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Veteran_Female(int level)
+        {
+            if (helmet_EvaGround_Veteran_Female[level] != null)
+                return helmet_EvaGround_Veteran_Female[level];
+            else if (helmet_EvaGround_Standard_Female[level] != null)
+                return helmet_EvaGround_Standard_Female[level];
+            else if (helmet_EvaGround_Veteran_Male[level] != null)
+                return helmet_EvaGround_Veteran_Male[level];
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+            else
+                return helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Veteran_FemaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Veteran_Female Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Veteran_FemaleNRM(int level)
+        {
+            if (helmet_EvaGround_Veteran_FemaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_FemaleNRM[level];
+            else if (helmet_EvaGround_Standard_FemaleNRM[level] != null)
+                return helmet_EvaGround_Standard_FemaleNRM[level];
+            else if (helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_MaleNRM[level];
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+            else
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Veteran_Male(int level)
+        {
+            if (helmet_EvaGround_Veteran_Male[level] != null)
+                return helmet_EvaGround_Veteran_Male[level];
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+            else
+                return helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Veteran_MaleNRM for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Veteran_Male Normal map for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Veteran_MaleNRM(int level)
+        {
+            if (helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_MaleNRM[level];
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+            else
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Badass_Female(int level)
+        {
+            if (helmet_EvaSpace_Badass_Female[level] != null)
                 return helmet_EvaSpace_Badass_Female[level];
-            else if (helmet_EvaSpace_Standard_Female != null)
+            else if (helmet_EvaSpace_Standard_Female[level] != null)
                 return helmet_EvaSpace_Standard_Female[level];
-            else if (helmet_EvaSpace_Badass_Male != null)
+            else if (helmet_EvaSpace_Badass_Male[level] != null)
                 return helmet_EvaSpace_Badass_Male[level];
             else
                 return helmet_EvaSpace_Standard_Male[level];
@@ -1236,11 +3592,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_Badass_FemaleNRM(int level)
         {
-            if (helmet_EvaSpace_Badass_FemaleNRM != null)
+            if (helmet_EvaSpace_Badass_FemaleNRM[level] != null)
                 return helmet_EvaSpace_Badass_FemaleNRM[level];
-            else if (helmet_EvaSpace_Standard_FemaleNRM != null)
+            else if (helmet_EvaSpace_Standard_FemaleNRM[level] != null)
                 return helmet_EvaSpace_Standard_FemaleNRM[level];
-            else if (helmet_EvaSpace_Badass_MaleNRM != null)
+            else if (helmet_EvaSpace_Badass_MaleNRM[level] != null)
                 return helmet_EvaSpace_Badass_MaleNRM[level];
             else
                 return helmet_EvaSpace_Standard_MaleNRM[level];
@@ -1255,7 +3611,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_Badass_Male(int level)
         {
-            if (helmet_EvaSpace_Badass_Male != null)
+            if (helmet_EvaSpace_Badass_Male[level] != null)
                 return helmet_EvaSpace_Badass_Male[level];
             else
                 return helmet_EvaSpace_Standard_Male[level];
@@ -1270,7 +3626,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_Badass_MaleNRM(int level)
         {
-            if (helmet_EvaSpace_Badass_MaleNRM != null)
+            if (helmet_EvaSpace_Badass_MaleNRM[level] != null)
                 return helmet_EvaSpace_Badass_MaleNRM[level];
             else
                 return helmet_EvaSpace_Standard_MaleNRM[level];
@@ -1285,7 +3641,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_Standard_Female(int level)
         {
-            if (helmet_EvaSpace_Standard_Female != null)
+            if (helmet_EvaSpace_Standard_Female[level] != null)
                 return helmet_EvaSpace_Standard_Female[level];
             else
                 return helmet_EvaSpace_Standard_Male[level];
@@ -1300,7 +3656,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_Standard_FemaleNRM(int level)
         {
-            if (helmet_EvaSpace_Standard_FemaleNRM != null)
+            if (helmet_EvaSpace_Standard_FemaleNRM[level] != null)
                 return helmet_EvaSpace_Standard_FemaleNRM[level];
             else
                 return helmet_EvaSpace_Standard_MaleNRM[level];
@@ -1340,19 +3696,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_VetBad_Female(int level)
         {
-            if (helmet_EvaSpace_VetBad_Female != null)
+            if (helmet_EvaSpace_VetBad_Female[level] != null)
                 return helmet_EvaSpace_VetBad_Female[level];
 
-            else if (helmet_EvaSpace_Veteran_Female != null)
+            else if (helmet_EvaSpace_Veteran_Female[level] != null)
                 return helmet_EvaSpace_Veteran_Female[level];
 
-            else if (helmet_EvaSpace_Standard_Female != null)
+            else if (helmet_EvaSpace_Standard_Female[level] != null)
                 return helmet_EvaSpace_Standard_Female[level];
 
-            else if (helmet_EvaSpace_VetBad_Male != null)
+            else if (helmet_EvaSpace_VetBad_Male[level] != null)
                 return helmet_EvaSpace_VetBad_Male[level];
 
-            else if (helmet_EvaSpace_Veteran_Male != null)
+            else if (helmet_EvaSpace_Veteran_Male[level] != null)
                 return helmet_EvaSpace_Veteran_Male[level];
 
             else
@@ -1368,19 +3724,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_VetBad_FemaleNRM(int level)
         {
-            if (helmet_EvaSpace_VetBad_FemaleNRM != null)
+            if (helmet_EvaSpace_VetBad_FemaleNRM[level] != null)
                 return helmet_EvaSpace_VetBad_FemaleNRM[level];
 
-            else if (helmet_EvaSpace_Veteran_FemaleNRM != null)
+            else if (helmet_EvaSpace_Veteran_FemaleNRM[level] != null)
                 return helmet_EvaSpace_Veteran_FemaleNRM[level];
 
-            else if (helmet_EvaSpace_Standard_FemaleNRM != null)
+            else if (helmet_EvaSpace_Standard_FemaleNRM[level] != null)
                 return helmet_EvaSpace_Standard_FemaleNRM[level];
 
-            else if (helmet_EvaSpace_VetBad_MaleNRM != null)
+            else if (helmet_EvaSpace_VetBad_MaleNRM[level] != null)
                 return helmet_EvaSpace_VetBad_MaleNRM[level];
 
-            else if (helmet_EvaSpace_Veteran_MaleNRM != null)
+            else if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
                 return helmet_EvaSpace_Veteran_MaleNRM[level];
 
             else
@@ -1396,10 +3752,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_VetBad_Male(int level)
         {
-            if (helmet_EvaSpace_VetBad_Male != null)
+            if (helmet_EvaSpace_VetBad_Male[level] != null)
                 return helmet_EvaSpace_VetBad_Male[level];
 
-            else if (helmet_EvaSpace_Veteran_Male != null)
+            else if (helmet_EvaSpace_Veteran_Male[level] != null)
                 return helmet_EvaSpace_Veteran_Male[level];
 
             else
@@ -1415,10 +3771,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_VetBad_MaleNRM(int level)
         {
-            if (helmet_EvaSpace_VetBad_MaleNRM != null)
+            if (helmet_EvaSpace_VetBad_MaleNRM[level] != null)
                 return helmet_EvaSpace_VetBad_MaleNRM[level];
 
-            else if (helmet_EvaSpace_Veteran_MaleNRM != null)
+            else if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
                 return helmet_EvaSpace_Veteran_MaleNRM[level];
 
             else
@@ -1434,11 +3790,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_Veteran_Female(int level)
         {
-            if (helmet_EvaSpace_Veteran_Female != null)
+            if (helmet_EvaSpace_Veteran_Female[level] != null)
                 return helmet_EvaSpace_Veteran_Female[level];
-            else if (helmet_EvaSpace_Standard_Female != null)
+            else if (helmet_EvaSpace_Standard_Female[level] != null)
                 return helmet_EvaSpace_Standard_Female[level];
-            else if (helmet_EvaSpace_Veteran_Male != null)
+            else if (helmet_EvaSpace_Veteran_Male[level] != null)
                 return helmet_EvaSpace_Veteran_Male[level];
             else
                 return helmet_EvaSpace_Standard_Male[level];
@@ -1453,11 +3809,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_Veteran_FemaleNRM(int level)
         {
-            if (helmet_EvaSpace_Veteran_FemaleNRM != null)
+            if (helmet_EvaSpace_Veteran_FemaleNRM[level] != null)
                 return helmet_EvaSpace_Veteran_FemaleNRM[level];
-            else if (helmet_EvaSpace_Standard_FemaleNRM != null)
+            else if (helmet_EvaSpace_Standard_FemaleNRM[level] != null)
                 return helmet_EvaSpace_Standard_FemaleNRM[level];
-            else if (helmet_EvaSpace_Veteran_MaleNRM != null)
+            else if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
                 return helmet_EvaSpace_Veteran_MaleNRM[level];
             else
                 return helmet_EvaSpace_Standard_MaleNRM[level];
@@ -1472,7 +3828,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_Veteran_Male(int level)
         {
-            if (helmet_EvaSpace_Veteran_Male != null)
+            if (helmet_EvaSpace_Veteran_Male[level] != null)
                 return helmet_EvaSpace_Veteran_Male[level];
             else
                 return helmet_EvaSpace_Standard_Male[level];
@@ -1487,7 +3843,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaSpace_Veteran_MaleNRM(int level)
         {
-            if (helmet_EvaSpace_Veteran_MaleNRM != null)
+            if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
                 return helmet_EvaSpace_Veteran_MaleNRM[level];
             else
                 return helmet_EvaSpace_Standard_MaleNRM[level];
@@ -1502,11 +3858,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_Badass_Female(int level)
         {
-            if (helmet_Iva_Badass_Female != null)
+            if (helmet_Iva_Badass_Female[level] != null)
                 return helmet_Iva_Badass_Female[level];
-            else if (helmet_Iva_Standard_Female != null)
+            else if (helmet_Iva_Standard_Female[level] != null)
                 return helmet_Iva_Standard_Female[level];
-            else if (helmet_Iva_Badass_Male != null)
+            else if (helmet_Iva_Badass_Male[level] != null)
                 return helmet_Iva_Badass_Male[level];
             else
                 return helmet_Iva_Standard_Male[level];
@@ -1521,11 +3877,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_Badass_FemaleNRM(int level)
         {
-            if (helmet_Iva_Badass_FemaleNRM != null)
+            if (helmet_Iva_Badass_FemaleNRM[level] != null)
                 return helmet_Iva_Badass_FemaleNRM[level];
-            else if (helmet_Iva_Standard_FemaleNRM != null)
+            else if (helmet_Iva_Standard_FemaleNRM[level] != null)
                 return helmet_Iva_Standard_FemaleNRM[level];
-            else if (helmet_Iva_Badass_MaleNRM != null)
+            else if (helmet_Iva_Badass_MaleNRM[level] != null)
                 return helmet_Iva_Badass_MaleNRM[level];
             else
                 return helmet_Iva_Standard_MaleNRM[level];
@@ -1540,7 +3896,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_Badass_Male(int level)
         {
-            if (helmet_Iva_Badass_Male != null)
+            if (helmet_Iva_Badass_Male[level] != null)
                 return helmet_Iva_Badass_Male[level];
             else
                 return helmet_Iva_Standard_Male[level];
@@ -1555,7 +3911,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_Badass_MaleNRM(int level)
         {
-            if (helmet_Iva_Badass_MaleNRM != null)
+            if (helmet_Iva_Badass_MaleNRM[level] != null)
                 return helmet_Iva_Badass_MaleNRM[level];
             else
                 return helmet_Iva_Standard_MaleNRM[level];
@@ -1570,7 +3926,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_Standard_Female(int level)
         {
-            if (helmet_Iva_Standard_Female != null)
+            if (helmet_Iva_Standard_Female[level] != null)
                 return helmet_Iva_Standard_Female[level];
             else
                 return helmet_Iva_Standard_Male[level];
@@ -1585,7 +3941,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_Standard_FemaleNRM(int level)
         {
-            if (helmet_Iva_Standard_FemaleNRM != null)
+            if (helmet_Iva_Standard_FemaleNRM[level] != null)
                 return helmet_Iva_Standard_FemaleNRM[level];
             else
                 return helmet_Iva_Standard_MaleNRM[level];
@@ -1625,19 +3981,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_VetBad_Female(int level)
         {
-            if (helmet_Iva_VetBad_Female != null)
+            if (helmet_Iva_VetBad_Female[level] != null)
                 return helmet_Iva_VetBad_Female[level];
 
-            else if (helmet_Iva_Veteran_Female != null)
+            else if (helmet_Iva_Veteran_Female[level] != null)
                 return helmet_Iva_Veteran_Female[level];
 
-            else if (helmet_Iva_Standard_Female != null)
+            else if (helmet_Iva_Standard_Female[level] != null)
                 return helmet_Iva_Standard_Female[level];
 
-            else if (helmet_Iva_VetBad_Male != null)
+            else if (helmet_Iva_VetBad_Male[level] != null)
                 return helmet_Iva_VetBad_Male[level];
 
-            else if (helmet_Iva_Veteran_Male != null)
+            else if (helmet_Iva_Veteran_Male[level] != null)
                 return helmet_Iva_Veteran_Male[level];
 
             else
@@ -1653,19 +4009,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_VetBad_FemaleNRM(int level)
         {
-            if (helmet_Iva_VetBad_FemaleNRM != null)
+            if (helmet_Iva_VetBad_FemaleNRM[level] != null)
                 return helmet_Iva_VetBad_FemaleNRM[level];
 
-            else if (helmet_Iva_Veteran_FemaleNRM != null)
+            else if (helmet_Iva_Veteran_FemaleNRM[level] != null)
                 return helmet_Iva_Veteran_FemaleNRM[level];
 
-            else if (helmet_Iva_Standard_FemaleNRM != null)
+            else if (helmet_Iva_Standard_FemaleNRM[level] != null)
                 return helmet_Iva_Standard_FemaleNRM[level];
 
-            else if (helmet_Iva_VetBad_MaleNRM != null)
+            else if (helmet_Iva_VetBad_MaleNRM[level] != null)
                 return helmet_Iva_VetBad_MaleNRM[level];
 
-            else if (helmet_Iva_Veteran_MaleNRM != null)
+            else if (helmet_Iva_Veteran_MaleNRM[level] != null)
                 return helmet_Iva_Veteran_MaleNRM[level];
 
             else
@@ -1681,10 +4037,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_VetBad_Male(int level)
         {
-            if (helmet_Iva_VetBad_Male != null)
+            if (helmet_Iva_VetBad_Male[level] != null)
                 return helmet_Iva_VetBad_Male[level];
 
-            else if (helmet_Iva_Veteran_Male != null)
+            else if (helmet_Iva_Veteran_Male[level] != null)
                 return helmet_Iva_Veteran_Male[level];
 
             else
@@ -1700,10 +4056,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_VetBad_MaleNRM(int level)
         {
-            if (helmet_Iva_VetBad_MaleNRM != null)
+            if (helmet_Iva_VetBad_MaleNRM[level] != null)
                 return helmet_Iva_VetBad_MaleNRM[level];
 
-            else if (helmet_Iva_Veteran_MaleNRM != null)
+            else if (helmet_Iva_Veteran_MaleNRM[level] != null)
                 return helmet_Iva_Veteran_MaleNRM[level];
 
             else
@@ -1719,11 +4075,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_Veteran_Female(int level)
         {
-            if (helmet_Iva_Veteran_Female != null)
+            if (helmet_Iva_Veteran_Female[level] != null)
                 return helmet_Iva_Veteran_Female[level];
-            else if (helmet_Iva_Standard_Female != null)
+            else if (helmet_Iva_Standard_Female[level] != null)
                 return helmet_Iva_Standard_Female[level];
-            else if (helmet_Iva_Veteran_Male != null)
+            else if (helmet_Iva_Veteran_Male[level] != null)
                 return helmet_Iva_Veteran_Male[level];
             else
                 return helmet_Iva_Standard_Male[level];
@@ -1738,11 +4094,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_Veteran_FemaleNRM(int level)
         {
-            if (helmet_Iva_Veteran_FemaleNRM != null)
+            if (helmet_Iva_Veteran_FemaleNRM[level] != null)
                 return helmet_Iva_Veteran_FemaleNRM[level];
-            else if (helmet_Iva_Standard_FemaleNRM != null)
+            else if (helmet_Iva_Standard_FemaleNRM[level] != null)
                 return helmet_Iva_Standard_FemaleNRM[level];
-            else if (helmet_Iva_Veteran_MaleNRM != null)
+            else if (helmet_Iva_Veteran_MaleNRM[level] != null)
                 return helmet_Iva_Veteran_MaleNRM[level];
             else
                 return helmet_Iva_Standard_MaleNRM[level];
@@ -1757,7 +4113,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_Veteran_Male(int level)
         {
-            if (helmet_Iva_Veteran_Male != null)
+            if (helmet_Iva_Veteran_Male[level] != null)
                 return helmet_Iva_Veteran_Male[level];
             else
                 return helmet_Iva_Standard_Male[level];
@@ -1772,7 +4128,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_Iva_Veteran_MaleNRM(int level)
         {
-            if (helmet_Iva_Veteran_MaleNRM != null)
+            if (helmet_Iva_Veteran_MaleNRM[level] != null)
                 return helmet_Iva_Veteran_MaleNRM[level];
             else
                 return helmet_Iva_Standard_MaleNRM[level];
@@ -1787,14 +4143,16 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Badass_Female(int level)
         {
-            if (jetpack_EvaGround_Badass_Female != null)
+            if (jetpack_EvaGround_Badass_Female[level] != null)
                 return jetpack_EvaGround_Badass_Female[level];
-            else if (jetpack_EvaGround_Standard_Female != null)
+            else if (jetpack_EvaGround_Standard_Female[level] != null)
                 return jetpack_EvaGround_Standard_Female[level];
-            else if (jetpack_EvaGround_Badass_Male != null)
+            else if (jetpack_EvaGround_Badass_Male[level] != null)
                 return jetpack_EvaGround_Badass_Male[level];
-            else
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
+            else
+                return jetpack_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1806,14 +4164,16 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Badass_FemaleNRM(int level)
         {
-            if (jetpack_EvaGround_Badass_FemaleNRM != null)
+            if (jetpack_EvaGround_Badass_FemaleNRM[level] != null)
                 return jetpack_EvaGround_Badass_FemaleNRM[level];
-            else if (jetpack_EvaGround_Standard_FemaleNRM != null)
+            else if (jetpack_EvaGround_Standard_FemaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_FemaleNRM[level];
-            else if (jetpack_EvaGround_Badass_MaleNRM != null)
+            else if (jetpack_EvaGround_Badass_MaleNRM[level] != null)
                 return jetpack_EvaGround_Badass_MaleNRM[level];
-            else
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
+            else
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1825,10 +4185,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Badass_Male(int level)
         {
-            if (jetpack_EvaGround_Badass_Male != null)
+            if (jetpack_EvaGround_Badass_Male[level] != null)
                 return jetpack_EvaGround_Badass_Male[level];
-            else
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
+            else
+                return jetpack_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1840,10 +4202,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Badass_MaleNRM(int level)
         {
-            if (jetpack_EvaGround_Badass_MaleNRM != null)
+            if (jetpack_EvaGround_Badass_MaleNRM[level] != null)
                 return jetpack_EvaGround_Badass_MaleNRM[level];
-            else
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
+            else
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1855,10 +4219,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Standard_Female(int level)
         {
-            if (jetpack_EvaGround_Standard_Female != null)
+            if (jetpack_EvaGround_Standard_Female[level] != null)
                 return jetpack_EvaGround_Standard_Female[level];
-            else
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
+            else
+                return jetpack_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1870,10 +4236,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Standard_FemaleNRM(int level)
         {
-            if (jetpack_EvaGround_Standard_FemaleNRM != null)
+            if (jetpack_EvaGround_Standard_FemaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_FemaleNRM[level];
-            else
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
+            else
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
 
         }
 
@@ -1886,7 +4254,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Standard_Male(int level)
         {
-            return jetpack_EvaGround_Standard_Male[level];
+            if (jetpack_EvaGround_Standard_Male[level] != null)
+                return jetpack_EvaGround_Standard_Male[level];
+            else
+                return jetpack_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1898,7 +4269,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Standard_MaleNRM(int level)
         {
-            return jetpack_EvaGround_Standard_MaleNRM[level];
+            if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_MaleNRM[level];
+            else
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1910,23 +4284,25 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_VetBad_Female(int level)
         {
-            if (jetpack_EvaGround_VetBad_Female != null)
+            if (jetpack_EvaGround_VetBad_Female[level] != null)
                 return jetpack_EvaGround_VetBad_Female[level];
 
-            else if (jetpack_EvaGround_Veteran_Female != null)
+            else if (jetpack_EvaGround_Veteran_Female[level] != null)
                 return jetpack_EvaGround_Veteran_Female[level];
 
-            else if (jetpack_EvaGround_Standard_Female != null)
+            else if (jetpack_EvaGround_Standard_Female[level] != null)
                 return jetpack_EvaGround_Standard_Female[level];
 
-            else if (jetpack_EvaGround_VetBad_Male != null)
+            else if (jetpack_EvaGround_VetBad_Male[level] != null)
                 return jetpack_EvaGround_VetBad_Male[level];
 
-            else if (jetpack_EvaGround_Veteran_Male != null)
+            else if (jetpack_EvaGround_Veteran_Male[level] != null)
                 return jetpack_EvaGround_Veteran_Male[level];
 
-            else
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
+            else
+                return jetpack_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1938,23 +4314,24 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_VetBad_FemaleNRM(int level)
         {
-            if (jetpack_EvaGround_VetBad_FemaleNRM != null)
+            if (jetpack_EvaGround_VetBad_FemaleNRM[level] != null)
                 return jetpack_EvaGround_VetBad_FemaleNRM[level];
 
-            else if (jetpack_EvaGround_Veteran_FemaleNRM != null)
+            else if (jetpack_EvaGround_Veteran_FemaleNRM[level] != null)
                 return jetpack_EvaGround_Veteran_FemaleNRM[level];
 
-            else if (jetpack_EvaGround_Standard_FemaleNRM != null)
+            else if (jetpack_EvaGround_Standard_FemaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_FemaleNRM[level];
 
-            else if (jetpack_EvaGround_VetBad_MaleNRM != null)
+            else if (jetpack_EvaGround_VetBad_MaleNRM[level] != null)
                 return jetpack_EvaGround_VetBad_MaleNRM[level];
 
-            else if (jetpack_EvaGround_Veteran_MaleNRM != null)
+            else if (jetpack_EvaGround_Veteran_MaleNRM[level] != null)
                 return jetpack_EvaGround_Veteran_MaleNRM[level];
-
-            else
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
+            else
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1966,14 +4343,15 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_VetBad_Male(int level)
         {
-            if (jetpack_EvaGround_VetBad_Male != null)
+            if (jetpack_EvaGround_VetBad_Male[level] != null)
                 return jetpack_EvaGround_VetBad_Male[level];
 
-            else if (jetpack_EvaGround_Veteran_Male != null)
+            else if (jetpack_EvaGround_Veteran_Male[level] != null)
                 return jetpack_EvaGround_Veteran_Male[level];
-
-            else
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
+            else
+                return jetpack_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1985,14 +4363,15 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_VetBad_MaleNRM(int level)
         {
-            if (jetpack_EvaGround_VetBad_MaleNRM != null)
+            if (jetpack_EvaGround_VetBad_MaleNRM[level] != null)
                 return jetpack_EvaGround_VetBad_MaleNRM[level];
 
-            else if (jetpack_EvaGround_Veteran_MaleNRM != null)
+            else if (jetpack_EvaGround_Veteran_MaleNRM[level] != null)
                 return jetpack_EvaGround_Veteran_MaleNRM[level];
-
-            else
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
+            else
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2004,14 +4383,16 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Veteran_Female(int level)
         {
-            if (jetpack_EvaGround_Veteran_Female != null)
+            if (jetpack_EvaGround_Veteran_Female[level] != null)
                 return jetpack_EvaGround_Veteran_Female[level];
-            else if (jetpack_EvaGround_Standard_Female != null)
+            else if (jetpack_EvaGround_Standard_Female[level] != null)
                 return jetpack_EvaGround_Standard_Female[level];
-            else if (jetpack_EvaGround_Veteran_Male != null)
+            else if (jetpack_EvaGround_Veteran_Male[level] != null)
                 return jetpack_EvaGround_Veteran_Male[level];
-            else
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
+            else
+                return jetpack_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2023,14 +4404,16 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Veteran_FemaleNRM(int level)
         {
-            if (jetpack_EvaGround_Veteran_FemaleNRM != null)
+            if (jetpack_EvaGround_Veteran_FemaleNRM[level] != null)
                 return jetpack_EvaGround_Veteran_FemaleNRM[level];
-            else if (jetpack_EvaGround_Standard_FemaleNRM != null)
+            else if (jetpack_EvaGround_Standard_FemaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_FemaleNRM[level];
-            else if (jetpack_EvaGround_Veteran_MaleNRM != null)
+            else if (jetpack_EvaGround_Veteran_MaleNRM[level] != null)
                 return jetpack_EvaGround_Veteran_MaleNRM[level];
-            else
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
+            else
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2042,10 +4425,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Veteran_Male(int level)
         {
-            if (jetpack_EvaGround_Veteran_Male != null)
+            if (jetpack_EvaGround_Veteran_Male[level] != null)
                 return jetpack_EvaGround_Veteran_Male[level];
-            else
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
+            else
+                return jetpack_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2057,10 +4442,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaGround_Veteran_MaleNRM(int level)
         {
-            if (jetpack_EvaGround_Veteran_MaleNRM != null)
+            if (jetpack_EvaGround_Veteran_MaleNRM[level] != null)
                 return jetpack_EvaGround_Veteran_MaleNRM[level];
-            else
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
+            else
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2072,11 +4459,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_Badass_Female(int level)
         {
-            if (jetpack_EvaSpace_Badass_Female != null)
+            if (jetpack_EvaSpace_Badass_Female[level] != null)
                 return jetpack_EvaSpace_Badass_Female[level];
-            else if (jetpack_EvaSpace_Standard_Female != null)
+            else if (jetpack_EvaSpace_Standard_Female[level] != null)
                 return jetpack_EvaSpace_Standard_Female[level];
-            else if (jetpack_EvaSpace_Badass_Male != null)
+            else if (jetpack_EvaSpace_Badass_Male[level] != null)
                 return jetpack_EvaSpace_Badass_Male[level];
             else
                 return jetpack_EvaSpace_Standard_Male[level];
@@ -2091,11 +4478,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_Badass_FemaleNRM(int level)
         {
-            if (jetpack_EvaSpace_Badass_FemaleNRM != null)
+            if (jetpack_EvaSpace_Badass_FemaleNRM[level] != null)
                 return jetpack_EvaSpace_Badass_FemaleNRM[level];
-            else if (jetpack_EvaSpace_Standard_FemaleNRM != null)
+            else if (jetpack_EvaSpace_Standard_FemaleNRM[level] != null)
                 return jetpack_EvaSpace_Standard_FemaleNRM[level];
-            else if (jetpack_EvaSpace_Badass_MaleNRM != null)
+            else if (jetpack_EvaSpace_Badass_MaleNRM[level] != null)
                 return jetpack_EvaSpace_Badass_MaleNRM[level];
             else
                 return jetpack_EvaSpace_Standard_MaleNRM[level];
@@ -2110,7 +4497,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_Badass_Male(int level)
         {
-            if (jetpack_EvaSpace_Badass_Male != null)
+            if (jetpack_EvaSpace_Badass_Male[level] != null)
                 return jetpack_EvaSpace_Badass_Male[level];
             else
                 return jetpack_EvaSpace_Standard_Male[level];
@@ -2125,7 +4512,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_Badass_MaleNRM(int level)
         {
-            if (jetpack_EvaSpace_Badass_MaleNRM != null)
+            if (jetpack_EvaSpace_Badass_MaleNRM[level] != null)
                 return jetpack_EvaSpace_Badass_MaleNRM[level];
             else
                 return jetpack_EvaSpace_Standard_MaleNRM[level];
@@ -2140,7 +4527,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_Standard_Female(int level)
         {
-            if (jetpack_EvaSpace_Standard_Female != null)
+            if (jetpack_EvaSpace_Standard_Female[level] != null)
                 return jetpack_EvaSpace_Standard_Female[level];
             else
                 return jetpack_EvaSpace_Standard_Male[level];
@@ -2155,7 +4542,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_Standard_FemaleNRM(int level)
         {
-            if (jetpack_EvaSpace_Standard_FemaleNRM != null)
+            if (jetpack_EvaSpace_Standard_FemaleNRM[level] != null)
                 return jetpack_EvaSpace_Standard_FemaleNRM[level];
             else
                 return jetpack_EvaSpace_Standard_MaleNRM[level];
@@ -2195,19 +4582,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_VetBad_Female(int level)
         {
-            if (jetpack_EvaSpace_VetBad_Female != null)
+            if (jetpack_EvaSpace_VetBad_Female[level] != null)
                 return jetpack_EvaSpace_VetBad_Female[level];
 
-            else if (jetpack_EvaSpace_Veteran_Female != null)
+            else if (jetpack_EvaSpace_Veteran_Female[level] != null)
                 return jetpack_EvaSpace_Veteran_Female[level];
 
-            else if (jetpack_EvaSpace_Standard_Female != null)
+            else if (jetpack_EvaSpace_Standard_Female[level] != null)
                 return jetpack_EvaSpace_Standard_Female[level];
 
-            else if (jetpack_EvaSpace_VetBad_Male != null)
+            else if (jetpack_EvaSpace_VetBad_Male[level] != null)
                 return jetpack_EvaSpace_VetBad_Male[level];
 
-            else if (jetpack_EvaSpace_Veteran_Male != null)
+            else if (jetpack_EvaSpace_Veteran_Male[level] != null)
                 return jetpack_EvaSpace_Veteran_Male[level];
 
             else
@@ -2223,19 +4610,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_VetBad_FemaleNRM(int level)
         {
-            if (jetpack_EvaSpace_VetBad_FemaleNRM != null)
+            if (jetpack_EvaSpace_VetBad_FemaleNRM[level] != null)
                 return jetpack_EvaSpace_VetBad_FemaleNRM[level];
 
-            else if (jetpack_EvaSpace_Veteran_FemaleNRM != null)
+            else if (jetpack_EvaSpace_Veteran_FemaleNRM[level] != null)
                 return jetpack_EvaSpace_Veteran_FemaleNRM[level];
 
-            else if (jetpack_EvaSpace_Standard_FemaleNRM != null)
+            else if (jetpack_EvaSpace_Standard_FemaleNRM[level] != null)
                 return jetpack_EvaSpace_Standard_FemaleNRM[level];
 
-            else if (jetpack_EvaSpace_VetBad_MaleNRM != null)
+            else if (jetpack_EvaSpace_VetBad_MaleNRM[level] != null)
                 return jetpack_EvaSpace_VetBad_MaleNRM[level];
 
-            else if (jetpack_EvaSpace_Veteran_MaleNRM != null)
+            else if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
                 return jetpack_EvaSpace_Veteran_MaleNRM[level];
 
             else
@@ -2251,10 +4638,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_VetBad_Male(int level)
         {
-            if (jetpack_EvaSpace_VetBad_Male != null)
+            if (jetpack_EvaSpace_VetBad_Male[level] != null)
                 return jetpack_EvaSpace_VetBad_Male[level];
 
-            else if (jetpack_EvaSpace_Veteran_Male != null)
+            else if (jetpack_EvaSpace_Veteran_Male[level] != null)
                 return jetpack_EvaSpace_Veteran_Male[level];
 
             else
@@ -2270,10 +4657,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_VetBad_MaleNRM(int level)
         {
-            if (jetpack_EvaSpace_VetBad_MaleNRM != null)
+            if (jetpack_EvaSpace_VetBad_MaleNRM[level] != null)
                 return jetpack_EvaSpace_VetBad_MaleNRM[level];
 
-            else if (jetpack_EvaSpace_Veteran_MaleNRM != null)
+            else if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
                 return jetpack_EvaSpace_Veteran_MaleNRM[level];
 
             else
@@ -2289,11 +4676,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_Veteran_Female(int level)
         {
-            if (jetpack_EvaSpace_Veteran_Female != null)
+            if (jetpack_EvaSpace_Veteran_Female[level] != null)
                 return jetpack_EvaSpace_Veteran_Female[level];
-            else if (jetpack_EvaSpace_Standard_Female != null)
+            else if (jetpack_EvaSpace_Standard_Female[level] != null)
                 return jetpack_EvaSpace_Standard_Female[level];
-            else if (jetpack_EvaSpace_Veteran_Male != null)
+            else if (jetpack_EvaSpace_Veteran_Male[level] != null)
                 return jetpack_EvaSpace_Veteran_Male[level];
             else
                 return jetpack_EvaSpace_Standard_Male[level];
@@ -2308,11 +4695,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_Veteran_FemaleNRM(int level)
         {
-            if (jetpack_EvaSpace_Veteran_FemaleNRM != null)
+            if (jetpack_EvaSpace_Veteran_FemaleNRM[level] != null)
                 return jetpack_EvaSpace_Veteran_FemaleNRM[level];
-            else if (jetpack_EvaSpace_Standard_FemaleNRM != null)
+            else if (jetpack_EvaSpace_Standard_FemaleNRM[level] != null)
                 return jetpack_EvaSpace_Standard_FemaleNRM[level];
-            else if (jetpack_EvaSpace_Veteran_MaleNRM != null)
+            else if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
                 return jetpack_EvaSpace_Veteran_MaleNRM[level];
             else
                 return jetpack_EvaSpace_Standard_MaleNRM[level];
@@ -2327,7 +4714,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_Veteran_Male(int level)
         {
-            if (jetpack_EvaSpace_Veteran_Male != null)
+            if (jetpack_EvaSpace_Veteran_Male[level] != null)
                 return jetpack_EvaSpace_Veteran_Male[level];
             else
                 return jetpack_EvaSpace_Standard_Male[level];
@@ -2342,7 +4729,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_jetpack_EvaSpace_Veteran_MaleNRM(int level)
         {
-            if (jetpack_EvaSpace_Veteran_MaleNRM != null)
+            if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
                 return jetpack_EvaSpace_Veteran_MaleNRM[level];
             else
                 return jetpack_EvaSpace_Standard_MaleNRM[level];
@@ -2357,14 +4744,18 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Badass_Female(int level)
         {
-            if (suit_EvaGround_Badass_Female != null)
+            if (suit_EvaGround_Badass_Female[level] != null)
                 return suit_EvaGround_Badass_Female[level];
-            else if (suit_EvaGround_Standard_Female != null)
+            else if (suit_EvaGround_Standard_Female[level] != null)
                 return suit_EvaGround_Standard_Female[level];
-            else if (suit_EvaGround_Badass_Male != null)
+            else if (suit_EvaGround_Badass_Male[level] != null)
                 return suit_EvaGround_Badass_Male[level];
-            else
+            else if (suit_EvaGround_Standard_Male[level] != null)
+            {
                 return suit_EvaGround_Standard_Male[level];
+            }
+            else
+                return suit_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2376,14 +4767,18 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Badass_FemaleNRM(int level)
         {
-            if (suit_EvaGround_Badass_FemaleNRM != null)
+            if (suit_EvaGround_Badass_FemaleNRM[level] != null)
                 return suit_EvaGround_Badass_FemaleNRM[level];
-            else if (suit_EvaGround_Standard_FemaleNRM != null)
+            else if (suit_EvaGround_Standard_FemaleNRM[level] != null)
                 return suit_EvaGround_Standard_FemaleNRM[level];
-            else if (suit_EvaGround_Badass_MaleNRM != null)
+            else if (suit_EvaGround_Badass_MaleNRM[level] != null)
                 return suit_EvaGround_Badass_MaleNRM[level];
-            else
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+            {
                 return suit_EvaGround_Standard_MaleNRM[level];
+            }
+            else
+                return suit_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2395,10 +4790,14 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Badass_Male(int level)
         {
-            if (suit_EvaGround_Badass_Male != null)
+            if (suit_EvaGround_Badass_Male[level] != null)
                 return suit_EvaGround_Badass_Male[level];
-            else
+            else if (suit_EvaGround_Standard_Male[level] != null)
+            {
                 return suit_EvaGround_Standard_Male[level];
+            }
+            else
+                return suit_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2410,10 +4809,14 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Badass_MaleNRM(int level)
         {
-            if (suit_EvaGround_Badass_MaleNRM != null)
+            if (suit_EvaGround_Badass_MaleNRM[level] != null)
                 return suit_EvaGround_Badass_MaleNRM[level];
-            else
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+            {
                 return suit_EvaGround_Standard_MaleNRM[level];
+            }
+            else
+                return suit_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2425,10 +4828,14 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Standard_Female(int level)
         {
-            if (suit_EvaGround_Standard_Female != null)
+            if (suit_EvaGround_Standard_Female[level] != null)
                 return suit_EvaGround_Standard_Female[level];
-            else
+            else if (suit_EvaGround_Standard_Male[level] != null)
+            {
                 return suit_EvaGround_Standard_Male[level];
+            }
+            else
+                return suit_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2440,10 +4847,14 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Standard_FemaleNRM(int level)
         {
-            if (suit_EvaGround_Standard_FemaleNRM != null)
+            if (suit_EvaGround_Standard_FemaleNRM[level] != null)
                 return suit_EvaGround_Standard_FemaleNRM[level];
-            else
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+            {
                 return suit_EvaGround_Standard_MaleNRM[level];
+            }
+            else
+                return suit_EvaSpace_Standard_MaleNRM[level];
 
         }
 
@@ -2456,7 +4867,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Standard_Male(int level)
         {
-            return suit_EvaGround_Standard_Male[level];
+            if (suit_EvaGround_Standard_Male[level] != null)
+            {
+                return suit_EvaGround_Standard_Male[level];
+            }
+            else
+                return suit_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2468,9 +4884,13 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Standard_MaleNRM(int level)
         {
-            return suit_EvaGround_Standard_MaleNRM[level];
+            if (suit_EvaGround_Standard_MaleNRM[level] != null)
+            {
+                return suit_EvaGround_Standard_MaleNRM[level];
+            }
+            else
+                return suit_EvaSpace_Standard_MaleNRM[level];
         }
-
         /// ************************************************************************************
         /// <summary>
         /// Used to get the suit_EvaGround_VetBad_Female for the level of the kerbal
@@ -2480,23 +4900,27 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_VetBad_Female(int level)
         {
-            if (suit_EvaGround_VetBad_Female != null)
+            if (suit_EvaGround_VetBad_Female[level] != null)
                 return suit_EvaGround_VetBad_Female[level];
 
-            else if (suit_EvaGround_Veteran_Female != null)
+            else if (suit_EvaGround_Veteran_Female[level] != null)
                 return suit_EvaGround_Veteran_Female[level];
 
-            else if (suit_EvaGround_Standard_Female != null)
+            else if (suit_EvaGround_Standard_Female[level] != null)
                 return suit_EvaGround_Standard_Female[level];
 
-            else if (suit_EvaGround_VetBad_Male != null)
+            else if (suit_EvaGround_VetBad_Male[level] != null)
                 return suit_EvaGround_VetBad_Male[level];
 
-            else if (suit_EvaGround_Veteran_Male != null)
+            else if (suit_EvaGround_Veteran_Male[level] != null)
                 return suit_EvaGround_Veteran_Male[level];
-
-            else
+            
+                else if (suit_EvaGround_Standard_Male[level] != null)
+            {
                 return suit_EvaGround_Standard_Male[level];
+            }
+            else
+                return suit_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2508,23 +4932,27 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_VetBad_FemaleNRM(int level)
         {
-            if (suit_EvaGround_VetBad_FemaleNRM != null)
+            if (suit_EvaGround_VetBad_FemaleNRM[level] != null)
                 return suit_EvaGround_VetBad_FemaleNRM[level];
 
-            else if (suit_EvaGround_Veteran_FemaleNRM != null)
+            else if (suit_EvaGround_Veteran_FemaleNRM[level] != null)
                 return suit_EvaGround_Veteran_FemaleNRM[level];
 
-            else if (suit_EvaGround_Standard_FemaleNRM != null)
+            else if (suit_EvaGround_Standard_FemaleNRM[level] != null)
                 return suit_EvaGround_Standard_FemaleNRM[level];
 
-            else if (suit_EvaGround_VetBad_MaleNRM != null)
+            else if (suit_EvaGround_VetBad_MaleNRM[level] != null)
                 return suit_EvaGround_VetBad_MaleNRM[level];
 
-            else if (suit_EvaGround_Veteran_MaleNRM != null)
+            else if (suit_EvaGround_Veteran_MaleNRM[level] != null)
                 return suit_EvaGround_Veteran_MaleNRM[level];
 
-            else
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+            {
                 return suit_EvaGround_Standard_MaleNRM[level];
+            }
+            else
+                return suit_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2536,14 +4964,18 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_VetBad_Male(int level)
         {
-            if (suit_EvaGround_VetBad_Male != null)
+            if (suit_EvaGround_VetBad_Male[level] != null)
                 return suit_EvaGround_VetBad_Male[level];
 
-            else if (suit_EvaGround_Veteran_Male != null)
+            else if (suit_EvaGround_Veteran_Male[level] != null)
                 return suit_EvaGround_Veteran_Male[level];
 
-            else
+            else if (suit_EvaGround_Standard_Male[level] != null)
+            {
                 return suit_EvaGround_Standard_Male[level];
+            }
+            else
+                return suit_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2555,14 +4987,18 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_VetBad_MaleNRM(int level)
         {
-            if (suit_EvaGround_VetBad_MaleNRM != null)
+            if (suit_EvaGround_VetBad_MaleNRM[level] != null)
                 return suit_EvaGround_VetBad_MaleNRM[level];
 
-            else if (suit_EvaGround_Veteran_MaleNRM != null)
+            else if (suit_EvaGround_Veteran_MaleNRM[level] != null)
                 return suit_EvaGround_Veteran_MaleNRM[level];
 
-            else
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+            {
                 return suit_EvaGround_Standard_MaleNRM[level];
+            }
+            else
+                return suit_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2574,14 +5010,18 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Veteran_Female(int level)
         {
-            if (suit_EvaGround_Veteran_Female != null)
+            if (suit_EvaGround_Veteran_Female[level] != null)
                 return suit_EvaGround_Veteran_Female[level];
-            else if (suit_EvaGround_Standard_Female != null)
+            else if (suit_EvaGround_Standard_Female[level] != null)
                 return suit_EvaGround_Standard_Female[level];
-            else if (suit_EvaGround_Veteran_Male != null)
+            else if (suit_EvaGround_Veteran_Male[level] != null)
                 return suit_EvaGround_Veteran_Male[level];
-            else
+            else if (suit_EvaGround_Standard_Male[level] != null)
+            {
                 return suit_EvaGround_Standard_Male[level];
+            }
+            else
+                return suit_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2593,14 +5033,18 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Veteran_FemaleNRM(int level)
         {
-            if (suit_EvaGround_Veteran_FemaleNRM != null)
+            if (suit_EvaGround_Veteran_FemaleNRM[level] != null)
                 return suit_EvaGround_Veteran_FemaleNRM[level];
-            else if (suit_EvaGround_Standard_FemaleNRM != null)
+            else if (suit_EvaGround_Standard_FemaleNRM[level] != null)
                 return suit_EvaGround_Standard_FemaleNRM[level];
-            else if (suit_EvaGround_Veteran_MaleNRM != null)
+            else if (suit_EvaGround_Veteran_MaleNRM[level] != null)
                 return suit_EvaGround_Veteran_MaleNRM[level];
-            else
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+            {
                 return suit_EvaGround_Standard_MaleNRM[level];
+            }
+            else
+                return suit_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2612,10 +5056,14 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Veteran_Male(int level)
         {
-            if (suit_EvaGround_Veteran_Male != null)
+            if (suit_EvaGround_Veteran_Male[level] != null)
                 return suit_EvaGround_Veteran_Male[level];
-            else
+            else if (suit_EvaGround_Standard_Male[level] != null)
+            {
                 return suit_EvaGround_Standard_Male[level];
+            }
+            else
+                return suit_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2627,10 +5075,14 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaGround_Veteran_MaleNRM(int level)
         {
-            if (suit_EvaGround_Veteran_MaleNRM != null)
+            if (suit_EvaGround_Veteran_MaleNRM[level] != null)
                 return suit_EvaGround_Veteran_MaleNRM[level];
-            else
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+            {
                 return suit_EvaGround_Standard_MaleNRM[level];
+            }
+            else
+                return suit_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2642,11 +5094,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_Badass_Female(int level)
         {
-            if (suit_EvaSpace_Badass_Female != null)
+            if (suit_EvaSpace_Badass_Female[level] != null)
                 return suit_EvaSpace_Badass_Female[level];
-            else if (suit_EvaSpace_Standard_Female != null)
+            else if (suit_EvaSpace_Standard_Female[level] != null)
                 return suit_EvaSpace_Standard_Female[level];
-            else if (suit_EvaSpace_Badass_Male != null)
+            else if (suit_EvaSpace_Badass_Male[level] != null)
                 return suit_EvaSpace_Badass_Male[level];
             else
                 return suit_EvaSpace_Standard_Male[level];
@@ -2661,11 +5113,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_Badass_FemaleNRM(int level)
         {
-            if (suit_EvaSpace_Badass_FemaleNRM != null)
+            if (suit_EvaSpace_Badass_FemaleNRM[level] != null)
                 return suit_EvaSpace_Badass_FemaleNRM[level];
-            else if (suit_EvaSpace_Standard_FemaleNRM != null)
+            else if (suit_EvaSpace_Standard_FemaleNRM[level] != null)
                 return suit_EvaSpace_Standard_FemaleNRM[level];
-            else if (suit_EvaSpace_Badass_MaleNRM != null)
+            else if (suit_EvaSpace_Badass_MaleNRM[level] != null)
                 return suit_EvaSpace_Badass_MaleNRM[level];
             else
                 return suit_EvaSpace_Standard_MaleNRM[level];
@@ -2680,7 +5132,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_Badass_Male(int level)
         {
-            if (suit_EvaSpace_Badass_Male != null)
+            if (suit_EvaSpace_Badass_Male[level] != null)
                 return suit_EvaSpace_Badass_Male[level];
             else
                 return suit_EvaSpace_Standard_Male[level];
@@ -2695,7 +5147,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_Badass_MaleNRM(int level)
         {
-            if (suit_EvaSpace_Badass_MaleNRM != null)
+            if (suit_EvaSpace_Badass_MaleNRM[level] != null)
                 return suit_EvaSpace_Badass_MaleNRM[level];
             else
                 return suit_EvaSpace_Standard_MaleNRM[level];
@@ -2710,7 +5162,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_Standard_Female(int level)
         {
-            if (suit_EvaSpace_Standard_Female != null)
+            if (suit_EvaSpace_Standard_Female[level] != null)
                 return suit_EvaSpace_Standard_Female[level];
             else
                 return suit_EvaSpace_Standard_Male[level];
@@ -2725,7 +5177,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_Standard_FemaleNRM(int level)
         {
-            if (suit_EvaSpace_Standard_FemaleNRM != null)
+            if (suit_EvaSpace_Standard_FemaleNRM[level] != null)
                 return suit_EvaSpace_Standard_FemaleNRM[level];
             else
                 return suit_EvaSpace_Standard_MaleNRM[level];
@@ -2765,19 +5217,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_VetBad_Female(int level)
         {
-            if (suit_EvaSpace_VetBad_Female != null)
+            if (suit_EvaSpace_VetBad_Female[level] != null)
                 return suit_EvaSpace_VetBad_Female[level];
 
-            else if (suit_EvaSpace_Veteran_Female != null)
+            else if (suit_EvaSpace_Veteran_Female[level] != null)
                 return suit_EvaSpace_Veteran_Female[level];
 
-            else if (suit_EvaSpace_Standard_Female != null)
+            else if (suit_EvaSpace_Standard_Female[level] != null)
                 return suit_EvaSpace_Standard_Female[level];
 
-            else if (suit_EvaSpace_VetBad_Male != null)
+            else if (suit_EvaSpace_VetBad_Male[level] != null)
                 return suit_EvaSpace_VetBad_Male[level];
 
-            else if (suit_EvaSpace_Veteran_Male != null)
+            else if (suit_EvaSpace_Veteran_Male[level] != null)
                 return suit_EvaSpace_Veteran_Male[level];
 
             else
@@ -2793,19 +5245,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_VetBad_FemaleNRM(int level)
         {
-            if (suit_EvaSpace_VetBad_FemaleNRM != null)
+            if (suit_EvaSpace_VetBad_FemaleNRM[level] != null)
                 return suit_EvaSpace_VetBad_FemaleNRM[level];
 
-            else if (suit_EvaSpace_Veteran_FemaleNRM != null)
+            else if (suit_EvaSpace_Veteran_FemaleNRM[level] != null)
                 return suit_EvaSpace_Veteran_FemaleNRM[level];
 
-            else if (suit_EvaSpace_Standard_FemaleNRM != null)
+            else if (suit_EvaSpace_Standard_FemaleNRM[level] != null)
                 return suit_EvaSpace_Standard_FemaleNRM[level];
 
-            else if (suit_EvaSpace_VetBad_MaleNRM != null)
+            else if (suit_EvaSpace_VetBad_MaleNRM[level] != null)
                 return suit_EvaSpace_VetBad_MaleNRM[level];
 
-            else if (suit_EvaSpace_Veteran_MaleNRM != null)
+            else if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
                 return suit_EvaSpace_Veteran_MaleNRM[level];
 
             else
@@ -2821,10 +5273,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_VetBad_Male(int level)
         {
-            if (suit_EvaSpace_VetBad_Male != null)
+            if (suit_EvaSpace_VetBad_Male[level] != null)
                 return suit_EvaSpace_VetBad_Male[level];
 
-            else if (suit_EvaSpace_Veteran_Male != null)
+            else if (suit_EvaSpace_Veteran_Male[level] != null)
                 return suit_EvaSpace_Veteran_Male[level];
 
             else
@@ -2840,10 +5292,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_VetBad_MaleNRM(int level)
         {
-            if (suit_EvaSpace_VetBad_MaleNRM != null)
+            if (suit_EvaSpace_VetBad_MaleNRM[level] != null)
                 return suit_EvaSpace_VetBad_MaleNRM[level];
 
-            else if (suit_EvaSpace_Veteran_MaleNRM != null)
+            else if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
                 return suit_EvaSpace_Veteran_MaleNRM[level];
 
             else
@@ -2859,11 +5311,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_Veteran_Female(int level)
         {
-            if (suit_EvaSpace_Veteran_Female != null)
+            if (suit_EvaSpace_Veteran_Female[level] != null)
                 return suit_EvaSpace_Veteran_Female[level];
-            else if (suit_EvaSpace_Standard_Female != null)
+            else if (suit_EvaSpace_Standard_Female[level] != null)
                 return suit_EvaSpace_Standard_Female[level];
-            else if (suit_EvaSpace_Veteran_Male != null)
+            else if (suit_EvaSpace_Veteran_Male[level] != null)
                 return suit_EvaSpace_Veteran_Male[level];
             else
                 return suit_EvaSpace_Standard_Male[level];
@@ -2878,11 +5330,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_Veteran_FemaleNRM(int level)
         {
-            if (suit_EvaSpace_Veteran_FemaleNRM != null)
+            if (suit_EvaSpace_Veteran_FemaleNRM[level] != null)
                 return suit_EvaSpace_Veteran_FemaleNRM[level];
-            else if (suit_EvaSpace_Standard_FemaleNRM != null)
+            else if (suit_EvaSpace_Standard_FemaleNRM[level] != null)
                 return suit_EvaSpace_Standard_FemaleNRM[level];
-            else if (suit_EvaSpace_Veteran_MaleNRM != null)
+            else if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
                 return suit_EvaSpace_Veteran_MaleNRM[level];
             else
                 return suit_EvaSpace_Standard_MaleNRM[level];
@@ -2897,7 +5349,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_Veteran_Male(int level)
         {
-            if (suit_EvaSpace_Veteran_Male != null)
+            if (suit_EvaSpace_Veteran_Male[level] != null)
                 return suit_EvaSpace_Veteran_Male[level];
             else
                 return suit_EvaSpace_Standard_Male[level];
@@ -2912,7 +5364,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_EvaSpace_Veteran_MaleNRM(int level)
         {
-            if (suit_EvaSpace_Veteran_MaleNRM != null)
+            if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
                 return suit_EvaSpace_Veteran_MaleNRM[level];
             else
                 return suit_EvaSpace_Standard_MaleNRM[level];
@@ -2927,11 +5379,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_Badass_Female(int level)
         {
-            if (suit_Iva_Badass_Female != null)
+            if (suit_Iva_Badass_Female[level] != null)
                 return suit_Iva_Badass_Female[level];
-            else if (suit_Iva_Standard_Female != null)
+            else if (suit_Iva_Standard_Female[level] != null)
                 return suit_Iva_Standard_Female[level];
-            else if (suit_Iva_Badass_Male != null)
+            else if (suit_Iva_Badass_Male[level] != null)
                 return suit_Iva_Badass_Male[level];
             else
                 return suit_Iva_Standard_Male[level];
@@ -2946,11 +5398,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_Badass_FemaleNRM(int level)
         {
-            if (suit_Iva_Badass_FemaleNRM != null)
+            if (suit_Iva_Badass_FemaleNRM[level] != null)
                 return suit_Iva_Badass_FemaleNRM[level];
-            else if (suit_Iva_Standard_FemaleNRM != null)
+            else if (suit_Iva_Standard_FemaleNRM[level] != null)
                 return suit_Iva_Standard_FemaleNRM[level];
-            else if (suit_Iva_Badass_MaleNRM != null)
+            else if (suit_Iva_Badass_MaleNRM[level] != null)
                 return suit_Iva_Badass_MaleNRM[level];
             else
                 return suit_Iva_Standard_MaleNRM[level];
@@ -2965,7 +5417,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_Badass_Male(int level)
         {
-            if (suit_Iva_Badass_Male != null)
+            if (suit_Iva_Badass_Male[level] != null)
                 return suit_Iva_Badass_Male[level];
             else
                 return suit_Iva_Standard_Male[level];
@@ -2980,7 +5432,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_Badass_MaleNRM(int level)
         {
-            if (suit_Iva_Badass_MaleNRM != null)
+            if (suit_Iva_Badass_MaleNRM[level] != null)
                 return suit_Iva_Badass_MaleNRM[level];
             else
                 return suit_Iva_Standard_MaleNRM[level];
@@ -2995,11 +5447,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_Standard_Female(int level)
         {
-            if (suit_Iva_Standard_Female != null)
-                return suit_Iva_Standard_Female[level];
+            if (suit_Iva_Standard_Female[level] != null)                           
+                return suit_Iva_Standard_Female[level];            
             else
                 return suit_Iva_Standard_Male[level];
-        }
+    }
 
         /// ************************************************************************************
         /// <summary>
@@ -3010,7 +5462,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_Standard_FemaleNRM(int level)
         {
-            if (suit_Iva_Standard_FemaleNRM != null)
+            if (suit_Iva_Standard_FemaleNRM[level] != null)
                 return suit_Iva_Standard_FemaleNRM[level];
             else
                 return suit_Iva_Standard_MaleNRM[level];
@@ -3050,19 +5502,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_VetBad_Female(int level)
         {
-            if (suit_Iva_VetBad_Female != null)
+            if (suit_Iva_VetBad_Female[level] != null)
                 return suit_Iva_VetBad_Female[level];
 
-            else if (suit_Iva_Veteran_Female != null)
+            else if (suit_Iva_Veteran_Female[level] != null)
                 return suit_Iva_Veteran_Female[level];
 
-            else if (suit_Iva_Standard_Female != null)
+            else if (suit_Iva_Standard_Female[level] != null)
                 return suit_Iva_Standard_Female[level];
 
-            else if (suit_Iva_VetBad_Male != null)
+            else if (suit_Iva_VetBad_Male[level] != null)
                 return suit_Iva_VetBad_Male[level];
 
-            else if (suit_Iva_Veteran_Male != null)
+            else if (suit_Iva_Veteran_Male[level] != null)
                 return suit_Iva_Veteran_Male[level];
 
             else
@@ -3078,19 +5530,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_VetBad_FemaleNRM(int level)
         {
-            if (suit_Iva_VetBad_FemaleNRM != null)
+            if (suit_Iva_VetBad_FemaleNRM[level] != null)
                 return suit_Iva_VetBad_FemaleNRM[level];
 
-            else if (suit_Iva_Veteran_FemaleNRM != null)
+            else if (suit_Iva_Veteran_FemaleNRM[level] != null)
                 return suit_Iva_Veteran_FemaleNRM[level];
 
-            else if (suit_Iva_Standard_FemaleNRM != null)
+            else if (suit_Iva_Standard_FemaleNRM[level] != null)
                 return suit_Iva_Standard_FemaleNRM[level];
 
-            else if (suit_Iva_VetBad_MaleNRM != null)
+            else if (suit_Iva_VetBad_MaleNRM[level] != null)
                 return suit_Iva_VetBad_MaleNRM[level];
 
-            else if (suit_Iva_Veteran_MaleNRM != null)
+            else if (suit_Iva_Veteran_MaleNRM[level] != null)
                 return suit_Iva_Veteran_MaleNRM[level];
 
             else
@@ -3106,10 +5558,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_VetBad_Male(int level)
         {
-            if (suit_Iva_VetBad_Male != null)
+            if (suit_Iva_VetBad_Male[level] != null)
                 return suit_Iva_VetBad_Male[level];
 
-            else if (suit_Iva_Veteran_Male != null)
+            else if (suit_Iva_Veteran_Male[level] != null)
                 return suit_Iva_Veteran_Male[level];
 
             else
@@ -3125,10 +5577,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_VetBad_MaleNRM(int level)
         {
-            if (suit_Iva_VetBad_MaleNRM != null)
+            if (suit_Iva_VetBad_MaleNRM[level] != null)
                 return suit_Iva_VetBad_MaleNRM[level];
 
-            else if (suit_Iva_Veteran_MaleNRM != null)
+            else if (suit_Iva_Veteran_MaleNRM[level] != null)
                 return suit_Iva_Veteran_MaleNRM[level];
 
             else
@@ -3144,11 +5596,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_Veteran_Female(int level)
         {
-            if (suit_Iva_Veteran_Female != null)
+            if (suit_Iva_Veteran_Female[level] != null)
                 return suit_Iva_Veteran_Female[level];
-            else if (suit_Iva_Standard_Female != null)
+            else if (suit_Iva_Standard_Female[level] != null)
                 return suit_Iva_Standard_Female[level];
-            else if (suit_Iva_Veteran_Male != null)
+            else if (suit_Iva_Veteran_Male[level] != null)
                 return suit_Iva_Veteran_Male[level];
             else
                 return suit_Iva_Standard_Male[level];
@@ -3163,11 +5615,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_Veteran_FemaleNRM(int level)
         {
-            if (suit_Iva_Veteran_FemaleNRM != null)
+            if (suit_Iva_Veteran_FemaleNRM[level] != null)
                 return suit_Iva_Veteran_FemaleNRM[level];
-            else if (suit_Iva_Standard_FemaleNRM != null)
+            else if (suit_Iva_Standard_FemaleNRM[level] != null)
                 return suit_Iva_Standard_FemaleNRM[level];
-            else if (suit_Iva_Veteran_MaleNRM != null)
+            else if (suit_Iva_Veteran_MaleNRM[level] != null)
                 return suit_Iva_Veteran_MaleNRM[level];
             else
                 return suit_Iva_Standard_MaleNRM[level];
@@ -3182,7 +5634,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_Veteran_Male(int level)
         {
-            if (suit_Iva_Veteran_Male != null)
+            if (suit_Iva_Veteran_Male[level] != null)
                 return suit_Iva_Veteran_Male[level];
             else
                 return suit_Iva_Standard_Male[level];
@@ -3197,7 +5649,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_suit_Iva_Veteran_MaleNRM(int level)
         {
-            if (suit_Iva_Veteran_MaleNRM != null)
+            if (suit_Iva_Veteran_MaleNRM[level] != null)
                 return suit_Iva_Veteran_MaleNRM[level];
             else
                 return suit_Iva_Standard_MaleNRM[level];
@@ -3212,14 +5664,16 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Badass_Female(int level)
         {
-            if (visor_EvaGround_Badass_Female != null)
+            if (visor_EvaGround_Badass_Female[level] != null)
                 return visor_EvaGround_Badass_Female[level];
-            else if (visor_EvaGround_Standard_Female != null)
+            else if (visor_EvaGround_Standard_Female[level] != null)
                 return visor_EvaGround_Standard_Female[level];
-            else if (visor_EvaGround_Badass_Male != null)
+            else if (visor_EvaGround_Badass_Male[level] != null)
                 return visor_EvaGround_Badass_Male[level];
-            else
+            else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
+            else
+                return visor_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3231,14 +5685,16 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Badass_FemaleNRM(int level)
         {
-            if (visor_EvaGround_Badass_FemaleNRM != null)
+            if (visor_EvaGround_Badass_FemaleNRM[level] != null)
                 return visor_EvaGround_Badass_FemaleNRM[level];
-            else if (visor_EvaGround_Standard_FemaleNRM != null)
+            else if (visor_EvaGround_Standard_FemaleNRM[level] != null)
                 return visor_EvaGround_Standard_FemaleNRM[level];
-            else if (visor_EvaGround_Badass_MaleNRM != null)
+            else if (visor_EvaGround_Badass_MaleNRM[level] != null)
                 return visor_EvaGround_Badass_MaleNRM[level];
-            else
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
+            else
+                return visor_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3250,10 +5706,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Badass_Male(int level)
         {
-            if (visor_EvaGround_Badass_Male != null)
+            if (visor_EvaGround_Badass_Male[level] != null)
                 return visor_EvaGround_Badass_Male[level];
-            else
+            else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
+            else
+                return visor_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3265,10 +5723,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Badass_MaleNRM(int level)
         {
-            if (visor_EvaGround_Badass_MaleNRM != null)
+            if (visor_EvaGround_Badass_MaleNRM[level] != null)
                 return visor_EvaGround_Badass_MaleNRM[level];
-            else
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
+            else
+                return visor_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3280,10 +5740,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Standard_Female(int level)
         {
-            if (visor_EvaGround_Standard_Female != null)
+            if (visor_EvaGround_Standard_Female[level] != null)
                 return visor_EvaGround_Standard_Female[level];
-            else
+            else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
+            else
+                return visor_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3295,10 +5757,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Standard_FemaleNRM(int level)
         {
-            if (visor_EvaGround_Standard_FemaleNRM != null)
+            if (visor_EvaGround_Standard_FemaleNRM[level] != null)
                 return visor_EvaGround_Standard_FemaleNRM[level];
-            else
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
+            else
+                return visor_EvaSpace_Standard_MaleNRM[level];
 
         }
 
@@ -3311,7 +5775,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Standard_Male(int level)
         {
-            return visor_EvaGround_Standard_Male[level];
+            if (visor_EvaGround_Standard_Male[level] != null)
+                return visor_EvaGround_Standard_Male[level];
+            else
+                return visor_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3323,7 +5790,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Standard_MaleNRM(int level)
         {
-            return visor_EvaGround_Standard_MaleNRM[level];
+            if (visor_EvaGround_Standard_MaleNRM[level] != null)
+                return visor_EvaGround_Standard_MaleNRM[level];
+            else
+                return visor_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3335,23 +5805,24 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_VetBad_Female(int level)
         {
-            if (visor_EvaGround_VetBad_Female != null)
+            if (visor_EvaGround_VetBad_Female[level] != null)
                 return visor_EvaGround_VetBad_Female[level];
 
-            else if (visor_EvaGround_Veteran_Female != null)
+            else if (visor_EvaGround_Veteran_Female[level] != null)
                 return visor_EvaGround_Veteran_Female[level];
 
-            else if (visor_EvaGround_Standard_Female != null)
+            else if (visor_EvaGround_Standard_Female[level] != null)
                 return visor_EvaGround_Standard_Female[level];
 
-            else if (visor_EvaGround_VetBad_Male != null)
+            else if (visor_EvaGround_VetBad_Male[level] != null)
                 return visor_EvaGround_VetBad_Male[level];
 
-            else if (visor_EvaGround_Veteran_Male != null)
+            else if (visor_EvaGround_Veteran_Male[level] != null)
                 return visor_EvaGround_Veteran_Male[level];
-
-            else
+            else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
+            else
+                return visor_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3363,23 +5834,24 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_VetBad_FemaleNRM(int level)
         {
-            if (visor_EvaGround_VetBad_FemaleNRM != null)
+            if (visor_EvaGround_VetBad_FemaleNRM[level] != null)
                 return visor_EvaGround_VetBad_FemaleNRM[level];
 
-            else if (visor_EvaGround_Veteran_FemaleNRM != null)
+            else if (visor_EvaGround_Veteran_FemaleNRM[level] != null)
                 return visor_EvaGround_Veteran_FemaleNRM[level];
 
-            else if (visor_EvaGround_Standard_FemaleNRM != null)
+            else if (visor_EvaGround_Standard_FemaleNRM[level] != null)
                 return visor_EvaGround_Standard_FemaleNRM[level];
 
-            else if (visor_EvaGround_VetBad_MaleNRM != null)
+            else if (visor_EvaGround_VetBad_MaleNRM[level] != null)
                 return visor_EvaGround_VetBad_MaleNRM[level];
 
-            else if (visor_EvaGround_Veteran_MaleNRM != null)
+            else if (visor_EvaGround_Veteran_MaleNRM[level] != null)
                 return visor_EvaGround_Veteran_MaleNRM[level];
-
-            else
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
+            else
+                return visor_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3391,14 +5863,15 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_VetBad_Male(int level)
         {
-            if (visor_EvaGround_VetBad_Male != null)
+            if (visor_EvaGround_VetBad_Male[level] != null)
                 return visor_EvaGround_VetBad_Male[level];
 
-            else if (visor_EvaGround_Veteran_Male != null)
+            else if (visor_EvaGround_Veteran_Male[level] != null)
                 return visor_EvaGround_Veteran_Male[level];
-
-            else
+            else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
+            else
+                return visor_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3410,14 +5883,15 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_VetBad_MaleNRM(int level)
         {
-            if (visor_EvaGround_VetBad_MaleNRM != null)
+            if (visor_EvaGround_VetBad_MaleNRM[level] != null)
                 return visor_EvaGround_VetBad_MaleNRM[level];
 
-            else if (visor_EvaGround_Veteran_MaleNRM != null)
+            else if (visor_EvaGround_Veteran_MaleNRM[level] != null)
                 return visor_EvaGround_Veteran_MaleNRM[level];
-
-            else
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
+            else
+                return visor_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3429,14 +5903,16 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Veteran_Female(int level)
         {
-            if (visor_EvaGround_Veteran_Female != null)
+            if (visor_EvaGround_Veteran_Female[level] != null)
                 return visor_EvaGround_Veteran_Female[level];
-            else if (visor_EvaGround_Standard_Female != null)
+            else if (visor_EvaGround_Standard_Female[level] != null)
                 return visor_EvaGround_Standard_Female[level];
-            else if (visor_EvaGround_Veteran_Male != null)
+            else if (visor_EvaGround_Veteran_Male[level] != null)
                 return visor_EvaGround_Veteran_Male[level];
-            else
+            else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
+            else
+                return visor_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3448,14 +5924,16 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Veteran_FemaleNRM(int level)
         {
-            if (visor_EvaGround_Veteran_FemaleNRM != null)
+            if (visor_EvaGround_Veteran_FemaleNRM[level] != null)
                 return visor_EvaGround_Veteran_FemaleNRM[level];
-            else if (visor_EvaGround_Standard_FemaleNRM != null)
+            else if (visor_EvaGround_Standard_FemaleNRM[level] != null)
                 return visor_EvaGround_Standard_FemaleNRM[level];
-            else if (visor_EvaGround_Veteran_MaleNRM != null)
+            else if (visor_EvaGround_Veteran_MaleNRM[level] != null)
                 return visor_EvaGround_Veteran_MaleNRM[level];
-            else
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
+            else
+                return visor_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3467,10 +5945,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Veteran_Male(int level)
         {
-            if (visor_EvaGround_Veteran_Male != null)
+            if (visor_EvaGround_Veteran_Male[level] != null)
                 return visor_EvaGround_Veteran_Male[level];
-            else
+            else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
+            else
+                return visor_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3482,10 +5962,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaGround_Veteran_MaleNRM(int level)
         {
-            if (visor_EvaGround_Veteran_MaleNRM != null)
+            if (visor_EvaGround_Veteran_MaleNRM[level] != null)
                 return visor_EvaGround_Veteran_MaleNRM[level];
-            else
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
+            else
+                return visor_EvaSpace_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3497,11 +5979,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_Badass_Female(int level)
         {
-            if (visor_EvaSpace_Badass_Female != null)
+            if (visor_EvaSpace_Badass_Female[level] != null)
                 return visor_EvaSpace_Badass_Female[level];
-            else if (visor_EvaSpace_Standard_Female != null)
+            else if (visor_EvaSpace_Standard_Female[level] != null)
                 return visor_EvaSpace_Standard_Female[level];
-            else if (visor_EvaSpace_Badass_Male != null)
+            else if (visor_EvaSpace_Badass_Male[level] != null)
                 return visor_EvaSpace_Badass_Male[level];
             else
                 return visor_EvaSpace_Standard_Male[level];
@@ -3516,11 +5998,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_Badass_FemaleNRM(int level)
         {
-            if (visor_EvaSpace_Badass_FemaleNRM != null)
+            if (visor_EvaSpace_Badass_FemaleNRM[level] != null)
                 return visor_EvaSpace_Badass_FemaleNRM[level];
-            else if (visor_EvaSpace_Standard_FemaleNRM != null)
+            else if (visor_EvaSpace_Standard_FemaleNRM[level] != null)
                 return visor_EvaSpace_Standard_FemaleNRM[level];
-            else if (visor_EvaSpace_Badass_MaleNRM != null)
+            else if (visor_EvaSpace_Badass_MaleNRM[level] != null)
                 return visor_EvaSpace_Badass_MaleNRM[level];
             else
                 return visor_EvaSpace_Standard_MaleNRM[level];
@@ -3535,7 +6017,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_Badass_Male(int level)
         {
-            if (visor_EvaSpace_Badass_Male != null)
+            if (visor_EvaSpace_Badass_Male[level] != null)
                 return visor_EvaSpace_Badass_Male[level];
             else
                 return visor_EvaSpace_Standard_Male[level];
@@ -3550,7 +6032,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_Badass_MaleNRM(int level)
         {
-            if (visor_EvaSpace_Badass_MaleNRM != null)
+            if (visor_EvaSpace_Badass_MaleNRM[level] != null)
                 return visor_EvaSpace_Badass_MaleNRM[level];
             else
                 return visor_EvaSpace_Standard_MaleNRM[level];
@@ -3565,7 +6047,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_Standard_Female(int level)
         {
-            if (visor_EvaSpace_Standard_Female != null)
+            if (visor_EvaSpace_Standard_Female[level] != null)
                 return visor_EvaSpace_Standard_Female[level];
             else
                 return visor_EvaSpace_Standard_Male[level];
@@ -3580,7 +6062,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_Standard_FemaleNRM(int level)
         {
-            if (visor_EvaSpace_Standard_FemaleNRM != null)
+            if (visor_EvaSpace_Standard_FemaleNRM[level] != null)
                 return visor_EvaSpace_Standard_FemaleNRM[level];
             else
                 return visor_EvaSpace_Standard_MaleNRM[level];
@@ -3620,19 +6102,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_VetBad_Female(int level)
         {
-            if (visor_EvaSpace_VetBad_Female != null)
+            if (visor_EvaSpace_VetBad_Female[level] != null)
                 return visor_EvaSpace_VetBad_Female[level];
 
-            else if (visor_EvaSpace_Veteran_Female != null)
+            else if (visor_EvaSpace_Veteran_Female[level] != null)
                 return visor_EvaSpace_Veteran_Female[level];
 
-            else if (visor_EvaSpace_Standard_Female != null)
+            else if (visor_EvaSpace_Standard_Female[level] != null)
                 return visor_EvaSpace_Standard_Female[level];
 
-            else if (visor_EvaSpace_VetBad_Male != null)
+            else if (visor_EvaSpace_VetBad_Male[level] != null)
                 return visor_EvaSpace_VetBad_Male[level];
 
-            else if (visor_EvaSpace_Veteran_Male != null)
+            else if (visor_EvaSpace_Veteran_Male[level] != null)
                 return visor_EvaSpace_Veteran_Male[level];
 
             else
@@ -3648,19 +6130,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_VetBad_FemaleNRM(int level)
         {
-            if (visor_EvaSpace_VetBad_FemaleNRM != null)
+            if (visor_EvaSpace_VetBad_FemaleNRM[level] != null)
                 return visor_EvaSpace_VetBad_FemaleNRM[level];
 
-            else if (visor_EvaSpace_Veteran_FemaleNRM != null)
+            else if (visor_EvaSpace_Veteran_FemaleNRM[level] != null)
                 return visor_EvaSpace_Veteran_FemaleNRM[level];
 
-            else if (visor_EvaSpace_Standard_FemaleNRM != null)
+            else if (visor_EvaSpace_Standard_FemaleNRM[level] != null)
                 return visor_EvaSpace_Standard_FemaleNRM[level];
 
-            else if (visor_EvaSpace_VetBad_MaleNRM != null)
+            else if (visor_EvaSpace_VetBad_MaleNRM[level] != null)
                 return visor_EvaSpace_VetBad_MaleNRM[level];
 
-            else if (visor_EvaSpace_Veteran_MaleNRM != null)
+            else if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
                 return visor_EvaSpace_Veteran_MaleNRM[level];
 
             else
@@ -3676,10 +6158,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_VetBad_Male(int level)
         {
-            if (visor_EvaSpace_VetBad_Male != null)
+            if (visor_EvaSpace_VetBad_Male[level] != null)
                 return visor_EvaSpace_VetBad_Male[level];
 
-            else if (visor_EvaSpace_Veteran_Male != null)
+            else if (visor_EvaSpace_Veteran_Male[level] != null)
                 return visor_EvaSpace_Veteran_Male[level];
 
             else
@@ -3695,10 +6177,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_VetBad_MaleNRM(int level)
         {
-            if (visor_EvaSpace_VetBad_MaleNRM != null)
+            if (visor_EvaSpace_VetBad_MaleNRM[level] != null)
                 return visor_EvaSpace_VetBad_MaleNRM[level];
 
-            else if (visor_EvaSpace_Veteran_MaleNRM != null)
+            else if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
                 return visor_EvaSpace_Veteran_MaleNRM[level];
 
             else
@@ -3714,11 +6196,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_Veteran_Female(int level)
         {
-            if (visor_EvaSpace_Veteran_Female != null)
+            if (visor_EvaSpace_Veteran_Female[level] != null)
                 return visor_EvaSpace_Veteran_Female[level];
-            else if (visor_EvaSpace_Standard_Female != null)
+            else if (visor_EvaSpace_Standard_Female[level] != null)
                 return visor_EvaSpace_Standard_Female[level];
-            else if (visor_EvaSpace_Veteran_Male != null)
+            else if (visor_EvaSpace_Veteran_Male[level] != null)
                 return visor_EvaSpace_Veteran_Male[level];
             else
                 return visor_EvaSpace_Standard_Male[level];
@@ -3733,11 +6215,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_Veteran_FemaleNRM(int level)
         {
-            if (visor_EvaSpace_Veteran_FemaleNRM != null)
+            if (visor_EvaSpace_Veteran_FemaleNRM[level] != null)
                 return visor_EvaSpace_Veteran_FemaleNRM[level];
-            else if (visor_EvaSpace_Standard_FemaleNRM != null)
+            else if (visor_EvaSpace_Standard_FemaleNRM[level] != null)
                 return visor_EvaSpace_Standard_FemaleNRM[level];
-            else if (visor_EvaSpace_Veteran_MaleNRM != null)
+            else if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
                 return visor_EvaSpace_Veteran_MaleNRM[level];
             else
                 return visor_EvaSpace_Standard_MaleNRM[level];
@@ -3752,7 +6234,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_Veteran_Male(int level)
         {
-            if (visor_EvaSpace_Veteran_Male != null)
+            if (visor_EvaSpace_Veteran_Male[level] != null)
                 return visor_EvaSpace_Veteran_Male[level];
             else
                 return visor_EvaSpace_Standard_Male[level];
@@ -3767,7 +6249,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_EvaSpace_Veteran_MaleNRM(int level)
         {
-            if (visor_EvaSpace_Veteran_MaleNRM != null)
+            if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
                 return visor_EvaSpace_Veteran_MaleNRM[level];
             else
                 return visor_EvaSpace_Standard_MaleNRM[level];
@@ -3782,11 +6264,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_Badass_Female(int level)
         {
-            if (visor_Iva_Badass_Female != null)
+            if (visor_Iva_Badass_Female[level] != null)
                 return visor_Iva_Badass_Female[level];
-            else if (visor_Iva_Standard_Female != null)
+            else if (visor_Iva_Standard_Female[level] != null)
                 return visor_Iva_Standard_Female[level];
-            else if (visor_Iva_Badass_Male != null)
+            else if (visor_Iva_Badass_Male[level] != null)
                 return visor_Iva_Badass_Male[level];
             else
                 return visor_Iva_Standard_Male[level];
@@ -3801,11 +6283,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_Badass_FemaleNRM(int level)
         {
-            if (visor_Iva_Badass_FemaleNRM != null)
+            if (visor_Iva_Badass_FemaleNRM[level] != null)
                 return visor_Iva_Badass_FemaleNRM[level];
-            else if (visor_Iva_Standard_FemaleNRM != null)
+            else if (visor_Iva_Standard_FemaleNRM[level] != null)
                 return visor_Iva_Standard_FemaleNRM[level];
-            else if (visor_Iva_Badass_MaleNRM != null)
+            else if (visor_Iva_Badass_MaleNRM[level] != null)
                 return visor_Iva_Badass_MaleNRM[level];
             else
                 return visor_Iva_Standard_MaleNRM[level];
@@ -3820,7 +6302,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_Badass_Male(int level)
         {
-            if (visor_Iva_Badass_Male != null)
+            if (visor_Iva_Badass_Male[level] != null)
                 return visor_Iva_Badass_Male[level];
             else
                 return visor_Iva_Standard_Male[level];
@@ -3835,7 +6317,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_Badass_MaleNRM(int level)
         {
-            if (visor_Iva_Badass_MaleNRM != null)
+            if (visor_Iva_Badass_MaleNRM[level] != null)
                 return visor_Iva_Badass_MaleNRM[level];
             else
                 return visor_Iva_Standard_MaleNRM[level];
@@ -3850,7 +6332,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_Standard_Female(int level)
         {
-            if (visor_Iva_Standard_Female != null)
+            if (visor_Iva_Standard_Female[level] != null)
                 return visor_Iva_Standard_Female[level];
             else
                 return visor_Iva_Standard_Male[level];
@@ -3865,7 +6347,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_Standard_FemaleNRM(int level)
         {
-            if (visor_Iva_Standard_FemaleNRM != null)
+            if (visor_Iva_Standard_FemaleNRM[level] != null)
                 return visor_Iva_Standard_FemaleNRM[level];
             else
                 return visor_Iva_Standard_MaleNRM[level];
@@ -3905,19 +6387,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_VetBad_Female(int level)
         {
-            if (visor_Iva_VetBad_Female != null)
+            if (visor_Iva_VetBad_Female[level] != null)
                 return visor_Iva_VetBad_Female[level];
 
-            else if (visor_Iva_Veteran_Female != null)
+            else if (visor_Iva_Veteran_Female[level] != null)
                 return visor_Iva_Veteran_Female[level];
 
-            else if (visor_Iva_Standard_Female != null)
+            else if (visor_Iva_Standard_Female[level] != null)
                 return visor_Iva_Standard_Female[level];
 
-            else if (visor_Iva_VetBad_Male != null)
+            else if (visor_Iva_VetBad_Male[level] != null)
                 return visor_Iva_VetBad_Male[level];
 
-            else if (visor_Iva_Veteran_Male != null)
+            else if (visor_Iva_Veteran_Male[level] != null)
                 return visor_Iva_Veteran_Male[level];
 
             else
@@ -3933,19 +6415,19 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_VetBad_FemaleNRM(int level)
         {
-            if (visor_Iva_VetBad_FemaleNRM != null)
+            if (visor_Iva_VetBad_FemaleNRM[level] != null)
                 return visor_Iva_VetBad_FemaleNRM[level];
 
-            else if (visor_Iva_Veteran_FemaleNRM != null)
+            else if (visor_Iva_Veteran_FemaleNRM[level] != null)
                 return visor_Iva_Veteran_FemaleNRM[level];
 
-            else if (visor_Iva_Standard_FemaleNRM != null)
+            else if (visor_Iva_Standard_FemaleNRM[level] != null)
                 return visor_Iva_Standard_FemaleNRM[level];
 
-            else if (visor_Iva_VetBad_MaleNRM != null)
+            else if (visor_Iva_VetBad_MaleNRM[level] != null)
                 return visor_Iva_VetBad_MaleNRM[level];
 
-            else if (visor_Iva_Veteran_MaleNRM != null)
+            else if (visor_Iva_Veteran_MaleNRM[level] != null)
                 return visor_Iva_Veteran_MaleNRM[level];
 
             else
@@ -3961,10 +6443,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_VetBad_Male(int level)
         {
-            if (visor_Iva_VetBad_Male != null)
+            if (visor_Iva_VetBad_Male[level] != null)
                 return visor_Iva_VetBad_Male[level];
 
-            else if (visor_Iva_Veteran_Male != null)
+            else if (visor_Iva_Veteran_Male[level] != null)
                 return visor_Iva_Veteran_Male[level];
 
             else
@@ -3980,10 +6462,10 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_VetBad_MaleNRM(int level)
         {
-            if (visor_Iva_VetBad_MaleNRM != null)
+            if (visor_Iva_VetBad_MaleNRM[level] != null)
                 return visor_Iva_VetBad_MaleNRM[level];
 
-            else if (visor_Iva_Veteran_MaleNRM != null)
+            else if (visor_Iva_Veteran_MaleNRM[level] != null)
                 return visor_Iva_Veteran_MaleNRM[level];
 
             else
@@ -3999,11 +6481,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_Veteran_Female(int level)
         {
-            if (visor_Iva_Veteran_Female != null)
+            if (visor_Iva_Veteran_Female[level] != null)
                 return visor_Iva_Veteran_Female[level];
-            else if (visor_Iva_Standard_Female != null)
+            else if (visor_Iva_Standard_Female[level] != null)
                 return visor_Iva_Standard_Female[level];
-            else if (visor_Iva_Veteran_Male != null)
+            else if (visor_Iva_Veteran_Male[level] != null)
                 return visor_Iva_Veteran_Male[level];
             else
                 return visor_Iva_Standard_Male[level];
@@ -4018,11 +6500,11 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_Veteran_FemaleNRM(int level)
         {
-            if (visor_Iva_Veteran_FemaleNRM != null)
+            if (visor_Iva_Veteran_FemaleNRM[level] != null)
                 return visor_Iva_Veteran_FemaleNRM[level];
-            else if (visor_Iva_Standard_FemaleNRM != null)
+            else if (visor_Iva_Standard_FemaleNRM[level] != null)
                 return visor_Iva_Standard_FemaleNRM[level];
-            else if (visor_Iva_Veteran_MaleNRM != null)
+            else if (visor_Iva_Veteran_MaleNRM[level] != null)
                 return visor_Iva_Veteran_MaleNRM[level];
             else
                 return visor_Iva_Standard_MaleNRM[level];
@@ -4037,7 +6519,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_Veteran_Male(int level)
         {
-            if (visor_Iva_Veteran_Male != null)
+            if (visor_Iva_Veteran_Male[level] != null)
                 return visor_Iva_Veteran_Male[level];
             else
                 return visor_Iva_Standard_Male[level];
@@ -4052,12 +6534,12 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_visor_Iva_Veteran_MaleNRM(int level)
         {
-            if (visor_Iva_Veteran_MaleNRM != null)
+            if (visor_Iva_Veteran_MaleNRM[level] != null)
                 return visor_Iva_Veteran_MaleNRM[level];
             else
                 return visor_Iva_Standard_MaleNRM[level];
         }
-                
+
         /// ************************************************************************************
         /// <summary>
         /// Search for the name of the texture, then set the good one in the suit set.
@@ -4071,6 +6553,183 @@ namespace TextureReplacerReplaced
         public bool setTexture(string originalName, Texture2D texture)
         {
             int level;
+
+            helmet_EvaGround_Badass_Female = helmet_EvaGround_Badass_Female ?? new Texture2D[6];
+            helmet_EvaGround_Badass_FemaleNRM = helmet_EvaGround_Badass_FemaleNRM ?? new Texture2D[6];
+            helmet_EvaGround_Badass_Male = helmet_EvaGround_Badass_Male ?? new Texture2D[6];
+            helmet_EvaGround_Badass_MaleNRM = helmet_EvaGround_Badass_MaleNRM ?? new Texture2D[6];
+            helmet_EvaGround_Standard_Female = helmet_EvaGround_Standard_Female ?? new Texture2D[6];
+            helmet_EvaGround_Standard_FemaleNRM = helmet_EvaGround_Standard_FemaleNRM ?? new Texture2D[6];
+            helmet_EvaGround_Standard_Male = helmet_EvaGround_Standard_Male ?? new Texture2D[6];
+            helmet_EvaGround_Standard_MaleNRM = helmet_EvaGround_Standard_MaleNRM ?? new Texture2D[6];
+            helmet_EvaGround_VetBad_Female = helmet_EvaGround_VetBad_Female ?? new Texture2D[6];
+            helmet_EvaGround_VetBad_FemaleNRM = helmet_EvaGround_VetBad_FemaleNRM ?? new Texture2D[6];
+            helmet_EvaGround_VetBad_Male = helmet_EvaGround_VetBad_Male ?? new Texture2D[6];
+            helmet_EvaGround_VetBad_MaleNRM = helmet_EvaGround_VetBad_MaleNRM ?? new Texture2D[6];
+            helmet_EvaGround_Veteran_Female = helmet_EvaGround_Veteran_Female ?? new Texture2D[6];
+            helmet_EvaGround_Veteran_FemaleNRM = helmet_EvaGround_Veteran_FemaleNRM ?? new Texture2D[6];
+            helmet_EvaGround_Veteran_Male = helmet_EvaGround_Veteran_Male ?? new Texture2D[6];
+            helmet_EvaGround_Veteran_MaleNRM = helmet_EvaGround_Veteran_MaleNRM ?? new Texture2D[6];
+            helmet_EvaSpace_Badass_Female = helmet_EvaSpace_Badass_Female ?? new Texture2D[6];
+            helmet_EvaSpace_Badass_FemaleNRM = helmet_EvaSpace_Badass_FemaleNRM ?? new Texture2D[6];
+            helmet_EvaSpace_Badass_Male = helmet_EvaSpace_Badass_Male ?? new Texture2D[6];
+            helmet_EvaSpace_Badass_MaleNRM = helmet_EvaSpace_Badass_MaleNRM ?? new Texture2D[6];
+            helmet_EvaSpace_Standard_Female = helmet_EvaSpace_Standard_Female ?? new Texture2D[6];
+            helmet_EvaSpace_Standard_FemaleNRM = helmet_EvaSpace_Standard_FemaleNRM ?? new Texture2D[6];
+            helmet_EvaSpace_Standard_Male = helmet_EvaSpace_Standard_Male ?? new Texture2D[6];
+            helmet_EvaSpace_Standard_MaleNRM = helmet_EvaSpace_Standard_MaleNRM ?? new Texture2D[6];
+            helmet_EvaSpace_VetBad_Female = helmet_EvaSpace_VetBad_Female ?? new Texture2D[6];
+            helmet_EvaSpace_VetBad_FemaleNRM = helmet_EvaSpace_VetBad_FemaleNRM ?? new Texture2D[6];
+            helmet_EvaSpace_VetBad_Male = helmet_EvaSpace_VetBad_Male ?? new Texture2D[6];
+            helmet_EvaSpace_VetBad_MaleNRM = helmet_EvaSpace_VetBad_MaleNRM ?? new Texture2D[6];
+            helmet_EvaSpace_Veteran_Female = helmet_EvaSpace_Veteran_Female ?? new Texture2D[6];
+            helmet_EvaSpace_Veteran_FemaleNRM = helmet_EvaSpace_Veteran_FemaleNRM ?? new Texture2D[6];
+            helmet_EvaSpace_Veteran_Male = helmet_EvaSpace_Veteran_Male ?? new Texture2D[6];
+            helmet_EvaSpace_Veteran_MaleNRM = helmet_EvaSpace_Veteran_MaleNRM ?? new Texture2D[6];
+            helmet_Iva_Badass_Female = helmet_Iva_Badass_Female ?? new Texture2D[6];
+            helmet_Iva_Badass_FemaleNRM = helmet_Iva_Badass_FemaleNRM ?? new Texture2D[6];
+            helmet_Iva_Badass_Male = helmet_Iva_Badass_Male ?? new Texture2D[6];
+            helmet_Iva_Badass_MaleNRM = helmet_Iva_Badass_MaleNRM ?? new Texture2D[6];
+            helmet_Iva_Standard_Female = helmet_Iva_Standard_Female ?? new Texture2D[6];
+            helmet_Iva_Standard_FemaleNRM = helmet_Iva_Standard_FemaleNRM ?? new Texture2D[6];
+            helmet_Iva_Standard_Male = helmet_Iva_Standard_Male ?? new Texture2D[6];
+            helmet_Iva_Standard_MaleNRM = helmet_Iva_Standard_MaleNRM ?? new Texture2D[6];
+            helmet_Iva_VetBad_Female = helmet_Iva_VetBad_Female ?? new Texture2D[6];
+            helmet_Iva_VetBad_FemaleNRM = helmet_Iva_VetBad_FemaleNRM ?? new Texture2D[6];
+            helmet_Iva_VetBad_Male = helmet_Iva_VetBad_Male ?? new Texture2D[6];
+            helmet_Iva_VetBad_MaleNRM = helmet_Iva_VetBad_MaleNRM ?? new Texture2D[6];
+            helmet_Iva_Veteran_Female = helmet_Iva_Veteran_Female ?? new Texture2D[6];
+            helmet_Iva_Veteran_FemaleNRM = helmet_Iva_Veteran_FemaleNRM ?? new Texture2D[6];
+            helmet_Iva_Veteran_Male = helmet_Iva_Veteran_Male ?? new Texture2D[6];
+            helmet_Iva_Veteran_MaleNRM = helmet_Iva_Veteran_MaleNRM ?? new Texture2D[6];
+            jetpack_EvaGround_Badass_Female = jetpack_EvaGround_Badass_Female ?? new Texture2D[6];
+            jetpack_EvaGround_Badass_FemaleNRM = jetpack_EvaGround_Badass_FemaleNRM ?? new Texture2D[6];
+            jetpack_EvaGround_Badass_Male = jetpack_EvaGround_Badass_Male ?? new Texture2D[6];
+            jetpack_EvaGround_Badass_MaleNRM = jetpack_EvaGround_Badass_MaleNRM ?? new Texture2D[6];
+            jetpack_EvaGround_Standard_Female = jetpack_EvaGround_Standard_Female ?? new Texture2D[6];
+            jetpack_EvaGround_Standard_FemaleNRM = jetpack_EvaGround_Standard_FemaleNRM ?? new Texture2D[6];
+            jetpack_EvaGround_Standard_Male = jetpack_EvaGround_Standard_Male ?? new Texture2D[6];
+            jetpack_EvaGround_Standard_MaleNRM = jetpack_EvaGround_Standard_MaleNRM ?? new Texture2D[6];
+            jetpack_EvaGround_VetBad_Female = jetpack_EvaGround_VetBad_Female ?? new Texture2D[6];
+            jetpack_EvaGround_VetBad_FemaleNRM = jetpack_EvaGround_VetBad_FemaleNRM ?? new Texture2D[6];
+            jetpack_EvaGround_VetBad_Male = jetpack_EvaGround_VetBad_Male ?? new Texture2D[6];
+            jetpack_EvaGround_VetBad_MaleNRM = jetpack_EvaGround_VetBad_MaleNRM ?? new Texture2D[6];
+            jetpack_EvaGround_Veteran_Female = jetpack_EvaGround_Veteran_Female ?? new Texture2D[6];
+            jetpack_EvaGround_Veteran_FemaleNRM = jetpack_EvaGround_Veteran_FemaleNRM ?? new Texture2D[6];
+            jetpack_EvaGround_Veteran_Male = jetpack_EvaGround_Veteran_Male ?? new Texture2D[6];
+            jetpack_EvaGround_Veteran_MaleNRM = jetpack_EvaGround_Veteran_MaleNRM ?? new Texture2D[6];
+            jetpack_EvaSpace_Badass_Female = jetpack_EvaSpace_Badass_Female ?? new Texture2D[6];
+            jetpack_EvaSpace_Badass_FemaleNRM = jetpack_EvaSpace_Badass_FemaleNRM ?? new Texture2D[6];
+            jetpack_EvaSpace_Badass_Male = jetpack_EvaSpace_Badass_Male ?? new Texture2D[6];
+            jetpack_EvaSpace_Badass_MaleNRM = jetpack_EvaSpace_Badass_MaleNRM ?? new Texture2D[6];
+            jetpack_EvaSpace_Standard_Female = jetpack_EvaSpace_Standard_Female ?? new Texture2D[6];
+            jetpack_EvaSpace_Standard_FemaleNRM = jetpack_EvaSpace_Standard_FemaleNRM ?? new Texture2D[6];
+            jetpack_EvaSpace_Standard_Male = jetpack_EvaSpace_Standard_Male ?? new Texture2D[6];
+            jetpack_EvaSpace_Standard_MaleNRM = jetpack_EvaSpace_Standard_MaleNRM ?? new Texture2D[6];
+            jetpack_EvaSpace_VetBad_Female = jetpack_EvaSpace_VetBad_Female ?? new Texture2D[6];
+            jetpack_EvaSpace_VetBad_FemaleNRM = jetpack_EvaSpace_VetBad_FemaleNRM ?? new Texture2D[6];
+            jetpack_EvaSpace_VetBad_Male = jetpack_EvaSpace_VetBad_Male ?? new Texture2D[6];
+            jetpack_EvaSpace_VetBad_MaleNRM = jetpack_EvaSpace_VetBad_MaleNRM ?? new Texture2D[6];
+            jetpack_EvaSpace_Veteran_Female = jetpack_EvaSpace_Veteran_Female ?? new Texture2D[6];
+            jetpack_EvaSpace_Veteran_FemaleNRM = jetpack_EvaSpace_Veteran_FemaleNRM ?? new Texture2D[6];
+            jetpack_EvaSpace_Veteran_Male = jetpack_EvaSpace_Veteran_Male ?? new Texture2D[6];
+            jetpack_EvaSpace_Veteran_MaleNRM = jetpack_EvaSpace_Veteran_MaleNRM ?? new Texture2D[6];
+            suit_EvaGround_Badass_Female = suit_EvaGround_Badass_Female ?? new Texture2D[6];
+            suit_EvaGround_Badass_FemaleNRM = suit_EvaGround_Badass_FemaleNRM ?? new Texture2D[6];
+            suit_EvaGround_Badass_Male = suit_EvaGround_Badass_Male ?? new Texture2D[6];
+            suit_EvaGround_Badass_MaleNRM = suit_EvaGround_Badass_MaleNRM ?? new Texture2D[6];
+            suit_EvaGround_Standard_Female = suit_EvaGround_Standard_Female ?? new Texture2D[6];
+            suit_EvaGround_Standard_FemaleNRM = suit_EvaGround_Standard_FemaleNRM ?? new Texture2D[6];
+            suit_EvaGround_Standard_Male = suit_EvaGround_Standard_Male ?? new Texture2D[6];
+            suit_EvaGround_Standard_MaleNRM = suit_EvaGround_Standard_MaleNRM ?? new Texture2D[6];
+            suit_EvaGround_VetBad_Female = suit_EvaGround_VetBad_Female ?? new Texture2D[6];
+            suit_EvaGround_VetBad_FemaleNRM = suit_EvaGround_VetBad_FemaleNRM ?? new Texture2D[6];
+            suit_EvaGround_VetBad_Male = suit_EvaGround_VetBad_Male ?? new Texture2D[6];
+            suit_EvaGround_VetBad_MaleNRM = suit_EvaGround_VetBad_MaleNRM ?? new Texture2D[6];
+            suit_EvaGround_Veteran_Female = suit_EvaGround_Veteran_Female ?? new Texture2D[6];
+            suit_EvaGround_Veteran_FemaleNRM = suit_EvaGround_Veteran_FemaleNRM ?? new Texture2D[6];
+            suit_EvaGround_Veteran_Male = suit_EvaGround_Veteran_Male ?? new Texture2D[6];
+            suit_EvaGround_Veteran_MaleNRM = suit_EvaGround_Veteran_MaleNRM ?? new Texture2D[6];
+            suit_EvaSpace_Badass_Female = suit_EvaSpace_Badass_Female ?? new Texture2D[6];
+            suit_EvaSpace_Badass_FemaleNRM = suit_EvaSpace_Badass_FemaleNRM ?? new Texture2D[6];
+            suit_EvaSpace_Badass_Male = suit_EvaSpace_Badass_Male ?? new Texture2D[6];
+            suit_EvaSpace_Badass_MaleNRM = suit_EvaSpace_Badass_MaleNRM ?? new Texture2D[6];
+            suit_EvaSpace_Standard_Female = suit_EvaSpace_Standard_Female ?? new Texture2D[6];
+            suit_EvaSpace_Standard_FemaleNRM = suit_EvaSpace_Standard_FemaleNRM ?? new Texture2D[6];
+            suit_EvaSpace_Standard_Male = suit_EvaSpace_Standard_Male ?? new Texture2D[6];
+            suit_EvaSpace_Standard_MaleNRM = suit_EvaSpace_Standard_MaleNRM ?? new Texture2D[6];
+            suit_EvaSpace_VetBad_Female = suit_EvaSpace_VetBad_Female ?? new Texture2D[6];
+            suit_EvaSpace_VetBad_FemaleNRM = suit_EvaSpace_VetBad_FemaleNRM ?? new Texture2D[6];
+            suit_EvaSpace_VetBad_Male = suit_EvaSpace_VetBad_Male ?? new Texture2D[6];
+            suit_EvaSpace_VetBad_MaleNRM = suit_EvaSpace_VetBad_MaleNRM ?? new Texture2D[6];
+            suit_EvaSpace_Veteran_Female = suit_EvaSpace_Veteran_Female ?? new Texture2D[6];
+            suit_EvaSpace_Veteran_FemaleNRM = suit_EvaSpace_Veteran_FemaleNRM ?? new Texture2D[6];
+            suit_EvaSpace_Veteran_Male = suit_EvaSpace_Veteran_Male ?? new Texture2D[6];
+            suit_EvaSpace_Veteran_MaleNRM = suit_EvaSpace_Veteran_MaleNRM ?? new Texture2D[6];
+            suit_Iva_Badass_Female = suit_Iva_Badass_Female ?? new Texture2D[6];
+            suit_Iva_Badass_FemaleNRM = suit_Iva_Badass_FemaleNRM ?? new Texture2D[6];
+            suit_Iva_Badass_Male = suit_Iva_Badass_Male ?? new Texture2D[6];
+            suit_Iva_Badass_MaleNRM = suit_Iva_Badass_MaleNRM ?? new Texture2D[6];
+            suit_Iva_Standard_Female = suit_Iva_Standard_Female ?? new Texture2D[6];
+            suit_Iva_Standard_FemaleNRM = suit_Iva_Standard_FemaleNRM ?? new Texture2D[6];
+            suit_Iva_Standard_Male = suit_Iva_Standard_Male ?? new Texture2D[6];
+            suit_Iva_Standard_MaleNRM = suit_Iva_Standard_MaleNRM ?? new Texture2D[6];
+            suit_Iva_VetBad_Female = suit_Iva_VetBad_Female ?? new Texture2D[6];
+            suit_Iva_VetBad_FemaleNRM = suit_Iva_VetBad_FemaleNRM ?? new Texture2D[6];
+            suit_Iva_VetBad_Male = suit_Iva_VetBad_Male ?? new Texture2D[6];
+            suit_Iva_VetBad_MaleNRM = suit_Iva_VetBad_MaleNRM ?? new Texture2D[6];
+            suit_Iva_Veteran_Female = suit_Iva_Veteran_Female ?? new Texture2D[6];
+            suit_Iva_Veteran_FemaleNRM = suit_Iva_Veteran_FemaleNRM ?? new Texture2D[6];
+            suit_Iva_Veteran_Male = suit_Iva_Veteran_Male ?? new Texture2D[6];
+            suit_Iva_Veteran_MaleNRM = suit_Iva_Veteran_MaleNRM ?? new Texture2D[6];
+            visor_EvaGround_Badass_Female = visor_EvaGround_Badass_Female ?? new Texture2D[6];
+            visor_EvaGround_Badass_FemaleNRM = visor_EvaGround_Badass_FemaleNRM ?? new Texture2D[6];
+            visor_EvaGround_Badass_Male = visor_EvaGround_Badass_Male ?? new Texture2D[6];
+            visor_EvaGround_Badass_MaleNRM = visor_EvaGround_Badass_MaleNRM ?? new Texture2D[6];
+            visor_EvaGround_Standard_Female = visor_EvaGround_Standard_Female ?? new Texture2D[6];
+            visor_EvaGround_Standard_FemaleNRM = visor_EvaGround_Standard_FemaleNRM ?? new Texture2D[6];
+            visor_EvaGround_Standard_Male = visor_EvaGround_Standard_Male ?? new Texture2D[6];
+            visor_EvaGround_Standard_MaleNRM = visor_EvaGround_Standard_MaleNRM ?? new Texture2D[6];
+            visor_EvaGround_VetBad_Female = visor_EvaGround_VetBad_Female ?? new Texture2D[6];
+            visor_EvaGround_VetBad_FemaleNRM = visor_EvaGround_VetBad_FemaleNRM ?? new Texture2D[6];
+            visor_EvaGround_VetBad_Male = visor_EvaGround_VetBad_Male ?? new Texture2D[6];
+            visor_EvaGround_VetBad_MaleNRM = visor_EvaGround_VetBad_MaleNRM ?? new Texture2D[6];
+            visor_EvaGround_Veteran_Female = visor_EvaGround_Veteran_Female ?? new Texture2D[6];
+            visor_EvaGround_Veteran_FemaleNRM = visor_EvaGround_Veteran_FemaleNRM ?? new Texture2D[6];
+            visor_EvaGround_Veteran_Male = visor_EvaGround_Veteran_Male ?? new Texture2D[6];
+            visor_EvaGround_Veteran_MaleNRM = visor_EvaGround_Veteran_MaleNRM ?? new Texture2D[6];
+            visor_EvaSpace_Badass_Female = visor_EvaSpace_Badass_Female ?? new Texture2D[6];
+            visor_EvaSpace_Badass_FemaleNRM = visor_EvaSpace_Badass_FemaleNRM ?? new Texture2D[6];
+            visor_EvaSpace_Badass_Male = visor_EvaSpace_Badass_Male ?? new Texture2D[6];
+            visor_EvaSpace_Badass_MaleNRM = visor_EvaSpace_Badass_MaleNRM ?? new Texture2D[6];
+            visor_EvaSpace_Standard_Female = visor_EvaSpace_Standard_Female ?? new Texture2D[6];
+            visor_EvaSpace_Standard_FemaleNRM = visor_EvaSpace_Standard_FemaleNRM ?? new Texture2D[6];
+            visor_EvaSpace_Standard_Male = visor_EvaSpace_Standard_Male ?? new Texture2D[6];
+            visor_EvaSpace_Standard_MaleNRM = visor_EvaSpace_Standard_MaleNRM ?? new Texture2D[6];
+            visor_EvaSpace_VetBad_Female = visor_EvaSpace_VetBad_Female ?? new Texture2D[6];
+            visor_EvaSpace_VetBad_FemaleNRM = visor_EvaSpace_VetBad_FemaleNRM ?? new Texture2D[6];
+            visor_EvaSpace_VetBad_Male = visor_EvaSpace_VetBad_Male ?? new Texture2D[6];
+            visor_EvaSpace_VetBad_MaleNRM = visor_EvaSpace_VetBad_MaleNRM ?? new Texture2D[6];
+            visor_EvaSpace_Veteran_Female = visor_EvaSpace_Veteran_Female ?? new Texture2D[6];
+            visor_EvaSpace_Veteran_FemaleNRM = visor_EvaSpace_Veteran_FemaleNRM ?? new Texture2D[6];
+            visor_EvaSpace_Veteran_Male = visor_EvaSpace_Veteran_Male ?? new Texture2D[6];
+            visor_EvaSpace_Veteran_MaleNRM = visor_EvaSpace_Veteran_MaleNRM ?? new Texture2D[6];
+            visor_Iva_Badass_Female = visor_Iva_Badass_Female ?? new Texture2D[6];
+            visor_Iva_Badass_FemaleNRM = visor_Iva_Badass_FemaleNRM ?? new Texture2D[6];
+            visor_Iva_Badass_Male = visor_Iva_Badass_Male ?? new Texture2D[6];
+            visor_Iva_Badass_MaleNRM = visor_Iva_Badass_MaleNRM ?? new Texture2D[6];
+            visor_Iva_Standard_Female = visor_Iva_Standard_Female ?? new Texture2D[6];
+            visor_Iva_Standard_FemaleNRM = visor_Iva_Standard_FemaleNRM ?? new Texture2D[6];
+            visor_Iva_Standard_Male = visor_Iva_Standard_Male ?? new Texture2D[6];
+            visor_Iva_Standard_MaleNRM = visor_Iva_Standard_MaleNRM ?? new Texture2D[6];
+            visor_Iva_VetBad_Female = visor_Iva_VetBad_Female ?? new Texture2D[6];
+            visor_Iva_VetBad_FemaleNRM = visor_Iva_VetBad_FemaleNRM ?? new Texture2D[6];
+            visor_Iva_VetBad_Male = visor_Iva_VetBad_Male ?? new Texture2D[6];
+            visor_Iva_VetBad_MaleNRM = visor_Iva_VetBad_MaleNRM ?? new Texture2D[6];
+            visor_Iva_Veteran_Female = visor_Iva_Veteran_Female ?? new Texture2D[6];
+            visor_Iva_Veteran_FemaleNRM = visor_Iva_Veteran_FemaleNRM ?? new Texture2D[6];
+            visor_Iva_Veteran_Male = visor_Iva_Veteran_Male ?? new Texture2D[6];
+            visor_Iva_Veteran_MaleNRM = visor_Iva_Veteran_MaleNRM ?? new Texture2D[6];
 
             switch (originalName)
             {
@@ -4088,8 +6747,7 @@ namespace TextureReplacerReplaced
                     catch (FormatException)
                     {
                         level = 0;
-                    }
-                    helmet_EvaGround_Badass_Female = helmet_EvaGround_Badass_Female ?? new Texture2D[6];
+                    }                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Badass_Female[i] = texture;
                     return true;
@@ -4108,8 +6766,7 @@ namespace TextureReplacerReplaced
                     catch (FormatException)
                     {
                         level = 0;
-                    }
-                    helmet_EvaGround_Badass_FemaleNRM = helmet_EvaGround_Badass_FemaleNRM ?? new Texture2D[6];
+                    }                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -4129,7 +6786,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_Badass_Male = helmet_EvaGround_Badass_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Badass_Male[i] = texture;
                     return true;
@@ -4149,7 +6806,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_Badass_MaleNRM = helmet_EvaGround_Badass_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Badass_MaleNRM[i] = texture;
                     return true;
@@ -4169,7 +6826,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_Standard_Female = helmet_EvaGround_Standard_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Standard_Female[i] = texture;
                     return true;
@@ -4189,7 +6846,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_Standard_FemaleNRM = helmet_EvaGround_Standard_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -4216,7 +6873,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_Standard_Male = helmet_EvaGround_Standard_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Standard_Male[i] = texture;
                     return true;
@@ -4243,7 +6900,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_Standard_MaleNRM = helmet_EvaGround_Standard_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Standard_MaleNRM[i] = texture;
                     return true;
@@ -4263,7 +6920,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_VetBad_Female = helmet_EvaGround_VetBad_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_VetBad_Female[i] = texture;
                     return true;
@@ -4283,7 +6940,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_VetBad_FemaleNRM = helmet_EvaGround_VetBad_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -4303,7 +6960,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_VetBad_Male = helmet_EvaGround_VetBad_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_VetBad_Male[i] = texture;
                     return true;
@@ -4323,7 +6980,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_VetBad_MaleNRM = helmet_EvaGround_VetBad_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -4343,7 +7000,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_Veteran_Female = helmet_EvaGround_Veteran_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Veteran_Female[i] = texture;
                     return true;
@@ -4363,7 +7020,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_Veteran_FemaleNRM = helmet_EvaGround_Veteran_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -4383,7 +7040,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_Veteran_Male = helmet_EvaGround_Veteran_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Veteran_Male[i] = texture;
                     return true;
@@ -4403,7 +7060,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaGround_Veteran_MaleNRM = helmet_EvaGround_Veteran_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaGround_Veteran_MaleNRM[i] = texture;
                     return true;
@@ -4423,7 +7080,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Badass_Female = helmet_EvaSpace_Badass_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Badass_Female[i] = texture;
                     return true;
@@ -4443,7 +7100,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Badass_FemaleNRM = helmet_EvaSpace_Badass_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -4463,7 +7120,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Badass_Male = helmet_EvaSpace_Badass_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Badass_Male[i] = texture;
                     return true;
@@ -4483,7 +7140,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Badass_MaleNRM = helmet_EvaSpace_Badass_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Badass_MaleNRM[i] = texture;
                     return true;
@@ -4503,7 +7160,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Standard_Female = helmet_EvaSpace_Standard_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Standard_Female[i] = texture;
                     return true;
@@ -4523,7 +7180,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Standard_FemaleNRM = helmet_EvaSpace_Standard_FemaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -4550,7 +7207,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Standard_Male = helmet_EvaSpace_Standard_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Standard_Male[i] = texture;
                     return true;
@@ -4577,7 +7234,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Standard_MaleNRM = helmet_EvaSpace_Standard_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Standard_MaleNRM[i] = texture;
                     return true;
@@ -4597,7 +7254,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_VetBad_Female = helmet_EvaSpace_VetBad_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_VetBad_Female[i] = texture;
                     return true;
@@ -4617,7 +7274,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_VetBad_FemaleNRM = helmet_EvaSpace_VetBad_FemaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -4637,7 +7294,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_VetBad_Male = helmet_EvaSpace_VetBad_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_VetBad_Male[i] = texture;
                     return true;
@@ -4657,7 +7314,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_VetBad_MaleNRM = helmet_EvaSpace_VetBad_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -4677,7 +7334,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Veteran_Female = helmet_EvaSpace_Veteran_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Veteran_Female[i] = texture;
                     return true;
@@ -4697,7 +7354,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Veteran_FemaleNRM = helmet_EvaSpace_Veteran_FemaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -4717,7 +7374,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Veteran_Male = helmet_EvaSpace_Veteran_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Veteran_Male[i] = texture;
                     return true;
@@ -4737,7 +7394,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_EvaSpace_Veteran_MaleNRM = helmet_EvaSpace_Veteran_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_EvaSpace_Veteran_MaleNRM[i] = texture;
                     return true;
@@ -4757,7 +7414,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Badass_Female = helmet_Iva_Badass_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Badass_Female[i] = texture;
                     return true;
@@ -4777,7 +7434,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Badass_FemaleNRM = helmet_Iva_Badass_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -4797,7 +7454,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Badass_Male = helmet_Iva_Badass_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Badass_Male[i] = texture;
                     return true;
@@ -4817,7 +7474,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Badass_MaleNRM = helmet_Iva_Badass_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Badass_MaleNRM[i] = texture;
                     return true;
@@ -4837,7 +7494,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Standard_Female = helmet_Iva_Standard_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Standard_Female[i] = texture;
                     return true;
@@ -4857,7 +7514,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Standard_FemaleNRM = helmet_Iva_Standard_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -4884,7 +7541,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Standard_Male = helmet_Iva_Standard_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Standard_Male[i] = texture;
                     return true;
@@ -4911,7 +7568,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Standard_MaleNRM = helmet_Iva_Standard_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Standard_MaleNRM[i] = texture;
                     return true;
@@ -4931,7 +7588,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_VetBad_Female = helmet_Iva_VetBad_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_VetBad_Female[i] = texture;
                     return true;
@@ -4951,7 +7608,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_VetBad_FemaleNRM = helmet_Iva_VetBad_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -4971,7 +7628,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_VetBad_Male = helmet_Iva_VetBad_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_VetBad_Male[i] = texture;
                     return true;
@@ -4991,7 +7648,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_VetBad_MaleNRM = helmet_Iva_VetBad_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -5011,7 +7668,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Veteran_Female = helmet_Iva_Veteran_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Veteran_Female[i] = texture;
                     return true;
@@ -5031,7 +7688,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Veteran_FemaleNRM = helmet_Iva_Veteran_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -5051,7 +7708,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Veteran_Male = helmet_Iva_Veteran_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Veteran_Male[i] = texture;
                     return true;
@@ -5071,7 +7728,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    helmet_Iva_Veteran_MaleNRM = helmet_Iva_Veteran_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         helmet_Iva_Veteran_MaleNRM[i] = texture;
                     return true;
@@ -5091,7 +7748,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Badass_Female = jetpack_EvaGround_Badass_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Badass_Female[i] = texture;
                     return true;
@@ -5111,7 +7768,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Badass_FemaleNRM = jetpack_EvaGround_Badass_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -5131,7 +7788,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Badass_Male = jetpack_EvaGround_Badass_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Badass_Male[i] = texture;
                     return true;
@@ -5151,7 +7808,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Badass_MaleNRM = jetpack_EvaGround_Badass_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Badass_MaleNRM[i] = texture;
                     return true;
@@ -5171,7 +7828,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Standard_Female = jetpack_EvaGround_Standard_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Standard_Female[i] = texture;
                     return true;
@@ -5191,7 +7848,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Standard_FemaleNRM = jetpack_EvaGround_Standard_FemaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -5218,7 +7875,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Standard_Male = jetpack_EvaGround_Standard_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Standard_Male[i] = texture;
                     return true;
@@ -5245,7 +7902,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Standard_MaleNRM = jetpack_EvaGround_Standard_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Standard_MaleNRM[i] = texture;
                     return true;
@@ -5265,7 +7922,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_VetBad_Female = jetpack_EvaGround_VetBad_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_VetBad_Female[i] = texture;
                     return true;
@@ -5285,7 +7942,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_VetBad_FemaleNRM = jetpack_EvaGround_VetBad_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -5305,7 +7962,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_VetBad_Male = jetpack_EvaGround_VetBad_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_VetBad_Male[i] = texture;
                     return true;
@@ -5325,7 +7982,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_VetBad_MaleNRM = jetpack_EvaGround_VetBad_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -5345,7 +8002,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Veteran_Female = jetpack_EvaGround_Veteran_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Veteran_Female[i] = texture;
                     return true;
@@ -5365,7 +8022,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Veteran_FemaleNRM = jetpack_EvaGround_Veteran_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -5385,7 +8042,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Veteran_Male = jetpack_EvaGround_Veteran_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Veteran_Male[i] = texture;
                     return true;
@@ -5405,7 +8062,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaGround_Veteran_MaleNRM = jetpack_EvaGround_Veteran_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaGround_Veteran_MaleNRM[i] = texture;
                     return true;
@@ -5425,7 +8082,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Badass_Female = jetpack_EvaSpace_Badass_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Badass_Female[i] = texture;
                     return true;
@@ -5445,7 +8102,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Badass_FemaleNRM = jetpack_EvaSpace_Badass_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -5465,7 +8122,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Badass_Male = jetpack_EvaSpace_Badass_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Badass_Male[i] = texture;
                     return true;
@@ -5485,7 +8142,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Badass_MaleNRM = jetpack_EvaSpace_Badass_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Badass_MaleNRM[i] = texture;
                     return true;
@@ -5505,7 +8162,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Standard_Female = jetpack_EvaSpace_Standard_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Standard_Female[i] = texture;
                     return true;
@@ -5525,7 +8182,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Standard_FemaleNRM = jetpack_EvaSpace_Standard_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -5552,7 +8209,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Standard_Male = jetpack_EvaSpace_Standard_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Standard_Male[i] = texture;
                     return true;
@@ -5579,7 +8236,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Standard_MaleNRM = jetpack_EvaSpace_Standard_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Standard_MaleNRM[i] = texture;
                     return true;
@@ -5599,7 +8256,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_VetBad_Female = jetpack_EvaSpace_VetBad_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_VetBad_Female[i] = texture;
                     return true;
@@ -5619,7 +8276,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_VetBad_FemaleNRM = jetpack_EvaSpace_VetBad_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -5639,7 +8296,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_VetBad_Male = jetpack_EvaSpace_VetBad_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_VetBad_Male[i] = texture;
                     return true;
@@ -5659,7 +8316,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_VetBad_MaleNRM = jetpack_EvaSpace_VetBad_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -5679,7 +8336,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Veteran_Female = jetpack_EvaSpace_Veteran_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Veteran_Female[i] = texture;
                     return true;
@@ -5699,7 +8356,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Veteran_FemaleNRM = jetpack_EvaSpace_Veteran_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -5719,7 +8376,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Veteran_Male = jetpack_EvaSpace_Veteran_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Veteran_Male[i] = texture;
                     return true;
@@ -5739,7 +8396,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    jetpack_EvaSpace_Veteran_MaleNRM = jetpack_EvaSpace_Veteran_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         jetpack_EvaSpace_Veteran_MaleNRM[i] = texture;
                     return true;                
@@ -5759,7 +8416,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Badass_Female = suit_EvaGround_Badass_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Badass_Female[i] = texture;
                     return true;
@@ -5779,7 +8436,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Badass_FemaleNRM = suit_EvaGround_Badass_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -5799,7 +8456,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Badass_Male = suit_EvaGround_Badass_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Badass_Male[i] = texture;
                     return true;
@@ -5819,7 +8476,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Badass_MaleNRM = suit_EvaGround_Badass_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Badass_MaleNRM[i] = texture;
                     return true;
@@ -5839,7 +8496,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Standard_Female = suit_EvaGround_Standard_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Standard_Female[i] = texture;
                     return true;
@@ -5859,7 +8516,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Standard_FemaleNRM = suit_EvaGround_Standard_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -5887,7 +8544,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Standard_Male = suit_EvaGround_Standard_Male ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Standard_Male[i] = texture;
                     return true;
@@ -5914,7 +8571,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Standard_MaleNRM = suit_EvaGround_Standard_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Standard_MaleNRM[i] = texture;
                     return true;
@@ -5934,7 +8591,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_VetBad_Female = suit_EvaGround_VetBad_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_VetBad_Female[i] = texture;
                     return true;
@@ -5954,7 +8611,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_VetBad_FemaleNRM = suit_EvaGround_VetBad_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -5974,7 +8631,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_VetBad_Male = suit_EvaGround_VetBad_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_VetBad_Male[i] = texture;
                     return true;
@@ -5994,7 +8651,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_VetBad_MaleNRM = suit_EvaGround_VetBad_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -6014,7 +8671,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Veteran_Female = suit_EvaGround_Veteran_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Veteran_Female[i] = texture;
                     return true;
@@ -6034,7 +8691,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Veteran_FemaleNRM = suit_EvaGround_Veteran_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -6054,7 +8711,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Veteran_Male = suit_EvaGround_Veteran_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Veteran_Male[i] = texture;
                     return true;
@@ -6074,7 +8731,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaGround_Veteran_MaleNRM = suit_EvaGround_Veteran_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         suit_EvaGround_Veteran_MaleNRM[i] = texture;
                     return true;
@@ -6094,7 +8751,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Badass_Female = suit_EvaSpace_Badass_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Badass_Female[i] = texture;
                     return true;
@@ -6114,7 +8771,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Badass_FemaleNRM = suit_EvaSpace_Badass_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -6134,7 +8791,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Badass_Male = suit_EvaSpace_Badass_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Badass_Male[i] = texture;
                     return true;
@@ -6154,7 +8811,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Badass_MaleNRM = suit_EvaSpace_Badass_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Badass_MaleNRM[i] = texture;
                     return true;
@@ -6174,7 +8831,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Standard_Female = suit_EvaSpace_Standard_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Standard_Female[i] = texture;
                     return true;
@@ -6194,7 +8851,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Standard_FemaleNRM = suit_EvaSpace_Standard_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -6221,7 +8878,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Standard_Male = suit_EvaSpace_Standard_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Standard_Male[i] = texture;
                     return true;
@@ -6248,7 +8905,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Standard_MaleNRM = suit_EvaSpace_Standard_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Standard_MaleNRM[i] = texture;
                     return true;
@@ -6268,7 +8925,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_VetBad_Female = suit_EvaSpace_VetBad_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_VetBad_Female[i] = texture;
                     return true;
@@ -6288,7 +8945,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_VetBad_FemaleNRM = suit_EvaSpace_VetBad_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -6308,7 +8965,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_VetBad_Male = suit_EvaSpace_VetBad_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_VetBad_Male[i] = texture;
                     return true;
@@ -6328,7 +8985,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_VetBad_MaleNRM = suit_EvaSpace_VetBad_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -6348,7 +9005,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Veteran_Female = suit_EvaSpace_Veteran_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Veteran_Female[i] = texture;
                     return true;
@@ -6368,7 +9025,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Veteran_FemaleNRM = suit_EvaSpace_Veteran_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -6388,7 +9045,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Veteran_Male = suit_EvaSpace_Veteran_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Veteran_Male[i] = texture;
                     return true;
@@ -6408,7 +9065,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_EvaSpace_Veteran_MaleNRM = suit_EvaSpace_Veteran_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         suit_EvaSpace_Veteran_MaleNRM[i] = texture;
                     return true;
@@ -6428,7 +9085,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Badass_Female = suit_Iva_Badass_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Badass_Female[i] = texture;
                     return true;
@@ -6448,7 +9105,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Badass_FemaleNRM = suit_Iva_Badass_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -6468,7 +9125,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Badass_Male = suit_Iva_Badass_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Badass_Male[i] = texture;
                     return true;
@@ -6488,7 +9145,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Badass_MaleNRM = suit_Iva_Badass_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Badass_MaleNRM[i] = texture;
                     return true;
@@ -6508,7 +9165,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Standard_Female = suit_Iva_Standard_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Standard_Female[i] = texture;
                     return true;
@@ -6528,7 +9185,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Standard_FemaleNRM = suit_Iva_Standard_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -6555,7 +9212,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Standard_Male = suit_Iva_Standard_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Standard_Male[i] = texture;
                     return true;
@@ -6582,7 +9239,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Standard_MaleNRM = suit_Iva_Standard_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Standard_MaleNRM[i] = texture;
                     return true;
@@ -6602,7 +9259,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_VetBad_Female = suit_Iva_VetBad_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         suit_Iva_VetBad_Female[i] = texture;
                     return true;
@@ -6622,7 +9279,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_VetBad_FemaleNRM = suit_Iva_VetBad_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -6642,7 +9299,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_VetBad_Male = suit_Iva_VetBad_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_VetBad_Male[i] = texture;
                     return true;
@@ -6662,7 +9319,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_VetBad_MaleNRM = suit_Iva_VetBad_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -6682,7 +9339,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Veteran_Female = suit_Iva_Veteran_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Veteran_Female[i] = texture;
                     return true;
@@ -6702,7 +9359,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Veteran_FemaleNRM = suit_Iva_Veteran_FemaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -6728,7 +9385,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Veteran_Male = suit_Iva_Veteran_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Veteran_Male[i] = texture;
                     return true;
@@ -6748,7 +9405,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    suit_Iva_Veteran_MaleNRM = suit_Iva_Veteran_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         suit_Iva_Veteran_MaleNRM[i] = texture;
                     return true;
@@ -6768,7 +9425,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Badass_Female = visor_EvaGround_Badass_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Badass_Female[i] = texture;
                     return true;
@@ -6788,7 +9445,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Badass_FemaleNRM = visor_EvaGround_Badass_FemaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -6808,7 +9465,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Badass_Male = visor_EvaGround_Badass_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Badass_Male[i] = texture;
                     return true;
@@ -6828,7 +9485,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Badass_MaleNRM = visor_EvaGround_Badass_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Badass_MaleNRM[i] = texture;
                     return true;
@@ -6848,7 +9505,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Standard_Female = visor_EvaGround_Standard_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Standard_Female[i] = texture;
                     return true;
@@ -6868,7 +9525,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Standard_FemaleNRM = visor_EvaGround_Standard_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -6895,7 +9552,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Standard_Male = visor_EvaGround_Standard_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Standard_Male[i] = texture;
                     return true;
@@ -6922,7 +9579,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Standard_MaleNRM = visor_EvaGround_Standard_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Standard_MaleNRM[i] = texture;
                     return true;
@@ -6942,7 +9599,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_VetBad_Female = visor_EvaGround_VetBad_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_VetBad_Female[i] = texture;
                     return true;
@@ -6962,7 +9619,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_VetBad_FemaleNRM = visor_EvaGround_VetBad_FemaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -6982,7 +9639,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_VetBad_Male = visor_EvaGround_VetBad_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_VetBad_Male[i] = texture;
                     return true;
@@ -7002,7 +9659,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_VetBad_MaleNRM = visor_EvaGround_VetBad_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -7022,7 +9679,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Veteran_Female = visor_EvaGround_Veteran_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Veteran_Female[i] = texture;
                     return true;
@@ -7042,7 +9699,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Veteran_FemaleNRM = visor_EvaGround_Veteran_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -7062,7 +9719,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Veteran_Male = visor_EvaGround_Veteran_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Veteran_Male[i] = texture;
                     return true;
@@ -7082,7 +9739,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaGround_Veteran_MaleNRM = visor_EvaGround_Veteran_MaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         visor_EvaGround_Veteran_MaleNRM[i] = texture;
                     return true;
@@ -7102,7 +9759,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Badass_Female = visor_EvaSpace_Badass_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Badass_Female[i] = texture;
                     return true;
@@ -7122,7 +9779,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Badass_FemaleNRM = visor_EvaSpace_Badass_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -7142,7 +9799,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Badass_Male = visor_EvaSpace_Badass_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Badass_Male[i] = texture;
                     return true;
@@ -7162,7 +9819,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Badass_MaleNRM = visor_EvaSpace_Badass_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Badass_MaleNRM[i] = texture;
                     return true;
@@ -7182,7 +9839,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Standard_Female = visor_EvaSpace_Standard_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Standard_Female[i] = texture;
                     return true;
@@ -7202,7 +9859,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Standard_FemaleNRM = visor_EvaSpace_Standard_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -7230,7 +9887,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Standard_Male = visor_EvaSpace_Standard_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Standard_Male[i] = texture;
                     return true;
@@ -7257,7 +9914,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Standard_MaleNRM = visor_EvaSpace_Standard_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Standard_MaleNRM[i] = texture;
                     return true;
@@ -7277,7 +9934,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_VetBad_Female = visor_EvaSpace_VetBad_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_VetBad_Female[i] = texture;
                     return true;
@@ -7297,7 +9954,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_VetBad_FemaleNRM = visor_EvaSpace_VetBad_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -7317,7 +9974,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_VetBad_Male = visor_EvaSpace_VetBad_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_VetBad_Male[i] = texture;
                     return true;
@@ -7337,7 +9994,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_VetBad_MaleNRM = visor_EvaSpace_VetBad_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -7357,7 +10014,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Veteran_Female = visor_EvaSpace_Veteran_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Veteran_Female[i] = texture;
                     return true;
@@ -7377,7 +10034,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Veteran_FemaleNRM = visor_EvaSpace_Veteran_FemaleNRM ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -7397,7 +10054,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Veteran_Male = visor_EvaSpace_Veteran_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Veteran_Male[i] = texture;
                     return true;
@@ -7417,7 +10074,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_EvaSpace_Veteran_MaleNRM = visor_EvaSpace_Veteran_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_EvaSpace_Veteran_MaleNRM[i] = texture;
                     return true;
@@ -7437,7 +10094,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Badass_Female = visor_Iva_Badass_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Badass_Female[i] = texture;
                     return true;
@@ -7457,7 +10114,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Badass_FemaleNRM = visor_Iva_Badass_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Badass_FemaleNRM[i] = texture;
                     return true;
@@ -7477,7 +10134,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Badass_Male = visor_Iva_Badass_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Badass_Male[i] = texture;
                     return true;
@@ -7497,7 +10154,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Badass_MaleNRM = visor_Iva_Badass_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Badass_MaleNRM[i] = texture;
                     return true;
@@ -7517,7 +10174,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Standard_Female = visor_Iva_Standard_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Standard_Female[i] = texture;
                     return true;
@@ -7537,7 +10194,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Standard_FemaleNRM = visor_Iva_Standard_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Standard_FemaleNRM[i] = texture;
                     return true;
@@ -7564,7 +10221,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Standard_Male = visor_Iva_Standard_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Standard_Male[i] = texture;
                     return true;
@@ -7591,7 +10248,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Standard_MaleNRM = visor_Iva_Standard_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Standard_MaleNRM[i] = texture;
                     return true;
@@ -7611,7 +10268,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_VetBad_Female = visor_Iva_VetBad_Female ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_VetBad_Female[i] = texture;
                     return true;
@@ -7631,7 +10288,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_VetBad_FemaleNRM = visor_Iva_VetBad_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_VetBad_FemaleNRM[i] = texture;
                     return true;
@@ -7651,7 +10308,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_VetBad_Male = visor_Iva_VetBad_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_VetBad_Male[i] = texture;
                     return true;
@@ -7671,7 +10328,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_VetBad_MaleNRM = visor_Iva_VetBad_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_VetBad_MaleNRM[i] = texture;
                     return true;
@@ -7691,7 +10348,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Veteran_Female = visor_Iva_Veteran_Female ?? new Texture2D[6];
+                   
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Veteran_Female[i] = texture;
                     return true;
@@ -7711,7 +10368,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Veteran_FemaleNRM = visor_Iva_Veteran_FemaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Veteran_FemaleNRM[i] = texture;
                     return true;
@@ -7731,7 +10388,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Veteran_Male = visor_Iva_Veteran_Male ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Veteran_Male[i] = texture;
                     return true;
@@ -7751,7 +10408,7 @@ namespace TextureReplacerReplaced
                     {
                         level = 0;
                     }
-                    visor_Iva_Veteran_MaleNRM = visor_Iva_Veteran_MaleNRM ?? new Texture2D[6];
+                    
                     for (int i = level; i < 6; ++i)
                         visor_Iva_Veteran_MaleNRM[i] = texture;
                     return true;

@@ -52,7 +52,12 @@ namespace TextureReplacerReplaced
         public bool isVeteran;
 
         /// <summary>
-        /// The head of the kerbal
+        /// Is the kerbal a badass ? 
+        /// </summary>
+        public bool isBadass;
+
+        /// <summary>
+        /// The head set of the kerbal
         /// </summary>
         public Head_Set head;
 
@@ -64,7 +69,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// The forced cabin suit (IVA) of the kerbal
         /// </summary>
-        public Suit_Set cabinSuit;
+        //public Suit_Set cabinSuit;
     }
 
 
