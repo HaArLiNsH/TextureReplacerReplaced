@@ -1,21 +1,20 @@
 ﻿Shader "ShaderNG/TR_Reflective_Emissive_Alpha"
 {
-	Properties
-	{
-		[Header(Texture Maps)]
-	_MainTex("_MainTex (RGB spec(A))", 2D) = "gray" {}
-	_BumpMap("_BumpMap", 2D) = "bump" {}
-	_Color("_Color", Color) = (1,1,1,1)
-		[Header(Shininess)]
-	_SpecColor("_SpecColor", Color) = (0.5, 0.5, 0.5, 1)
-		//_Shininess ("_Shininess", Range (0.03, 1)) = 0.4			//don't need that shit, getting it from spec mask instead looks more realistic
-		//_ReflectionMask("_ReflectionMask (RGB)", 2D) = "black" {}
+Properties
+{
+	[Header(Texture Maps)]
+		_MainTex("_MainTex (RGB spec(A))", 2D) = "gray" {}
+		_BumpMap("_BumpMap", 2D) = "bump" {}
+		_Color("_Color", Color) = (1,1,1,1)
+	[Header(Shininess)]
+		_SpecColor("_SpecColor", Color) = (0.5, 0.5, 0.5, 1)
+		_ReflectColor("_ReflectColor", Color) = (1,1,1,1)
 		_Cube("Reflection Cubemap", Cube) = "_Skybox" { }
 	[Header(Emissive)]
-	_Emissive("_Emissive (RGB)", 2D) = "white" {}
-	_EmissiveColor("_EmissiveColor", Color) = (0,0,0,1)
-		[Header(Effects)]
-	_Opacity("_Opacity", Range(0,1)) = 1
+		_Emissive("_Emissive (RGB)", 2D) = "white" {}
+		_EmissiveColor("_EmissiveColor", Color) = (0,0,0,1)
+	[Header(Effects)]
+		_Opacity("_Opacity", Range(0,1)) = 1
 		_RimFalloff("_RimFalloff", Range(0.01,5)) = 0.1
 		_RimColor("_RimColor", Color) = (0,0,0,0)
 		_TemperatureColor("_TemperatureColor", Color) = (0,0,0,0)
@@ -35,7 +34,7 @@
 #pragma surface surf BlinnPhongSmooth keepalpha
 #pragma target 3.0
 
-		sampler2D _MainTex;
+	sampler2D _MainTex;
 	sampler2D _BumpMap;
 	samplerCUBE _Cube;
 	//sampler2D _ReflectionMask;
@@ -49,6 +48,7 @@
 	float4 _TemperatureColor;
 	float4 _BurnColor;
 	float4 _Color;
+	float4 _ReflectColor;
 
 
 	struct Input
@@ -122,7 +122,7 @@
 		float3 worldRefl = WorldReflectionVector(IN, o.Normal);
 		fixed4 reflcol = texCUBE(_Cube, worldRefl);
 
-		o.Emission = emission + (reflcol.rgb * (color.rgb * 3 ) * color.a);
+		o.Emission = emission + (reflcol.rgb * _ReflectColor.rgb * (color.rgb * 3 )  * color.a * _ReflectColor.a );
 
 		o.Emission *= _Opacity * fog.a * emissive.a;
 		o.Alpha = _Opacity * fog.a * emissive.a;
