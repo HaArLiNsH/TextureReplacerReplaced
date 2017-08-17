@@ -128,7 +128,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Print names of meshes and their shaders in parts with TRReflection module.
         /// </summary>
-        public bool logReflectiveMeshes = false;
+        public bool logReflectiveMeshes = true;
 
         /// <summary>
         /// Reflective shader.
@@ -582,7 +582,7 @@ namespace TextureReplacerReplaced
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// This is used to load the reflection type saved in the .cfg and persistant save
+        /// This is used to load the reflection type saved in the .cfg and persistent save
         /// </summary>
         /// <param name="node"></param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -597,7 +597,7 @@ namespace TextureReplacerReplaced
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// This is used to save the reflection type persistant save
+        /// This is used to save the reflection type persistent save
         /// </summary>
         /// <param name="node"></param>
         /// ////////////////////////////////////////////////////////////////////////////////////////

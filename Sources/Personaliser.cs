@@ -37,7 +37,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Default Male and Female head set (from `Default/`).
         /// </summary>
-        public readonly Head_Set[] defaulMaleAndFemaleHeads = { new Head_Set { headName = "DEFAULT" }, new Head_Set { headName = "DEFAULT" } };
+        public readonly Head_Set[] defaulMaleAndFemaleHeads = { new Head_Set { headSetName = "DEFAULT" }, new Head_Set { headSetName = "DEFAULT" } };
 
         /// <summary>
         /// Default suit textures (from `Default/`).
@@ -57,14 +57,34 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Male and female heads textures (minus excluded).
         /// </summary>
-        private readonly List<Head_Set>[] maleAndfemaleHeadsDB_cleaned = { new List<Head_Set>(), new List<Head_Set>() };
+        public readonly List<Head_Set>[] maleAndfemaleHeadsDB_full = { new List<Head_Set>(), new List<Head_Set>() };
+
+        /// <summary>
+        /// Male and female heads textures (minus excluded).
+        /// </summary>
+        public readonly List<Head_Set>[] maleAndfemaleHeadsDB_cleaned = { new List<Head_Set>(), new List<Head_Set>() };
 
         /// <summary>
         /// Male and female suits textures (minus excluded).  
         /// </summary>
         private readonly List<Suit_Set>[] maleAndfemaleSuitsDB_cleaned = { new List<Suit_Set>(), new List<Suit_Set>() };
 
+        /// <summary>
+        /// List of the suit set (minus excluded). 
+        /// </summary>
         private readonly List<Suit_Set> KerbalSuitsDB_cleaned = new List<Suit_Set>();
+
+        /// <summary>
+        /// Here we have the list of all the kerbal and the head set each one uses.
+        /// </summary>
+       /* public Dictionary<string, int>[] maleAndfemaleHeadNumberOfUSe = new Dictionary<string, int>[]
+        {
+            new Dictionary<string, int>(), new Dictionary<string, int>()
+        };*/
+
+        public Dictionary<string, string> KerbalAndTheirHeadsDB = new Dictionary<string, string>();
+
+        public Dictionary<string, int> headCount = new Dictionary<string, int>();
 
         /// <summary>
         /// List of your personalized Kerbals with their KerbalData
@@ -147,7 +167,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Instance of Personaliser
         /// </summary>
-        public static Personaliser instance = null;
+        public static Personaliser instance = null;        
 
         /* =========================================================================================
          * general TRR options
@@ -675,17 +695,40 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public Head_Set getKerbalHead(ProtoCrewMember kerbal, KerbalData kerbalData)
         {
-            if (kerbalData.head != null)
-                return kerbalData.head;
+
+            Personaliser personaliser = Personaliser.instance;
+
+            Randomizer random = new Randomizer();
+
 
             List<Head_Set> genderHeads = maleAndfemaleHeadsDB_cleaned[kerbalData.gender];
-            if (genderHeads.Count == 0)
-                return defaulMaleAndFemaleHeads[(int)kerbal.gender];
 
-            // Hash is multiplied with a large prime to increase randomisation, since hashes returned by `GetHashCode()` are
-            // close together if strings only differ in the last (few) char(s).
-            int number = (kerbalData.hash * 4099) & 0x7fffffff;
-            return genderHeads[number % genderHeads.Count];
+            if (kerbalData.head != null)
+                return kerbalData.head;            
+
+            if (genderHeads.Count == 0)
+            {               
+                return defaulMaleAndFemaleHeads[(int)kerbal.gender];
+            }
+            
+            // if the kerbal had no head set , choose one randomly.    
+            kerbalData.head = random.randomize((int)kerbal.gender);
+
+            string value = "";
+
+            if (KerbalAndTheirHeadsDB.TryGetValue(kerbal.name, out value))
+            {
+                KerbalAndTheirHeadsDB[kerbal.name] = kerbalData.head.headSetName;
+            }
+            else
+            {
+                KerbalAndTheirHeadsDB.Add(kerbal.name, kerbalData.head.headSetName);
+            }
+            //Util.log("{0} use this head set : {1}", kerbal.name, kerbalData.head.headSetName);
+
+            return kerbalData.head;
+
+
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -786,16 +829,57 @@ namespace TextureReplacerReplaced
                     switch (smr.name)
                     {
                         case "eyeballLeft":
-                        case "eyeballRight":
-                        case "pupilLeft":
-                        case "pupilRight":
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballLeft":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballRight":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilLeft":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilRight":
-                            if (personaliseKerbal_Head != null && personaliseKerbal_Head.isEyeless)
-                                smr.sharedMesh = null;
+                            if (personaliseKerbal_Head != null)
+                            {
+                                newTexture = personaliseKerbal_Head.get_eyeball_LeftTexture(protoKerbal.experienceLevel);
+                                newNormalMap = personaliseKerbal_Head.get_eyeball_LeftTextureNRM(protoKerbal.experienceLevel);
+                            }
+                            break;
 
+                        case "eyeballRight":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballRight":
+                            if (personaliseKerbal_Head != null)
+                            {
+                                newTexture = personaliseKerbal_Head.get_eyeball_RightTexture(protoKerbal.experienceLevel);
+                                newNormalMap = personaliseKerbal_Head.get_eyeball_RightTextureNRM(protoKerbal.experienceLevel);
+                            }
+                            break;
+
+                        case "pupilLeft":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilLeft":
+                            Util.log("+++++++++++++++++++++++  pupilLeft of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            if (personaliseKerbal_Head != null)
+                            {
+                                smr.sharedMaterial.color = Color.white;
+                                newTexture = personaliseKerbal_Head.get_pupil_LeftTexture(protoKerbal.experienceLevel);
+                                newNormalMap = personaliseKerbal_Head.get_pupil_LeftTextureNRM(protoKerbal.experienceLevel);
+                                if (newTexture != null)
+                                {
+                                    smr.sharedMaterial.color = Color.white;
+                                }
+                                else
+                                {
+                                    smr.sharedMaterial.color = Color.black;
+                                }
+                            }
+                            break;
+
+                        case "pupilRight":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilRight":
+                            Util.log("+++++++++++++++++++++++  pupilRight of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            if (personaliseKerbal_Head != null)
+                            {                               
+                                newTexture = personaliseKerbal_Head.get_pupil_RightTexture(protoKerbal.experienceLevel);
+                                newNormalMap = personaliseKerbal_Head.get_pupil_RightTextureNRM(protoKerbal.experienceLevel);
+                                if (newTexture != null)
+                                {                                    
+                                    smr.sharedMaterial.color = Color.white;
+                                } else
+                                {
+                                    smr.sharedMaterial.color = Color.black;
+                                }                                   
+                            }
                             break;
 
                         case "headMesh01":
@@ -805,20 +889,40 @@ namespace TextureReplacerReplaced
                         case "ponytail":
                             if (personaliseKerbal_Head != null)
                             {
-                                newTexture = personaliseKerbal_Head.headTexture;
-                                newNormalMap = personaliseKerbal_Head.headNRM;
+                                newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
+                                newNormalMap = personaliseKerbal_Head.get_headTextureNRM(protoKerbal.experienceLevel);                                
                             }
                             break;
 
                         case "tongue":
+                            Util.log("+++++++++++++++++++++++  TONGUE of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            break;
                         case "upTeeth01":
+                            Util.log("+++++++++++++++++++++++  upTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            break;
                         case "upTeeth02":
+                            Util.log("+++++++++++++++++++++++  upTeeth02 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            break;
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth01":
+                            Util.log("+++++++++++++++++++++++  mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            break;
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth01":
+                            Util.log("+++++++++++++++++++++++  mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            break;
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth02":
+                            Util.log("+++++++++++++++++++++++  mesh_female_kerbalAstronaut02_kerbalGirl_mesh_upTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            break;
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth02":
+                            Util.log("+++++++++++++++++++++++  mesh_female_kerbalAstronaut02_kerbalGirl_mesh_downTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            break;
                         case "downTeeth01":
+                            Util.log("+++++++++++++++++++++++  downTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            break;
+                        case "downTeeth02":
+                            Util.log("+++++++++++++++++++++++  downTeeth02 of {0} ++++++++++++++++++++++++", protoKerbal.name);
                             break;
 
-                       
+
 
                         case "body01":
                         case "mesh_female_kerbalAstronaut01_body01":  
@@ -2082,6 +2186,11 @@ namespace TextureReplacerReplaced
 
             KerbalRoster roster = HighLogic.CurrentGame.CrewRoster;
 
+            /*for (int i = 0; i < 2; i++)
+            {
+                maleAndfemaleHeadNumberOfUSe[i] = maleAndfemaleHeadsDB_cleaned[i].ToDictionary(k => k.headSetName, v => 0);
+            }*/
+
             foreach (ProtoCrewMember ProtoKerbal in roster.Crew.Concat(roster.Tourist).Concat(roster.Unowned))
             {
                 if (ProtoKerbal.rosterStatus == ProtoCrewMember.RosterStatus.Dead
@@ -2102,19 +2211,123 @@ namespace TextureReplacerReplaced
 
                     if (genderName != null)
                         kerbalData.gender = genderName == "F" ? 1 : 0;
+                                        
+                    if (headName != null )
+                    {                        
+                        if (headName != "GENERIC")
+                        {
+                            if (headName == "DEFAULT")
+                            {
+                                kerbalData.head = defaulMaleAndFemaleHeads[(int)ProtoKerbal.gender];                                
+                            }
+                            else
+                            {                                
+                                bool headIsInTheDB = KerbalHeadsDB_full.Exists(h => h.headSetName == headName);
 
-                    if (headName != null && headName != "GENERIC")
-                    {
-                        kerbalData.head = headName == "DEFAULT" ? defaulMaleAndFemaleHeads[(int)ProtoKerbal.gender]
-                          : KerbalHeadsDB_full.Find(h => h.headName == headName);
+                                if (headIsInTheDB)
+                                {
+                                    kerbalData.head = KerbalHeadsDB_full.Find(h => h.headSetName == headName);
+                                }
+                                else
+                                {
+                                    kerbalData.head = getKerbalHead(ProtoKerbal, kerbalData);
+                                    headName = kerbalData.head.headSetName;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            kerbalData.head = getKerbalHead(ProtoKerbal, kerbalData);
+                            headName = kerbalData.head.headSetName;
+                        }
                     }
+                    else
+                    {
+                        kerbalData.head = getKerbalHead(ProtoKerbal, kerbalData);
+                        headName = kerbalData.head.headSetName;
+                    }
+                    //Util.log("pouet ici !!!!!!!!!!!!!!!!!");
+                    //Util.log(" pouet name : {0} : {1}", ProtoKerbal.name, headName);
+                    if (!KerbalAndTheirHeadsDB.ContainsKey(ProtoKerbal.name))
+                        KerbalAndTheirHeadsDB.Add(ProtoKerbal.name, headName);
+                    else
+                    {
+                        KerbalAndTheirHeadsDB.Remove(ProtoKerbal.name);
+                        KerbalAndTheirHeadsDB.Add(ProtoKerbal.name, headName);
+                    }
+                        
+                   // Util.log("pouet réussi !!!!!!!!!!!!!!!!!");
+                    /* for (int i = 0; i < 2; i++)
+                     {
+                         List<KeyValuePair<string, int>> list = new List<KeyValuePair<string, int>>(maleAndfemaleHeadNumberOfUSe[i]);
 
-                    if (suitName != null && suitName != "GENERIC")
-                        kerbalData.suit = suitName == "DEFAULT" ? defaultSuit : KerbalSuitsDB_full.Find(s => s.suitSetName == suitName);
+                         foreach (KeyValuePair<string, int> kvp in list)
+                         {
+                             int count = KerbalAndTheirHeadsDB.Count(k => k.Value.Contains(kvp.Key));
+                             maleAndfemaleHeadNumberOfUSe[i][kvp.Key] = count;                            
+                         }
+                     }*/
+
+
+                    if (suitName != null)
+                    {
+                        if (suitName != "GENERIC")
+                        {
+                            if (suitName == "DEFAULT")
+                            {
+                                kerbalData.suit = defaultSuit;
+                            }
+                            else
+                            {
+                                bool suitIsInTheDB = KerbalSuitsDB_full.Exists(s => s.suitSetName == suitName);
+
+                                if (suitIsInTheDB)
+                                {
+                                    kerbalData.suit = KerbalSuitsDB_full.Find(s => s.suitSetName == suitName);
+                                }
+                                else
+                                {
+                                    kerbalData.suit = getKerbalSuit(ProtoKerbal, kerbalData);
+                                    suitName = kerbalData.suit.suitSetName;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            kerbalData.suit = getKerbalSuit(ProtoKerbal, kerbalData);
+                            suitName = kerbalData.suit.suitSetName;
+                        }
+                    }
+                    else
+                    {
+                        kerbalData.suit = getKerbalSuit(ProtoKerbal, kerbalData);
+                        suitName = kerbalData.suit.suitSetName;
+                    }
+                    
+                   // if (suitName != null && suitName != "GENERIC")
+                     //   kerbalData.suit = suitName == "DEFAULT" ? defaultSuit : KerbalSuitsDB_full.Find(s => s.suitSetName == suitName);
 
                     ProtoKerbal.gender = forceLegacyFemales ? ProtoCrewMember.Gender.Male : (ProtoCrewMember.Gender)kerbalData.gender;
+
+                    
+
                 }
             }
+           /* Util.log("00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+            foreach (KeyValuePair<string, string> data in KerbalAndTheirHeadsDB)
+            {
+                Util.log(" {0} use this head set : {1}", data.Key, data.Value);
+            }
+
+            for (int i =0; i < 2; i++)
+            {                
+                foreach (KeyValuePair<string, int> data in maleAndfemaleHeadNumberOfUSe[i])
+                {
+                    Util.log("The head_set : {0} is used {1} times", data.Key, data.Value);
+                }
+            }*/
+            
+
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -2138,10 +2351,10 @@ namespace TextureReplacerReplaced
 
                 KerbalData kerbalData = getKerbalData(kerbal);
 
-                string genderName = kerbalData.gender == 0 ? "M" : "F";
-                string headName = kerbalData.head == null ? "GENERIC" : kerbalData.head.headName;
+                string genderName = kerbalData.gender == 0 ? "M" : "F";                
+                string headName = kerbalData.head == null ? "GENERIC" : kerbalData.head.headSetName;
                 string suitName = kerbalData.suit == null ? "GENERIC" : kerbalData.suit.suitSetName;
-
+               
                 node.AddValue(kerbal.name, genderName + " " + headName + " " + suitName);
             }
         }
@@ -2252,20 +2465,27 @@ namespace TextureReplacerReplaced
             // Tag female and eye-less heads.
             foreach (Head_Set head in KerbalHeadsDB_full)
             {
-                head.isEyeless = eyelessHeads.Contains(head.headName);
+                head.isEyeless = eyelessHeads.Contains(head.headSetName);
             }
             // Tag female suits.
            // foreach (Suit_Set suit in KerbalSuitsDB_full)
                // suit.isFemale = femaleSuits.Contains(suit.suitSetName);
 
             // Create lists of male heads and suits.
-           // maleAndfemaleHeadsDB_cleaned[0].AddRange(KerbalHeadsDB_full.Where(h => !h.isFemale && !excludedHeads.Contains(h.headName)));
+            //maleAndfemaleHeadsDB_cleaned[0].AddRange(maleAndfemaleHeadsDB_full.Where(h.isMale && !excludedHeads.Contains(h.headSetName)));
             //maleAndfemaleSuitsDB_cleaned[0].AddRange(KerbalSuitsDB_full.Where(s => !s.isFemale && !excludedSuits.Contains(s.suitSetName)));
             KerbalSuitsDB_cleaned.AddRange(KerbalSuitsDB_full.Where(s => !excludedSuits.Contains(s.suitSetName)));
 
             // Create lists of female heads and suits.
-            //maleAndfemaleHeadsDB_cleaned[1].AddRange(KerbalHeadsDB_full.Where(h => h.isFemale && !excludedHeads.Contains(h.headName)));
+            maleAndfemaleHeadsDB_cleaned[0].AddRange(KerbalHeadsDB_full.Where(h => !h.isFemale && !excludedHeads.Contains(h.headSetName)));
+            maleAndfemaleHeadsDB_cleaned[1].AddRange(KerbalHeadsDB_full.Where(h => h.isFemale && !excludedHeads.Contains(h.headSetName)));
             //maleAndfemaleSuitsDB_cleaned[1].AddRange(KerbalSuitsDB_full.Where(s => s.isFemale && !excludedSuits.Contains(s.suitSetName)));
+
+
+           /* Util.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");            
+            Util.log("maleAndfemaleHeadsDB_cleaned[0] count = : {0}", maleAndfemaleHeadsDB_cleaned[0].Count);
+            Util.log("maleAndfemaleHeadsDB_cleaned[1] count = : {0}", maleAndfemaleHeadsDB_cleaned[1].Count);*/
+
 
             // Trim lists.
             KerbalHeadsDB_full.TrimExcess();
@@ -2304,16 +2524,20 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void load()
         {
-            
+
             //var suitDirs = new Dictionary<string, int>();
             //string lastTextureName = "";
-
+           
             // Populate KerbalHeadsDB_full and defaulMaleAndFemaleHeads
-            Textures_Loader.LoadHeads(KerbalHeadsDB_full, maleAndfemaleHeadsDB_cleaned);
-            Textures_Loader.DefaultHeads(defaulMaleAndFemaleHeads);
-            Textures_Loader.LoadSuits(KerbalSuitsDB_full, defaultSuit);           
+            Textures_Loader.LoadHeads(KerbalHeadsDB_full, maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
+            //Textures_Loader.DefaultHeads(defaulMaleAndFemaleHeads);
+            Textures_Loader.LoadSuits(KerbalSuitsDB_full, defaultSuit);
 
-            readKerbalsConfigs();            
+            /*Util.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");            
+            Util.log("maleAndfemaleHeadsDB_full[0] count = : {0}", maleAndfemaleHeadsDB_full[0].Count);
+            Util.log("maleAndfemaleHeadsDB_full[1] count = : {0}", maleAndfemaleHeadsDB_full[1].Count);*/
+
+            readKerbalsConfigs();     
 
             foreach (Kerbal kerbal in Resources.FindObjectsOfTypeAll<Kerbal>())
             {
@@ -2424,8 +2648,9 @@ namespace TextureReplacerReplaced
         {
             gameKerbalsDB.Clear();
             classSuitsDB.Clear();
-
-            loadKerbals(null);
+            KerbalAndTheirHeadsDB.Clear();
+            
+            loadKerbals(null);           
             loadSuitMap(null, classSuitsDB, defaultClassSuits);
         }
     }

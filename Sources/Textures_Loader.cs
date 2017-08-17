@@ -74,46 +74,171 @@ namespace TextureReplacerReplaced
             return Load(EnvMapDictionary, Folders.ENVMAP);
         }
 
-
         /// <summary>
         /// Loads all Heads into a non gender-specific list and in two gender-specific lists
         /// </summary>
-        internal static void LoadHeads(List<Head_Set> FullList, List<Head_Set>[] GenderList)
+        /// <param name="FullList"></param>
+        /// <param name="GenderList"></param>
+        /// <param name="DefaultHead"></param>
+        internal static void LoadHeads(List<Head_Set> FullList, List<Head_Set>[] GenderList, Head_Set[] DefaultHead)
         {
             string[] gender = { "Male", "Female" };
-
+            var headDirs = new Dictionary<string, int>();
+            //string lastTextureName = "";
+                      
             for (int i = 0; i < 2; i++)
             {
-                foreach (string folder in Folders.HEADS)
+               // Util.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                //Util.log("i = : {0}", i);
+                foreach (string HEADS_Folder in Folders.HEADS)
                 {
-                    foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture.Where(t => t.texture != null && t.name.StartsWith((folder + gender[i] + "/"), StringComparison.Ordinal) && !t.name.EndsWith("NRM")))
+                    //Util.log("++++++++++++++++++++++++++++++++++++++++++++++");
+                   // Util.log("HEADS_Folder = : {0}", HEADS_Folder);
+
+                    string genderFolder = (HEADS_Folder + gender[i] + "/");
+                    //Util.log("genderFolder = : {0}", genderFolder);
+
+                    foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture.Where(t => t.name.StartsWith(genderFolder)))
                     {
-                        string headName = texInfo.name.Substring((folder + gender[i] + "/").Length);
-                        if (FullList.Any(t => t.headName == headName)) continue;
-
+                        //Util.log("****************************");
                         Texture2D texture = texInfo.texture;
-                        texture.wrapMode = TextureWrapMode.Clamp;
+                        //Util.log("Texture full path = : {0}", texture.name);
 
-                        Head_Set head = new Head_Set
+                        int lastSlash_full = texture.name.LastIndexOf('/');
+                        //Util.log("lastSlash_full = : {0}", lastSlash_full);
+
+                        string headSetFolder_full = texInfo.name.Substring(genderFolder.Length);
+                        //Util.log("headSetFolder_full = : {0}", headSetFolder_full);
+
+                        int lastSlash_headSetFolder = headSetFolder_full.LastIndexOf('/');
+                        //Util.log("lastSlash_headSetFolder = : {0}", lastSlash_headSetFolder);
+
+
+                        if (lastSlash_headSetFolder < 1)
                         {
-                            headName = headName,
-                            headTexture = texture,
-                            isFemale = (i == 1)
-                        };
-
-                        Texture2D normal = GameDatabase.Instance.databaseTexture.FirstOrDefault(t => t.name == (texInfo.name + "NRM"))?.texture;
-
-                        if (normal != null)
-                        {
-                            normal.wrapMode = TextureWrapMode.Clamp;
-                            head.headNRM = normal;
+                            Util.log("Head texture should be inside a subdirectory: {0}", texture.name);
+                            continue;
                         }
+                        
+                        string TextureFileName = texture.name.Substring(lastSlash_full + 1);                        
 
-                        FullList.Add(head);
-                        GenderList[i].Add(head);
+                        string headSetFolder = headSetFolder_full.Remove(headSetFolder_full.Length - (TextureFileName.Length+1));
+                        //Util.log("headSetFolder = : {0}", headSetFolder);
+                        //Util.log("TextureFileName = : {0}", TextureFileName);
+
+                        if (texture == null)
+                        {
+                            Util.log("texture : {0} == null!! ", TextureFileName);
+                            continue;
+                        }
+                        if (!texture.name.StartsWith(HEADS_Folder, StringComparison.Ordinal))
+                        {
+                            Util.log("texture : {0} DON'T start with {1}", TextureFileName, HEADS_Folder);
+                            continue;
+                        }
+                        else
+                        {
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                            
+                            int index;
+
+                            if (!headDirs.TryGetValue(headSetFolder, out index))
+                            {                                
+                                index = FullList.Count;
+                                
+                                Head_Set head = new Head_Set
+                                {
+                                    headSetName = headSetFolder,
+                                    isFemale = (i == 1)
+                                };
+
+                                FullList.Add(head);                                
+                                headDirs.Add(headSetFolder, index);                               
+                                GenderList[i].Add(head);
+                                Util.log("HeadSet added : {0}", headSetFolder);
+                            }                            
+                            Head_Set headSet = FullList[index];
+                            if (!headSet.setTexture(TextureFileName, texture))
+                                //Util.log("Texture {0} properly loaded in {1}", TextureFileName, texture.name);
+                            //else
+                                Util.log("Unknown head texture name \"{0}\": {1}", TextureFileName, texture.name);
+
+                        }  
                     }
                 }
             }
+            foreach (string defaultFolders in Folders.DEFAULT)
+            {
+                foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
+                {
+                    Texture2D texture = texInfo.texture;
+                    if (texture == null || !texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
+                        continue;
+
+                    //Util.log("starting loading default head");
+
+                    if (texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
+                    {
+                        int lastSlash = texture.name.LastIndexOf('/');
+                        string originalName = texture.name.Substring(lastSlash + 1);
+                        //Util.log("default folder = " +defaultFolders);
+                        //Util.log("DEFAULT : texture name \"{0}\": {1}", originalName, texture.name);
+
+                        if (originalName == "kerbalHead")
+                        {
+                            DefaultHead[0].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+
+                        else if (originalName == "kerbalHeadkerbalHeadNRM")
+                        {
+                            DefaultHead[0].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+
+                        /*else if (originalName == "Pupil_Left_Male_Default")
+                        {
+                            DefaultHead[0].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+
+                        else if (originalName == "Pupil_Right_Male_Default")
+                        {
+                            DefaultHead[0].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }*/
+
+                        else if (originalName == "kerbalGirl_06_BaseColor")
+                        {
+                            DefaultHead[1].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+
+                        else if (originalName == "kerbalGirl_06_BaseColorNRM")
+                        {
+                            DefaultHead[1].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+
+                       /* else if (originalName == "Pupil_Left_Female_Default")
+                        {
+                            DefaultHead[1].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+
+                        else if (originalName == "Pupil_Right_Female_Default")
+                        {
+                            DefaultHead[1].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }*/
+
+                    }
+                    //lastTextureName = texture.name;
+                }
+            }
+
+
+
         }
 
         /// <summary>
@@ -121,30 +246,42 @@ namespace TextureReplacerReplaced
         /// </summary>
         internal static void DefaultHeads(Head_Set[] heads)
         {
-            foreach (KeyValuePair<Texture2D, string> texInfo in DEFAULT())
+                foreach (KeyValuePair<Texture2D, string> texInfo in DEFAULT())
             {
                 Texture2D texture = texInfo.Key;
                 string originalName = texInfo.Value;
 
                 if (originalName == "kerbalHead")
                 {
-                    heads[0].headTexture = texture;
-                    texture.wrapMode = TextureWrapMode.Clamp;
+                    for (int i = 0 ; i < 6; ++i)
+                    {
+                        heads[0].headTexture[i] = texture;
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }        
                 }
                 else if (originalName == "kerbalHeadNRM")
                 {
-                    heads[0].headNRM = texture;
-                    texture.wrapMode = TextureWrapMode.Clamp;
+                    for (int i = 0; i < 6; ++i)
+                    {
+                        heads[0].headTextureNRM[i] = texture;
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
                 }
                 else if (originalName == "kerbalGirl_06_BaseColor")
                 {
-                    heads[1].headTexture = texture;
-                    texture.wrapMode = TextureWrapMode.Clamp;
+                    for (int i = 0; i < 6; ++i)
+                    {
+                        heads[1].headTexture[i] = texture;
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
                 }
                 else if (originalName == "kerbalGirl_06_BaseColorNRM")
                 {
-                    heads[1].headNRM = texture;
-                    texture.wrapMode = TextureWrapMode.Clamp;
+                    for (int i = 0; i < 6; ++i)
+                    {
+                        heads[1].headTextureNRM[i] = texture;
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
                 }
             }
         }
@@ -219,12 +356,8 @@ namespace TextureReplacerReplaced
                             texture.wrapMode = TextureWrapMode.Clamp;
                         }
                     }
-
                     lastTextureName = texture.name;
-                }
-
-
-
+                }                
             }
 
         }

@@ -115,6 +115,7 @@ namespace TextureReplacerReplaced
         {
             Reflections reflections = Reflections.instance;
             Personaliser personaliser = Personaliser.instance;
+            Randomizer randomizer = new Randomizer();
 
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
@@ -199,18 +200,18 @@ namespace TextureReplacerReplaced
             KerbalData kerbalData = null;
             Head_Set head = null;
             Suit_Set suit = null;
-            int headIndex = -1;
+            int headIndex = -1;           
             int suitIndex = -1;
 
             if (selectedKerbal != null)
             {
                 kerbalData = personaliser.getKerbalData(selectedKerbal);
                 defaultHead = personaliser.defaulMaleAndFemaleHeads[(int)selectedKerbal.gender];
-
+                                
                 head = personaliser.getKerbalHead(selectedKerbal, kerbalData);
                 suit = personaliser.getKerbalSuit(selectedKerbal, kerbalData);
-
-                headIndex = personaliser.KerbalHeadsDB_full.IndexOf(head);
+                
+                headIndex = personaliser.maleAndfemaleHeadsDB_full[(int)selectedKerbal.gender].IndexOf(head);
                 suitIndex = personaliser.KerbalSuitsDB_full.IndexOf(suit);
             }
             else if (selectedClass != null)
@@ -226,9 +227,9 @@ namespace TextureReplacerReplaced
 
             if (head != null)
             {
-                GUILayout.Box(head.headTexture, GUILayout.Width(200), GUILayout.Height(200));
+                GUILayout.Box(head.headTexture[0], GUILayout.Width(200), GUILayout.Height(200));
 
-                GUILayout.Label(head.headName);
+                GUILayout.Label(head.headSetName);
             }
 
             if (suit != null)
@@ -267,15 +268,38 @@ namespace TextureReplacerReplaced
                 if (GUILayout.Button("<"))
                 {
                     headIndex = headIndex == -1 ? 0 : headIndex;
-                    headIndex = (personaliser.KerbalHeadsDB_full.Count + headIndex - 1) % personaliser.KerbalHeadsDB_full.Count;
+                    headIndex = (personaliser.maleAndfemaleHeadsDB_full[(int)selectedKerbal.gender].Count + headIndex - 1) % personaliser.maleAndfemaleHeadsDB_full[(int)selectedKerbal.gender].Count;
 
-                    kerbalData.head = personaliser.KerbalHeadsDB_full[headIndex];
+                    kerbalData.head = personaliser.maleAndfemaleHeadsDB_full[(int)selectedKerbal.gender][headIndex];
+
+                    string value = "";
+
+                    if (personaliser.KerbalAndTheirHeadsDB.TryGetValue(selectedKerbal.name, out value))
+                    {
+                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.headSetName;
+                    }
+                    else
+                    {
+                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.headSetName);
+                    }
+
                 }
                 if (GUILayout.Button(">"))
                 {
-                    headIndex = (headIndex + 1) % personaliser.KerbalHeadsDB_full.Count;
+                    headIndex = (headIndex + 1) % personaliser.maleAndfemaleHeadsDB_full[(int)selectedKerbal.gender].Count;
 
-                    kerbalData.head = personaliser.KerbalHeadsDB_full[headIndex];
+                    kerbalData.head = personaliser.maleAndfemaleHeadsDB_full[(int)selectedKerbal.gender][headIndex];
+
+                    string value = "";
+
+                    if (personaliser.KerbalAndTheirHeadsDB.TryGetValue(selectedKerbal.name, out value) )
+                    {
+                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.headSetName;
+                    }
+                    else
+                    {
+                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.headSetName);
+                    }
                 }
 
                 GUI.enabled = true;
@@ -283,11 +307,40 @@ namespace TextureReplacerReplaced
 
                 GUI.color = kerbalData.head == defaultHead ? SELECTED_COLOUR : Color.white;
                 if (GUILayout.Button("Default"))
+                {
                     kerbalData.head = defaultHead;
 
+                    string value = "";
+
+                    if (personaliser.KerbalAndTheirHeadsDB.TryGetValue(selectedKerbal.name, out value))
+                    {
+                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.headSetName;
+                    }
+                    else
+                    {
+                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.headSetName);
+                    }
+                }
+                
+
                 GUI.color = kerbalData.head == null ? SELECTED_COLOUR : Color.white;
-                if (GUILayout.Button("Unset/Generic"))
-                    kerbalData.head = null;
+                if (GUILayout.Button("Random"))
+                {
+                    kerbalData.head = randomizer.randomize((int) selectedKerbal.gender);
+
+                    string value = "";
+
+                    if (personaliser.KerbalAndTheirHeadsDB.TryGetValue(selectedKerbal.name, out value))
+                    {
+                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.headSetName;
+                    }
+                    else
+                    {
+                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.headSetName);
+                    }
+                    //Util.log("{0} use this head set : {1}", selectedKerbal.name, kerbalData.head.headSetName);
+                }
+                   
 
                 GUI.color = Color.white;
             }

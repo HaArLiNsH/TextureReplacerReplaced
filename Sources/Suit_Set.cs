@@ -4219,7 +4219,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         /// <summary>
         /// Search for the name of the texture, then set the good one in the suit set.
-        /// <para>Related to <see cref="Personaliser.Suit"/> class. </para> 
+        /// <para>Related to <see cref="Personaliser.Suit_Set"/> class. </para> 
         /// </summary>
         /// <param name="originalName">The name of the texture file (like KerbalMain.dds) 
         /// we want to save in the suit set.</param>
@@ -5235,6 +5235,13 @@ namespace TextureReplacerReplaced
                 case "kerbalHelmetGreyNRM3":
                 case "kerbalHelmetGreyNRM4":
                 case "kerbalHelmetGreyNRM5":
+                case "kerbalHelmetNRM":
+                case "kerbalHelmetNRM0":
+                case "kerbalHelmetNRM1":
+                case "kerbalHelmetNRM2":
+                case "kerbalHelmetNRM3":
+                case "kerbalHelmetNRM4":
+                case "kerbalHelmetNRM5":
                     try
                     {
                         string temp = originalName.Substring(originalName.Length - 1);
