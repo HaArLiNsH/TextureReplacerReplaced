@@ -229,7 +229,7 @@ namespace TextureReplacerReplaced
             {
                 GUILayout.Box(head.headTexture[0], GUILayout.Width(200), GUILayout.Height(200));
 
-                GUILayout.Label(head.headSetName);
+                GUILayout.Label(head.name);
             }
 
             if (suit != null)
@@ -254,7 +254,7 @@ namespace TextureReplacerReplaced
                 GUILayout.Box(evaHelmetTex, GUILayout.Width(100), GUILayout.Height(100));
                 GUILayout.EndHorizontal();
 
-                GUILayout.Label(suit.suitSetName);
+                GUILayout.Label(suit.name);
             }
 
             GUILayout.EndVertical();
@@ -276,11 +276,11 @@ namespace TextureReplacerReplaced
 
                     if (personaliser.KerbalAndTheirHeadsDB.TryGetValue(selectedKerbal.name, out value))
                     {
-                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.headSetName;
+                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.name;
                     }
                     else
                     {
-                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.headSetName);
+                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.name);
                     }
 
                 }
@@ -294,11 +294,11 @@ namespace TextureReplacerReplaced
 
                     if (personaliser.KerbalAndTheirHeadsDB.TryGetValue(selectedKerbal.name, out value) )
                     {
-                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.headSetName;
+                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.name;
                     }
                     else
                     {
-                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.headSetName);
+                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.name);
                     }
                 }
 
@@ -314,11 +314,11 @@ namespace TextureReplacerReplaced
 
                     if (personaliser.KerbalAndTheirHeadsDB.TryGetValue(selectedKerbal.name, out value))
                     {
-                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.headSetName;
+                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.name;
                     }
                     else
                     {
-                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.headSetName);
+                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.name);
                     }
                 }
                 
@@ -332,11 +332,11 @@ namespace TextureReplacerReplaced
 
                     if (personaliser.KerbalAndTheirHeadsDB.TryGetValue(selectedKerbal.name, out value))
                     {
-                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.headSetName;
+                        personaliser.KerbalAndTheirHeadsDB[selectedKerbal.name] = kerbalData.head.name;
                     }
                     else
                     {
-                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.headSetName);
+                        personaliser.KerbalAndTheirHeadsDB.Add(selectedKerbal.name, kerbalData.head.name);
                     }
                     //Util.log("{0} use this head set : {1}", selectedKerbal.name, kerbalData.head.headSetName);
                 }

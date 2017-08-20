@@ -37,12 +37,12 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Default Male and Female head set (from `Default/`).
         /// </summary>
-        public readonly Head_Set[] defaulMaleAndFemaleHeads = { new Head_Set { headSetName = "DEFAULT" }, new Head_Set { headSetName = "DEFAULT" } };
+        public readonly Head_Set[] defaulMaleAndFemaleHeads = { new Head_Set { name = "DEFAULT" }, new Head_Set { name = "DEFAULT" } };
 
         /// <summary>
         /// Default suit textures (from `Default/`).
         /// </summary>
-        public readonly Suit_Set defaultSuit = new Suit_Set { suitSetName = "DEFAULT" };
+        public readonly Suit_Set defaultSuit = new Suit_Set { name = "DEFAULT" };
         
         /// <summary>
         /// Heads textures, including excluded by configuration.
@@ -208,7 +208,7 @@ namespace TextureReplacerReplaced
          * used for each suit texture pack
          * =========================================================================================
          */
-
+/*
         /// <summary>
         /// Do the suit set is made to be used by the Veteran kerbals?
         /// </summary>
@@ -352,7 +352,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Force IVA suit in space
         /// </summary>
-        public bool ForceIVAspaceSuit = false;          
+        public bool ForceIVAspaceSuit = false;     */     
                 
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
@@ -718,11 +718,11 @@ namespace TextureReplacerReplaced
 
             if (KerbalAndTheirHeadsDB.TryGetValue(kerbal.name, out value))
             {
-                KerbalAndTheirHeadsDB[kerbal.name] = kerbalData.head.headSetName;
+                KerbalAndTheirHeadsDB[kerbal.name] = kerbalData.head.name;
             }
             else
             {
-                KerbalAndTheirHeadsDB.Add(kerbal.name, kerbalData.head.headSetName);
+                KerbalAndTheirHeadsDB.Add(kerbal.name, kerbalData.head.name);
             }
             //Util.log("{0} use this head set : {1}", kerbal.name, kerbalData.head.headSetName);
 
@@ -798,7 +798,7 @@ namespace TextureReplacerReplaced
             //if (isEva)
             Suit_Set personaliseKerbal_Suit = getKerbalSuit(protoKerbal, kerbalData);
 
-            personaliseKerbal_Head = personaliseKerbal_Head == defaulMaleAndFemaleHeads[(int)protoKerbal.gender] ? null : personaliseKerbal_Head;
+            //personaliseKerbal_Head = personaliseKerbal_Head == defaulMaleAndFemaleHeads[(int)protoKerbal.gender] ? null : personaliseKerbal_Head;
             //personaliseKerbal_Suit = (isEva && needsEVASuit) || kerbalData.cabinSuit == null ? personaliseKerbal_Suit : kerbalData.cabinSuit;
             //personaliseKerbal_Suit = personaliseKerbal_Suit == defaultSuit ? null : personaliseKerbal_Suit;
 
@@ -832,61 +832,92 @@ namespace TextureReplacerReplaced
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballLeft":
                             if (personaliseKerbal_Head != null)
                             {
-                                newTexture = personaliseKerbal_Head.get_eyeball_LeftTexture(protoKerbal.experienceLevel);
-                                newNormalMap = personaliseKerbal_Head.get_eyeball_LeftTextureNRM(protoKerbal.experienceLevel);
+                                //Util.log("+++++ {0} is level {1} : {2}.lvlToHide_Eye_Left  = {3} +++++", protoKerbal.name, protoKerbal.experienceLevel, personaliseKerbal_Head.name, personaliseKerbal_Head.lvlToHide_Eye_Left);
+                               if (personaliseKerbal_Head.lvlToHide_Eye_Left <= protoKerbal.experienceLevel)
+                                {
+                                   // Util.log("*** HIDE for {0}",protoKerbal.name);                                    
+                                    smr.GetComponentInChildren<Renderer>().enabled = false; 
+                                }
+                                else
+                                {
+                                    smr.GetComponentInChildren<Renderer>().enabled = true;
+                                    newTexture = personaliseKerbal_Head.get_eyeball_LeftTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Head.get_eyeball_LeftTextureNRM(protoKerbal.experienceLevel);
+                                    if (newTexture != null)                                    
+                                        smr.sharedMaterial.color = Color.white;                                    
+                                    else
+                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_EyeballColor_Left();                                    
+                                }
                             }
                             break;
-
+                            
                         case "eyeballRight":
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballRight":
                             if (personaliseKerbal_Head != null)
                             {
-                                newTexture = personaliseKerbal_Head.get_eyeball_RightTexture(protoKerbal.experienceLevel);
-                                newNormalMap = personaliseKerbal_Head.get_eyeball_RightTextureNRM(protoKerbal.experienceLevel);
+                                if (personaliseKerbal_Head.lvlToHide_Eye_Right <= protoKerbal.experienceLevel)
+                                {
+                                    smr.GetComponentInChildren<Renderer>().enabled = false;
+                                }
+                                else
+                                {
+                                    smr.GetComponentInChildren<Renderer>().enabled = true;
+                                    newTexture = personaliseKerbal_Head.get_eyeball_RightTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Head.get_eyeball_RightTextureNRM(protoKerbal.experienceLevel);
+                                    if (newTexture != null)
+                                        smr.sharedMaterial.color = Color.white;
+                                    else
+                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_EyeballColor_Right();
+                                    
+                                }
                             }
                             break;
 
                         case "pupilLeft":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilLeft":
-                            Util.log("+++++++++++++++++++++++  pupilLeft of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilLeft":                            
                             if (personaliseKerbal_Head != null)
                             {
-                                smr.sharedMaterial.color = Color.white;
-                                newTexture = personaliseKerbal_Head.get_pupil_LeftTexture(protoKerbal.experienceLevel);
-                                newNormalMap = personaliseKerbal_Head.get_pupil_LeftTextureNRM(protoKerbal.experienceLevel);
-                                if (newTexture != null)
+                                if (personaliseKerbal_Head.lvlToHide_Pupil_Left <= protoKerbal.experienceLevel)
                                 {
-                                    smr.sharedMaterial.color = Color.white;
+                                    smr.GetComponentInChildren<Renderer>().enabled = false;
                                 }
                                 else
                                 {
-                                    smr.sharedMaterial.color = Color.black;
+                                    smr.GetComponentInChildren<Renderer>().enabled = true;
+                                    newTexture = personaliseKerbal_Head.get_pupil_LeftTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Head.get_pupil_LeftTextureNRM(protoKerbal.experienceLevel);
+                                    if (newTexture != null)
+                                        smr.sharedMaterial.color = Color.white;
+                                    else
+                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_PupilColor_Left();
                                 }
                             }
                             break;
 
                         case "pupilRight":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilRight":
-                            Util.log("+++++++++++++++++++++++  pupilRight of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilRight":                           
                             if (personaliseKerbal_Head != null)
-                            {                               
-                                newTexture = personaliseKerbal_Head.get_pupil_RightTexture(protoKerbal.experienceLevel);
-                                newNormalMap = personaliseKerbal_Head.get_pupil_RightTextureNRM(protoKerbal.experienceLevel);
-                                if (newTexture != null)
-                                {                                    
-                                    smr.sharedMaterial.color = Color.white;
-                                } else
+                            {
+                                if (personaliseKerbal_Head.lvlToHide_Pupil_Right <= protoKerbal.experienceLevel)
                                 {
-                                    smr.sharedMaterial.color = Color.black;
-                                }                                   
+                                    smr.GetComponentInChildren<Renderer>().enabled = false;
+                                }
+                                else
+                                {
+                                    smr.GetComponentInChildren<Renderer>().enabled = true;
+                                    newTexture = personaliseKerbal_Head.get_pupil_RightTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Head.get_pupil_RightTextureNRM(protoKerbal.experienceLevel);
+                                    if (newTexture != null)
+                                        smr.sharedMaterial.color = Color.white;
+                                    else
+                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_PupilColor_Right();
+                                    
+                                }
                             }
                             break;
 
-                        case "headMesh01":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pCube1":
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_polySurface51":
-                        case "headMesh":
-                        case "ponytail":
+                        case "headMesh01":                       
+                        case "headMesh":                        
                             if (personaliseKerbal_Head != null)
                             {
                                 newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
@@ -894,33 +925,95 @@ namespace TextureReplacerReplaced
                             }
                             break;
 
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pCube1":
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_polySurface51":
+                        case "ponytail":
+                            if (personaliseKerbal_Head != null)
+                            {
+                                if (personaliseKerbal_Head.lvlToHide_Ponytail <= protoKerbal.experienceLevel)
+                                {
+                                    smr.GetComponentInChildren<Renderer>().enabled = false;
+                                }
+                                else
+                                {
+                                    smr.GetComponentInChildren<Renderer>().enabled = true;
+                                    newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Head.get_headTextureNRM(protoKerbal.experienceLevel);                                    
+                                }
+                            }
+                            break;
                         case "tongue":
                             Util.log("+++++++++++++++++++++++  TONGUE of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            smr.GetComponentInChildren<Renderer>().enabled = true;
+                            if (personaliseKerbal_Head != null)
+                            {
+                                if ((int)protoKerbal.gender == 1)
+                                {
+                                    newTexture = defaulMaleAndFemaleHeads[0].get_headTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = defaulMaleAndFemaleHeads[0].get_headTextureNRM(protoKerbal.experienceLevel);
+                                }
+                                else
+                                {
+                                    newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Head.get_headTextureNRM(protoKerbal.experienceLevel);
+                                }
+                            }
                             break;
+
                         case "upTeeth01":
-                            Util.log("+++++++++++++++++++++++  upTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth01":
+                            Util.log("+++++++++++++++++++++++  upTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);  
+                            if (personaliseKerbal_Head != null)
+                            {
+                                if ((int)protoKerbal.gender == 1)
+                                {
+                                    newTexture = defaulMaleAndFemaleHeads[0].get_headTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = defaulMaleAndFemaleHeads[0].get_headTextureNRM(protoKerbal.experienceLevel);
+                                }
+                                else
+                                {
+                                    newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Head.get_headTextureNRM(protoKerbal.experienceLevel);
+                                }
+                            }
                             break;
                         case "upTeeth02":
-                            Util.log("+++++++++++++++++++++++  upTeeth02 of {0} ++++++++++++++++++++++++", protoKerbal.name);
-                            break;
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth01":
-                            Util.log("+++++++++++++++++++++++  mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
-                            break;
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth01":
-                            Util.log("+++++++++++++++++++++++  mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
-                            break;
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth02":
-                            Util.log("+++++++++++++++++++++++  mesh_female_kerbalAstronaut02_kerbalGirl_mesh_upTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            Util.log("+++++++++++++++++++++++  upTeeth02 of {0} ++++++++++++++++++++++++", protoKerbal.name);   
+                            if (personaliseKerbal_Head != null)
+                            {
+                                if ((int)protoKerbal.gender == 1)
+                                {
+                                    newTexture = defaulMaleAndFemaleHeads[0].get_headTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = defaulMaleAndFemaleHeads[0].get_headTextureNRM(protoKerbal.experienceLevel);
+                                }
+                                else
+                                {
+                                    newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Head.get_headTextureNRM(protoKerbal.experienceLevel);
+                                }
+                            }
                             break;
-                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth02":
-                            Util.log("+++++++++++++++++++++++  mesh_female_kerbalAstronaut02_kerbalGirl_mesh_downTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
-                            break;
+                                                                    
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth01":                           
                         case "downTeeth01":
                             Util.log("+++++++++++++++++++++++  downTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            if (personaliseKerbal_Head != null)
+                            {
+                                if ((int)protoKerbal.gender == 1)
+                                {
+                                    newTexture = defaulMaleAndFemaleHeads[0].get_headTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = defaulMaleAndFemaleHeads[0].get_headTextureNRM(protoKerbal.experienceLevel);
+                                }
+                                else
+                                {
+                                    newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
+                                    newNormalMap = personaliseKerbal_Head.get_headTextureNRM(protoKerbal.experienceLevel);
+                                }
+                                                               
+                            }
                             break;
-                        case "downTeeth02":
-                            Util.log("+++++++++++++++++++++++  downTeeth02 of {0} ++++++++++++++++++++++++", protoKerbal.name);
-                            break;
+                        
 
 
 
@@ -2222,32 +2315,31 @@ namespace TextureReplacerReplaced
                             }
                             else
                             {                                
-                                bool headIsInTheDB = KerbalHeadsDB_full.Exists(h => h.headSetName == headName);
+                                bool headIsInTheDB = KerbalHeadsDB_full.Exists(h => h.name == headName);
 
                                 if (headIsInTheDB)
                                 {
-                                    kerbalData.head = KerbalHeadsDB_full.Find(h => h.headSetName == headName);
+                                    kerbalData.head = KerbalHeadsDB_full.Find(h => h.name == headName);
                                 }
                                 else
                                 {
                                     kerbalData.head = getKerbalHead(ProtoKerbal, kerbalData);
-                                    headName = kerbalData.head.headSetName;
+                                    headName = kerbalData.head.name;
                                 }
                             }
                         }
                         else
                         {
                             kerbalData.head = getKerbalHead(ProtoKerbal, kerbalData);
-                            headName = kerbalData.head.headSetName;
+                            headName = kerbalData.head.name;
                         }
                     }
                     else
                     {
                         kerbalData.head = getKerbalHead(ProtoKerbal, kerbalData);
-                        headName = kerbalData.head.headSetName;
+                        headName = kerbalData.head.name;
                     }
-                    //Util.log("pouet ici !!!!!!!!!!!!!!!!!");
-                    //Util.log(" pouet name : {0} : {1}", ProtoKerbal.name, headName);
+                    
                     if (!KerbalAndTheirHeadsDB.ContainsKey(ProtoKerbal.name))
                         KerbalAndTheirHeadsDB.Add(ProtoKerbal.name, headName);
                     else
@@ -2255,20 +2347,7 @@ namespace TextureReplacerReplaced
                         KerbalAndTheirHeadsDB.Remove(ProtoKerbal.name);
                         KerbalAndTheirHeadsDB.Add(ProtoKerbal.name, headName);
                     }
-                        
-                   // Util.log("pouet réussi !!!!!!!!!!!!!!!!!");
-                    /* for (int i = 0; i < 2; i++)
-                     {
-                         List<KeyValuePair<string, int>> list = new List<KeyValuePair<string, int>>(maleAndfemaleHeadNumberOfUSe[i]);
-
-                         foreach (KeyValuePair<string, int> kvp in list)
-                         {
-                             int count = KerbalAndTheirHeadsDB.Count(k => k.Value.Contains(kvp.Key));
-                             maleAndfemaleHeadNumberOfUSe[i][kvp.Key] = count;                            
-                         }
-                     }*/
-
-
+                     
                     if (suitName != null)
                     {
                         if (suitName != "GENERIC")
@@ -2279,55 +2358,34 @@ namespace TextureReplacerReplaced
                             }
                             else
                             {
-                                bool suitIsInTheDB = KerbalSuitsDB_full.Exists(s => s.suitSetName == suitName);
+                                bool suitIsInTheDB = KerbalSuitsDB_full.Exists(s => s.name == suitName);
 
                                 if (suitIsInTheDB)
                                 {
-                                    kerbalData.suit = KerbalSuitsDB_full.Find(s => s.suitSetName == suitName);
+                                    kerbalData.suit = KerbalSuitsDB_full.Find(s => s.name == suitName);
                                 }
                                 else
                                 {
                                     kerbalData.suit = getKerbalSuit(ProtoKerbal, kerbalData);
-                                    suitName = kerbalData.suit.suitSetName;
+                                    suitName = kerbalData.suit.name;
                                 }
                             }
                         }
                         else
                         {
                             kerbalData.suit = getKerbalSuit(ProtoKerbal, kerbalData);
-                            suitName = kerbalData.suit.suitSetName;
+                            suitName = kerbalData.suit.name;
                         }
                     }
                     else
                     {
                         kerbalData.suit = getKerbalSuit(ProtoKerbal, kerbalData);
-                        suitName = kerbalData.suit.suitSetName;
+                        suitName = kerbalData.suit.name;
                     }
-                    
-                   // if (suitName != null && suitName != "GENERIC")
-                     //   kerbalData.suit = suitName == "DEFAULT" ? defaultSuit : KerbalSuitsDB_full.Find(s => s.suitSetName == suitName);
 
-                    ProtoKerbal.gender = forceLegacyFemales ? ProtoCrewMember.Gender.Male : (ProtoCrewMember.Gender)kerbalData.gender;
-
-                    
-
+                    ProtoKerbal.gender = forceLegacyFemales ? ProtoCrewMember.Gender.Male : (ProtoCrewMember.Gender)kerbalData.gender;                    
                 }
             }
-           /* Util.log("00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
-            foreach (KeyValuePair<string, string> data in KerbalAndTheirHeadsDB)
-            {
-                Util.log(" {0} use this head set : {1}", data.Key, data.Value);
-            }
-
-            for (int i =0; i < 2; i++)
-            {                
-                foreach (KeyValuePair<string, int> data in maleAndfemaleHeadNumberOfUSe[i])
-                {
-                    Util.log("The head_set : {0} is used {1} times", data.Key, data.Value);
-                }
-            }*/
-            
-
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -2352,8 +2410,8 @@ namespace TextureReplacerReplaced
                 KerbalData kerbalData = getKerbalData(kerbal);
 
                 string genderName = kerbalData.gender == 0 ? "M" : "F";                
-                string headName = kerbalData.head == null ? "GENERIC" : kerbalData.head.headSetName;
-                string suitName = kerbalData.suit == null ? "GENERIC" : kerbalData.suit.suitSetName;
+                string headName = kerbalData.head == null ? "GENERIC" : kerbalData.head.name;
+                string suitName = kerbalData.suit == null ? "GENERIC" : kerbalData.suit.name;
                
                 node.AddValue(kerbal.name, genderName + " " + headName + " " + suitName);
             }
@@ -2393,7 +2451,7 @@ namespace TextureReplacerReplaced
                         }
                         else
                         {
-                            Suit_Set suit = KerbalSuitsDB_full.Find(s => s.suitSetName == suitName);
+                            Suit_Set suit = KerbalSuitsDB_full.Find(s => s.name == suitName);
                             if (suit != null)
                                 map[entry.name] = suit;
                         }
@@ -2413,11 +2471,178 @@ namespace TextureReplacerReplaced
         {
             foreach (var entry in map)
             {
-                string suitName = entry.Value == null ? "GENERIC" : entry.Value.suitSetName;
+                string suitName = entry.Value == null ? "GENERIC" : entry.Value.name;
 
                 node.AddValue(entry.Key, suitName);
             }
         }
+
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Used to load the configuration for the head-Sets
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="map"></param>
+        /// <param name="defaultMap"></param>
+        /// /// ////////////////////////////////////////////////////////////////////////////////////////
+        private void loadHeadConfig (ConfigNode node, List<Head_Set>[] map, Head_Set[] defaultMap)
+        {
+            ConfigNode defaultNode = new ConfigNode();
+            
+
+            for (int i = 0; i < 2; i++)
+            {
+                if (i == 0)
+                    defaultNode = node.GetNode("DefaultHead_Male");
+                else
+                    defaultNode = node.GetNode("DefaultHead_Female");
+
+                Util.parse(defaultNode.GetValue("lvlToHide_Eye_Left"), ref defaultMap[i].lvlToHide_Eye_Left);
+                Util.parse(defaultNode.GetValue("lvlToHide_Eye_Right"), ref defaultMap[i].lvlToHide_Eye_Right);
+                Util.parse(defaultNode.GetValue("lvlToHide_Pupil_Left"), ref defaultMap[i].lvlToHide_Pupil_Left);
+                Util.parse(defaultNode.GetValue("lvlToHide_Pupil_Right"), ref defaultMap[i].lvlToHide_Pupil_Right);
+                Util.parse(defaultNode.GetValue("lvlToHide_TeethUp"), ref defaultMap[i].lvlToHide_TeethUp);
+                Util.parse(defaultNode.GetValue("lvlToHide_TeethDown"), ref defaultMap[i].lvlToHide_TeethDown);
+                Util.parse(defaultNode.GetValue("lvlToHide_Ponytail"), ref defaultMap[i].lvlToHide_Ponytail);
+                Util.parse(defaultNode.GetValue("eyeballColor_Left"), ref defaultMap[i].eyeballColor_Left);
+                Util.parse(defaultNode.GetValue("eyeballColor_Right"), ref defaultMap[i].eyeballColor_Right);
+                Util.parse(defaultNode.GetValue("pupilColor_Left"), ref defaultMap[i].pupilColor_Left);
+                Util.parse(defaultNode.GetValue("pupilColor_Right"), ref defaultMap[i].pupilColor_Right);                
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                foreach (Head_Set headSet in map[i])
+                {
+                    ConfigNode savedNode = new ConfigNode();
+                    if ( node.TryGetNode(headSet.name, ref savedNode))
+                    {
+                        int nodeLvl = new int();
+                        Color32 nodeColor = new Color32();
+
+                        if (savedNode.TryGetValue("lvlToHide_Eye_Left", ref nodeLvl))                        
+                            headSet.lvlToHide_Eye_Left = nodeLvl;                       
+                        else                        
+                            headSet.lvlToHide_Eye_Left = defaultMap[i].lvlToHide_Eye_Left;
+
+                        if (savedNode.TryGetValue("lvlToHide_Eye_Right", ref nodeLvl))
+                            headSet.lvlToHide_Eye_Right = nodeLvl;
+                        else
+                            headSet.lvlToHide_Eye_Right = defaultMap[i].lvlToHide_Eye_Right;
+
+                        if (savedNode.TryGetValue("lvlToHide_Pupil_Left", ref nodeLvl))
+                            headSet.lvlToHide_Pupil_Left = nodeLvl;
+                        else
+                            headSet.lvlToHide_Pupil_Left = defaultMap[i].lvlToHide_Pupil_Left;
+
+                        if (savedNode.TryGetValue("lvlToHide_Pupil_Right", ref nodeLvl))
+                            headSet.lvlToHide_Pupil_Right = nodeLvl;
+                        else
+                            headSet.lvlToHide_Pupil_Right = defaultMap[i].lvlToHide_Pupil_Right;
+
+                        if (savedNode.TryGetValue("lvlToHide_TeethUp", ref nodeLvl))
+                            headSet.lvlToHide_TeethUp = nodeLvl;
+                        else
+                            headSet.lvlToHide_TeethUp = defaultMap[i].lvlToHide_TeethUp;
+
+                        if (savedNode.TryGetValue("lvlToHide_TeethDown", ref nodeLvl))
+                            headSet.lvlToHide_TeethDown = nodeLvl;
+                        else
+                            headSet.lvlToHide_TeethDown = defaultMap[i].lvlToHide_TeethDown;
+
+                        if (savedNode.TryGetValue("lvlToHide_Ponytail", ref nodeLvl))
+                            headSet.lvlToHide_Ponytail = nodeLvl;
+                        else
+                            headSet.lvlToHide_Ponytail = defaultMap[i].lvlToHide_Ponytail;
+                        
+                        if (savedNode.TryGetValue("eyeballColor_Left", ref nodeColor))                        
+                            headSet.eyeballColor_Left = nodeColor;                        
+                        else                        
+                            headSet.eyeballColor_Left = defaultMap[i].eyeballColor_Left;
+
+                        if (savedNode.TryGetValue("eyeballColor_Right", ref nodeColor))
+                            headSet.eyeballColor_Right = nodeColor;
+                        else
+                            headSet.eyeballColor_Right = defaultMap[i].eyeballColor_Right;
+
+                        if (savedNode.TryGetValue("pupilColor_Left", ref nodeColor))
+                            headSet.pupilColor_Left = nodeColor;
+                        else
+                            headSet.pupilColor_Left = defaultMap[i].pupilColor_Left;
+
+                        if (savedNode.TryGetValue("pupilColor_Right", ref nodeColor))
+                            headSet.pupilColor_Right = nodeColor;
+                        else
+                            headSet.pupilColor_Right = defaultMap[i].pupilColor_Right;
+                    }
+                    else
+                    {
+                        headSet.lvlToHide_Eye_Left = defaultMap[i].lvlToHide_Eye_Left;
+                        headSet.lvlToHide_Eye_Right = defaultMap[i].lvlToHide_Eye_Right;
+                        headSet.lvlToHide_Pupil_Left = defaultMap[i].lvlToHide_Pupil_Left;
+                        headSet.lvlToHide_Pupil_Right = defaultMap[i].lvlToHide_Pupil_Right;
+                        headSet.lvlToHide_TeethUp = defaultMap[i].lvlToHide_TeethUp;
+                        headSet.lvlToHide_TeethDown = defaultMap[i].lvlToHide_TeethDown;
+                        headSet.lvlToHide_Ponytail = defaultMap[i].lvlToHide_Ponytail;
+                        headSet.eyeballColor_Left = defaultMap[i].eyeballColor_Left;
+                        headSet.eyeballColor_Right = defaultMap[i].eyeballColor_Right;
+                        headSet.pupilColor_Left = defaultMap[i].pupilColor_Left;
+                        headSet.pupilColor_Right = defaultMap[i].pupilColor_Right;
+                    }
+                }
+            }  
+        }
+
+        private static void saveHeadConfig (ConfigNode node, List<Head_Set>[] map, Head_Set[] defaultMap)
+        {
+                        
+            for (int i = 0; i < 2; i++)
+            {
+                ConfigNode subNode = new ConfigNode(); 
+
+                if (i == 0)
+                    node.AddNode("DefaultHead_Male", subNode);
+                else
+                    node.AddNode("DefaultHead_Female", subNode);               
+
+                subNode.AddValue("lvlToHide_Eye_Left", defaultMap[i].lvlToHide_Eye_Left);
+                subNode.AddValue("lvlToHide_Eye_Right", defaultMap[i].lvlToHide_Eye_Right);
+                subNode.AddValue("lvlToHide_Pupil_Left", defaultMap[i].lvlToHide_Pupil_Left);
+                subNode.AddValue("lvlToHide_Pupil_Right", defaultMap[i].lvlToHide_Pupil_Right);
+                subNode.AddValue("lvlToHide_TeethUp", defaultMap[i].lvlToHide_TeethUp);
+                subNode.AddValue("lvlToHide_TeethDown", defaultMap[i].lvlToHide_TeethDown);
+                subNode.AddValue("lvlToHide_Ponytail", defaultMap[i].lvlToHide_Ponytail);
+                subNode.AddValue("eyeballColor_Left", defaultMap[i].eyeballColor_Left);
+                subNode.AddValue("eyeballColor_Right", defaultMap[i].eyeballColor_Right);
+                subNode.AddValue("pupilColor_Left", defaultMap[i].pupilColor_Left);
+                subNode.AddValue("pupilColor_Right", defaultMap[i].pupilColor_Right);   
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                foreach (Head_Set headSet in map[i])
+                {
+                    ConfigNode subNode = new ConfigNode();
+                    node.AddNode(headSet.name, subNode);
+
+                    subNode.AddValue("lvlToHide_Eye_Left", headSet.lvlToHide_Eye_Left);
+                    subNode.AddValue("lvlToHide_Eye_Right", headSet.lvlToHide_Eye_Right);
+                    subNode.AddValue("lvlToHide_Pupil_Left", headSet.lvlToHide_Pupil_Left);
+                    subNode.AddValue("lvlToHide_Pupil_Right", headSet.lvlToHide_Pupil_Right);
+                    subNode.AddValue("lvlToHide_TeethUp", headSet.lvlToHide_TeethUp);
+                    subNode.AddValue("lvlToHide_TeethDown", headSet.lvlToHide_TeethDown);
+                    subNode.AddValue("lvlToHide_Ponytail", headSet.lvlToHide_Ponytail);
+                    subNode.AddValue("eyeballColor_Left", headSet.eyeballColor_Left);
+                    subNode.AddValue("eyeballColor_Right", headSet.eyeballColor_Right);
+                    subNode.AddValue("pupilColor_Left", headSet.pupilColor_Left);
+                    subNode.AddValue("pupilColor_Right", headSet.pupilColor_Right);
+                }
+            }
+
+        }
+
+        
+
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -2427,8 +2652,7 @@ namespace TextureReplacerReplaced
         private void readKerbalsConfigs()
         {
             var excludedHeads = new List<string>();
-            var excludedSuits = new List<string>();
-           // var femaleSuits = new List<string>();
+            var excludedSuits = new List<string>();           
             var eyelessHeads = new List<string>();
 
             foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
@@ -2448,8 +2672,7 @@ namespace TextureReplacerReplaced
                 if (genericNode != null)
                 {
                     Util.addLists(genericNode.GetValues("excludedHeads"), excludedHeads);
-                    Util.addLists(genericNode.GetValues("excludedSuits"), excludedSuits);
-                   // Util.addLists(genericNode.GetValues("femaleSuits"), femaleSuits);
+                    Util.addLists(genericNode.GetValues("excludedSuits"), excludedSuits);                   
                     Util.addLists(genericNode.GetValues("eyelessHeads"), eyelessHeads);
                 }
 
@@ -2457,44 +2680,32 @@ namespace TextureReplacerReplaced
                 if (classNode != null)
                     loadSuitMap(classNode, defaultClassSuits);
 
-                //ConfigNode cabinNode = file.config.GetNode("CabinSuits");
-                //if (cabinNode != null)
-                   // loadSuitMap(cabinNode, cabinSuits);
+                ConfigNode headNode = file.config.GetNode("HeadSettings");
+                if (headNode != null)
+                {
+                    loadHeadConfig(headNode, maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
+                }              
             }
 
             // Tag female and eye-less heads.
-            foreach (Head_Set head in KerbalHeadsDB_full)
+            /*foreach (Head_Set head in KerbalHeadsDB_full)
             {
-                head.isEyeless = eyelessHeads.Contains(head.headSetName);
-            }
-            // Tag female suits.
-           // foreach (Suit_Set suit in KerbalSuitsDB_full)
-               // suit.isFemale = femaleSuits.Contains(suit.suitSetName);
-
-            // Create lists of male heads and suits.
-            //maleAndfemaleHeadsDB_cleaned[0].AddRange(maleAndfemaleHeadsDB_full.Where(h.isMale && !excludedHeads.Contains(h.headSetName)));
-            //maleAndfemaleSuitsDB_cleaned[0].AddRange(KerbalSuitsDB_full.Where(s => !s.isFemale && !excludedSuits.Contains(s.suitSetName)));
-            KerbalSuitsDB_cleaned.AddRange(KerbalSuitsDB_full.Where(s => !excludedSuits.Contains(s.suitSetName)));
+                head.isEyeless = eyelessHeads.Contains(head.name);
+            }*/
+            
+            // Create lists of male heads and suits.            
+            KerbalSuitsDB_cleaned.AddRange(KerbalSuitsDB_full.Where(s => !excludedSuits.Contains(s.name)));
 
             // Create lists of female heads and suits.
-            maleAndfemaleHeadsDB_cleaned[0].AddRange(KerbalHeadsDB_full.Where(h => !h.isFemale && !excludedHeads.Contains(h.headSetName)));
-            maleAndfemaleHeadsDB_cleaned[1].AddRange(KerbalHeadsDB_full.Where(h => h.isFemale && !excludedHeads.Contains(h.headSetName)));
-            //maleAndfemaleSuitsDB_cleaned[1].AddRange(KerbalSuitsDB_full.Where(s => s.isFemale && !excludedSuits.Contains(s.suitSetName)));
-
-
-           /* Util.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");            
-            Util.log("maleAndfemaleHeadsDB_cleaned[0] count = : {0}", maleAndfemaleHeadsDB_cleaned[0].Count);
-            Util.log("maleAndfemaleHeadsDB_cleaned[1] count = : {0}", maleAndfemaleHeadsDB_cleaned[1].Count);*/
-
-
+            maleAndfemaleHeadsDB_cleaned[0].AddRange(KerbalHeadsDB_full.Where(h => !h.isFemale && !excludedHeads.Contains(h.name)));
+            maleAndfemaleHeadsDB_cleaned[1].AddRange(KerbalHeadsDB_full.Where(h => h.isFemale && !excludedHeads.Contains(h.name)));
+            
             // Trim lists.
             KerbalHeadsDB_full.TrimExcess();
             KerbalSuitsDB_full.TrimExcess();
             KerbalSuitsDB_cleaned.TrimExcess();
-            maleAndfemaleHeadsDB_cleaned[0].TrimExcess();
-            //maleAndfemaleSuitsDB_cleaned[0].TrimExcess();
+            maleAndfemaleHeadsDB_cleaned[0].TrimExcess();            
             maleAndfemaleHeadsDB_cleaned[1].TrimExcess();
-            //maleAndfemaleSuitsDB_cleaned[1].TrimExcess();
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -2511,9 +2722,7 @@ namespace TextureReplacerReplaced
             Util.addLists(rootNode.GetValues("atmSuitBodies"), atmSuitBodies);
             Util.parse(rootNode.GetValue("forceLegacyFemales"), ref forceLegacyFemales);
             Util.parse(rootNode.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
-            Util.parse(rootNode.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
-            
-
+            Util.parse(rootNode.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled); 
             
         }
 
@@ -2523,19 +2732,11 @@ namespace TextureReplacerReplaced
         /// </summary>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void load()
-        {
-
-            //var suitDirs = new Dictionary<string, int>();
-            //string lastTextureName = "";
-           
+        {           
             // Populate KerbalHeadsDB_full and defaulMaleAndFemaleHeads
             Textures_Loader.LoadHeads(KerbalHeadsDB_full, maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
-            //Textures_Loader.DefaultHeads(defaulMaleAndFemaleHeads);
+           
             Textures_Loader.LoadSuits(KerbalSuitsDB_full, defaultSuit);
-
-            /*Util.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");            
-            Util.log("maleAndfemaleHeadsDB_full[0] count = : {0}", maleAndfemaleHeadsDB_full[0].Count);
-            Util.log("maleAndfemaleHeadsDB_full[1] count = : {0}", maleAndfemaleHeadsDB_full[1].Count);*/
 
             readKerbalsConfigs();     
 
@@ -2575,7 +2776,7 @@ namespace TextureReplacerReplaced
             if (HighLogic.CurrentGame != null)
             {
                 ConfigNode scenarioNode = HighLogic.CurrentGame.config.GetNodes("SCENARIO")
-                  .FirstOrDefault(n => n.GetValue("name") == "TRScenario");
+                  .FirstOrDefault(n => n.GetValue("name") == "TRR_Scenario");
 
                 if (scenarioNode != null)
                     loadScenario(scenarioNode);
@@ -2615,6 +2816,12 @@ namespace TextureReplacerReplaced
 
             loadKerbals(node.GetNode("Kerbals"));
             loadSuitMap(node.GetNode("ClassSuits"), classSuitsDB, defaultClassSuits);
+            ConfigNode headNode = node.GetNode("HeadSettings");
+            if (headNode != null)
+            {
+                loadHeadConfig(headNode, maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
+            }
+
 
             Util.parse(node.GetValue("isHelmetRemovalEnabled"), ref isHelmetRemovalEnabled);
             Util.parse(node.GetValue("isAtmSuitEnabled"), ref isAtmSuitEnabled);
@@ -2632,6 +2839,7 @@ namespace TextureReplacerReplaced
         {
             saveKerbals(node.AddNode("Kerbals"));
             saveSuitMap(classSuitsDB, node.AddNode("ClassSuits"));
+            saveHeadConfig(node.AddNode("HeadSettings"), maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
 
             node.AddValue("isHelmetRemovalEnabled", isHelmetRemovalEnabled);
             node.AddValue("isAtmSuitEnabled", isAtmSuitEnabled);

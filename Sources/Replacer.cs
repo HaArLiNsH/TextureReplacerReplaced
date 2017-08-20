@@ -267,9 +267,7 @@ namespace TextureReplacerReplaced
                             break;
 
                         case "eyeballLeft":
-                            smr.sharedMaterial.shader = headShader;
-                            //smr.transform.Rotate(Vector3.left,90);
-                            
+                            smr.sharedMaterial.shader = headShader;                                                        
                             break;
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballLeft":
                             smr.sharedMaterial.shader = headShader;
@@ -291,9 +289,7 @@ namespace TextureReplacerReplaced
                             break;
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilRight":
                             smr.sharedMaterial.shader = headShader;
-                           // smr.sharedMaterial.color = Color.white;
                             break;
-
                         case "upTeeth01":
                             smr.sharedMaterial.shader = headShader;
                             break;

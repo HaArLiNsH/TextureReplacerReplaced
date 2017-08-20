@@ -31,11 +31,7 @@ namespace TextureReplacerReplaced
     public class Randomizer
     {
         private System.Random random = new System.Random();
-       /* private Dictionary<string, int>[] maleAndfemaleHeadNumberOfUSe = new Dictionary<string, int>[]
-        {
-            new Dictionary<string, int>(), new Dictionary<string, int>()
-        };*/
-
+       
         private Dictionary<string, int> headNumberOfUse = new Dictionary<string, int>();
 
         private List<string> headListCleaned = new List<string>();
@@ -47,7 +43,7 @@ namespace TextureReplacerReplaced
         {
             Head_Set headSetChoosen = null;
 
-            headNumberOfUse = personaliser.maleAndfemaleHeadsDB_cleaned[gender].ToDictionary(k => k.headSetName, v => 0);
+            headNumberOfUse = personaliser.maleAndfemaleHeadsDB_cleaned[gender].ToDictionary(k => k.name, v => 0);
             
             List<KeyValuePair<string, int>> list = new List<KeyValuePair<string, int>>(headNumberOfUse);
 
@@ -57,51 +53,29 @@ namespace TextureReplacerReplaced
                 headNumberOfUse[kvp.Key] = count;
             }
 
-            /*Util.log("00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
-            foreach (KeyValuePair<string, int> data in headNumberOfUse)
-            {
-                Util.log("The head_set : {0} is used {1} times", data.Key, data.Value);
-            }*/
-
             list = new List<KeyValuePair<string, int>>(headNumberOfUse);
 
             List<KeyValuePair<string, int>> sortedList = (from kv in headNumberOfUse orderby kv.Value select kv).ToList();
 
             
-            int counter = sortedList[0].Value;
-            
-           // Util.log("counter = {0}", counter);
-            
-
-           // Util.log("1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+            int counter = sortedList[0].Value;            
+           
             foreach (KeyValuePair<string,int> data in sortedList)
             {
                 if (data.Value <= counter)
                 {
                     headListCleaned.Add(data.Key);
-                   // Util.log("head ADDED !!! headListcleaned = {0}", headListCleaned.Count);
+                   
                 }
-                //Util.log("Sorted LIST : {0} : {1} ", data.Key, data.Value);
+               
             }
-
-            //List<Head_Set> genderHeads = personaliser.maleAndfemaleHeadsDB_cleaned[gender];
 
             int number = random.Next(0, headListCleaned.Count);
 
             string choice = headListCleaned[number];
 
-            headSetChoosen = personaliser.maleAndfemaleHeadsDB_cleaned[gender].Find(x => x.headSetName == choice);
-
-
-
-                /* foreach (KeyValuePair<string, int> data in headNumberOfUse)
-                 {
-                     Util.log("The head_set : {0} is used {1} times", data.Key, data.Value);
-                 }*/
-
-
-                //Util.log("the head chosen for is {0} and is used {1} times", headSetChoosen.headSetName, headNumberOfUse[headSetChoosen.headSetName]);
-
+            headSetChoosen = personaliser.maleAndfemaleHeadsDB_cleaned[gender].Find(x => x.name == choice);
+            
             return headSetChoosen;
         }
 

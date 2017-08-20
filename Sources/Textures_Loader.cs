@@ -148,7 +148,7 @@ namespace TextureReplacerReplaced
                                 
                                 Head_Set head = new Head_Set
                                 {
-                                    headSetName = headSetFolder,
+                                    name = headSetFolder,
                                     isFemale = (i == 1)
                                 };
 
@@ -324,7 +324,7 @@ namespace TextureReplacerReplaced
                             if (!suitDirs.TryGetValue(dirName, out index))
                             {
                                 index = suitsList.Count;
-                                suitsList.Add(new Suit_Set { suitSetName = dirName });
+                                suitsList.Add(new Suit_Set { name = dirName });
                                 suitDirs.Add(dirName, index);
                             }
 

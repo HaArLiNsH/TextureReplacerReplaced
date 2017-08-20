@@ -39,7 +39,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// the name of the head texture
         /// </summary>
-        public string headSetName;
+        public string name;
 
         /// <summary>
         /// Is the head texture for a female model ?
@@ -49,27 +49,42 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Is the head texture made to be used without the eyes 3D meshes ?
         /// </summary>
-        public bool isEyeless;
+        //public bool isEyeless;
 
         /// <summary>
         /// Do we use the left eyeball 3d mesh?
         /// </summary>
-        public bool useEye_Left;
+        public int lvlToHide_Eye_Left;
 
         /// <summary>
         /// Do we use the right eyeball 3d mesh?
         /// </summary>
-        public bool useEye_Right;
+        public int lvlToHide_Eye_Right;
 
         /// <summary>
         /// Do we use the left pupil?
         /// </summary>
-        public bool usePupil_Left;
+        public int lvlToHide_Pupil_Left;
 
         /// <summary>
         /// Do we use the right pupil ?
         /// </summary>
-        public bool usePupil_Right;
+        public int lvlToHide_Pupil_Right;
+
+        /// <summary>
+        /// Do we use the up teeth ? 
+        /// </summary>
+        public int lvlToHide_TeethUp;
+
+        /// <summary>
+        /// Do we use the down teeth ?
+        /// </summary>
+        public int lvlToHide_TeethDown;
+
+        /// <summary>
+        /// Do we use the ponytail ? 
+        /// </summary>
+        public int lvlToHide_Ponytail;
 
         /// <summary>
         /// The head texture itself
@@ -90,7 +105,7 @@ namespace TextureReplacerReplaced
         /// The ponytail normal map
         /// </summary>
         public Texture2D[] ponytailNRM;
-
+        
         /// <summary>
         /// The eyeballLeft texture
         /// </summary>
@@ -131,6 +146,26 @@ namespace TextureReplacerReplaced
         /// </summary>
         public Texture2D[] pupil_RightNRM;
 
+        /// <summary>
+        /// The Color32 of the Left eyeBall 
+        /// </summary>
+        public Color32 eyeballColor_Left = new Color32(255, 255, 255, 255);
+
+        /// <summary>
+        /// The Color32 of the Right eyeBall 
+        /// </summary>
+        public Color32 eyeballColor_Right = new Color32(255, 255, 255, 255);
+
+        /// <summary>
+        /// The Color32 of the Left Pupil 
+        /// </summary>
+        public Color32 pupilColor_Left = new Color32(0, 0, 0, 255);
+
+        /// <summary>
+        /// The Color32 of the Right Pupil 
+        /// </summary>
+        public Color32 pupilColor_Right = new Color32(0, 0, 0, 255);
+        
         /// <summary>
         /// The tongue texture
         /// </summary>
@@ -282,6 +317,42 @@ namespace TextureReplacerReplaced
         }
 
         /// <summary>
+        /// Used to get the color the Left eyeBall 
+        /// </summary>
+        /// <returns></returns>
+        public Color32 get_EyeballColor_Left()
+        {
+            return eyeballColor_Left;
+        }
+
+        /// <summary>
+        /// Used to get the color the Right eyeBall 
+        /// </summary>
+        /// <returns></returns>
+        public Color32 get_EyeballColor_Right()
+        {
+            return eyeballColor_Right;
+        }
+
+        /// <summary>
+        /// Used to get the color the Left Pupil 
+        /// </summary>
+        /// <returns></returns>
+        public Color32 get_PupilColor_Left()
+        {
+            return pupilColor_Left;
+        }
+
+        /// <summary>
+        /// Used to get the color the Right Pupil 
+        /// </summary>
+        /// <returns></returns>
+        public Color32 get_PupilColor_Right()
+        {
+            return pupilColor_Right;
+        }       
+
+        /// <summary>
         /// Used to get the texture for the teeth_Down_Left of the kerbal
         /// </summary>
         /// <param name="level"></param>
@@ -359,6 +430,41 @@ namespace TextureReplacerReplaced
         public Texture2D get_teeth_Up_RightTextureNRM(int level)
         {
             return teeth_Up_RightNRM[level];
+        }
+
+        /// <summary>
+        /// Used to set the color the Left eyeBall 
+        /// </summary>
+        /// <returns></returns>
+        public void set_EyeballColor_Left(Color32 wantedColor)
+        {
+            eyeballColor_Left = wantedColor;
+        }
+
+        /// <summary>
+        /// Used to set the color the Right eyeBall 
+        /// </summary>
+        /// <returns></returns>
+        public void set_EyeballColor_Right(Color32 wantedColor)
+        {
+            eyeballColor_Right = wantedColor;
+        }
+        /// <summary>
+        /// Used to set the color the Left Pupil 
+        /// </summary>
+        /// <returns></returns>
+        public void set_PupilColor_Left(Color32 wantedColor)
+        {
+            pupilColor_Left = wantedColor;
+        }
+
+        /// <summary>
+        /// Used to set the color the Right Pupil 
+        /// </summary>
+        /// <returns></returns>
+        public void set_PupilColor_Right(Color32 wantedColor)
+        {
+            pupilColor_Right = wantedColor;
         }
 
         /// <summary>

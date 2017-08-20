@@ -39,7 +39,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// The name of the suit set
         /// </summary>
-        public string suitSetName;
+        public string name;
 
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  This will disappear !!!!!!!!!!!!!!!!!!!!!!!
         /// <summary>
