@@ -846,7 +846,7 @@ namespace TextureReplacerReplaced
                                     if (newTexture != null)                                    
                                         smr.sharedMaterial.color = Color.white;                                    
                                     else
-                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_EyeballColor_Left();                                    
+                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_EyeballColor_Left(protoKerbal.experienceLevel);                                    
                                 }
                             }
                             break;
@@ -867,8 +867,7 @@ namespace TextureReplacerReplaced
                                     if (newTexture != null)
                                         smr.sharedMaterial.color = Color.white;
                                     else
-                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_EyeballColor_Right();
-                                    
+                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_EyeballColor_Right(protoKerbal.experienceLevel);                                    
                                 }
                             }
                             break;
@@ -889,7 +888,7 @@ namespace TextureReplacerReplaced
                                     if (newTexture != null)
                                         smr.sharedMaterial.color = Color.white;
                                     else
-                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_PupilColor_Left();
+                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_PupilColor_Left(protoKerbal.experienceLevel);
                                 }
                             }
                             break;
@@ -910,7 +909,7 @@ namespace TextureReplacerReplaced
                                     if (newTexture != null)
                                         smr.sharedMaterial.color = Color.white;
                                     else
-                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_PupilColor_Right();
+                                        smr.sharedMaterial.color = personaliseKerbal_Head.get_PupilColor_Right(protoKerbal.experienceLevel);
                                     
                                 }
                             }
@@ -943,8 +942,8 @@ namespace TextureReplacerReplaced
                             }
                             break;
                         case "tongue":
-                            Util.log("+++++++++++++++++++++++  TONGUE of {0} ++++++++++++++++++++++++", protoKerbal.name);
-                            smr.GetComponentInChildren<Renderer>().enabled = true;
+                           // Util.log("+++++++++++++++++++++++  TONGUE of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            /*smr.GetComponentInChildren<Renderer>().enabled = true;
                             if (personaliseKerbal_Head != null)
                             {
                                 if ((int)protoKerbal.gender == 1)
@@ -957,12 +956,12 @@ namespace TextureReplacerReplaced
                                     newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
                                     newNormalMap = personaliseKerbal_Head.get_headTextureNRM(protoKerbal.experienceLevel);
                                 }
-                            }
+                            }*/
                             break;
 
                         case "upTeeth01":
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth01":
-                            Util.log("+++++++++++++++++++++++  upTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);  
+                           // Util.log("+++++++++++++++++++++++  upTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);  
                             if (personaliseKerbal_Head != null)
                             {
                                 if ((int)protoKerbal.gender == 1)
@@ -979,7 +978,7 @@ namespace TextureReplacerReplaced
                             break;
                         case "upTeeth02":
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth02":
-                            Util.log("+++++++++++++++++++++++  upTeeth02 of {0} ++++++++++++++++++++++++", protoKerbal.name);   
+                            //Util.log("+++++++++++++++++++++++  upTeeth02 of {0} ++++++++++++++++++++++++", protoKerbal.name);   
                             if (personaliseKerbal_Head != null)
                             {
                                 if ((int)protoKerbal.gender == 1)
@@ -997,7 +996,7 @@ namespace TextureReplacerReplaced
                                                                     
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth01":                           
                         case "downTeeth01":
-                            Util.log("+++++++++++++++++++++++  downTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
+                            //Util.log("+++++++++++++++++++++++  downTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
                             if (personaliseKerbal_Head != null)
                             {
                                 if ((int)protoKerbal.gender == 1)
@@ -2408,12 +2407,14 @@ namespace TextureReplacerReplaced
                 }
 
                 KerbalData kerbalData = getKerbalData(kerbal);
+                Head_Set headSet = getKerbalHead(kerbal, kerbalData);
+                Suit_Set suitSet = getKerbalSuit(kerbal, kerbalData);
 
-                string genderName = kerbalData.gender == 0 ? "M" : "F";                
-                string headName = kerbalData.head == null ? "GENERIC" : kerbalData.head.name;
-                string suitName = kerbalData.suit == null ? "GENERIC" : kerbalData.suit.name;
-               
-                node.AddValue(kerbal.name, genderName + " " + headName + " " + suitName);
+                string genderName = kerbalData.gender == 0 ? "M" : "F";
+                //string headName = kerbalData.head == null ? "GENERIC" : kerbalData.head.name;
+                // string suitName = kerbalData.suit == null ? "GENERIC" : kerbalData.suit.name; 
+
+                node.AddValue(kerbal.name, genderName + " " + headSet.name + " " + suitSet.name);
             }
         }
 
@@ -2477,6 +2478,228 @@ namespace TextureReplacerReplaced
             }
         }
 
+        private void loadSuitConfig(ConfigNode node, List<Suit_Set> map, Suit_Set defaultMap, bool reset)
+        {
+            //ConfigNode defaultNode = new ConfigNode();
+            //ConfigNode defaultNode = node.GetNode("DefaultSuit");
+
+            /*ConfigNode defaultNode = new ConfigNode();
+            if (node.TryGetNode("DefaultHead_Male", ref defaultNode))
+            {
+                Util.parse(defaultNode.GetValue("Iva_Use"), ref defaultMap.Iva_Use);
+                Util.parse(defaultNode.GetValue("Iva_ForceUse"), ref defaultMap.Iva_ForceUse);
+                Util.parse(defaultNode.GetValue("Iva_ForceUseHelmetAndVisor"), ref defaultMap.Iva_ForceUseHelmetAndVisor);
+                Util.parse(defaultNode.GetValue("Iva_HideHelmet_InAtmo"), ref defaultMap.Iva_HideHelmet_InAtmo);
+                Util.parse(defaultNode.GetValue("Iva_HideHelmet_OutAtmo"), ref defaultMap.Iva_HideHelmet_OutAtmo);
+                Util.parse(defaultNode.GetValue("Iva_VisorReflectionAdaptive"), ref defaultMap.Iva_VisorReflectionAdaptive);
+                Util.parse(defaultNode.GetValue("Iva_VisorReflectionColor"), ref defaultMap.Iva_VisorReflectionColor);
+                Util.parse(defaultNode.GetValue("Iva_HideHelmet_InVehicle"), ref defaultMap.Iva_HideHelmet_InVehicle);
+                Util.parse(defaultNode.GetValue("Iva_HideHelmet_WhenSafe"), ref defaultMap.Iva_HideHelmet_WhenSafe);
+                Util.parse(defaultNode.GetValue("Iva_HideHelmet_WhenUnsafe"), ref defaultMap.Iva_HideHelmet_WhenUnsafe);
+
+                Util.parse(defaultNode.GetValue("EvaGround_Use"), ref defaultMap.EvaGround_Use);
+                Util.parse(defaultNode.GetValue("EvaGround_ForceUse"), ref defaultMap.EvaGround_ForceUse);
+                Util.parse(defaultNode.GetValue("EvaGround_ForceUseHelmetAndVisor"), ref defaultMap.EvaGround_ForceUseHelmetAndVisor);
+                Util.parse(defaultNode.GetValue("EvaGround_HideHelmet_InAtmo"), ref defaultMap.EvaGround_HideHelmet_InAtmo);
+                Util.parse(defaultNode.GetValue("EvaGround_HideHelmet_OutAtmo"), ref defaultMap.EvaGround_HideHelmet_OutAtmo);
+                Util.parse(defaultNode.GetValue("EvaGround_VisorReflectionAdaptive"), ref defaultMap.EvaGround_VisorReflectionAdaptive);
+                Util.parse(defaultNode.GetValue("EvaGround_VisorReflectionColor"), ref defaultMap.EvaGround_VisorReflectionColor);
+
+                Util.parse(defaultNode.GetValue("EvaSpace_Use"), ref defaultMap.EvaSpace_Use);
+                Util.parse(defaultNode.GetValue("EvaSpace_ForceUse"), ref defaultMap.EvaSpace_ForceUse);
+                Util.parse(defaultNode.GetValue("EvaSpace_ForceUseHelmetAndVisor"), ref defaultMap.EvaSpace_ForceUseHelmetAndVisor);
+                Util.parse(defaultNode.GetValue("EvaSpace_HideHelmet_InAtmo"), ref defaultMap.EvaSpace_HideHelmet_InAtmo);
+                Util.parse(defaultNode.GetValue("EvaSpace_HideHelmet_OutAtmo"), ref defaultMap.EvaSpace_HideHelmet_OutAtmo);
+                Util.parse(defaultNode.GetValue("EvaSpace_VisorReflectionAdaptive"), ref defaultMap.EvaSpace_VisorReflectionAdaptive);
+                Util.parse(defaultNode.GetValue("EvaSpace_VisorReflectionColor"), ref defaultMap.EvaSpace_VisorReflectionColor);
+            }*/
+
+            foreach (Suit_Set suitSet in map)
+            {
+                if (reset)
+                {
+                    suitSet.Iva_Use = defaultMap.Iva_Use;
+                    suitSet.Iva_ForceUse = defaultMap.Iva_ForceUse;
+                    suitSet.Iva_ForceUseHelmetAndVisor = defaultMap.Iva_ForceUseHelmetAndVisor;
+                    suitSet.Iva_HideHelmet_InAtmo = defaultMap.Iva_HideHelmet_InAtmo;
+                    suitSet.Iva_HideHelmet_OutAtmo = defaultMap.Iva_HideHelmet_OutAtmo;
+                    suitSet.Iva_VisorReflectionAdaptive = defaultMap.Iva_VisorReflectionAdaptive;
+                    suitSet.Iva_VisorReflectionColor = defaultMap.Iva_VisorReflectionColor;
+                    suitSet.Iva_HideHelmet_InVehicle = defaultMap.Iva_HideHelmet_InVehicle;
+                    suitSet.Iva_HideHelmet_WhenSafe = defaultMap.Iva_HideHelmet_WhenSafe;
+                    suitSet.Iva_HideHelmet_WhenUnsafe = defaultMap.Iva_HideHelmet_WhenUnsafe;
+
+                    suitSet.EvaGround_Use = defaultMap.EvaGround_Use;
+                    suitSet.EvaGround_ForceUse = defaultMap.EvaGround_ForceUse;
+                    suitSet.EvaGround_ForceUseHelmetAndVisor = defaultMap.EvaGround_ForceUseHelmetAndVisor;
+                    suitSet.EvaGround_HideHelmet_InAtmo = defaultMap.EvaGround_HideHelmet_InAtmo;
+                    suitSet.EvaGround_HideHelmet_OutAtmo = defaultMap.EvaGround_HideHelmet_OutAtmo;
+                    suitSet.EvaGround_VisorReflectionAdaptive = defaultMap.EvaGround_VisorReflectionAdaptive;
+                    suitSet.EvaGround_VisorReflectionColor = defaultMap.EvaGround_VisorReflectionColor;
+
+                    suitSet.EvaSpace_Use = defaultMap.EvaSpace_Use;
+                    suitSet.EvaSpace_ForceUse = defaultMap.EvaSpace_ForceUse;
+                    suitSet.EvaSpace_ForceUseHelmetAndVisor = defaultMap.EvaSpace_ForceUseHelmetAndVisor;
+                    suitSet.EvaSpace_HideHelmet_InAtmo = defaultMap.EvaSpace_HideHelmet_InAtmo;
+                    suitSet.EvaSpace_HideHelmet_OutAtmo = defaultMap.EvaSpace_HideHelmet_OutAtmo;
+                    suitSet.EvaSpace_VisorReflectionAdaptive = defaultMap.EvaSpace_VisorReflectionAdaptive;
+                    suitSet.EvaSpace_VisorReflectionColor = defaultMap.EvaSpace_VisorReflectionColor;
+
+                    continue;
+                }
+
+                ConfigNode savedNode = new ConfigNode();
+                if (node.TryGetNode(suitSet.name, ref savedNode))
+                {
+                    Util.log("Settings found for {0}, using them", suitSet.name);
+                    bool nodeBool = true;
+                    Color32 nodeColor = new Color32(255, 255, 255, 255);
+
+                    if (savedNode.TryGetValue("Iva_Use", ref nodeBool))
+                        suitSet.Iva_Use = nodeBool;
+                    
+                    if (savedNode.TryGetValue("Iva_ForceUse", ref nodeBool))
+                        suitSet.Iva_ForceUse = nodeBool;
+                    
+                    if (savedNode.TryGetValue("Iva_ForceUseHelmetAndVisor", ref nodeBool))
+                        suitSet.Iva_ForceUseHelmetAndVisor = nodeBool;
+                    
+                    if (savedNode.TryGetValue("Iva_HideHelmet_InAtmo", ref nodeBool))
+                        suitSet.Iva_HideHelmet_InAtmo = nodeBool;
+                    
+                    if (savedNode.TryGetValue("Iva_HideHelmet_OutAtmo", ref nodeBool))
+                        suitSet.Iva_HideHelmet_OutAtmo = nodeBool;
+                    
+                    if (savedNode.TryGetValue("Iva_VisorReflectionAdaptive", ref nodeBool))
+                        suitSet.Iva_VisorReflectionAdaptive = nodeBool;
+                    
+                    if (savedNode.TryGetValue("Iva_VisorReflectionColor", ref nodeBool))
+                        suitSet.Iva_VisorReflectionColor = nodeColor;
+                    
+                    if (savedNode.TryGetValue("Iva_HideHelmet_InVehicle", ref nodeBool))
+                        suitSet.Iva_HideHelmet_InVehicle = nodeBool;
+                    
+                    if (savedNode.TryGetValue("Iva_HideHelmet_WhenSafe", ref nodeBool))
+                        suitSet.Iva_HideHelmet_WhenSafe = nodeBool;
+                    
+                    if (savedNode.TryGetValue("Iva_HideHelmet_WhenUnsafe", ref nodeBool))
+                        suitSet.Iva_HideHelmet_WhenUnsafe = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaGround_Use", ref nodeBool))
+                        suitSet.EvaGround_Use = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaGround_ForceUse", ref nodeBool))
+                        suitSet.EvaGround_ForceUse = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaGround_ForceUseHelmetAndVisor", ref nodeBool))
+                        suitSet.EvaGround_ForceUseHelmetAndVisor = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaGround_HideHelmet_InAtmo", ref nodeBool))
+                        suitSet.EvaGround_HideHelmet_InAtmo = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaGround_HideHelmet_OutAtmo", ref nodeBool))
+                        suitSet.EvaGround_HideHelmet_OutAtmo = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaGround_VisorReflectionAdaptive", ref nodeBool))
+                        suitSet.EvaGround_VisorReflectionAdaptive = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaGround_VisorReflectionColor", ref nodeBool))
+                        suitSet.EvaGround_VisorReflectionColor = nodeColor;
+                    
+                    if (savedNode.TryGetValue("EvaSpace_Use", ref nodeBool))
+                        suitSet.EvaSpace_Use = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaSpace_ForceUse", ref nodeBool))
+                        suitSet.EvaSpace_ForceUse = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaSpace_ForceUseHelmetAndVisor", ref nodeBool))
+                        suitSet.EvaSpace_ForceUseHelmetAndVisor = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaSpace_HideHelmet_InAtmo", ref nodeBool))
+                        suitSet.EvaSpace_HideHelmet_InAtmo = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaSpace_HideHelmet_OutAtmo", ref nodeBool))
+                        suitSet.EvaSpace_HideHelmet_OutAtmo = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaSpace_VisorReflectionAdaptive", ref nodeBool))
+                        suitSet.EvaSpace_VisorReflectionAdaptive = nodeBool;
+                    
+                    if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor", ref nodeBool))
+                        suitSet.EvaSpace_VisorReflectionColor = nodeColor;
+                    
+                }                
+            }
+
+        }
+
+        private static void saveSuitConfig(ConfigNode node, List<Suit_Set> map, Suit_Set defaultMap)
+        {
+            /*ConfigNode defaultSubNode = new ConfigNode();
+            node.AddNode("DefaultSuit", defaultSubNode);
+
+            defaultSubNode.AddValue("Iva_Use", defaultMap.Iva_Use);
+            defaultSubNode.AddValue("Iva_ForceUse", defaultMap.Iva_ForceUse);
+            defaultSubNode.AddValue("Iva_ForceUseHelmetAndVisor", defaultMap.Iva_ForceUseHelmetAndVisor);
+            defaultSubNode.AddValue("Iva_HideHelmet_InAtmo", defaultMap.Iva_HideHelmet_InAtmo);
+            defaultSubNode.AddValue("Iva_HideHelmet_OutAtmo", defaultMap.Iva_HideHelmet_OutAtmo);
+            defaultSubNode.AddValue("Iva_VisorReflectionAdaptive", defaultMap.Iva_VisorReflectionAdaptive);
+            defaultSubNode.AddValue("Iva_VisorReflectionColor", defaultMap.Iva_VisorReflectionColor);
+            defaultSubNode.AddValue("Iva_HideHelmet_InVehicle", defaultMap.Iva_HideHelmet_InVehicle);
+            defaultSubNode.AddValue("Iva_HideHelmet_WhenSafe", defaultMap.Iva_HideHelmet_WhenSafe);
+            defaultSubNode.AddValue("Iva_HideHelmet_WhenUnsafe", defaultMap.Iva_HideHelmet_WhenUnsafe);
+
+            defaultSubNode.AddValue("EvaGround_Use", defaultMap.EvaGround_Use);
+            defaultSubNode.AddValue("EvaGround_ForceUse", defaultMap.EvaGround_ForceUse);
+            defaultSubNode.AddValue("EvaGround_ForceUseHelmetAndVisor", defaultMap.EvaGround_ForceUseHelmetAndVisor);
+            defaultSubNode.AddValue("EvaGround_HideHelmet_InAtmo", defaultMap.EvaGround_HideHelmet_InAtmo);
+            defaultSubNode.AddValue("EvaGround_HideHelmet_OutAtmo", defaultMap.EvaGround_HideHelmet_OutAtmo);
+            defaultSubNode.AddValue("EvaGround_VisorReflectionAdaptive", defaultMap.EvaGround_VisorReflectionAdaptive);
+            defaultSubNode.AddValue("EvaGround_VisorReflectionColor", defaultMap.EvaGround_VisorReflectionColor);
+
+            defaultSubNode.AddValue("EvaSpace_Use", defaultMap.EvaSpace_Use);
+            defaultSubNode.AddValue("EvaSpace_ForceUse", defaultMap.EvaSpace_ForceUse);
+            defaultSubNode.AddValue("EvaSpace_ForceUseHelmetAndVisor", defaultMap.EvaSpace_ForceUseHelmetAndVisor);
+            defaultSubNode.AddValue("EvaSpace_HideHelmet_InAtmo", defaultMap.EvaSpace_HideHelmet_InAtmo);
+            defaultSubNode.AddValue("EvaSpace_HideHelmet_OutAtmo", defaultMap.EvaSpace_HideHelmet_OutAtmo);
+            defaultSubNode.AddValue("EvaSpace_VisorReflectionAdaptive", defaultMap.EvaSpace_VisorReflectionAdaptive);
+            defaultSubNode.AddValue("EvaSpace_VisorReflectionColor", defaultMap.EvaSpace_VisorReflectionColor);*/
+            
+            foreach (Suit_Set suitSet in map)
+            {
+                ConfigNode subNode = new ConfigNode();
+                node.AddNode(suitSet.name, subNode);
+
+                subNode.AddValue("isExclusive", suitSet.isExclusive);
+
+                subNode.AddValue("Iva_Use", suitSet.Iva_Use);
+                subNode.AddValue("Iva_ForceUse", suitSet.Iva_ForceUse);
+                subNode.AddValue("Iva_ForceUseHelmetAndVisor", suitSet.Iva_ForceUseHelmetAndVisor);
+                subNode.AddValue("Iva_HideHelmet_InAtmo", suitSet.Iva_HideHelmet_InAtmo);
+                subNode.AddValue("Iva_HideHelmet_OutAtmo", suitSet.Iva_HideHelmet_OutAtmo);
+                subNode.AddValue("Iva_VisorReflectionAdaptive", suitSet.Iva_VisorReflectionAdaptive);
+                subNode.AddValue("Iva_VisorReflectionColor", suitSet.Iva_VisorReflectionColor);
+                subNode.AddValue("Iva_HideHelmet_InVehicle", suitSet.Iva_HideHelmet_InVehicle);
+                subNode.AddValue("Iva_HideHelmet_WhenSafe", suitSet.Iva_HideHelmet_WhenSafe);
+                subNode.AddValue("Iva_HideHelmet_WhenUnsafe", suitSet.Iva_HideHelmet_WhenUnsafe);
+
+                subNode.AddValue("EvaGround_Use", suitSet.EvaGround_Use);
+                subNode.AddValue("EvaGround_ForceUse", suitSet.EvaGround_ForceUse);
+                subNode.AddValue("EvaGround_ForceUseHelmetAndVisor", suitSet.EvaGround_ForceUseHelmetAndVisor);
+                subNode.AddValue("EvaGround_HideHelmet_InAtmo", suitSet.EvaGround_HideHelmet_InAtmo);
+                subNode.AddValue("EvaGround_HideHelmet_OutAtmo", suitSet.EvaGround_HideHelmet_OutAtmo);
+                subNode.AddValue("EvaGround_VisorReflectionAdaptive", suitSet.EvaGround_VisorReflectionAdaptive);
+                subNode.AddValue("EvaGround_VisorReflectionColor", suitSet.EvaGround_VisorReflectionColor);
+
+                subNode.AddValue("EvaSpace_Use", suitSet.EvaSpace_Use);
+                subNode.AddValue("EvaSpace_ForceUse", suitSet.EvaSpace_ForceUse);
+                subNode.AddValue("EvaSpace_ForceUseHelmetAndVisor", suitSet.EvaSpace_ForceUseHelmetAndVisor);
+                subNode.AddValue("EvaSpace_HideHelmet_InAtmo", suitSet.EvaSpace_HideHelmet_InAtmo);
+                subNode.AddValue("EvaSpace_HideHelmet_OutAtmo", suitSet.EvaSpace_HideHelmet_OutAtmo);
+                subNode.AddValue("EvaSpace_VisorReflectionAdaptive", suitSet.EvaSpace_VisorReflectionAdaptive);
+                subNode.AddValue("EvaSpace_VisorReflectionColor", suitSet.EvaSpace_VisorReflectionColor);
+            }
+        }
+
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Used to load the configuration for the head-Sets
@@ -2487,29 +2710,38 @@ namespace TextureReplacerReplaced
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
         private void loadHeadConfig (ConfigNode node, List<Head_Set>[] map, Head_Set[] defaultMap)
         {
-            ConfigNode defaultNode = new ConfigNode();
-            
-
-            for (int i = 0; i < 2; i++)
+            /*ConfigNode defaultNodeMale = new ConfigNode();
+            if (node.TryGetNode("DefaultHead_Male", ref defaultNodeMale))
             {
-                if (i == 0)
-                    defaultNode = node.GetNode("DefaultHead_Male");
-                else
-                    defaultNode = node.GetNode("DefaultHead_Female");
-
-                Util.parse(defaultNode.GetValue("lvlToHide_Eye_Left"), ref defaultMap[i].lvlToHide_Eye_Left);
-                Util.parse(defaultNode.GetValue("lvlToHide_Eye_Right"), ref defaultMap[i].lvlToHide_Eye_Right);
-                Util.parse(defaultNode.GetValue("lvlToHide_Pupil_Left"), ref defaultMap[i].lvlToHide_Pupil_Left);
-                Util.parse(defaultNode.GetValue("lvlToHide_Pupil_Right"), ref defaultMap[i].lvlToHide_Pupil_Right);
-                Util.parse(defaultNode.GetValue("lvlToHide_TeethUp"), ref defaultMap[i].lvlToHide_TeethUp);
-                Util.parse(defaultNode.GetValue("lvlToHide_TeethDown"), ref defaultMap[i].lvlToHide_TeethDown);
-                Util.parse(defaultNode.GetValue("lvlToHide_Ponytail"), ref defaultMap[i].lvlToHide_Ponytail);
-                Util.parse(defaultNode.GetValue("eyeballColor_Left"), ref defaultMap[i].eyeballColor_Left);
-                Util.parse(defaultNode.GetValue("eyeballColor_Right"), ref defaultMap[i].eyeballColor_Right);
-                Util.parse(defaultNode.GetValue("pupilColor_Left"), ref defaultMap[i].pupilColor_Left);
-                Util.parse(defaultNode.GetValue("pupilColor_Right"), ref defaultMap[i].pupilColor_Right);                
+                Util.parse(defaultNodeMale.GetValue("lvlToHide_Eye_Left"), ref defaultMap[0].lvlToHide_Eye_Left);
+                Util.parse(defaultNodeMale.GetValue("lvlToHide_Eye_Right"), ref defaultMap[0].lvlToHide_Eye_Right);
+                Util.parse(defaultNodeMale.GetValue("lvlToHide_Pupil_Left"), ref defaultMap[0].lvlToHide_Pupil_Left);
+                Util.parse(defaultNodeMale.GetValue("lvlToHide_Pupil_Right"), ref defaultMap[0].lvlToHide_Pupil_Right);
+                Util.parse(defaultNodeMale.GetValue("lvlToHide_TeethUp"), ref defaultMap[0].lvlToHide_TeethUp);
+                Util.parse(defaultNodeMale.GetValue("lvlToHide_TeethDown"), ref defaultMap[0].lvlToHide_TeethDown);
+                Util.parse(defaultNodeMale.GetValue("lvlToHide_Ponytail"), ref defaultMap[0].lvlToHide_Ponytail);
+                Util.parse(defaultNodeMale.GetValue("eyeballColor_Left"), ref defaultMap[0].eyeballColor_Left);
+                Util.parse(defaultNodeMale.GetValue("eyeballColor_Right"), ref defaultMap[0].eyeballColor_Right);
+                Util.parse(defaultNodeMale.GetValue("pupilColor_Left"), ref defaultMap[0].pupilColor_Left);
+                Util.parse(defaultNodeMale.GetValue("pupilColor_Right"), ref defaultMap[0].pupilColor_Right);
             }
 
+            ConfigNode defaultNodeFemale = new ConfigNode();
+            if (node.TryGetNode("DefaultHead_Female", ref defaultNodeFemale))
+            {
+                Util.parse(defaultNodeFemale.GetValue("lvlToHide_Eye_Left"), ref defaultMap[1].lvlToHide_Eye_Left);
+                Util.parse(defaultNodeFemale.GetValue("lvlToHide_Eye_Right"), ref defaultMap[1].lvlToHide_Eye_Right);
+                Util.parse(defaultNodeFemale.GetValue("lvlToHide_Pupil_Left"), ref defaultMap[1].lvlToHide_Pupil_Left);
+                Util.parse(defaultNodeFemale.GetValue("lvlToHide_Pupil_Right"), ref defaultMap[1].lvlToHide_Pupil_Right);
+                Util.parse(defaultNodeFemale.GetValue("lvlToHide_TeethUp"), ref defaultMap[1].lvlToHide_TeethUp);
+                Util.parse(defaultNodeFemale.GetValue("lvlToHide_TeethDown"), ref defaultMap[1].lvlToHide_TeethDown);
+                Util.parse(defaultNodeFemale.GetValue("lvlToHide_Ponytail"), ref defaultMap[1].lvlToHide_Ponytail);
+                Util.parse(defaultNodeFemale.GetValue("eyeballColor_Left"), ref defaultMap[1].eyeballColor_Left);
+                Util.parse(defaultNodeFemale.GetValue("eyeballColor_Right"), ref defaultMap[1].eyeballColor_Right);
+                Util.parse(defaultNodeFemale.GetValue("pupilColor_Left"), ref defaultMap[1].pupilColor_Left);
+                Util.parse(defaultNodeFemale.GetValue("pupilColor_Right"), ref defaultMap[1].pupilColor_Right);
+            }*/
+            
             for (int i = 0; i < 2; i++)
             {
                 foreach (Head_Set headSet in map[i])
@@ -2517,86 +2749,130 @@ namespace TextureReplacerReplaced
                     ConfigNode savedNode = new ConfigNode();
                     if ( node.TryGetNode(headSet.name, ref savedNode))
                     {
+                        Util.log("Settings found for {0}, using them", headSet.name);
                         int nodeLvl = new int();
+                        bool nodeBool = false;
                         Color32 nodeColor = new Color32();
 
-                        if (savedNode.TryGetValue("lvlToHide_Eye_Left", ref nodeLvl))                        
-                            headSet.lvlToHide_Eye_Left = nodeLvl;                       
-                        else                        
-                            headSet.lvlToHide_Eye_Left = defaultMap[i].lvlToHide_Eye_Left;
 
+                        if (savedNode.TryGetValue("isExclusive", ref nodeBool))
+                            headSet.isExclusive = nodeBool;
+                        Util.log("Settings for {0} = {1}", headSet.name, headSet.isExclusive);
+
+                        if (savedNode.TryGetValue("lvlToHide_Eye_Left", ref nodeLvl))                        
+                            headSet.lvlToHide_Eye_Left = nodeLvl;
+                        //Util.log("Settings for {0} = {1}", headSet.name, headSet.lvlToHide_Eye_Left);
                         if (savedNode.TryGetValue("lvlToHide_Eye_Right", ref nodeLvl))
                             headSet.lvlToHide_Eye_Right = nodeLvl;
-                        else
-                            headSet.lvlToHide_Eye_Right = defaultMap[i].lvlToHide_Eye_Right;
-
+                        
                         if (savedNode.TryGetValue("lvlToHide_Pupil_Left", ref nodeLvl))
                             headSet.lvlToHide_Pupil_Left = nodeLvl;
-                        else
-                            headSet.lvlToHide_Pupil_Left = defaultMap[i].lvlToHide_Pupil_Left;
-
+                       
                         if (savedNode.TryGetValue("lvlToHide_Pupil_Right", ref nodeLvl))
                             headSet.lvlToHide_Pupil_Right = nodeLvl;
-                        else
-                            headSet.lvlToHide_Pupil_Right = defaultMap[i].lvlToHide_Pupil_Right;
-
+                       
                         if (savedNode.TryGetValue("lvlToHide_TeethUp", ref nodeLvl))
                             headSet.lvlToHide_TeethUp = nodeLvl;
-                        else
-                            headSet.lvlToHide_TeethUp = defaultMap[i].lvlToHide_TeethUp;
-
+                       
                         if (savedNode.TryGetValue("lvlToHide_TeethDown", ref nodeLvl))
                             headSet.lvlToHide_TeethDown = nodeLvl;
-                        else
-                            headSet.lvlToHide_TeethDown = defaultMap[i].lvlToHide_TeethDown;
-
+                       
                         if (savedNode.TryGetValue("lvlToHide_Ponytail", ref nodeLvl))
                             headSet.lvlToHide_Ponytail = nodeLvl;
-                        else
+                       
+                        if (savedNode.TryGetValue("eyeballColor_Left[0]", ref nodeColor))                        
+                            headSet.eyeballColor_Left[0] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Left[1]", ref nodeColor))
+                            headSet.eyeballColor_Left[1] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Left[2]", ref nodeColor))
+                            headSet.eyeballColor_Left[2] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Left[3]", ref nodeColor))
+                            headSet.eyeballColor_Left[3] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Left[4]", ref nodeColor))
+                            headSet.eyeballColor_Left[4] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Left[5]", ref nodeColor))
+                            headSet.eyeballColor_Left[5] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Right[0]", ref nodeColor))
+                            headSet.eyeballColor_Right[0] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Right[1]", ref nodeColor))
+                            headSet.eyeballColor_Right[1] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Right[2]", ref nodeColor))
+                            headSet.eyeballColor_Right[2] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Right[3]", ref nodeColor))
+                            headSet.eyeballColor_Right[3] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Right[4]", ref nodeColor))
+                            headSet.eyeballColor_Right[4] = nodeColor;
+
+                        if (savedNode.TryGetValue("eyeballColor_Right[5]", ref nodeColor))
+                            headSet.eyeballColor_Right[5] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Left[0]", ref nodeColor))
+                            headSet.pupilColor_Left[0] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Left[1]", ref nodeColor))
+                            headSet.pupilColor_Left[1] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Left[2]", ref nodeColor))
+                            headSet.pupilColor_Left[2] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Left[3]", ref nodeColor))
+                            headSet.pupilColor_Left[3] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Left[4]", ref nodeColor))
+                            headSet.pupilColor_Left[4] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Left[5]", ref nodeColor))
+                            headSet.pupilColor_Left[5] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Right[0]", ref nodeColor))
+                            headSet.pupilColor_Right[0] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Right[1]", ref nodeColor))
+                            headSet.pupilColor_Right[1] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Right[2]", ref nodeColor))
+                            headSet.pupilColor_Right[2] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Right[3]", ref nodeColor))
+                            headSet.pupilColor_Right[3] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Right[4]", ref nodeColor))
+                            headSet.pupilColor_Right[4] = nodeColor;
+
+                        if (savedNode.TryGetValue("pupilColor_Right[5]", ref nodeColor))
+                            headSet.pupilColor_Right[5] = nodeColor;
+                        /*else
+                        {
+                            headSet.lvlToHide_Eye_Left = defaultMap[i].lvlToHide_Eye_Left;
+                            headSet.lvlToHide_Eye_Right = defaultMap[i].lvlToHide_Eye_Right;
+                            headSet.lvlToHide_Pupil_Left = defaultMap[i].lvlToHide_Pupil_Left;
+                            headSet.lvlToHide_Pupil_Right = defaultMap[i].lvlToHide_Pupil_Right;
+                            headSet.lvlToHide_TeethUp = defaultMap[i].lvlToHide_TeethUp;
+                            headSet.lvlToHide_TeethDown = defaultMap[i].lvlToHide_TeethDown;
                             headSet.lvlToHide_Ponytail = defaultMap[i].lvlToHide_Ponytail;
-                        
-                        if (savedNode.TryGetValue("eyeballColor_Left", ref nodeColor))                        
-                            headSet.eyeballColor_Left = nodeColor;                        
-                        else                        
                             headSet.eyeballColor_Left = defaultMap[i].eyeballColor_Left;
-
-                        if (savedNode.TryGetValue("eyeballColor_Right", ref nodeColor))
-                            headSet.eyeballColor_Right = nodeColor;
-                        else
                             headSet.eyeballColor_Right = defaultMap[i].eyeballColor_Right;
-
-                        if (savedNode.TryGetValue("pupilColor_Left", ref nodeColor))
-                            headSet.pupilColor_Left = nodeColor;
-                        else
                             headSet.pupilColor_Left = defaultMap[i].pupilColor_Left;
-
-                        if (savedNode.TryGetValue("pupilColor_Right", ref nodeColor))
-                            headSet.pupilColor_Right = nodeColor;
-                        else
-                            headSet.pupilColor_Right = defaultMap[i].pupilColor_Right;
-                    }
-                    else
-                    {
-                        headSet.lvlToHide_Eye_Left = defaultMap[i].lvlToHide_Eye_Left;
-                        headSet.lvlToHide_Eye_Right = defaultMap[i].lvlToHide_Eye_Right;
-                        headSet.lvlToHide_Pupil_Left = defaultMap[i].lvlToHide_Pupil_Left;
-                        headSet.lvlToHide_Pupil_Right = defaultMap[i].lvlToHide_Pupil_Right;
-                        headSet.lvlToHide_TeethUp = defaultMap[i].lvlToHide_TeethUp;
-                        headSet.lvlToHide_TeethDown = defaultMap[i].lvlToHide_TeethDown;
-                        headSet.lvlToHide_Ponytail = defaultMap[i].lvlToHide_Ponytail;
-                        headSet.eyeballColor_Left = defaultMap[i].eyeballColor_Left;
-                        headSet.eyeballColor_Right = defaultMap[i].eyeballColor_Right;
-                        headSet.pupilColor_Left = defaultMap[i].pupilColor_Left;
-                        headSet.pupilColor_Right = defaultMap[i].pupilColor_Right;
+                            headSet.pupilColor_Right = defaultMap[i].pupilColor_Right;*/
                     }
                 }
             }  
-        }
+        }       
 
         private static void saveHeadConfig (ConfigNode node, List<Head_Set>[] map, Head_Set[] defaultMap)
         {
                         
-            for (int i = 0; i < 2; i++)
+            /*for (int i = 0; i < 2; i++)
             {
                 ConfigNode subNode = new ConfigNode(); 
 
@@ -2616,7 +2892,7 @@ namespace TextureReplacerReplaced
                 subNode.AddValue("eyeballColor_Right", defaultMap[i].eyeballColor_Right);
                 subNode.AddValue("pupilColor_Left", defaultMap[i].pupilColor_Left);
                 subNode.AddValue("pupilColor_Right", defaultMap[i].pupilColor_Right);   
-            }
+            }*/
 
             for (int i = 0; i < 2; i++)
             {
@@ -2625,6 +2901,7 @@ namespace TextureReplacerReplaced
                     ConfigNode subNode = new ConfigNode();
                     node.AddNode(headSet.name, subNode);
 
+                    subNode.AddValue("isExclusive", headSet.isExclusive);
                     subNode.AddValue("lvlToHide_Eye_Left", headSet.lvlToHide_Eye_Left);
                     subNode.AddValue("lvlToHide_Eye_Right", headSet.lvlToHide_Eye_Right);
                     subNode.AddValue("lvlToHide_Pupil_Left", headSet.lvlToHide_Pupil_Left);
@@ -2632,10 +2909,30 @@ namespace TextureReplacerReplaced
                     subNode.AddValue("lvlToHide_TeethUp", headSet.lvlToHide_TeethUp);
                     subNode.AddValue("lvlToHide_TeethDown", headSet.lvlToHide_TeethDown);
                     subNode.AddValue("lvlToHide_Ponytail", headSet.lvlToHide_Ponytail);
-                    subNode.AddValue("eyeballColor_Left", headSet.eyeballColor_Left);
-                    subNode.AddValue("eyeballColor_Right", headSet.eyeballColor_Right);
-                    subNode.AddValue("pupilColor_Left", headSet.pupilColor_Left);
-                    subNode.AddValue("pupilColor_Right", headSet.pupilColor_Right);
+                    subNode.AddValue("eyeballColor_Left[0]", headSet.eyeballColor_Left[0]);
+                    subNode.AddValue("eyeballColor_Left[1]", headSet.eyeballColor_Left[1]);
+                    subNode.AddValue("eyeballColor_Left[2]", headSet.eyeballColor_Left[2]);
+                    subNode.AddValue("eyeballColor_Left[3]", headSet.eyeballColor_Left[3]);
+                    subNode.AddValue("eyeballColor_Left[4]", headSet.eyeballColor_Left[4]);
+                    subNode.AddValue("eyeballColor_Left[5]", headSet.eyeballColor_Left[5]);
+                    subNode.AddValue("eyeballColor_Right[0]", headSet.eyeballColor_Right[0]);
+                    subNode.AddValue("eyeballColor_Right[1]", headSet.eyeballColor_Right[1]);
+                    subNode.AddValue("eyeballColor_Right[2]", headSet.eyeballColor_Right[2]);
+                    subNode.AddValue("eyeballColor_Right[3]", headSet.eyeballColor_Right[3]);
+                    subNode.AddValue("eyeballColor_Right[4]", headSet.eyeballColor_Right[4]);
+                    subNode.AddValue("eyeballColor_Right[5]", headSet.eyeballColor_Right[5]);
+                    subNode.AddValue("pupilColor_Left[0]", headSet.pupilColor_Left[0]);
+                    subNode.AddValue("pupilColor_Left[1]", headSet.pupilColor_Left[1]);
+                    subNode.AddValue("pupilColor_Left[2]", headSet.pupilColor_Left[2]);
+                    subNode.AddValue("pupilColor_Left[3]", headSet.pupilColor_Left[3]);
+                    subNode.AddValue("pupilColor_Left[4]", headSet.pupilColor_Left[4]);
+                    subNode.AddValue("pupilColor_Left[5]", headSet.pupilColor_Left[5]);
+                    subNode.AddValue("pupilColor_Right[0]", headSet.pupilColor_Right[0]);
+                    subNode.AddValue("pupilColor_Right[1]", headSet.pupilColor_Right[1]);
+                    subNode.AddValue("pupilColor_Right[2]", headSet.pupilColor_Right[2]);
+                    subNode.AddValue("pupilColor_Right[3]", headSet.pupilColor_Right[3]);
+                    subNode.AddValue("pupilColor_Right[4]", headSet.pupilColor_Right[4]);
+                    subNode.AddValue("pupilColor_Right[5]", headSet.pupilColor_Right[5]);
                 }
             }
 
@@ -2681,10 +2978,13 @@ namespace TextureReplacerReplaced
                     loadSuitMap(classNode, defaultClassSuits);
 
                 ConfigNode headNode = file.config.GetNode("HeadSettings");
-                if (headNode != null)
-                {
+                if (headNode != null)               
                     loadHeadConfig(headNode, maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
-                }              
+                
+                ConfigNode suitNode = file.config.GetNode("SuitSettings");
+                if (suitNode != null)                
+                    loadSuitConfig(suitNode, KerbalSuitsDB_full, defaultSuit, false);
+                
             }
 
             // Tag female and eye-less heads.
@@ -2816,12 +3116,18 @@ namespace TextureReplacerReplaced
 
             loadKerbals(node.GetNode("Kerbals"));
             loadSuitMap(node.GetNode("ClassSuits"), classSuitsDB, defaultClassSuits);
+
             ConfigNode headNode = node.GetNode("HeadSettings");
             if (headNode != null)
             {
                 loadHeadConfig(headNode, maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
             }
 
+            ConfigNode suitNode = node.GetNode("SuitSettings");
+            if (suitNode != null)
+            {
+                loadSuitConfig(suitNode, KerbalSuitsDB_full, defaultSuit, false);
+            }
 
             Util.parse(node.GetValue("isHelmetRemovalEnabled"), ref isHelmetRemovalEnabled);
             Util.parse(node.GetValue("isAtmSuitEnabled"), ref isAtmSuitEnabled);
@@ -2840,6 +3146,7 @@ namespace TextureReplacerReplaced
             saveKerbals(node.AddNode("Kerbals"));
             saveSuitMap(classSuitsDB, node.AddNode("ClassSuits"));
             saveHeadConfig(node.AddNode("HeadSettings"), maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
+            saveSuitConfig(node.AddNode("SuitSettings"), KerbalSuitsDB_full, defaultSuit);
 
             node.AddValue("isHelmetRemovalEnabled", isHelmetRemovalEnabled);
             node.AddValue("isAtmSuitEnabled", isAtmSuitEnabled);
@@ -2860,6 +3167,7 @@ namespace TextureReplacerReplaced
             
             loadKerbals(null);           
             loadSuitMap(null, classSuitsDB, defaultClassSuits);
+            //loadSuitConfig(null, KerbalSuitsDB_full, defaultSuit, true);
         }
     }
 }

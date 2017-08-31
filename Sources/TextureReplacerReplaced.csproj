@@ -20,6 +20,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Head_Gui.cs" />
     <Compile Include="KerbalData.cs" />
     <Compile Include="Textures_Loader.cs" />
     <Compile Include="Randomizer.cs" />

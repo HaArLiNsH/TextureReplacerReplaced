@@ -97,7 +97,7 @@ namespace TextureReplacerReplaced
                 SUITS.AddRange(TRR_NODE.GetNode("Folders").GetValues("Suits"));
                 KEEPLOADED.AddRange(TRR_NODE.GetNode("Folders").GetValues("KeepLoaded"));
                 KEEPLOADED.AddRange(ENVMAP);
-            }
+            }              
         }
     }
 

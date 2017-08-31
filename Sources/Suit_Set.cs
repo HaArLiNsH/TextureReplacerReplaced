@@ -41,11 +41,68 @@ namespace TextureReplacerReplaced
         /// </summary>
         public string name;
 
+        /// <summary>
+        ///	Is the suit exclusive to one kerbal ? 
+        /// </summary>
+        public bool isExclusive = false;
+
+        public bool Iva_Use = true;
+
+        public bool Iva_ForceUse = false;
+
+        public bool Iva_ForceUseHelmetAndVisor = false;
+
+        public bool Iva_HideHelmet_InAtmo = true;
+
+        public bool Iva_HideHelmet_OutAtmo = false;
+
+        public bool Iva_VisorReflectionAdaptive = true;
+
+        public Color32 Iva_VisorReflectionColor = new Color32(255, 255, 255, 255);
+
+        public bool Iva_HideHelmet_InVehicle = true;
+
+        public bool Iva_HideHelmet_WhenSafe = true;
+
+        public bool Iva_HideHelmet_WhenUnsafe = false;
+
+
+        public bool EvaGround_Use = false;
+
+        public bool EvaGround_ForceUse = false;
+
+        public bool EvaGround_ForceUseHelmetAndVisor = false;
+
+        public bool EvaGround_HideHelmet_InAtmo = false;
+
+        public bool EvaGround_HideHelmet_OutAtmo = false;
+
+        public bool EvaGround_VisorReflectionAdaptive = true;
+
+        public Color32 EvaGround_VisorReflectionColor = new Color32(255, 255, 255, 255);       
+
+
+        public bool EvaSpace_Use = true;
+
+        public bool EvaSpace_ForceUse = false;
+
+        public bool EvaSpace_ForceUseHelmetAndVisor = false;
+
+        public bool EvaSpace_HideHelmet_InAtmo = false;
+
+        public bool EvaSpace_HideHelmet_OutAtmo = false;
+
+        public bool EvaSpace_VisorReflectionAdaptive = true;
+
+        public Color32 EvaSpace_VisorReflectionColor = new Color32(255, 255, 255, 255);
+
+        
+
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  This will disappear !!!!!!!!!!!!!!!!!!!!!!!
         /// <summary>
         /// Is the suit set made for female kerbal?
         /// </summary>
-        public bool isFemale;        
+        //public bool isFemale;        
 
         /// <summary>
         /// The texture list for the helmet_EvaGround_Badass_Female
