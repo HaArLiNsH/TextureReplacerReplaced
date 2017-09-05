@@ -58,7 +58,9 @@ namespace TextureReplacerReplaced
 
         public bool Iva_VisorReflectionAdaptive = true;
 
-        public Color32 Iva_VisorReflectionColor = new Color32(255, 255, 255, 255);
+        public Color32[] Iva_VisorReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
 
         public bool Iva_HideHelmet_InVehicle = true;
 
@@ -79,7 +81,9 @@ namespace TextureReplacerReplaced
 
         public bool EvaGround_VisorReflectionAdaptive = true;
 
-        public Color32 EvaGround_VisorReflectionColor = new Color32(255, 255, 255, 255);       
+        public Color32[] EvaGround_VisorReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
 
 
         public bool EvaSpace_Use = true;
@@ -94,9 +98,11 @@ namespace TextureReplacerReplaced
 
         public bool EvaSpace_VisorReflectionAdaptive = true;
 
-        public Color32 EvaSpace_VisorReflectionColor = new Color32(255, 255, 255, 255);
+        public Color32[] EvaSpace_VisorReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
 
-        
+
 
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  This will disappear !!!!!!!!!!!!!!!!!!!!!!!
         /// <summary>
@@ -978,8 +984,27 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Normal map list for the visor_Iva_Veteran_Male
         /// </summary>
-        private Texture2D[] visor_Iva_Veteran_MaleNRM;   
-        
+        private Texture2D[] visor_Iva_Veteran_MaleNRM;
+
+
+
+
+        public Color32 get_Iva_VisorReflectionColor(int level)
+        {
+            return Iva_VisorReflectionColor[level];
+        }
+
+        public Color32 get_EvaGround_VisorReflectionColor(int level)
+        {
+            return EvaGround_VisorReflectionColor[level];
+        }
+
+        public Color32 get_EvaSpace_VisorReflectionColor(int level)
+        {
+            return EvaSpace_VisorReflectionColor[level];
+        }
+
+
         /// ************************************************************************************
         /// <summary>
         /// Used to get the helmet_EvaGround_Badass_Female for the level of the kerbal

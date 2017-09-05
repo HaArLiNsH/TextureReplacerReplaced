@@ -26,7 +26,7 @@ namespace TextureReplacerReplaced
     /// <summary>
     /// This class handle the load and save of the configuration data in the persistant.sfs save
     /// </summary>
-    [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.SPACECENTER)]
+    [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.SPACECENTER | GameScenes.FLIGHT)]
     public class TRR_Scenario : ScenarioModule
     {
         /// <summary>

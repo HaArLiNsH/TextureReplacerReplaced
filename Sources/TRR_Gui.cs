@@ -24,6 +24,7 @@
 using KSP.UI.Screens;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace TextureReplacerReplaced
@@ -31,30 +32,35 @@ namespace TextureReplacerReplaced
     /// <summary>
     /// The configuration windows in the space center scene
     /// </summary>
-    [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
+    [KSPAddon(KSPAddon.Startup.FlightAndKSC, false)]
     public class TRR_Gui : MonoBehaviour
     {
         //Head_Gui head_Gui = new Head_Gui();
 
         private bool headGui_IsEnabled = false;
 
-        private Rect headGui_windowRect = new Rect(60, 60, 875, 700);
+        private Rect headGui_windowRect = new Rect(60, 80, 660, 700);
 
         private const int WINDOW_ID_HEAD = 107057;
 
         private bool suitGui_IsEnabled = false;
 
-        private Rect suitGui_windowRect = new Rect(70, 70, 855, 700);
+        private Rect suitGui_windowRect = new Rect(70, 80, 690, 700);
 
         private const int WINDOW_ID_SUIT = 107058;
 
         private Vector2 headScroll = Vector2.zero;
 
+        private Vector2 suitScroll = Vector2.zero;
+
         private Vector2 headSettingScroll = Vector2.zero;
+
+        private Vector2 suitSettingScroll = Vector2.zero;
+
 
         private Head_Set selectedHeadSet = null;
 
-        private Suit_Set selectedsuitSet = null; 
+        private Suit_Set selectedsuitSet = null;        
 
         /// <summary>
         /// icon for the toolbar
@@ -89,7 +95,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Ui window size
         /// </summary>
-        private Rect windowRect = new Rect(Screen.width - 600, 60, 580, 610);
+        private Rect windowRect = new Rect(Screen.width - 590, 80, 530, 710);
 
         /// <summary>
         /// vector used for the scroll in the roster area of the GUI
@@ -139,13 +145,74 @@ namespace TextureReplacerReplaced
             Personaliser personaliser = Personaliser.instance;
             Randomizer randomizer = new Randomizer();
 
-            if (GUI.Button(new Rect(560, 5, 15, 15), "X"))
+            GUIStyle imageStyle = new GUIStyle();
+            imageStyle.border = new UnityEngine.RectOffset(0, 0, 0, 0);
+
+            GUIStyle textFieldStyle = new GUIStyle();
+
+            GUIStyle labelStyle = new GUIStyle();
+
+
+            GUIStyle buttonStyle = new GUIStyle();
+
+
+            int lvlCellWidth = 20;
+
+            int colorCellWidth = 35;
+            int colorCellColumwWidth = 150;
+            int suitCellSize = 120;
+            int textureAndColorColumnWidth = 250;
+            int suitsetColumnWidth = 130;
+
+            if (personaliser.useKspSkin)
+            {
+                labelStyle.font = HighLogic.Skin.font;
+                labelStyle.wordWrap = false;
+                labelStyle.normal.textColor = Color.white;
+                labelStyle.padding.top = 5;
+                labelStyle.padding.bottom = 0;
+                labelStyle.padding.left = 0;
+                labelStyle.padding.right = 0;
+                labelStyle.fontSize = 14;
+
+                buttonStyle = HighLogic.Skin.button;
+                buttonStyle.fontSize = 14;
+
+                textFieldStyle = HighLogic.Skin.textField;
+                textFieldStyle.padding.left = 5;
+                textFieldStyle.padding.right = 5;
+                textFieldStyle.fontSize = 14;
+                textFieldStyle.fontStyle = FontStyle.Normal;
+            }
+            else
+            {
+                labelStyle = GUI.skin.label;
+                labelStyle.padding.top = 5;
+                labelStyle.padding.bottom = 0;
+                labelStyle.padding.left = 0;
+                labelStyle.padding.right = 0;
+                labelStyle.margin.top = 0;
+                labelStyle.margin.bottom = 0;
+                labelStyle.margin.left = 0;
+                labelStyle.margin.right = 0;
+
+                buttonStyle = GUI.skin.button;
+
+                //textFieldStyle = GUI.skin.textField;
+
+            }
+
+
+
+
+
+            if (GUI.Button(new Rect(505, 5, 20, 20), "X"))
                 appButton.SetFalse();
 
             GUILayout.BeginVertical();
                 GUILayout.BeginHorizontal();
 
-                    GUILayout.BeginVertical(GUILayout.Width(200));
+                    GUILayout.BeginVertical(GUILayout.Width(180));
 
                     // Roster area.
                         rosterScroll = GUILayout.BeginScrollView(rosterScroll);
@@ -170,7 +237,7 @@ namespace TextureReplacerReplaced
                                         break;
                                 }
 
-                                if (GUILayout.Button(kerbal.name))
+                                if (GUILayout.Button(kerbal.name, buttonStyle))
                                 {
                                     selectedKerbal = kerbal;
                                     selectedClass = null;
@@ -189,7 +256,7 @@ namespace TextureReplacerReplaced
                                         continue;
                                 }
 
-                                if (GUILayout.Button(kerbal.name))
+                                if (GUILayout.Button(kerbal.name, buttonStyle))
                                 {
                                     selectedKerbal = kerbal;
                                     selectedClass = null;
@@ -202,7 +269,7 @@ namespace TextureReplacerReplaced
                             // Class suits.
                             foreach (string clazz in classes)
                             {
-                                if (GUILayout.Button(clazz))
+                                if (GUILayout.Button(clazz, buttonStyle))
                                 {
                                     selectedKerbal = null;
                                     selectedClass = clazz;
@@ -214,7 +281,7 @@ namespace TextureReplacerReplaced
                             GUILayout.EndVertical();
                         GUILayout.EndScrollView();
 
-                    if (GUILayout.Button("Reset to Defaults"))
+                    if (GUILayout.Button("Reset to Defaults", buttonStyle))
                         personaliser.resetKerbals();
 
                     GUILayout.EndVertical();
@@ -248,11 +315,17 @@ namespace TextureReplacerReplaced
                 }
 
                 GUILayout.Space(10);
+
                     GUILayout.BeginVertical();
+                    if (selectedKerbal != null)
+                    {
+                        GUILayout.Label(selectedKerbal.name);
+                    }
+                    //GUILayout.Space(10);
 
                     if (head != null)
                     {
-                        GUILayout.Box(head.headTexture[0], GUILayout.Width(200), GUILayout.Height(200));
+                        GUILayout.Box(head.headTexture[0], imageStyle, GUILayout.Width(200), GUILayout.Height(200));
 
                         GUILayout.Label(head.name);
                     }
@@ -266,31 +339,31 @@ namespace TextureReplacerReplaced
                         Texture2D evaHelmetTex = suit.get_helmet_EvaSpace_Standard_Male(0) ?? defaultSuit.get_helmet_EvaSpace_Standard_Male(0);
 
                             GUILayout.BeginHorizontal();
-                            GUILayout.Box(suitTex, GUILayout.Width(100), GUILayout.Height(100));
+                            GUILayout.Box(suitTex, imageStyle, GUILayout.Width(100), GUILayout.Height(100));
                             GUILayout.Space(10);
-                            GUILayout.Box(helmetTex, GUILayout.Width(100), GUILayout.Height(100));
+                            GUILayout.Box(helmetTex, imageStyle, GUILayout.Width(100), GUILayout.Height(100));
                             GUILayout.EndHorizontal();
 
                             GUILayout.Space(10);
 
                             GUILayout.BeginHorizontal();
-                            GUILayout.Box(evaSuitTex, GUILayout.Width(100), GUILayout.Height(100));
+                            GUILayout.Box(evaSuitTex, imageStyle, GUILayout.Width(100), GUILayout.Height(100));
                             GUILayout.Space(10);
-                            GUILayout.Box(evaHelmetTex, GUILayout.Width(100), GUILayout.Height(100));
+                            GUILayout.Box(evaHelmetTex, imageStyle, GUILayout.Width(100), GUILayout.Height(100));
                             GUILayout.EndHorizontal();
 
                         GUILayout.Label(suit.name);
                     }
 
                     GUILayout.EndVertical();
-                    GUILayout.BeginVertical(GUILayout.Width(120));
-
-                    if (kerbalData != null)
+                    GUILayout.BeginVertical(GUILayout.Width(80));
+            GUILayout.Space(40);
+            if (kerbalData != null)
                     {
                             GUILayout.BeginHorizontal();
                             GUI.enabled = personaliser.KerbalHeadsDB_full.Count != 0;
 
-                            if (GUILayout.Button("<"))
+                            if (GUILayout.Button("<", buttonStyle))
                             {
                                 headIndex = headIndex == -1 ? 0 : headIndex;
                                 headIndex = (personaliser.maleAndfemaleHeadsDB_full[(int)selectedKerbal.gender].Count + headIndex - 1) % personaliser.maleAndfemaleHeadsDB_full[(int)selectedKerbal.gender].Count;
@@ -309,7 +382,7 @@ namespace TextureReplacerReplaced
                                 }
 
                             }
-                            if (GUILayout.Button(">"))
+                            if (GUILayout.Button(">", buttonStyle))
                             {
                                 headIndex = (headIndex + 1) % personaliser.maleAndfemaleHeadsDB_full[(int)selectedKerbal.gender].Count;
 
@@ -331,7 +404,7 @@ namespace TextureReplacerReplaced
                             GUILayout.EndHorizontal();
 
                         GUI.color = kerbalData.head == defaultHead ? SELECTED_COLOUR : Color.white;
-                        if (GUILayout.Button("Default"))
+                        if (GUILayout.Button("Default", buttonStyle))
                         {
                             kerbalData.head = defaultHead;
 
@@ -349,7 +422,7 @@ namespace TextureReplacerReplaced
                 
 
                         GUI.color = kerbalData.head == null ? SELECTED_COLOUR : Color.white;
-                        if (GUILayout.Button("Random"))
+                        if (GUILayout.Button("Random", buttonStyle))
                         {
                             kerbalData.head = randomizer.randomize((int) selectedKerbal.gender);
 
@@ -372,12 +445,12 @@ namespace TextureReplacerReplaced
 
                     if (kerbalData != null || selectedClass != null)
                     {
-                        GUILayout.Space(130);
+                        GUILayout.Space(200);
 
                             GUILayout.BeginHorizontal();
                             GUI.enabled = personaliser.KerbalSuitsDB_full.Count != 0;
 
-                            if (GUILayout.Button("<"))
+                            if (GUILayout.Button("<", buttonStyle))
                             {
                                 suitIndex = suitIndex == -1 ? 0 : suitIndex;
                                 suitIndex = (personaliser.KerbalSuitsDB_full.Count + suitIndex - 1) % personaliser.KerbalSuitsDB_full.Count;
@@ -392,7 +465,7 @@ namespace TextureReplacerReplaced
                                     personaliser.classSuitsDB[selectedClass] = personaliser.KerbalSuitsDB_full[suitIndex];
                                 }
                             }
-                            if (GUILayout.Button(">"))
+                            if (GUILayout.Button(">", buttonStyle))
                             {
                                 suitIndex = (suitIndex + 1) % personaliser.KerbalSuitsDB_full.Count;
 
@@ -413,7 +486,7 @@ namespace TextureReplacerReplaced
                         GUI.color = suit == defaultSuit && (kerbalData == null || kerbalData.suit != null) ?
                           SELECTED_COLOUR : Color.white;
 
-                        if (GUILayout.Button("Default"))
+                        if (GUILayout.Button("Default", buttonStyle))
                         {
                             if (kerbalData != null)
                             {
@@ -427,12 +500,16 @@ namespace TextureReplacerReplaced
                         }
 
                         GUI.color = suit == null || (kerbalData != null && kerbalData.suit == null) ? SELECTED_COLOUR : Color.white;
-                        if (GUILayout.Button("Unset/Generic"))
+                        if (GUILayout.Button("Class", buttonStyle))
                         {
                             if (kerbalData != null)
                             {
-                                kerbalData.suit = null;
+                                //kerbalData.suit = null;
                                 //kerbalData.cabinSuit = null;
+
+                                kerbalData.suit = personaliser.getClassSuit(selectedKerbal);
+
+
                             }
                             else
                             {
@@ -453,10 +530,11 @@ namespace TextureReplacerReplaced
             personaliser.isAtmSuitEnabled = GUILayout.Toggle(
               personaliser.isAtmSuitEnabled, "Spawn Kerbals in IVA suits when in breathable atmosphere");
 
-            personaliser.isNewSuitStateEnabled = GUILayout.Toggle(
-              personaliser.isNewSuitStateEnabled, "Kerbals use another EVA suit when on the ground and with no air");
+            //personaliser.isNewSuitStateEnabled = GUILayout.Toggle(
+             // personaliser.isNewSuitStateEnabled, "Kerbals use another EVA suit when on the ground and with no air");
 
-           
+            personaliser.useKspSkin = GUILayout.Toggle(
+               personaliser.useKspSkin, "Use KSP style for the GUI ?");
 
 
             /*personaliser.isAutomaticSuitSwitchEnabled = GUILayout.Toggle(
@@ -472,16 +550,33 @@ namespace TextureReplacerReplaced
             if (reflectionType != reflections.reflectionType)
                 reflections.setReflectionType(reflectionType);
 
+            GUILayout.Space(10);
+
+            GUILayout.BeginHorizontal();
+
             if (GUILayout.Button("Heads Menu"))
             {
                 headGui_IsEnabled = true;
             }
+
+            GUILayout.Space(5);
 
             if (GUILayout.Button("Suits Menu"))
             {
                 suitGui_IsEnabled = true;
             }
 
+            /*if (GUILayout.Button("Save Settings"))
+            {
+               
+                ConfigNode scenarioNode = new ConfigNode();
+                scenarioNode.name = "TRR_Scenario";
+                personaliser.saveScenario(scenarioNode);
+
+            }*/
+                
+
+            GUILayout.EndHorizontal();
             GUILayout.EndVertical();
             GUI.DragWindow(new Rect(0, 0, Screen.width, 30));
         }
@@ -524,7 +619,7 @@ namespace TextureReplacerReplaced
             if (appButton == null)
             {
                 appButton = ApplicationLauncher.Instance.AddModApplication(
-                  enable, disable, null, null, null, null, ApplicationLauncher.AppScenes.SPACECENTER, appIcon);
+                  enable, disable, null, null, null, null, ApplicationLauncher.AppScenes.SPACECENTER |ApplicationLauncher.AppScenes.FLIGHT, appIcon);
             }
         }
 
@@ -589,9 +684,16 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void OnGUI()
         {
+            Personaliser personaliser = Personaliser.instance;
+
             if (isEnabled)
             {
-                GUI.skin = HighLogic.Skin;
+                if (personaliser.useKspSkin)
+                {                    
+                    GUI.skin = HighLogic.Skin;                   
+                }
+                
+
                 windowRect = GUILayout.Window(WINDOW_ID, windowRect, windowHandler, "TextureReplacerReplaced");
                 windowRect.x = Math.Max(0, Math.Min(Screen.width - 30, windowRect.x));
                 windowRect.y = Math.Max(0, Math.Min(Screen.height - 30, windowRect.y));
@@ -599,13 +701,17 @@ namespace TextureReplacerReplaced
 
             if (headGui_IsEnabled)
             {
-                GUI.skin = HighLogic.Skin;
+                if (personaliser.useKspSkin)
+                    GUI.skin = HighLogic.Skin;
+
                 headGui_windowRect = GUILayout.Window(WINDOW_ID_HEAD, headGui_windowRect, head_WindowHandler, "Heads Menu");
             }
 
             if (suitGui_IsEnabled)
             {
-                GUI.skin = HighLogic.Skin;
+                if (personaliser.useKspSkin)
+                    GUI.skin = HighLogic.Skin;
+
                 suitGui_windowRect = GUILayout.Window(WINDOW_ID_SUIT, suitGui_windowRect, suit_WindowHandler, "Suits Menu");
             }
 
@@ -616,13 +722,66 @@ namespace TextureReplacerReplaced
         {
             Reflections reflections = Reflections.instance;
             Personaliser personaliser = Personaliser.instance;
-            Color32 color = new Color32(255,255,255,255);
-            GUIStyle style = new GUIStyle();
-            style.normal.textColor = Color.white;
-            style.padding.bottom = 0;
-            style.padding.top = 10;
+            //Color32 color = new Color32(255,255,255,255);
 
-            string[] level = { "Level 0","Level 1", "Level 2", "Level 3", "Level 4", "Level 5"};
+            GUIStyle imageStyle = new GUIStyle();
+            imageStyle.border = new UnityEngine.RectOffset(0,0,0,0);
+
+            GUIStyle textFieldStyle = new GUIStyle();
+
+            GUIStyle labelStyle = new GUIStyle();
+            
+
+            GUIStyle buttonStyle = new GUIStyle();
+
+
+            int lvlCellWidth = 20;
+
+            int colorCellWidth = 35;
+            int colorCellColumwWidth = 150;
+            int headCellSize = 180;
+            int textureAndColorColumnWidth = 380;
+            int headsetColumnWidth = 130;
+
+            if (personaliser.useKspSkin)
+            {
+                labelStyle.font = HighLogic.Skin.font;
+                labelStyle.wordWrap = false;
+                labelStyle.normal.textColor = Color.white;
+                labelStyle.padding.top = 5;
+                labelStyle.padding.bottom = 0;
+                labelStyle.padding.left = 0;
+                labelStyle.padding.right = 0;
+                labelStyle.fontSize = 14;
+
+                buttonStyle = HighLogic.Skin.button;                
+                buttonStyle.fontSize = 14;
+
+                textFieldStyle = HighLogic.Skin.textField;
+                textFieldStyle.padding.left = 5;
+                textFieldStyle.padding.right = 5;
+                textFieldStyle.fontSize = 14;
+                textFieldStyle.fontStyle = FontStyle.Normal;
+            }
+            else
+            {
+                labelStyle = GUI.skin.label;
+                labelStyle.padding.top = 5;
+                labelStyle.padding.bottom = 0;
+                labelStyle.padding.left = 0;
+                labelStyle.padding.right = 0;
+                labelStyle.margin.top = 0;
+                labelStyle.margin.bottom = 0;
+                labelStyle.margin.left = 0;
+                labelStyle.margin.right = 0;
+
+                buttonStyle = GUI.skin.button;
+
+                //textFieldStyle = GUI.skin.textField;
+
+            }
+
+            //string[] level = { "Level 0","Level 1", "Level 2", "Level 3", "Level 4", "Level 5"};
 
             //GUISkin customSkin = HighLogic.Skin;
            // customSkin.label = style;
@@ -631,18 +790,18 @@ namespace TextureReplacerReplaced
             GUILayout.BeginVertical(); // start of the Gui column
             GUILayout.BeginHorizontal(); // start of the Gui row
 
-            if (GUI.Button(new Rect(855, 5, 15, 15), "X"))
+            if (GUI.Button(new Rect(635, 5, 20, 20), "X"))
             {
                 headGui_IsEnabled = false;
                 selectedHeadSet = null;
             }
                         
-            GUILayout.BeginVertical(GUILayout.Width(200)); // start of head set name column
+            GUILayout.BeginVertical(GUILayout.Width(headsetColumnWidth)); // start of head set name column
             headScroll = GUILayout.BeginScrollView(headScroll);
             GUILayout.BeginVertical();
             foreach (Head_Set headSet in personaliser.KerbalHeadsDB_full)
             {
-                if (GUILayout.Button(headSet.name))
+                if (GUILayout.Button(headSet.name, buttonStyle))
                 {
                     selectedHeadSet = headSet;
                 }
@@ -669,682 +828,671 @@ namespace TextureReplacerReplaced
 
             GUILayout.BeginHorizontal(); // start of the main setting row
 
-            GUILayout.BeginVertical(GUILayout.Width(430)); // start of the texture + color column
+            GUILayout.BeginVertical(GUILayout.Width(textureAndColorColumnWidth)); // start of the texture + color column
 
             headSettingScroll = GUILayout.BeginScrollView(headSettingScroll); 
             GUILayout.BeginVertical();
-
+            GUILayout.Space(10);
             GUILayout.BeginVertical();// start of the lvl [0] row
             if (head != null)
             {
-                GUILayout.Label("Level 0", GUILayout.Width(180), GUILayout.Height(20));
-                GUILayout.Space(5);
+                GUILayout.Label("Level 0", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));                
             }
             GUILayout.BeginHorizontal(); 
             if (head != null)
             {
-                GUILayout.Box(head.headTexture[0], GUILayout.Width(200), GUILayout.Height(200));
-                GUILayout.Space(5);
-                GUILayout.BeginVertical(GUILayout.Height(200));
+                GUILayout.Box(head.headTexture[0], imageStyle, GUILayout.Width(headCellSize), GUILayout.Height(headCellSize));
+                
+                GUILayout.BeginVertical(GUILayout.Height(headCellSize));
                     if (head != null)
                     {
-                        GUILayout.Label("Left eyeball color", style);
+                        GUILayout.Label("Left eyeball color", labelStyle);
                     }
-                    GUILayout.BeginHorizontal(GUILayout.Width(180));
+                    GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                     if (head != null)
                     {
 
                         byte GUI_R = head.eyeballColor_Left[0].r;
-                        byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                        byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                         head.eyeballColor_Left[0].r = GUI_R;
-                        GUILayout.Label("R", style);
+                        GUILayout.Label("R", labelStyle);
 
                         byte GUI_G = head.eyeballColor_Left[0].g;
-                        byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                        byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                         head.eyeballColor_Left[0].g = GUI_G;
-                        GUILayout.Label("G", style);
+                        GUILayout.Label("G", labelStyle);
 
                         byte GUI_B = head.eyeballColor_Left[0].b;
-                        byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                        byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                         head.eyeballColor_Left[0].b = GUI_B;
-                        GUILayout.Label("B", style);
+                        GUILayout.Label("B", labelStyle);
                     }
                     GUILayout.EndHorizontal();
                     if (head != null)
                     {
-                        GUILayout.Label("Right eyeball color", style);
+                        GUILayout.Label("Right eyeball color", labelStyle);
                     }
-                    GUILayout.BeginHorizontal(GUILayout.Width(180));
+                    GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                     if (head != null)
                     {
 
                         byte GUI_R = head.eyeballColor_Right[0].r;
-                        byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                        byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                         head.eyeballColor_Right[0].r = GUI_R;
-                        GUILayout.Label("R", style);
+                        GUILayout.Label("R", labelStyle);
 
                         byte GUI_G = head.eyeballColor_Right[0].g;
-                        byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                        byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                         head.eyeballColor_Right[0].g = GUI_G;
-                        GUILayout.Label("G", style);
+                        GUILayout.Label("G", labelStyle);
 
                         byte GUI_B = head.eyeballColor_Right[0].b;
-                        byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                        byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                         head.eyeballColor_Right[0].b = GUI_B;
-                        GUILayout.Label("B", style);
+                        GUILayout.Label("B", labelStyle);
                     }
                     GUILayout.EndHorizontal();
                     if (head != null)
                     {
-                        GUILayout.Label("Left pupil color", style);
+                        GUILayout.Label("Left pupil color", labelStyle);
                     }
-                    GUILayout.BeginHorizontal(GUILayout.Width(180));
+                    GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                     if (head != null)
                     {
 
                         byte GUI_R = head.pupilColor_Left[0].r;
-                        byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                        byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                         head.pupilColor_Left[0].r = GUI_R;
-                        GUILayout.Label("R", style);
+                        GUILayout.Label("R", labelStyle);
 
                         byte GUI_G = head.pupilColor_Left[0].g;
-                        byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                        byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                         head.pupilColor_Left[0].g = GUI_G;
-                        GUILayout.Label("G", style);
+                        GUILayout.Label("G", labelStyle);
 
                         byte GUI_B = head.pupilColor_Left[0].b;
-                        byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                        byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                         head.pupilColor_Left[0].b = GUI_B;
-                        GUILayout.Label("B", style);
+                        GUILayout.Label("B", labelStyle);
                     }
                     GUILayout.EndHorizontal();
                     if (head != null)
                     {
-                        GUILayout.Label("Right pupil color", style);
+                        GUILayout.Label("Right pupil color", labelStyle);
                     }
-                    GUILayout.BeginHorizontal(GUILayout.Width(180));
+                    GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                     if (head != null)
                     {
 
                         byte GUI_R = head.pupilColor_Right[0].r;
-                        byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                        byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                         head.pupilColor_Right[0].r = GUI_R;
-                        GUILayout.Label("R", style);
+                        GUILayout.Label("R", labelStyle);
 
                         byte GUI_G = head.pupilColor_Right[0].g;
-                        byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                        byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                         head.pupilColor_Right[0].g = GUI_G;
-                        GUILayout.Label("G", style);
+                        GUILayout.Label("G", labelStyle);
 
                         byte GUI_B = head.pupilColor_Right[0].b;
-                        byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                        byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                         head.pupilColor_Right[0].b = GUI_B;
-                        GUILayout.Label("B", style);
+                        GUILayout.Label("B", labelStyle);
                     }
                     GUILayout.EndHorizontal();
                 GUILayout.EndVertical();
             }
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();// end of the lvl [0] row
-
+            GUILayout.Space(10);
             GUILayout.BeginVertical();// start of the lvl [1] row
             if (head != null)
             {
-                GUILayout.Label("Level 1", GUILayout.Width(180), GUILayout.Height(20));
-                GUILayout.Space(5);
+                GUILayout.Label("Level 1", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
             }
             GUILayout.BeginHorizontal();
             if (head != null)
             {
-                GUILayout.Box(head.headTexture[1], GUILayout.Width(200), GUILayout.Height(200));
-                GUILayout.Space(5);
-                GUILayout.BeginVertical(GUILayout.Height(200));
+                GUILayout.Box(head.headTexture[1], imageStyle, GUILayout.Width(headCellSize), GUILayout.Height(headCellSize));
+                GUILayout.BeginVertical(GUILayout.Height(headCellSize));
                 if (head != null)
                 {
-                    GUILayout.Label("Left eyeball color", style);
+                    GUILayout.Label("Left eyeball color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.eyeballColor_Left[1].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.eyeballColor_Left[1].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.eyeballColor_Left[1].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.eyeballColor_Left[1].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.eyeballColor_Left[1].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.eyeballColor_Left[1].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Right eyeball color", style);
+                    GUILayout.Label("Right eyeball color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.eyeballColor_Right[1].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.eyeballColor_Right[1].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.eyeballColor_Right[1].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.eyeballColor_Right[1].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.eyeballColor_Right[1].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.eyeballColor_Right[1].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Left pupil color", style);
+                    GUILayout.Label("Left pupil color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.pupilColor_Left[1].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.pupilColor_Left[1].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.pupilColor_Left[1].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.pupilColor_Left[1].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.pupilColor_Left[1].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.pupilColor_Left[1].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Right pupil color", style);
+                    GUILayout.Label("Right pupil color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.pupilColor_Right[1].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.pupilColor_Right[1].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.pupilColor_Right[1].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.pupilColor_Right[1].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.pupilColor_Right[1].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.pupilColor_Right[1].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.EndVertical();
             }
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();// end of the lvl [1] row
-
+            GUILayout.Space(10);
             GUILayout.BeginVertical();// start of the lvl [2] row
             if (head != null)
             {
-                GUILayout.Label("Level 2", GUILayout.Width(180), GUILayout.Height(20));
-                GUILayout.Space(5);
+                GUILayout.Label("Level 2", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
             }
             GUILayout.BeginHorizontal();
             if (head != null)
             {
-                GUILayout.Box(head.headTexture[2], GUILayout.Width(200), GUILayout.Height(200));
-                GUILayout.Space(5);
-                GUILayout.BeginVertical(GUILayout.Height(200));
+                GUILayout.Box(head.headTexture[2], imageStyle, GUILayout.Width(headCellSize), GUILayout.Height(headCellSize));
+                GUILayout.BeginVertical(GUILayout.Height(headCellSize));
                 if (head != null)
                 {
-                    GUILayout.Label("Left eyeball color", style);
+                    GUILayout.Label("Left eyeball color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.eyeballColor_Left[2].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.eyeballColor_Left[2].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.eyeballColor_Left[2].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.eyeballColor_Left[2].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.eyeballColor_Left[2].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.eyeballColor_Left[2].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Right eyeball color", style);
+                    GUILayout.Label("Right eyeball color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.eyeballColor_Right[2].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.eyeballColor_Right[2].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.eyeballColor_Right[2].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.eyeballColor_Right[2].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.eyeballColor_Right[2].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.eyeballColor_Right[2].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Left pupil color", style);
+                    GUILayout.Label("Left pupil color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.pupilColor_Left[2].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.pupilColor_Left[2].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.pupilColor_Left[2].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.pupilColor_Left[2].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.pupilColor_Left[2].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.pupilColor_Left[2].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Right pupil color", style);
+                    GUILayout.Label("Right pupil color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.pupilColor_Right[2].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.pupilColor_Right[2].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.pupilColor_Right[2].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.pupilColor_Right[2].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.pupilColor_Right[2].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.pupilColor_Right[2].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.EndVertical();
             }
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();// end of the lvl [2] row
-
+            GUILayout.Space(10);
             GUILayout.BeginVertical();// start of the lvl [3] row
             if (head != null)
             {
-                GUILayout.Label("Level 3", GUILayout.Width(180), GUILayout.Height(20));
-                GUILayout.Space(5);
+                GUILayout.Label("Level 3", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
             }
             GUILayout.BeginHorizontal();
             if (head != null)
             {
-                GUILayout.Box(head.headTexture[3], GUILayout.Width(200), GUILayout.Height(200));
-                GUILayout.Space(5);
-                GUILayout.BeginVertical(GUILayout.Height(200));
+                GUILayout.Box(head.headTexture[3], imageStyle, GUILayout.Width(headCellSize), GUILayout.Height(headCellSize));
+                GUILayout.BeginVertical(GUILayout.Height(headCellSize));
                 if (head != null)
                 {
-                    GUILayout.Label("Left eyeball color", style);
+                    GUILayout.Label("Left eyeball color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.eyeballColor_Left[3].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.eyeballColor_Left[3].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.eyeballColor_Left[3].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.eyeballColor_Left[3].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.eyeballColor_Left[3].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.eyeballColor_Left[3].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Right eyeball color", style);
+                    GUILayout.Label("Right eyeball color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.eyeballColor_Right[3].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.eyeballColor_Right[3].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.eyeballColor_Right[3].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.eyeballColor_Right[3].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.eyeballColor_Right[3].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.eyeballColor_Right[3].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Left pupil color", style);
+                    GUILayout.Label("Left pupil color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.pupilColor_Left[3].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.pupilColor_Left[3].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.pupilColor_Left[3].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.pupilColor_Left[3].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.pupilColor_Left[3].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.pupilColor_Left[3].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Right pupil color", style);
+                    GUILayout.Label("Right pupil color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.pupilColor_Right[3].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.pupilColor_Right[3].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.pupilColor_Right[3].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.pupilColor_Right[3].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.pupilColor_Right[3].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.pupilColor_Right[3].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.EndVertical();
             }
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();// end of the lvl [3] row
-
+            GUILayout.Space(10);
             GUILayout.BeginVertical();// start of the lvl [4] row
             if (head != null)
             {
-                GUILayout.Label("Level 4", GUILayout.Width(180), GUILayout.Height(20));
-                GUILayout.Space(5);
+                GUILayout.Label("Level 4", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
             }
             GUILayout.BeginHorizontal();
             if (head != null)
             {
-                GUILayout.Box(head.headTexture[4], GUILayout.Width(200), GUILayout.Height(200));
-                GUILayout.Space(5);
-                GUILayout.BeginVertical(GUILayout.Height(200));
+                GUILayout.Box(head.headTexture[4], imageStyle, GUILayout.Width(headCellSize), GUILayout.Height(headCellSize));
+                GUILayout.BeginVertical(GUILayout.Height(headCellSize));
                 if (head != null)
                 {
-                    GUILayout.Label("Left eyeball color", style);
+                    GUILayout.Label("Left eyeball color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.eyeballColor_Left[4].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.eyeballColor_Left[4].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.eyeballColor_Left[4].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.eyeballColor_Left[4].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.eyeballColor_Left[4].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.eyeballColor_Left[4].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Right eyeball color", style);
+                    GUILayout.Label("Right eyeball color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.eyeballColor_Right[4].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.eyeballColor_Right[4].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.eyeballColor_Right[4].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.eyeballColor_Right[4].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.eyeballColor_Right[4].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.eyeballColor_Right[4].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Left pupil color", style);
+                    GUILayout.Label("Left pupil color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.pupilColor_Left[4].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.pupilColor_Left[4].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.pupilColor_Left[4].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.pupilColor_Left[4].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.pupilColor_Left[4].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.pupilColor_Left[4].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Right pupil color", style);
+                    GUILayout.Label("Right pupil color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.pupilColor_Right[4].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.pupilColor_Right[4].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.pupilColor_Right[4].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.pupilColor_Right[4].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.pupilColor_Right[4].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.pupilColor_Right[4].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.EndVertical();
             }
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();// end of the lvl [4] row
-
+            GUILayout.Space(10);
             GUILayout.BeginVertical();// start of the lvl [5] row
             if (head != null)
             {
-                GUILayout.Label("Level 5", GUILayout.Width(180), GUILayout.Height(20));
-                GUILayout.Space(5);
+                GUILayout.Label("Level 5", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
             }
             GUILayout.BeginHorizontal();
             if (head != null)
             {
-                GUILayout.Box(head.headTexture[5], GUILayout.Width(200), GUILayout.Height(200));
-                GUILayout.Space(5);
-                GUILayout.BeginVertical(GUILayout.Height(200));
+                GUILayout.Box(head.headTexture[5], imageStyle, GUILayout.Width(headCellSize), GUILayout.Height(headCellSize));
+                GUILayout.BeginVertical(GUILayout.Height(headCellSize));
                 if (head != null)
                 {
-                    GUILayout.Label("Left eyeball color", style);
+                    GUILayout.Label("Left eyeball color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.eyeballColor_Left[5].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.eyeballColor_Left[5].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.eyeballColor_Left[5].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.eyeballColor_Left[5].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.eyeballColor_Left[5].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.eyeballColor_Left[5].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Right eyeball color", style);
+                    GUILayout.Label("Right eyeball color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.eyeballColor_Right[5].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.eyeballColor_Right[5].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.eyeballColor_Right[5].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.eyeballColor_Right[5].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.eyeballColor_Right[5].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.eyeballColor_Right[5].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Left pupil color", style);
+                    GUILayout.Label("Left pupil color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.pupilColor_Left[5].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.pupilColor_Left[5].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.pupilColor_Left[5].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.pupilColor_Left[5].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.pupilColor_Left[5].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.pupilColor_Left[5].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 if (head != null)
                 {
-                    GUILayout.Label("Right pupil color", style);
+                    GUILayout.Label("Right pupil color", labelStyle);
                 }
-                GUILayout.BeginHorizontal(GUILayout.Width(180));
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
                 if (head != null)
                 {
 
                     byte GUI_R = head.pupilColor_Right[5].r;
-                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_R);
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
                     head.pupilColor_Right[5].r = GUI_R;
-                    GUILayout.Label("R", style);
+                    GUILayout.Label("R", labelStyle);
 
                     byte GUI_G = head.pupilColor_Right[5].g;
-                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_G);
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
                     head.pupilColor_Right[5].g = GUI_G;
-                    GUILayout.Label("G", style);
+                    GUILayout.Label("G", labelStyle);
 
                     byte GUI_B = head.pupilColor_Right[5].b;
-                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.MaxWidth(40)), out GUI_B);
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
                     head.pupilColor_Right[5].b = GUI_B;
-                    GUILayout.Label("B", style);
+                    GUILayout.Label("B", labelStyle);
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.EndVertical();
@@ -1361,100 +1509,119 @@ namespace TextureReplacerReplaced
             GUILayout.BeginVertical(); // start of the setting column
             if (head != null)
             {
-                head.isExclusive = GUILayout.Toggle(
-                    head.isExclusive, "Is this head exclusive ?");
+                head.isExclusive = GUILayout.Toggle(head.isExclusive, "Exclusive ?");
 
                 GUILayout.Space(20);
 
-                GUILayout.Label("Level to start hiding element");
-                GUILayout.Label("enter 6 or more to don't hide");               
-
+                GUILayout.Label("Level to start");
+                GUILayout.Label("hiding element");
+                GUILayout.Space(5);
+                GUILayout.Label("Enter 6 or more");
+                GUILayout.Label("to cancel");
             }
             
 
-            GUILayout.BeginHorizontal();
+                GUILayout.BeginHorizontal();
+                if (head != null)
+                {
+                    int GUI_lvlToHide_Eye_Left = head.lvlToHide_Eye_Left;
+                    int.TryParse(GUILayout.TextField(GUI_lvlToHide_Eye_Left.ToString(), 2, GUILayout.MaxWidth(lvlCellWidth)), out GUI_lvlToHide_Eye_Left);
+
+                    head.lvlToHide_Eye_Left = GUI_lvlToHide_Eye_Left;
+                    GUILayout.Label("Left eyeball", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+
+                GUILayout.BeginHorizontal();
+                if (head != null)
+                {
+                    int GUI_lvlToHide_Eye_Right = head.lvlToHide_Eye_Right;
+                    int.TryParse(GUILayout.TextField(GUI_lvlToHide_Eye_Right.ToString(), 2, GUILayout.MaxWidth(lvlCellWidth)), out GUI_lvlToHide_Eye_Right);
+
+                    head.lvlToHide_Eye_Right = GUI_lvlToHide_Eye_Right;
+                    GUILayout.Label("Right eyeball", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                if (head != null)
+                {
+                    int GUI_lvlToHide_Pupil_Left = head.lvlToHide_Pupil_Left;
+                    int.TryParse(GUILayout.TextField(GUI_lvlToHide_Pupil_Left.ToString(), 2, GUILayout.MaxWidth(lvlCellWidth)), out GUI_lvlToHide_Pupil_Left);
+
+                    head.lvlToHide_Pupil_Left = GUI_lvlToHide_Pupil_Left;
+                    GUILayout.Label("Left pupil", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                if (head != null)
+                {
+                    int GUI_lvlToHide_Pupil_Right = head.lvlToHide_Pupil_Right;
+                    int.TryParse(GUILayout.TextField(GUI_lvlToHide_Pupil_Right.ToString(), 2, GUILayout.MaxWidth(lvlCellWidth)), out GUI_lvlToHide_Pupil_Right);
+
+                    head.lvlToHide_Pupil_Right = GUI_lvlToHide_Pupil_Right;
+                    GUILayout.Label("Right pupil", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                if (head != null)
+                {
+                    int GUI_lvlToHide_TeethUp = head.lvlToHide_TeethUp;
+                    int.TryParse(GUILayout.TextField(GUI_lvlToHide_TeethUp.ToString(), 2, GUILayout.MaxWidth(lvlCellWidth)), out GUI_lvlToHide_TeethUp);
+
+                    head.lvlToHide_TeethUp = GUI_lvlToHide_TeethUp;
+                    GUILayout.Label("Up teeth", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                if (head != null)
+                {
+                    int GUI_lvlToHide_TeethDown = head.lvlToHide_TeethDown;
+                    int.TryParse(GUILayout.TextField(GUI_lvlToHide_TeethDown.ToString(), 2, GUILayout.MaxWidth(lvlCellWidth)), out GUI_lvlToHide_TeethDown);
+
+                    head.lvlToHide_TeethDown = GUI_lvlToHide_TeethDown;
+                    GUILayout.Label("Down teeth", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                if (head != null)
+                {
+                    int GUI_lvlToHide_Ponytail = head.lvlToHide_Ponytail;
+                    int.TryParse(GUILayout.TextField(GUI_lvlToHide_Ponytail.ToString(), 2, GUILayout.MaxWidth(lvlCellWidth)), out GUI_lvlToHide_Ponytail);
+
+                    head.lvlToHide_Ponytail = GUI_lvlToHide_Ponytail;
+                    GUILayout.Label("Ponytail", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+            GUILayout.Space(10);
+
             if (head != null)
             {
-                int GUI_lvlToHide_Eye_Left = head.lvlToHide_Eye_Left;
-                int.TryParse(GUILayout.TextField(GUI_lvlToHide_Eye_Left.ToString(), 2, GUILayout.MaxWidth(30)), out GUI_lvlToHide_Eye_Left);
-
-                head.lvlToHide_Eye_Left = GUI_lvlToHide_Eye_Left;
-                GUILayout.Label("Left eyeball", style);
+                if (GUILayout.Button("Default", GUILayout.Width(100)))
+                    Util.log("Clicked Button");
             }
-            GUILayout.EndHorizontal();
 
+            /*GUILayout.Space(10);
 
-            GUILayout.BeginHorizontal();
             if (head != null)
             {
-                int GUI_lvlToHide_Eye_Right = head.lvlToHide_Eye_Right;
-                int.TryParse(GUILayout.TextField(GUI_lvlToHide_Eye_Right.ToString(), 2, GUILayout.MaxWidth(30)), out GUI_lvlToHide_Eye_Right);
+                if (GUILayout.Button("Save Settings", GUILayout.Width(100)))
+                {
+                    ConfigNode scenarioNode = new ConfigNode();
+                    scenarioNode.name = "TRR_Scenario";
+                    personaliser.saveScenario(scenarioNode);
+                }
+            }*/
 
-                head.lvlToHide_Eye_Right = GUI_lvlToHide_Eye_Right;
-                GUILayout.Label("Right eyeball", style);
-            }
-            GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            if (head != null)
-            {
-                int GUI_lvlToHide_Pupil_Left = head.lvlToHide_Pupil_Left;
-                int.TryParse(GUILayout.TextField(GUI_lvlToHide_Pupil_Left.ToString(), 2, GUILayout.MaxWidth(30)), out GUI_lvlToHide_Pupil_Left);
-
-                head.lvlToHide_Pupil_Left = GUI_lvlToHide_Pupil_Left;
-                GUILayout.Label("Left pupil", style);
-            }
-            GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            if (head != null)
-            {
-                int GUI_lvlToHide_Pupil_Right = head.lvlToHide_Pupil_Right;
-                int.TryParse(GUILayout.TextField(GUI_lvlToHide_Pupil_Right.ToString(), 2, GUILayout.MaxWidth(30)), out GUI_lvlToHide_Pupil_Right);
-
-                head.lvlToHide_Pupil_Right = GUI_lvlToHide_Pupil_Right;
-                GUILayout.Label("Right pupil", style);
-            }
-            GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            if (head != null)
-            {
-                int GUI_lvlToHide_TeethUp = head.lvlToHide_TeethUp;
-                int.TryParse(GUILayout.TextField(GUI_lvlToHide_TeethUp.ToString(), 2, GUILayout.MaxWidth(30)), out GUI_lvlToHide_TeethUp);
-
-                head.lvlToHide_TeethUp = GUI_lvlToHide_TeethUp;
-                GUILayout.Label("Up teeth", style);
-            }
-            GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            if (head != null)
-            {
-                int GUI_lvlToHide_TeethDown = head.lvlToHide_TeethDown;
-                int.TryParse(GUILayout.TextField(GUI_lvlToHide_TeethDown.ToString(), 2, GUILayout.MaxWidth(30)), out GUI_lvlToHide_TeethDown);
-
-                head.lvlToHide_TeethDown = GUI_lvlToHide_TeethDown;
-                GUILayout.Label("Down teeth", style);
-            }
-            GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            if (head != null)
-            {
-                int GUI_lvlToHide_Ponytail = head.lvlToHide_Ponytail;
-                int.TryParse(GUILayout.TextField(GUI_lvlToHide_Ponytail.ToString(), 2, GUILayout.MaxWidth(30)), out GUI_lvlToHide_Ponytail);
-
-                head.lvlToHide_Ponytail = GUI_lvlToHide_Ponytail;
-                GUILayout.Label("Ponytail", style);
-            }
-            GUILayout.EndHorizontal();
-            if (GUILayout.Button("Default"))
-                Util.log("Clicked Button");
             GUILayout.EndVertical(); // end of the setting column
 
             GUILayout.EndHorizontal(); // end of the main setting row
-
             GUILayout.EndVertical(); // end of the main setting column
 
             GUILayout.EndHorizontal();// end of the Gui row
@@ -1469,11 +1636,800 @@ namespace TextureReplacerReplaced
             Reflections reflections = Reflections.instance;
             Personaliser personaliser = Personaliser.instance;
 
-            if (GUI.Button(new Rect(560, 5, 15, 15), "X"))
-                suitGui_IsEnabled = false;
+            GUIStyle imageStyle = new GUIStyle();
+            imageStyle.border = new UnityEngine.RectOffset(0, 0, 0, 0);
 
-            if (GUILayout.Button("I am pouet"))
-                Util.log("Clicked Button");
+            GUIStyle textFieldStyle = new GUIStyle();
+
+            GUIStyle labelStyle = new GUIStyle();
+
+
+            GUIStyle buttonStyle = new GUIStyle();
+
+
+            int lvlCellWidth = 20;
+
+            int colorCellWidth = 35;
+            int colorCellColumwWidth = 150;
+            int suitCellSize = 120;
+            int textureAndColorColumnWidth = 250;
+            int suitsetColumnWidth = 130;
+
+            if (personaliser.useKspSkin)
+            {
+                labelStyle.font = HighLogic.Skin.font;
+                labelStyle.wordWrap = false;
+                labelStyle.normal.textColor = Color.white;
+                labelStyle.padding.top = 5;
+                labelStyle.padding.bottom = 0;
+                labelStyle.padding.left = 0;
+                labelStyle.padding.right = 0;
+                labelStyle.fontSize = 14;
+
+                buttonStyle = HighLogic.Skin.button;
+                buttonStyle.fontSize = 14;
+
+                textFieldStyle = HighLogic.Skin.textField;
+                textFieldStyle.padding.left = 5;
+                textFieldStyle.padding.right = 5;
+                textFieldStyle.fontSize = 14;
+                textFieldStyle.fontStyle = FontStyle.Normal;
+            }
+            else
+            {
+                labelStyle = GUI.skin.label;
+                labelStyle.padding.top = 5;
+                labelStyle.padding.bottom = 0;
+                labelStyle.padding.left = 0;
+                labelStyle.padding.right = 0;
+                labelStyle.margin.top = 0;
+                labelStyle.margin.bottom = 0;
+                labelStyle.margin.left = 0;
+                labelStyle.margin.right = 0;
+
+                buttonStyle = GUI.skin.button;
+
+                //textFieldStyle = GUI.skin.textField;
+
+            }
+
+            GUILayout.BeginVertical(); // start of the Gui column
+            GUILayout.BeginHorizontal(); // start of the Gui row
+
+            if (GUI.Button(new Rect(665, 5, 20, 20), "X"))
+            {
+                suitGui_IsEnabled = false;
+                selectedsuitSet = null;
+            }
+
+            GUILayout.BeginVertical(GUILayout.Width(suitsetColumnWidth)); // start of suit set name column
+            suitScroll = GUILayout.BeginScrollView(suitScroll);
+            GUILayout.BeginVertical();
+            foreach (Suit_Set suitSet in personaliser.KerbalSuitsDB_full)
+            {
+                if (GUILayout.Button(suitSet.name, buttonStyle))
+                {
+                    selectedsuitSet = suitSet;
+                }
+            }
+            GUILayout.EndVertical();
+            GUILayout.EndScrollView();
+
+            if (GUILayout.Button("Reset to Defaults"))
+                personaliser.resetKerbals();
+            GUILayout.EndVertical(); // end of suit set name column
+
+            Suit_Set suit = null;
+
+            if (selectedsuitSet != null)
+            {
+                suit = selectedsuitSet;
+            }
+            GUILayout.Space(10);
+
+            GUILayout.BeginVertical(); // start of the main setting column
+            if (suit != null)
+                GUILayout.Label(suit.name);
+
+            GUILayout.BeginHorizontal(); // start of the main setting row
+
+            GUILayout.BeginVertical(GUILayout.Width(textureAndColorColumnWidth)); // start of the texture + color column
+            suitSettingScroll = GUILayout.BeginScrollView(suitSettingScroll);
+            GUILayout.BeginVertical();
+            GUILayout.Space(10);
+
+            GUILayout.BeginVertical();// start of the lvl [0] row
+            if (suit != null)
+            {
+                GUILayout.Label("Level 0", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
+            }
+            GUILayout.BeginHorizontal();
+            if (suit != null)
+            {
+                //GUILayout.Box(suit.suitTexture[0], imageStyle, GUILayout.Width(suitCellSize), GUILayout.Height(suitCellSize));
+
+                GUILayout.BeginVertical(GUILayout.Height(suitCellSize));
+                if (suit != null)
+                {
+                    GUILayout.Label("Iva Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.Iva_VisorReflectionColor[0].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.Iva_VisorReflectionColor[0].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.Iva_VisorReflectionColor[0].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.Iva_VisorReflectionColor[0].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.Iva_VisorReflectionColor[0].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.Iva_VisorReflectionColor[0].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[0].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[0].b = GUI_B;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Ground Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaGround_VisorReflectionColor[0].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaGround_VisorReflectionColor[0].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaGround_VisorReflectionColor[0].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaGround_VisorReflectionColor[0].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaGround_VisorReflectionColor[0].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaGround_VisorReflectionColor[0].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[0].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[0].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Space Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaSpace_VisorReflectionColor[0].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaSpace_VisorReflectionColor[0].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaSpace_VisorReflectionColor[0].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaSpace_VisorReflectionColor[0].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaSpace_VisorReflectionColor[0].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaSpace_VisorReflectionColor[0].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.EvaSpace_VisorReflectionColor[0].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.EvaSpace_VisorReflectionColor[0].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                
+                GUILayout.EndVertical();
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.EndVertical();// end of the lvl [0] row
+            GUILayout.Space(10);
+            GUILayout.BeginVertical();// start of the lvl [1] row
+            if (suit != null)
+            {
+                GUILayout.Label("Level 1", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
+            }
+            GUILayout.BeginHorizontal();
+            if (suit != null)
+            {
+                //GUILayout.Box(suit.suitTexture[1], imageStyle, GUILayout.Width(suitCellSize), GUILayout.Height(suitCellSize));
+
+                GUILayout.BeginVertical(GUILayout.Height(suitCellSize));
+                if (suit != null)
+                {
+                    GUILayout.Label("Iva Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.Iva_VisorReflectionColor[1].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.Iva_VisorReflectionColor[1].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.Iva_VisorReflectionColor[1].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.Iva_VisorReflectionColor[1].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.Iva_VisorReflectionColor[1].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.Iva_VisorReflectionColor[1].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[1].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[1].b = GUI_B;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Ground Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaGround_VisorReflectionColor[1].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaGround_VisorReflectionColor[1].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaGround_VisorReflectionColor[1].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaGround_VisorReflectionColor[1].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaGround_VisorReflectionColor[1].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaGround_VisorReflectionColor[1].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[1].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[1].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Space Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaSpace_VisorReflectionColor[1].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaSpace_VisorReflectionColor[1].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaSpace_VisorReflectionColor[1].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaSpace_VisorReflectionColor[1].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaSpace_VisorReflectionColor[1].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaSpace_VisorReflectionColor[1].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.EvaSpace_VisorReflectionColor[1].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.EvaSpace_VisorReflectionColor[1].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.EndVertical();
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.EndVertical();// end of the lvl [1] row
+            GUILayout.Space(10);
+            GUILayout.BeginVertical();// start of the lvl [2] row
+            if (suit != null)
+            {
+                GUILayout.Label("Level 2", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
+            }
+            GUILayout.BeginHorizontal();
+            if (suit != null)
+            {
+                //GUILayout.Box(suit.suitTexture[2], imageStyle, GUILayout.Width(suitCellSize), GUILayout.Height(suitCellSize));
+
+                GUILayout.BeginVertical(GUILayout.Height(suitCellSize));
+                if (suit != null)
+                {
+                    GUILayout.Label("Iva Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.Iva_VisorReflectionColor[2].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.Iva_VisorReflectionColor[2].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.Iva_VisorReflectionColor[2].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.Iva_VisorReflectionColor[2].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.Iva_VisorReflectionColor[2].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.Iva_VisorReflectionColor[2].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[2].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[2].b = GUI_B;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Ground Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaGround_VisorReflectionColor[2].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaGround_VisorReflectionColor[2].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaGround_VisorReflectionColor[2].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaGround_VisorReflectionColor[2].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaGround_VisorReflectionColor[2].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaGround_VisorReflectionColor[2].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[2].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[2].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Space Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaSpace_VisorReflectionColor[2].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaSpace_VisorReflectionColor[2].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaSpace_VisorReflectionColor[2].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaSpace_VisorReflectionColor[2].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaSpace_VisorReflectionColor[2].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaSpace_VisorReflectionColor[2].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.EvaSpace_VisorReflectionColor[2].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.EvaSpace_VisorReflectionColor[2].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.EndVertical();
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.EndVertical();// end of the lvl [2] row
+            GUILayout.Space(10);
+            GUILayout.BeginVertical();// start of the lvl [3] row
+            if (suit != null)
+            {
+                GUILayout.Label("Level 3", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
+            }
+            GUILayout.BeginHorizontal();
+            if (suit != null)
+            {
+                //GUILayout.Box(suit.suitTexture[3], imageStyle, GUILayout.Width(suitCellSize), GUILayout.Height(suitCellSize));
+
+                GUILayout.BeginVertical(GUILayout.Height(suitCellSize));
+                if (suit != null)
+                {
+                    GUILayout.Label("Iva Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.Iva_VisorReflectionColor[3].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.Iva_VisorReflectionColor[3].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.Iva_VisorReflectionColor[3].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.Iva_VisorReflectionColor[3].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.Iva_VisorReflectionColor[3].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.Iva_VisorReflectionColor[3].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[3].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[3].b = GUI_B;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Ground Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaGround_VisorReflectionColor[3].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaGround_VisorReflectionColor[3].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaGround_VisorReflectionColor[3].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaGround_VisorReflectionColor[3].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaGround_VisorReflectionColor[3].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaGround_VisorReflectionColor[3].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[3].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[3].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Space Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaSpace_VisorReflectionColor[3].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaSpace_VisorReflectionColor[3].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaSpace_VisorReflectionColor[3].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaSpace_VisorReflectionColor[3].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaSpace_VisorReflectionColor[3].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaSpace_VisorReflectionColor[3].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.EvaSpace_VisorReflectionColor[3].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.EvaSpace_VisorReflectionColor[3].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.EndVertical();
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.EndVertical();// end of the lvl [3] row
+            GUILayout.Space(10);
+            GUILayout.BeginVertical();// start of the lvl [4] row
+            if (suit != null)
+            {
+                GUILayout.Label("Level 4", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
+            }
+            GUILayout.BeginHorizontal();
+            if (suit != null)
+            {
+                //GUILayout.Box(suit.suitTexture[4], imageStyle, GUILayout.Width(suitCellSize), GUILayout.Height(suitCellSize));
+
+                GUILayout.BeginVertical(GUILayout.Height(suitCellSize));
+                if (suit != null)
+                {
+                    GUILayout.Label("Iva Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.Iva_VisorReflectionColor[4].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.Iva_VisorReflectionColor[4].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.Iva_VisorReflectionColor[4].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.Iva_VisorReflectionColor[4].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.Iva_VisorReflectionColor[4].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.Iva_VisorReflectionColor[4].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[4].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[4].b = GUI_B;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Ground Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaGround_VisorReflectionColor[4].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaGround_VisorReflectionColor[4].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaGround_VisorReflectionColor[4].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaGround_VisorReflectionColor[4].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaGround_VisorReflectionColor[4].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaGround_VisorReflectionColor[4].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[4].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[4].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Space Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaSpace_VisorReflectionColor[4].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaSpace_VisorReflectionColor[4].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaSpace_VisorReflectionColor[4].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaSpace_VisorReflectionColor[4].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaSpace_VisorReflectionColor[4].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaSpace_VisorReflectionColor[4].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.EvaSpace_VisorReflectionColor[4].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.EvaSpace_VisorReflectionColor[4].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.EndVertical();
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.EndVertical();// end of the lvl [4] row
+            GUILayout.Space(10);
+            GUILayout.BeginVertical();// start of the lvl [5] row
+            if (suit != null)
+            {
+                GUILayout.Label("Level 5", GUILayout.Width(colorCellColumwWidth), GUILayout.Height(20));
+            }
+            GUILayout.BeginHorizontal();
+            if (suit != null)
+            {
+                //GUILayout.Box(suit.suitTexture[5], imageStyle, GUILayout.Width(suitCellSize), GUILayout.Height(suitCellSize));
+
+                GUILayout.BeginVertical(GUILayout.Height(suitCellSize));
+                if (suit != null)
+                {
+                    GUILayout.Label("Iva Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.Iva_VisorReflectionColor[5].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.Iva_VisorReflectionColor[5].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.Iva_VisorReflectionColor[5].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.Iva_VisorReflectionColor[5].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.Iva_VisorReflectionColor[5].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.Iva_VisorReflectionColor[5].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[5].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[5].b = GUI_B;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Ground Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaGround_VisorReflectionColor[5].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaGround_VisorReflectionColor[5].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaGround_VisorReflectionColor[5].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaGround_VisorReflectionColor[5].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaGround_VisorReflectionColor[5].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaGround_VisorReflectionColor[5].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.Iva_VisorReflectionColor[5].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.Iva_VisorReflectionColor[5].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+                if (suit != null)
+                {
+                    GUILayout.Label("Eva Space Visor Reflection color", labelStyle);
+                }
+                GUILayout.BeginHorizontal(GUILayout.Width(colorCellColumwWidth));
+                if (suit != null)
+                {
+
+                    byte GUI_R = suit.EvaSpace_VisorReflectionColor[5].r;
+                    byte.TryParse(GUILayout.TextField(GUI_R.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_R);
+                    suit.EvaSpace_VisorReflectionColor[5].r = GUI_R;
+                    GUILayout.Label("R", labelStyle);
+
+                    byte GUI_G = suit.EvaSpace_VisorReflectionColor[5].g;
+                    byte.TryParse(GUILayout.TextField(GUI_G.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_G);
+                    suit.EvaSpace_VisorReflectionColor[5].g = GUI_G;
+                    GUILayout.Label("G", labelStyle);
+
+                    byte GUI_B = suit.EvaSpace_VisorReflectionColor[5].b;
+                    byte.TryParse(GUILayout.TextField(GUI_B.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_B);
+                    suit.EvaSpace_VisorReflectionColor[5].b = GUI_B;
+                    GUILayout.Label("B", labelStyle);
+
+                    byte GUI_A = suit.EvaSpace_VisorReflectionColor[5].a;
+                    byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
+                    suit.EvaSpace_VisorReflectionColor[5].a = GUI_A;
+                    GUILayout.Label("A", labelStyle);
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.EndVertical();
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.EndVertical();// end of the lvl [5] row
+
+            GUILayout.EndVertical();
+            GUILayout.EndScrollView();
+            GUILayout.EndVertical(); // end of the texture + color column
+
+
+
+            GUILayout.BeginVertical(); // start of the setting column
+            if (suit != null)
+            {
+                suit.isExclusive = GUILayout.Toggle(suit.isExclusive, "Exclusive ?");
+
+                suit.Iva_Use = GUILayout.Toggle(suit.Iva_Use, "Use Iva state ?");
+
+                suit.Iva_ForceUse = GUILayout.Toggle(suit.Iva_ForceUse, "Force Use Iva state ?");
+
+                suit.Iva_ForceUseHelmetAndVisor = GUILayout.Toggle(suit.Iva_ForceUseHelmetAndVisor, "Force Use IVA helmet ?");
+
+                suit.Iva_HideHelmet_InAtmo = GUILayout.Toggle(suit.Iva_HideHelmet_InAtmo, " Iva_HideHelmet_InAtmo ?");
+
+                suit.Iva_HideHelmet_OutAtmo = GUILayout.Toggle(suit.Iva_HideHelmet_OutAtmo, " Iva_HideHelmet_OutAtmo ?");
+
+                suit.Iva_VisorReflectionAdaptive = GUILayout.Toggle(suit.Iva_VisorReflectionAdaptive, "Iva_VisorReflectionAdaptive ?");
+
+                suit.Iva_HideHelmet_InVehicle = GUILayout.Toggle(suit.Iva_HideHelmet_InVehicle, "Iva_HideHelmet_InVehicle ?");
+
+                suit.Iva_HideHelmet_WhenSafe = GUILayout.Toggle(suit.Iva_HideHelmet_WhenSafe, "Iva_HideHelmet_WhenSafe ? ");
+
+                suit.Iva_HideHelmet_WhenUnsafe = GUILayout.Toggle(suit.Iva_HideHelmet_WhenUnsafe, "Iva_HideHelmet_WhenUnsafe ?");
+
+
+                suit.EvaGround_Use = GUILayout.Toggle(suit.EvaGround_Use, "Use EvaGround state ?");
+
+                suit.EvaGround_ForceUse = GUILayout.Toggle(suit.EvaGround_ForceUse, "Force Use EvaGround state ?");
+
+                suit.EvaGround_ForceUseHelmetAndVisor = GUILayout.Toggle(suit.EvaGround_ForceUseHelmetAndVisor, "Force Use EvaGround helmet ?");
+
+                suit.EvaGround_HideHelmet_InAtmo = GUILayout.Toggle(suit.EvaGround_HideHelmet_InAtmo, " EvaGround_HideHelmet_InAtmo ?");
+
+                suit.EvaGround_HideHelmet_OutAtmo = GUILayout.Toggle(suit.EvaGround_HideHelmet_OutAtmo, " EvaGround_HideHelmet_OutAtmo ?");
+
+                suit.EvaGround_VisorReflectionAdaptive = GUILayout.Toggle(suit.EvaGround_VisorReflectionAdaptive, "EvaGround_VisorReflectionAdaptive ?");
+
+
+                suit.EvaSpace_Use = GUILayout.Toggle(suit.EvaSpace_Use, "Use EvaSpace state ?");
+
+                suit.EvaSpace_ForceUse = GUILayout.Toggle(suit.EvaSpace_ForceUse, "Force Use EvaSpace state ?");
+
+                suit.EvaSpace_ForceUseHelmetAndVisor = GUILayout.Toggle(suit.EvaSpace_ForceUseHelmetAndVisor, "Force Use EvaSpace helmet ?");
+
+                suit.EvaSpace_HideHelmet_InAtmo = GUILayout.Toggle(suit.EvaSpace_HideHelmet_InAtmo, " EvaSpace_HideHelmet_InAtmo ?");
+
+                suit.EvaSpace_HideHelmet_OutAtmo = GUILayout.Toggle(suit.EvaSpace_HideHelmet_OutAtmo, " EvaSpace_HideHelmet_OutAtmo ?");
+
+                suit.EvaSpace_VisorReflectionAdaptive = GUILayout.Toggle(suit.EvaSpace_VisorReflectionAdaptive, "EvaSpace_VisorReflectionAdaptive ?");
+
+            }
+            GUILayout.EndVertical(); // end of the setting column
+
+
+            GUILayout.EndHorizontal(); // end of the main setting row
+            GUILayout.EndVertical(); // end of the main setting column
+
+
+            GUILayout.EndHorizontal();// end of the Gui row
+            GUILayout.EndVertical();// end of the Gui column
+
+            //if (GUILayout.Button("I am pouet"))
+            // Util.log("Clicked Button");
 
             GUI.DragWindow(new Rect(0, 0, Screen.width, 30));
         }

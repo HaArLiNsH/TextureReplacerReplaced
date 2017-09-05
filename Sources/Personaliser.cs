@@ -201,6 +201,9 @@ namespace TextureReplacerReplaced
         /// </summary>
         public bool isCollarRemovalEnabled = false;
 
+        public bool useKspSkin = true;
+
+
         // !!!!!!!!!!!!!!!!!!!!!!!!   Need to implement these options and make a GUI for them !!!!!!!!!!!!!!!!!
         // !!!!!!!!!!!!!!!!!!!!!!!!   Maybe a new class  ??                                    !!!!!!!!!!!!!!!
         /* =========================================================================================
@@ -645,7 +648,7 @@ namespace TextureReplacerReplaced
         /// <returns>The suit set selected for this kerbal class 
         /// or the default one if no suit select for this class</returns>     
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        private Suit_Set getClassSuit(ProtoCrewMember kerbal)
+        public Suit_Set getClassSuit(ProtoCrewMember kerbal)
         {
             Suit_Set suit;
             classSuitsDB.TryGetValue(kerbal.experienceTrait.Config.Name, out suit);
@@ -964,23 +967,36 @@ namespace TextureReplacerReplaced
                            // Util.log("+++++++++++++++++++++++  upTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);  
                             if (personaliseKerbal_Head != null)
                             {
-                                if ((int)protoKerbal.gender == 1)
+                                if (personaliseKerbal_Head.lvlToHide_TeethUp <= protoKerbal.experienceLevel)
                                 {
-                                    newTexture = defaulMaleAndFemaleHeads[0].get_headTexture(protoKerbal.experienceLevel);
-                                    newNormalMap = defaulMaleAndFemaleHeads[0].get_headTextureNRM(protoKerbal.experienceLevel);
+                                    smr.GetComponentInChildren<Renderer>().enabled = false;
                                 }
                                 else
                                 {
-                                    newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
-                                    newNormalMap = personaliseKerbal_Head.get_headTextureNRM(protoKerbal.experienceLevel);
-                                }
+                                    smr.GetComponentInChildren<Renderer>().enabled = true;
+                                    if ((int)protoKerbal.gender == 1)
+                                    {
+                                        newTexture = defaulMaleAndFemaleHeads[0].get_headTexture(protoKerbal.experienceLevel);
+                                        newNormalMap = defaulMaleAndFemaleHeads[0].get_headTextureNRM(protoKerbal.experienceLevel);
+                                    }
+                                    else
+                                    {
+                                        newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
+                                        newNormalMap = personaliseKerbal_Head.get_headTextureNRM(protoKerbal.experienceLevel);
+                                    }
+                                }                                
                             }
                             break;
                         case "upTeeth02":
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth02":
                             //Util.log("+++++++++++++++++++++++  upTeeth02 of {0} ++++++++++++++++++++++++", protoKerbal.name);   
-                            if (personaliseKerbal_Head != null)
+                            if (personaliseKerbal_Head.lvlToHide_TeethUp <= protoKerbal.experienceLevel)
                             {
+                                smr.GetComponentInChildren<Renderer>().enabled = false;
+                            }
+                            else
+                            {
+                                smr.GetComponentInChildren<Renderer>().enabled = true;
                                 if ((int)protoKerbal.gender == 1)
                                 {
                                     newTexture = defaulMaleAndFemaleHeads[0].get_headTexture(protoKerbal.experienceLevel);
@@ -997,8 +1013,13 @@ namespace TextureReplacerReplaced
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth01":                           
                         case "downTeeth01":
                             //Util.log("+++++++++++++++++++++++  downTeeth01 of {0} ++++++++++++++++++++++++", protoKerbal.name);
-                            if (personaliseKerbal_Head != null)
+                            if (personaliseKerbal_Head.lvlToHide_TeethDown <= protoKerbal.experienceLevel)
                             {
+                                smr.GetComponentInChildren<Renderer>().enabled = false;
+                            }
+                            else
+                            {
+                                smr.GetComponentInChildren<Renderer>().enabled = true;
                                 if ((int)protoKerbal.gender == 1)
                                 {
                                     newTexture = defaulMaleAndFemaleHeads[0].get_headTexture(protoKerbal.experienceLevel);
@@ -1009,7 +1030,6 @@ namespace TextureReplacerReplaced
                                     newTexture = personaliseKerbal_Head.get_headTexture(protoKerbal.experienceLevel);
                                     newNormalMap = personaliseKerbal_Head.get_headTextureNRM(protoKerbal.experienceLevel);
                                 }
-                                                               
                             }
                             break;
                         
@@ -2573,9 +2593,19 @@ namespace TextureReplacerReplaced
                     if (savedNode.TryGetValue("Iva_VisorReflectionAdaptive", ref nodeBool))
                         suitSet.Iva_VisorReflectionAdaptive = nodeBool;
                     
-                    if (savedNode.TryGetValue("Iva_VisorReflectionColor", ref nodeBool))
-                        suitSet.Iva_VisorReflectionColor = nodeColor;
-                    
+                    if (savedNode.TryGetValue("Iva_VisorReflectionColor[0]", ref nodeBool))
+                        suitSet.Iva_VisorReflectionColor[0] = nodeColor;
+                    if (savedNode.TryGetValue("Iva_VisorReflectionColor[1]", ref nodeBool))
+                        suitSet.Iva_VisorReflectionColor[1] = nodeColor;
+                    if (savedNode.TryGetValue("Iva_VisorReflectionColor[2]", ref nodeBool))
+                        suitSet.Iva_VisorReflectionColor[2] = nodeColor;
+                    if (savedNode.TryGetValue("Iva_VisorReflectionColor[3]", ref nodeBool))
+                        suitSet.Iva_VisorReflectionColor[3] = nodeColor;
+                    if (savedNode.TryGetValue("Iva_VisorReflectionColor[4]", ref nodeBool))
+                        suitSet.Iva_VisorReflectionColor[4] = nodeColor;
+                    if (savedNode.TryGetValue("Iva_VisorReflectionColor[5]", ref nodeBool))
+                        suitSet.Iva_VisorReflectionColor[5] = nodeColor;                    
+
                     if (savedNode.TryGetValue("Iva_HideHelmet_InVehicle", ref nodeBool))
                         suitSet.Iva_HideHelmet_InVehicle = nodeBool;
                     
@@ -2602,10 +2632,20 @@ namespace TextureReplacerReplaced
                     
                     if (savedNode.TryGetValue("EvaGround_VisorReflectionAdaptive", ref nodeBool))
                         suitSet.EvaGround_VisorReflectionAdaptive = nodeBool;
-                    
-                    if (savedNode.TryGetValue("EvaGround_VisorReflectionColor", ref nodeBool))
-                        suitSet.EvaGround_VisorReflectionColor = nodeColor;
-                    
+
+                    if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[0]", ref nodeBool))
+                        suitSet.EvaGround_VisorReflectionColor[0] = nodeColor;
+                    if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[1]", ref nodeBool))
+                        suitSet.EvaGround_VisorReflectionColor[1] = nodeColor;
+                    if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[2]", ref nodeBool))
+                        suitSet.EvaGround_VisorReflectionColor[2] = nodeColor;
+                    if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[3]", ref nodeBool))
+                        suitSet.EvaGround_VisorReflectionColor[3] = nodeColor;
+                    if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[4]", ref nodeBool))
+                        suitSet.EvaGround_VisorReflectionColor[4] = nodeColor;
+                    if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[5]", ref nodeBool))
+                        suitSet.EvaGround_VisorReflectionColor[5] = nodeColor;
+
                     if (savedNode.TryGetValue("EvaSpace_Use", ref nodeBool))
                         suitSet.EvaSpace_Use = nodeBool;
                     
@@ -2623,10 +2663,20 @@ namespace TextureReplacerReplaced
                     
                     if (savedNode.TryGetValue("EvaSpace_VisorReflectionAdaptive", ref nodeBool))
                         suitSet.EvaSpace_VisorReflectionAdaptive = nodeBool;
-                    
-                    if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor", ref nodeBool))
-                        suitSet.EvaSpace_VisorReflectionColor = nodeColor;
-                    
+
+                    if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[0]", ref nodeBool))
+                        suitSet.EvaSpace_VisorReflectionColor[0] = nodeColor;
+                    if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[1]", ref nodeBool))
+                        suitSet.EvaSpace_VisorReflectionColor[1] = nodeColor;
+                    if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[2]", ref nodeBool))
+                        suitSet.EvaSpace_VisorReflectionColor[2] = nodeColor;
+                    if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[3]", ref nodeBool))
+                        suitSet.EvaSpace_VisorReflectionColor[3] = nodeColor;
+                    if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[4]", ref nodeBool))
+                        suitSet.EvaSpace_VisorReflectionColor[4] = nodeColor;
+                    if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[5]", ref nodeBool))
+                        suitSet.EvaSpace_VisorReflectionColor[5] = nodeColor;
+
                 }                
             }
 
@@ -2634,36 +2684,6 @@ namespace TextureReplacerReplaced
 
         private static void saveSuitConfig(ConfigNode node, List<Suit_Set> map, Suit_Set defaultMap)
         {
-            /*ConfigNode defaultSubNode = new ConfigNode();
-            node.AddNode("DefaultSuit", defaultSubNode);
-
-            defaultSubNode.AddValue("Iva_Use", defaultMap.Iva_Use);
-            defaultSubNode.AddValue("Iva_ForceUse", defaultMap.Iva_ForceUse);
-            defaultSubNode.AddValue("Iva_ForceUseHelmetAndVisor", defaultMap.Iva_ForceUseHelmetAndVisor);
-            defaultSubNode.AddValue("Iva_HideHelmet_InAtmo", defaultMap.Iva_HideHelmet_InAtmo);
-            defaultSubNode.AddValue("Iva_HideHelmet_OutAtmo", defaultMap.Iva_HideHelmet_OutAtmo);
-            defaultSubNode.AddValue("Iva_VisorReflectionAdaptive", defaultMap.Iva_VisorReflectionAdaptive);
-            defaultSubNode.AddValue("Iva_VisorReflectionColor", defaultMap.Iva_VisorReflectionColor);
-            defaultSubNode.AddValue("Iva_HideHelmet_InVehicle", defaultMap.Iva_HideHelmet_InVehicle);
-            defaultSubNode.AddValue("Iva_HideHelmet_WhenSafe", defaultMap.Iva_HideHelmet_WhenSafe);
-            defaultSubNode.AddValue("Iva_HideHelmet_WhenUnsafe", defaultMap.Iva_HideHelmet_WhenUnsafe);
-
-            defaultSubNode.AddValue("EvaGround_Use", defaultMap.EvaGround_Use);
-            defaultSubNode.AddValue("EvaGround_ForceUse", defaultMap.EvaGround_ForceUse);
-            defaultSubNode.AddValue("EvaGround_ForceUseHelmetAndVisor", defaultMap.EvaGround_ForceUseHelmetAndVisor);
-            defaultSubNode.AddValue("EvaGround_HideHelmet_InAtmo", defaultMap.EvaGround_HideHelmet_InAtmo);
-            defaultSubNode.AddValue("EvaGround_HideHelmet_OutAtmo", defaultMap.EvaGround_HideHelmet_OutAtmo);
-            defaultSubNode.AddValue("EvaGround_VisorReflectionAdaptive", defaultMap.EvaGround_VisorReflectionAdaptive);
-            defaultSubNode.AddValue("EvaGround_VisorReflectionColor", defaultMap.EvaGround_VisorReflectionColor);
-
-            defaultSubNode.AddValue("EvaSpace_Use", defaultMap.EvaSpace_Use);
-            defaultSubNode.AddValue("EvaSpace_ForceUse", defaultMap.EvaSpace_ForceUse);
-            defaultSubNode.AddValue("EvaSpace_ForceUseHelmetAndVisor", defaultMap.EvaSpace_ForceUseHelmetAndVisor);
-            defaultSubNode.AddValue("EvaSpace_HideHelmet_InAtmo", defaultMap.EvaSpace_HideHelmet_InAtmo);
-            defaultSubNode.AddValue("EvaSpace_HideHelmet_OutAtmo", defaultMap.EvaSpace_HideHelmet_OutAtmo);
-            defaultSubNode.AddValue("EvaSpace_VisorReflectionAdaptive", defaultMap.EvaSpace_VisorReflectionAdaptive);
-            defaultSubNode.AddValue("EvaSpace_VisorReflectionColor", defaultMap.EvaSpace_VisorReflectionColor);*/
-            
             foreach (Suit_Set suitSet in map)
             {
                 ConfigNode subNode = new ConfigNode();
@@ -2677,7 +2697,12 @@ namespace TextureReplacerReplaced
                 subNode.AddValue("Iva_HideHelmet_InAtmo", suitSet.Iva_HideHelmet_InAtmo);
                 subNode.AddValue("Iva_HideHelmet_OutAtmo", suitSet.Iva_HideHelmet_OutAtmo);
                 subNode.AddValue("Iva_VisorReflectionAdaptive", suitSet.Iva_VisorReflectionAdaptive);
-                subNode.AddValue("Iva_VisorReflectionColor", suitSet.Iva_VisorReflectionColor);
+                subNode.AddValue("Iva_VisorReflectionColor[0]", suitSet.Iva_VisorReflectionColor[0]);
+                subNode.AddValue("Iva_VisorReflectionColor[1]", suitSet.Iva_VisorReflectionColor[1]);
+                subNode.AddValue("Iva_VisorReflectionColor[2]", suitSet.Iva_VisorReflectionColor[2]);
+                subNode.AddValue("Iva_VisorReflectionColor[3]", suitSet.Iva_VisorReflectionColor[3]);
+                subNode.AddValue("Iva_VisorReflectionColor[4]", suitSet.Iva_VisorReflectionColor[4]);
+                subNode.AddValue("Iva_VisorReflectionColor[5]", suitSet.Iva_VisorReflectionColor[5]);
                 subNode.AddValue("Iva_HideHelmet_InVehicle", suitSet.Iva_HideHelmet_InVehicle);
                 subNode.AddValue("Iva_HideHelmet_WhenSafe", suitSet.Iva_HideHelmet_WhenSafe);
                 subNode.AddValue("Iva_HideHelmet_WhenUnsafe", suitSet.Iva_HideHelmet_WhenUnsafe);
@@ -2688,7 +2713,12 @@ namespace TextureReplacerReplaced
                 subNode.AddValue("EvaGround_HideHelmet_InAtmo", suitSet.EvaGround_HideHelmet_InAtmo);
                 subNode.AddValue("EvaGround_HideHelmet_OutAtmo", suitSet.EvaGround_HideHelmet_OutAtmo);
                 subNode.AddValue("EvaGround_VisorReflectionAdaptive", suitSet.EvaGround_VisorReflectionAdaptive);
-                subNode.AddValue("EvaGround_VisorReflectionColor", suitSet.EvaGround_VisorReflectionColor);
+                subNode.AddValue("EvaGround_VisorReflectionColor[0]", suitSet.EvaGround_VisorReflectionColor[0]);
+                subNode.AddValue("EvaGround_VisorReflectionColor[1]", suitSet.EvaGround_VisorReflectionColor[1]);
+                subNode.AddValue("EvaGround_VisorReflectionColor[2]", suitSet.EvaGround_VisorReflectionColor[2]);
+                subNode.AddValue("EvaGround_VisorReflectionColor[3]", suitSet.EvaGround_VisorReflectionColor[3]);
+                subNode.AddValue("EvaGround_VisorReflectionColor[4]", suitSet.EvaGround_VisorReflectionColor[4]);
+                subNode.AddValue("EvaGround_VisorReflectionColor[5]", suitSet.EvaGround_VisorReflectionColor[5]);
 
                 subNode.AddValue("EvaSpace_Use", suitSet.EvaSpace_Use);
                 subNode.AddValue("EvaSpace_ForceUse", suitSet.EvaSpace_ForceUse);
@@ -2696,7 +2726,12 @@ namespace TextureReplacerReplaced
                 subNode.AddValue("EvaSpace_HideHelmet_InAtmo", suitSet.EvaSpace_HideHelmet_InAtmo);
                 subNode.AddValue("EvaSpace_HideHelmet_OutAtmo", suitSet.EvaSpace_HideHelmet_OutAtmo);
                 subNode.AddValue("EvaSpace_VisorReflectionAdaptive", suitSet.EvaSpace_VisorReflectionAdaptive);
-                subNode.AddValue("EvaSpace_VisorReflectionColor", suitSet.EvaSpace_VisorReflectionColor);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[0]", suitSet.EvaSpace_VisorReflectionColor[0]);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[1]", suitSet.EvaSpace_VisorReflectionColor[1]);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[2]", suitSet.EvaSpace_VisorReflectionColor[2]);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[3]", suitSet.EvaSpace_VisorReflectionColor[3]);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[4]", suitSet.EvaSpace_VisorReflectionColor[4]);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[5]", suitSet.EvaSpace_VisorReflectionColor[5]);
             }
         }
 
@@ -2705,59 +2740,27 @@ namespace TextureReplacerReplaced
         /// Used to load the configuration for the head-Sets
         /// </summary>
         /// <param name="node"></param>
-        /// <param name="map"></param>
-        /// <param name="defaultMap"></param>
+        /// <param name="listFull"></param>
+        /// <param name="defaultHead"></param>
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
-        private void loadHeadConfig (ConfigNode node, List<Head_Set>[] map, Head_Set[] defaultMap)
+        private void loadHeadConfig (ConfigNode node, List<Head_Set>[] listFull, Head_Set[] defaultHead, )
         {
-            /*ConfigNode defaultNodeMale = new ConfigNode();
-            if (node.TryGetNode("DefaultHead_Male", ref defaultNodeMale))
-            {
-                Util.parse(defaultNodeMale.GetValue("lvlToHide_Eye_Left"), ref defaultMap[0].lvlToHide_Eye_Left);
-                Util.parse(defaultNodeMale.GetValue("lvlToHide_Eye_Right"), ref defaultMap[0].lvlToHide_Eye_Right);
-                Util.parse(defaultNodeMale.GetValue("lvlToHide_Pupil_Left"), ref defaultMap[0].lvlToHide_Pupil_Left);
-                Util.parse(defaultNodeMale.GetValue("lvlToHide_Pupil_Right"), ref defaultMap[0].lvlToHide_Pupil_Right);
-                Util.parse(defaultNodeMale.GetValue("lvlToHide_TeethUp"), ref defaultMap[0].lvlToHide_TeethUp);
-                Util.parse(defaultNodeMale.GetValue("lvlToHide_TeethDown"), ref defaultMap[0].lvlToHide_TeethDown);
-                Util.parse(defaultNodeMale.GetValue("lvlToHide_Ponytail"), ref defaultMap[0].lvlToHide_Ponytail);
-                Util.parse(defaultNodeMale.GetValue("eyeballColor_Left"), ref defaultMap[0].eyeballColor_Left);
-                Util.parse(defaultNodeMale.GetValue("eyeballColor_Right"), ref defaultMap[0].eyeballColor_Right);
-                Util.parse(defaultNodeMale.GetValue("pupilColor_Left"), ref defaultMap[0].pupilColor_Left);
-                Util.parse(defaultNodeMale.GetValue("pupilColor_Right"), ref defaultMap[0].pupilColor_Right);
-            }
-
-            ConfigNode defaultNodeFemale = new ConfigNode();
-            if (node.TryGetNode("DefaultHead_Female", ref defaultNodeFemale))
-            {
-                Util.parse(defaultNodeFemale.GetValue("lvlToHide_Eye_Left"), ref defaultMap[1].lvlToHide_Eye_Left);
-                Util.parse(defaultNodeFemale.GetValue("lvlToHide_Eye_Right"), ref defaultMap[1].lvlToHide_Eye_Right);
-                Util.parse(defaultNodeFemale.GetValue("lvlToHide_Pupil_Left"), ref defaultMap[1].lvlToHide_Pupil_Left);
-                Util.parse(defaultNodeFemale.GetValue("lvlToHide_Pupil_Right"), ref defaultMap[1].lvlToHide_Pupil_Right);
-                Util.parse(defaultNodeFemale.GetValue("lvlToHide_TeethUp"), ref defaultMap[1].lvlToHide_TeethUp);
-                Util.parse(defaultNodeFemale.GetValue("lvlToHide_TeethDown"), ref defaultMap[1].lvlToHide_TeethDown);
-                Util.parse(defaultNodeFemale.GetValue("lvlToHide_Ponytail"), ref defaultMap[1].lvlToHide_Ponytail);
-                Util.parse(defaultNodeFemale.GetValue("eyeballColor_Left"), ref defaultMap[1].eyeballColor_Left);
-                Util.parse(defaultNodeFemale.GetValue("eyeballColor_Right"), ref defaultMap[1].eyeballColor_Right);
-                Util.parse(defaultNodeFemale.GetValue("pupilColor_Left"), ref defaultMap[1].pupilColor_Left);
-                Util.parse(defaultNodeFemale.GetValue("pupilColor_Right"), ref defaultMap[1].pupilColor_Right);
-            }*/
             
             for (int i = 0; i < 2; i++)
             {
-                foreach (Head_Set headSet in map[i])
+                foreach (Head_Set headSet in listFull[i])
                 {
                     ConfigNode savedNode = new ConfigNode();
                     if ( node.TryGetNode(headSet.name, ref savedNode))
                     {
-                        Util.log("Settings found for {0}, using them", headSet.name);
+                        //Util.log("Settings found for {0}, using them", headSet.name);
                         int nodeLvl = new int();
                         bool nodeBool = false;
                         Color32 nodeColor = new Color32();
 
-
                         if (savedNode.TryGetValue("isExclusive", ref nodeBool))
                             headSet.isExclusive = nodeBool;
-                        Util.log("Settings for {0} = {1}", headSet.name, headSet.isExclusive);
+                        //Util.log("Settings for {0} = {1}", headSet.name, headSet.isExclusive);
 
                         if (savedNode.TryGetValue("lvlToHide_Eye_Left", ref nodeLvl))                        
                             headSet.lvlToHide_Eye_Left = nodeLvl;
@@ -2851,19 +2854,7 @@ namespace TextureReplacerReplaced
 
                         if (savedNode.TryGetValue("pupilColor_Right[5]", ref nodeColor))
                             headSet.pupilColor_Right[5] = nodeColor;
-                        /*else
-                        {
-                            headSet.lvlToHide_Eye_Left = defaultMap[i].lvlToHide_Eye_Left;
-                            headSet.lvlToHide_Eye_Right = defaultMap[i].lvlToHide_Eye_Right;
-                            headSet.lvlToHide_Pupil_Left = defaultMap[i].lvlToHide_Pupil_Left;
-                            headSet.lvlToHide_Pupil_Right = defaultMap[i].lvlToHide_Pupil_Right;
-                            headSet.lvlToHide_TeethUp = defaultMap[i].lvlToHide_TeethUp;
-                            headSet.lvlToHide_TeethDown = defaultMap[i].lvlToHide_TeethDown;
-                            headSet.lvlToHide_Ponytail = defaultMap[i].lvlToHide_Ponytail;
-                            headSet.eyeballColor_Left = defaultMap[i].eyeballColor_Left;
-                            headSet.eyeballColor_Right = defaultMap[i].eyeballColor_Right;
-                            headSet.pupilColor_Left = defaultMap[i].pupilColor_Left;
-                            headSet.pupilColor_Right = defaultMap[i].pupilColor_Right;*/
+                       
                     }
                 }
             }  
@@ -2871,29 +2862,6 @@ namespace TextureReplacerReplaced
 
         private static void saveHeadConfig (ConfigNode node, List<Head_Set>[] map, Head_Set[] defaultMap)
         {
-                        
-            /*for (int i = 0; i < 2; i++)
-            {
-                ConfigNode subNode = new ConfigNode(); 
-
-                if (i == 0)
-                    node.AddNode("DefaultHead_Male", subNode);
-                else
-                    node.AddNode("DefaultHead_Female", subNode);               
-
-                subNode.AddValue("lvlToHide_Eye_Left", defaultMap[i].lvlToHide_Eye_Left);
-                subNode.AddValue("lvlToHide_Eye_Right", defaultMap[i].lvlToHide_Eye_Right);
-                subNode.AddValue("lvlToHide_Pupil_Left", defaultMap[i].lvlToHide_Pupil_Left);
-                subNode.AddValue("lvlToHide_Pupil_Right", defaultMap[i].lvlToHide_Pupil_Right);
-                subNode.AddValue("lvlToHide_TeethUp", defaultMap[i].lvlToHide_TeethUp);
-                subNode.AddValue("lvlToHide_TeethDown", defaultMap[i].lvlToHide_TeethDown);
-                subNode.AddValue("lvlToHide_Ponytail", defaultMap[i].lvlToHide_Ponytail);
-                subNode.AddValue("eyeballColor_Left", defaultMap[i].eyeballColor_Left);
-                subNode.AddValue("eyeballColor_Right", defaultMap[i].eyeballColor_Right);
-                subNode.AddValue("pupilColor_Left", defaultMap[i].pupilColor_Left);
-                subNode.AddValue("pupilColor_Right", defaultMap[i].pupilColor_Right);   
-            }*/
-
             for (int i = 0; i < 2; i++)
             {
                 foreach (Head_Set headSet in map[i])
@@ -2937,10 +2905,7 @@ namespace TextureReplacerReplaced
             }
 
         }
-
         
-
-
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Fill config for custom Kerbal heads and suits.
@@ -2948,9 +2913,9 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private void readKerbalsConfigs()
         {
-            var excludedHeads = new List<string>();
-            var excludedSuits = new List<string>();           
-            var eyelessHeads = new List<string>();
+            List<string> excludedHeads = new List<string>();
+            List<string> excludedSuits = new List<string>();           
+           // var eyelessHeads = new List<string>();
 
             foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
             {
@@ -2970,7 +2935,7 @@ namespace TextureReplacerReplaced
                 {
                     Util.addLists(genericNode.GetValues("excludedHeads"), excludedHeads);
                     Util.addLists(genericNode.GetValues("excludedSuits"), excludedSuits);                   
-                    Util.addLists(genericNode.GetValues("eyelessHeads"), eyelessHeads);
+                    //Util.addLists(genericNode.GetValues("eyelessHeads"), eyelessHeads);
                 }
 
                 ConfigNode classNode = file.config.GetNode("ClassSuits");
@@ -2979,13 +2944,16 @@ namespace TextureReplacerReplaced
 
                 ConfigNode headNode = file.config.GetNode("HeadSettings");
                 if (headNode != null)               
-                    loadHeadConfig(headNode, maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
+                    loadHeadConfig(headNode, maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads, maleAndfemaleHeadsDB_cleaned);
                 
                 ConfigNode suitNode = file.config.GetNode("SuitSettings");
                 if (suitNode != null)                
                     loadSuitConfig(suitNode, KerbalSuitsDB_full, defaultSuit, false);
                 
             }
+
+
+            
 
             // Tag female and eye-less heads.
             /*foreach (Head_Set head in KerbalHeadsDB_full)
@@ -3022,8 +2990,9 @@ namespace TextureReplacerReplaced
             Util.addLists(rootNode.GetValues("atmSuitBodies"), atmSuitBodies);
             Util.parse(rootNode.GetValue("forceLegacyFemales"), ref forceLegacyFemales);
             Util.parse(rootNode.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
-            Util.parse(rootNode.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled); 
-            
+            Util.parse(rootNode.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
+            Util.parse(rootNode.GetValue("useKspSkin"), ref useKspSkin);
+
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -3133,6 +3102,7 @@ namespace TextureReplacerReplaced
             Util.parse(node.GetValue("isAtmSuitEnabled"), ref isAtmSuitEnabled);
             Util.parse(node.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
             Util.parse(node.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
+            Util.parse(node.GetValue("useKspSkin"), ref useKspSkin);
         }
                 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -3152,6 +3122,7 @@ namespace TextureReplacerReplaced
             node.AddValue("isAtmSuitEnabled", isAtmSuitEnabled);
             node.AddValue("isNewSuitStateEnabled", isNewSuitStateEnabled);
             node.AddValue("isAutomaticSuitSwitchEnabled", isAutomaticSuitSwitchEnabled);
+            node.AddValue("useKspSkin", useKspSkin);
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
