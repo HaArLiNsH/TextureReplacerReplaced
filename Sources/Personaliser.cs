@@ -2743,7 +2743,7 @@ namespace TextureReplacerReplaced
         /// <param name="listFull"></param>
         /// <param name="defaultHead"></param>
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
-        private void loadHeadConfig (ConfigNode node, List<Head_Set>[] listFull, Head_Set[] defaultHead, )
+        private void loadHeadConfig (ConfigNode node, List<Head_Set>[] listFull, Head_Set[] defaultHead, List<Head_Set>[] listClean)
         {
             
             for (int i = 0; i < 2; i++)
@@ -3089,7 +3089,7 @@ namespace TextureReplacerReplaced
             ConfigNode headNode = node.GetNode("HeadSettings");
             if (headNode != null)
             {
-                loadHeadConfig(headNode, maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
+                loadHeadConfig(headNode, maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads, maleAndfemaleHeadsDB_cleaned);
             }
 
             ConfigNode suitNode = node.GetNode("SuitSettings");
