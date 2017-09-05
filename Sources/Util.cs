@@ -184,6 +184,29 @@ namespace TextureReplacerReplaced
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
+        /// convert the specified string representation of a logical value to its Color32 equivalent
+        /// </summary>
+        /// <param name="name">the name of the string we want to try to parse</param>
+        /// <param name="variable">the output value of the parsing, here a Color32</param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        public static void parse(string name, ref Color32 variable)
+        {
+            if (name != null)
+            {
+                string[] components = splitConfigValue(name);
+                if (components.Length >= 3)
+                {
+                    byte.TryParse(components[0], out variable.r);
+                    byte.TryParse(components[1], out variable.g);
+                    byte.TryParse(components[2], out variable.b);
+                }
+                if (components.Length >= 4)
+                    byte.TryParse(components[3], out variable.a);
+            }
+        }
+
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
         /// convert the specified string representation of a logical value to its Color equivalent
         /// </summary>
         /// <param name="name">the name of the string we want to try to parse</param>

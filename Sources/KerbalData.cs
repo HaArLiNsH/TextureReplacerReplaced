@@ -21,32 +21,56 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
 namespace TextureReplacerReplaced
 {
+    /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /// <summary>
-    /// This class handle the load and save of the configuration data in the persistant.sfs save
+    /// The data of a kerbal
+    /// <para>Contain the head and suit texture used by the kerbal</para>   
     /// </summary>
-    [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.SPACECENTER | GameScenes.FLIGHT)]
-    public class TRR_Scenario : ScenarioModule
+    /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    public class KerbalData
     {
         /// <summary>
-        /// called at the OnLoad()
+        /// The hash code of the kerbal
         /// </summary>
-        /// <param name="node">The name of the config node</param>
-        public override void OnLoad(ConfigNode node)
-        {
-            Reflections.instance.loadScenario(node);
-            Personaliser.instance.loadScenario(node);
-        }
+        public int hash;
 
         /// <summary>
-        /// called at the OnSave()
+        /// The gender of the kerbal
         /// </summary>
-        /// <param name="node">The name of the config node</param>
-        public override void OnSave(ConfigNode node)
-        {
-            Reflections.instance.saveScenario(node);
-            Personaliser.instance.saveScenario(node);
-        }
+        public int gender;
+
+        /// <summary>
+        /// Is the kerbal a veteran?
+        /// </summary>
+        public bool isVeteran;
+
+        /// <summary>
+        /// Is the kerbal a badass ? 
+        /// </summary>
+        public bool isBadass;
+
+        /// <summary>
+        /// The head set of the kerbal
+        /// </summary>
+        public Head_Set head;
+
+        /// <summary>
+        /// The suit set of the kerbal
+        /// </summary>
+        public Suit_Set suit;
+
+        /// <summary>
+        /// The forced cabin suit (IVA) of the kerbal
+        /// </summary>
+        //public Suit_Set cabinSuit;
     }
+
+
 }

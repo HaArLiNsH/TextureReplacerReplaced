@@ -52,8 +52,8 @@ namespace TextureReplacerReplaced
             { "KSP/Specular", "Reflective/Bumped Diffuse" },
             { "KSP/Bumped", "Reflective/Bumped Diffuse" },
             { "KSP/Bumped Specular", "Reflective/Bumped Diffuse" },
-            { "KSP/Alpha/Translucent", "KSP/TR/Visor" },
-            { "KSP/Alpha/Translucent Specular", "KSP/TR/Visor" }
+            { "KSP/Alpha/Translucent", "KSP/TRR/Visor" },
+            { "KSP/Alpha/Translucent Specular", "KSP/TRR/Visor" }
         };
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Print names of meshes and their shaders in parts with TRReflection module.
         /// </summary>
-        public bool logReflectiveMeshes = false;
+        public bool logReflectiveMeshes = true;
 
         /// <summary>
         /// Reflective shader.
@@ -195,6 +195,19 @@ namespace TextureReplacerReplaced
                         material.SetTexture(Util.CUBE_PROPERTY, envMap);
                         material.SetColor(Util.REFLECT_COLOR_PROPERTY, visorReflectionColour);
                     }
+
+                    // TODO ICI ! 
+                   /* SkinnedMeshRenderer eyeballLeft = transform.GetComponentsInChildren<SkinnedMeshRenderer>(true)
+                      .FirstOrDefault(m => m.name == "eyeballLeft");
+
+                    if (eyeballLeft != null)
+                    {
+                        Material material = eyeballLeft.material;
+
+                        material.shader = instance.visorShader;
+                        material.SetTexture(Util.CUBE_PROPERTY, envMap);
+                        material.SetColor(Util.REFLECT_COLOR_PROPERTY, visorReflectionColour);
+                    }*/
                 }
 
                 interval = updateInterval;
@@ -422,9 +435,21 @@ namespace TextureReplacerReplaced
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 // In 1.2 visor texture some reason want load by default way
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                Texture visorTex = GameDatabase.Instance.GetTexture(Util.DIR + "Default/EVAVisor", false);
+                //Texture visorTex = GameDatabase.Instance.GetTexture(Util.DIR + "Default/EVAVisor", false);
+               // visorTex = GameDatabase.Instance.GetTexture();
+                Texture visorTex = new Texture();
+                foreach (string path in Folders.DEFAULT)
+                {
+                    Texture texTest = GameDatabase.Instance.GetTexture(path + "EVAVisor", false);
+                    if (texTest != null)
+                    {
+                        visorTex = texTest;
+                        continue;
+                    }
+                        
+                }
 
-                if (visorTex != null)
+                    if (visorTex != null)
                 {
                     material.SetTexture("_MainTex", visorTex);
                     material.color = Color.white;
@@ -462,7 +487,7 @@ namespace TextureReplacerReplaced
             Texture2D[] envMapFaces = new Texture2D[6];
 
             // Foreach non-null Texture2D in any of the EnvMap Folders
-            foreach (KeyValuePair<Texture2D, string> EnvMapTexture in Textures.ENVMAP())
+            foreach (KeyValuePair<Texture2D, string> EnvMapTexture in Textures_Loader.ENVMAP())
             {
                 Texture2D texture = EnvMapTexture.Key;
                 string originalName = EnvMapTexture.Value;
@@ -543,7 +568,7 @@ namespace TextureReplacerReplaced
             }
            
             // we now save the visor shader in the placeholder. The shader got loaded through the ksp asset bundle
-            visorShader = TextureReplacerReplaced.GetShader("KSP/TR/Visor");
+            visorShader = TextureReplacerReplaced.GetShader("KSP/TRR/Visor");
 
             // fill the shaderMappings dict, if we find the right shader from the mapping config. 
             // we could have used names here, but it is not in the fast path, so it is ok to leave it this way
@@ -582,7 +607,7 @@ namespace TextureReplacerReplaced
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// This is used to load the reflection type saved in the .cfg and persistant save
+        /// This is used to load the reflection type saved in the .cfg and persistent save
         /// </summary>
         /// <param name="node"></param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -597,7 +622,7 @@ namespace TextureReplacerReplaced
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// This is used to save the reflection type persistant save
+        /// This is used to save the reflection type persistent save
         /// </summary>
         /// <param name="node"></param>
         /// ////////////////////////////////////////////////////////////////////////////////////////

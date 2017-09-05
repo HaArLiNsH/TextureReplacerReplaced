@@ -266,6 +266,46 @@ namespace TextureReplacerReplaced
                             headMaterial = smr.sharedMaterial;
                             break;
 
+                        case "eyeballLeft":
+                            smr.sharedMaterial.shader = headShader;                                                        
+                            break;
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballLeft":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+                        case "eyeballRight":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballRight":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+                        case "pupilLeft":
+                            smr.sharedMaterial.shader = headShader;                            
+                            break;
+                        case "pupilRight":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilLeft":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_pupilRight":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+                        case "upTeeth01":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth01":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_upTeeth02":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+                        case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_downTeeth02":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+                        case "downTeeth01":
+                            smr.sharedMaterial.shader = headShader;
+                            break;
+
                         case "body01":
                             // Also replace shader on EVA suits to match the one on IVA suits and to enable heat effects.
                             smr.sharedMaterial.shader = suitShader;

@@ -102,9 +102,9 @@ namespace TextureReplacerReplaced
             Replacer.instance.load();
             Reflections.instance.load();
             Personaliser.instance.load();
-
+            
             isLoaded = true;
-
+            Util.log("TRR is loaded");
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
