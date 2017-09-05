@@ -568,7 +568,7 @@ namespace TextureReplacerReplaced
             }
            
             // we now save the visor shader in the placeholder. The shader got loaded through the ksp asset bundle
-            visorShader = TextureReplacerReplaced.GetShader("KSP/TRR/Visor");
+            visorShader = TextureReplacerReplaced.GetShader("KSP/TR/Visor");
 
             // fill the shaderMappings dict, if we find the right shader from the mapping config. 
             // we could have used names here, but it is not in the fast path, so it is ok to leave it this way
