@@ -85,7 +85,92 @@ namespace TextureReplacerReplaced
             string[] gender = { "Male", "Female" };
             var headDirs = new Dictionary<string, int>();
             //string lastTextureName = "";
-                      
+
+            // temp fix when there is no default texture
+            foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
+            {
+                Texture2D texture = texInfo.texture;
+                if (texture == null || !texture.name.StartsWith(Folders.DIR_DEFAULT, StringComparison.Ordinal))
+                    continue;
+
+                if (texture.name.StartsWith(Folders.DIR_DEFAULT, StringComparison.Ordinal))
+                {
+                    int lastSlash = texture.name.LastIndexOf('/');
+                    string originalName = texture.name.Substring(lastSlash + 1);
+
+                    if (originalName == "KerbalHead_Male_Default")
+                    {
+                        DefaultHead[0].setTexture("kerbalHead", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    else if (originalName == "KerbalHead_Male_NRM_Default")
+                    {
+                        DefaultHead[0].setTexture("kerbalHeadNRM", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    else if (originalName == "KerbalHead_Female_Default")
+                    {
+                        DefaultHead[1].setTexture("kerbalGirl_06_BaseColor", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    else if (originalName == "KerbalHead_Female_NRM_Default")
+                    {
+                        DefaultHead[1].setTexture("kerbalGirl_06_BaseColorNRM", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+                }
+
+            }
+
+            foreach (string defaultFolders in Folders.DEFAULT)
+            {
+                foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
+                {
+                    Texture2D texture = texInfo.texture;
+                    if (texture == null || !texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
+                        continue;
+
+                    //Util.log("starting loading default head");
+
+                    if (texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
+                    {
+                        int lastSlash = texture.name.LastIndexOf('/');
+                        string originalName = texture.name.Substring(lastSlash + 1);
+                        //Util.log("default folder = " +defaultFolders);
+                        //Util.log("DEFAULT : texture name \"{0}\": {1}", originalName, texture.name);
+
+                        if (originalName == "kerbalHead")
+                        {
+                            DefaultHead[0].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+
+                        else if (originalName == "kerbalHeadNRM")
+                        {
+                            DefaultHead[0].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+
+                        else if (originalName == "kerbalGirl_06_BaseColor")
+                        {
+                            DefaultHead[1].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+
+                        else if (originalName == "kerbalGirl_06_BaseColorNRM")
+                        {
+                            DefaultHead[1].setTexture(originalName, texture);
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+                    }
+
+                }
+            }
+
+
             for (int i = 0; i < 2; i++)
             {
                // Util.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -158,6 +243,7 @@ namespace TextureReplacerReplaced
                                 Util.log("HeadSet added : {0}", headSetFolder);
                             }                            
                             Head_Set headSet = FullList[index];
+                            //headSet = DefaultHead[i];
                             if (!headSet.setTexture(TextureFileName, texture))
                                 //Util.log("Texture {0} properly loaded in {1}", TextureFileName, texture.name);
                             //else
@@ -167,84 +253,14 @@ namespace TextureReplacerReplaced
                     }
                 }
             }
-            foreach (string defaultFolders in Folders.DEFAULT)
-            {
-                foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
-                {
-                    Texture2D texture = texInfo.texture;
-                    if (texture == null || !texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
-                        continue;
-
-                    //Util.log("starting loading default head");
-
-                    if (texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
-                    {
-                        int lastSlash = texture.name.LastIndexOf('/');
-                        string originalName = texture.name.Substring(lastSlash + 1);
-                        //Util.log("default folder = " +defaultFolders);
-                        //Util.log("DEFAULT : texture name \"{0}\": {1}", originalName, texture.name);
-
-                        if (originalName == "kerbalHead")
-                        {
-                            DefaultHead[0].setTexture(originalName, texture);
-                            texture.wrapMode = TextureWrapMode.Clamp;
-                        }
-
-                        else if (originalName == "kerbalHeadkerbalHeadNRM")
-                        {
-                            DefaultHead[0].setTexture(originalName, texture);
-                            texture.wrapMode = TextureWrapMode.Clamp;
-                        }
-
-                        /*else if (originalName == "Pupil_Left_Male_Default")
-                        {
-                            DefaultHead[0].setTexture(originalName, texture);
-                            texture.wrapMode = TextureWrapMode.Clamp;
-                        }
-
-                        else if (originalName == "Pupil_Right_Male_Default")
-                        {
-                            DefaultHead[0].setTexture(originalName, texture);
-                            texture.wrapMode = TextureWrapMode.Clamp;
-                        }*/
-
-                        else if (originalName == "kerbalGirl_06_BaseColor")
-                        {
-                            DefaultHead[1].setTexture(originalName, texture);
-                            texture.wrapMode = TextureWrapMode.Clamp;
-                        }
-
-                        else if (originalName == "kerbalGirl_06_BaseColorNRM")
-                        {
-                            DefaultHead[1].setTexture(originalName, texture);
-                            texture.wrapMode = TextureWrapMode.Clamp;
-                        }
-
-                       /* else if (originalName == "Pupil_Left_Female_Default")
-                        {
-                            DefaultHead[1].setTexture(originalName, texture);
-                            texture.wrapMode = TextureWrapMode.Clamp;
-                        }
-
-                        else if (originalName == "Pupil_Right_Female_Default")
-                        {
-                            DefaultHead[1].setTexture(originalName, texture);
-                            texture.wrapMode = TextureWrapMode.Clamp;
-                        }*/
-
-                    }
-                    //lastTextureName = texture.name;
-                }
-            }
-
-
-
+            
+            
         }
 
         /// <summary>
         /// Loads the Default heads
         /// </summary>
-        internal static void DefaultHeads(Head_Set[] heads)
+       /* internal static void DefaultHeads(Head_Set[] heads)
         {
                 foreach (KeyValuePair<Texture2D, string> texInfo in DEFAULT())
             {
@@ -284,7 +300,7 @@ namespace TextureReplacerReplaced
                     }
                 }
             }
-        }
+        }*/
 
         /// <summary>
         /// 
@@ -294,7 +310,190 @@ namespace TextureReplacerReplaced
         internal static void LoadSuits(List<Suit_Set> suitsList, Suit_Set defaultSuit)
         {
             var suitDirs = new Dictionary<string, int>();
-            string lastTextureName = "";
+            //string lastTextureName = "";
+
+
+
+            //temp fix for default suit
+            foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
+            {
+                Texture2D texture = texInfo.texture;
+                if (texture == null || !texture.name.StartsWith(Folders.DIR_DEFAULT, StringComparison.Ordinal))
+                    continue;
+
+                if (texture.name.StartsWith(Folders.DIR_DEFAULT, StringComparison.Ordinal))
+                {
+                    int lastSlash = texture.name.LastIndexOf('/');
+                    string originalName = texture.name.Substring(lastSlash + 1);
+
+
+                    if (originalName == "Suit_Iva_Veteran_Default")
+                    {
+                        defaultSuit.setTexture("Suit_Iva_Veteran_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Suit_Iva_Standard_Default")
+                    {
+                        defaultSuit.setTexture("Suit_Iva_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Suit_Iva_NRM_Default")
+                    {
+                        defaultSuit.setTexture("Suit_Iva_Standard_MaleNRM0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Helmet_Iva_Default")
+                    {
+                        defaultSuit.setTexture("Helmet_Iva_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Helmet_Iva_NRM_Default")
+                    {
+                        defaultSuit.setTexture("Helmet_Iva_Standard_MaleNRM0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Visor_Default")
+                    {
+                        defaultSuit.setTexture("Visor_Iva_Standard_Male0", texture);
+                        defaultSuit.setTexture("Visor_EvaSpace_Standard_Male0", texture);
+                        defaultSuit.setTexture("Visor_EvaGround_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Visor_NRM_Default")
+                    {
+                        defaultSuit.setTexture("Visor_Iva_Standard_MaleNRM0", texture);
+                        defaultSuit.setTexture("Visor_EvaSpace_Standard_MaleNRM0", texture);
+                        defaultSuit.setTexture("Visor_EvaGround_Standard_MaleNRM0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+
+
+
+
+                    if (originalName == "Suit_EvaSpace_Veteran_Default")
+                    {
+                        defaultSuit.setTexture("Suit_EvaSpace_Veteran_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Suit_EvaSpace_Standard_Default")
+                    {
+                        defaultSuit.setTexture("Suit_EvaSpace_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Suit_EvaSpace_NRM_Default")
+                    {
+                        defaultSuit.setTexture("Suit_EvaSpace_Standard_MaleNRM0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Helmet_EvaSpace_Default")
+                    {
+                        defaultSuit.setTexture("Helmet_EvaSpace_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Helmet_EvaSpace_NRM_Default")
+                    {
+                        defaultSuit.setTexture("Helmet_EvaSpace_Standard_MaleNRM0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Jetpack_EvaSpace_Default")
+                    {
+                        defaultSuit.setTexture("Jetpack_EvaSpace_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Jetpack_EvaSpace_NRM_Default")
+                    {
+                        defaultSuit.setTexture("Jetpack_EvaSpace_Standard_MaleNRM0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+
+
+
+                    if (originalName == "Suit_EvaGround_Veteran_Default")
+                    {
+                        defaultSuit.setTexture("Suit_EvaGround_Veteran_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Suit_EvaGround_Standard_Default")
+                    {
+                        defaultSuit.setTexture("Suit_EvaGround_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Suit_EvaGround_NRM_Default")
+                    {
+                        defaultSuit.setTexture("Suit_EvaGround_Standard_MaleNRM0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Helmet_EvaGround_Default")
+                    {
+                        defaultSuit.setTexture("Helmet_EvaGround_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Helmet_EvaGround_NRM_Default")
+                    {
+                        defaultSuit.setTexture("Helmet_EvaGround_Standard_MaleNRM0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Jetpack_EvaGround_Default")
+                    {
+                        defaultSuit.setTexture("Jetpack_EvaGround_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+                    if (originalName == "Jetpack_EvaGround_NRM_Default")
+                    {
+                        defaultSuit.setTexture("Jetpack_EvaGround_Standard_MaleNRM0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
+
+
+                }
+                //lastTextureName = texture.name;
+            }
+
+            // search all default/ folders and assign the default suit texture
+            foreach (string defaultFolders in Folders.DEFAULT)
+            {
+                foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
+                {
+                    Texture2D texture = texInfo.texture;
+                    if (texture == null || !texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
+                        continue;
+
+                    if (texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
+                    {
+                        int lastSlash = texture.name.LastIndexOf('/');
+                        string originalName = texture.name.Substring(lastSlash + 1);
+                        //Util.log("default folder = " +defaultFolders);
+                        //Util.log("DEFAULT : texture name \"{0}\": {1}", originalName, texture.name);
+                        if (defaultSuit.setTexture(originalName, texture) || originalName == "kerbalMain")
+                        {
+                            texture.wrapMode = TextureWrapMode.Clamp;
+                        }
+                    }
+                    //lastTextureName = texture.name;
+                }
+            }
+
+            // search all suit/ folder and assign the textures to the suit set
             foreach (string suitSetFolder in Folders.SUITS)
             {
                 foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
@@ -329,37 +528,17 @@ namespace TextureReplacerReplaced
                             }
 
                             Suit_Set suit = suitsList[index];
+                            //suit = defaultSuit;
                             if (!suit.setTexture(originalName, texture))
                                 Util.log("Unknown suit texture name \"{0}\": {1}", originalName, texture.name);
                         }
                     }
 
-                    lastTextureName = texture.name;
+                    //lastTextureName = texture.name;
                 }
             }
-            foreach (string defaultFolders in Folders.DEFAULT)
-            {
-                foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
-                {
-                    Texture2D texture = texInfo.texture;
-                    if (texture == null || !texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
-                        continue;
-
-                    if (texture.name.StartsWith(defaultFolders, StringComparison.Ordinal))
-                    {
-                        int lastSlash = texture.name.LastIndexOf('/');
-                        string originalName = texture.name.Substring(lastSlash + 1);
-                        //Util.log("default folder = " +defaultFolders);
-                        //Util.log("DEFAULT : texture name \"{0}\": {1}", originalName, texture.name);
-                        if (defaultSuit.setTexture(originalName, texture) || originalName == "kerbalMain")
-                        {
-                            texture.wrapMode = TextureWrapMode.Clamp;
-                        }
-                    }
-                    lastTextureName = texture.name;
-                }                
-            }
-
+            
+            
         }
 
     }

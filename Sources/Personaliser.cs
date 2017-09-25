@@ -21,10 +21,12 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+using KSP.UI.Screens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TextureReplacerReplaced
 {
@@ -152,7 +154,7 @@ namespace TextureReplacerReplaced
         /// Spawn a Kerbal on EVA ground suit when on ground and no atmosphere
         /// /// <para>This is only initial setting for new games! Use the GUI to change it later. </para>
         /// </summary>
-        public bool isNewSuitStateEnabled = false;
+        public bool isNewSuitStateEnabled = true;
 
         /// <summary>
         /// Minimum air pressure required for Kerbals to wear their IVA suits on EVA.
@@ -421,7 +423,7 @@ namespace TextureReplacerReplaced
             /// when you Right-click on the kerbal
             /// </summary>
             /// ************************************************************************************
-            [KSPEvent(guiActive = true, guiName = "Toggle EVA Suit")]
+            [KSPEvent(guiActive = true, guiName = "Toggle EVA Suit Situation")]
             public void toggleEvaSuit()
             {
 
@@ -528,8 +530,8 @@ namespace TextureReplacerReplaced
             public void Update()
             {
                 
-                Personaliser personaliser = Personaliser.instance;  
-               
+                Personaliser personaliser = Personaliser.instance;     
+
                 switch (personaliser.personaliseEva(part, actualSuitState))
                 {
                     case 0:     //IVA suit, if no air switch to state 1 : EVAground
@@ -596,7 +598,7 @@ namespace TextureReplacerReplaced
                          || (FlightGlobals.getStaticPressure() >= atmSuitPressure
                          && atmSuitBodies.Contains(FlightGlobals.currentMainBody.bodyName));
            
-            if (value == false) ScreenMessages.PostScreenMessage("Atmosphere non breathable !", 5.0f, ScreenMessageStyle.UPPER_CENTER);
+            //if (value == false) ScreenMessages.PostScreenMessage("Atmosphere non breathable !", 5.0f, ScreenMessageStyle.UPPER_CENTER);
             return value;
         }
         
@@ -703,11 +705,19 @@ namespace TextureReplacerReplaced
 
             Randomizer random = new Randomizer();
 
-
+            
             List<Head_Set> genderHeads = maleAndfemaleHeadsDB_cleaned[kerbalData.gender];
 
             if (kerbalData.head != null)
-                return kerbalData.head;            
+            {
+                if (kerbalData.head.name == "DEFAULT")
+                {
+                    return defaulMaleAndFemaleHeads[(int)kerbal.gender];
+                }
+                else
+                    return kerbalData.head;
+            }
+                          
 
             if (genderHeads.Count == 0)
             {               
@@ -780,12 +790,14 @@ namespace TextureReplacerReplaced
         /// <param name="needsEVASuit">Does the kerbal need a EVA suit? (space or ground)</param>
         /// <param name="needsEVAgroundSuit">Does the kerbal need a EVA ground suit ?</param>
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
-        private void personaliseKerbal(Component component, ProtoCrewMember protoKerbal, Part cabin, bool needsEVASuit, bool needsEVAgroundSuit)
+        private void personaliseKerbal(Component component, ProtoCrewMember protoKerbal, Part cabin, bool needsEVASuit, bool needsEVAgroundSuit, int suitState)
         {
             Personaliser personaliser = Personaliser.instance;
 
             KerbalData kerbalData = getKerbalData(protoKerbal);
-            
+
+            int level = protoKerbal.experienceLevel;
+
             bool isEva = cabin == null;
 
             int gender = kerbalData.gender;
@@ -800,6 +812,9 @@ namespace TextureReplacerReplaced
 
             //if (isEva)
             Suit_Set personaliseKerbal_Suit = getKerbalSuit(protoKerbal, kerbalData);
+
+            Suit_Filter suit_Filter = new Suit_Filter(kerbalData,level, personaliseKerbal_Suit);
+            Suit_Selector suit_Selector = new Suit_Selector(kerbalData, level, personaliseKerbal_Suit);
 
             //personaliseKerbal_Head = personaliseKerbal_Head == defaulMaleAndFemaleHeads[(int)protoKerbal.gender] ? null : personaliseKerbal_Head;
             //personaliseKerbal_Suit = (isEva && needsEVASuit) || kerbalData.cabinSuit == null ? personaliseKerbal_Suit : kerbalData.cabinSuit;
@@ -1037,1092 +1052,397 @@ namespace TextureReplacerReplaced
 
 
                         case "body01":
-                        case "mesh_female_kerbalAstronaut01_body01":  
+                        case "mesh_female_kerbalAstronaut01_body01":
+                            
+                           // defaultSuit.suit_EvaSpace
+
                             if (personaliseKerbal_Suit != null)
                             {   
-                                if (isEva)
+                                if (isEva) // if out of the vehicle
                                 {
-                                    if (needsEVASuit && needsEVAgroundSuit)
-                                    {
-                                        if (isBadass && isVeteran)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaGround_VetBad_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaGround_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaGround_VetBad_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaGround_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isVeteran)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaGround_Veteran_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaGround_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaGround_Veteran_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaGround_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isBadass)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaGround_Badass_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaGround_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaGround_Badass_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaGround_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaGround_Standard_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaGround_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaGround_Standard_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaGround_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        
+                                    if (needsEVASuit && needsEVAgroundSuit) // if on the ground without atmo
+                                    {                                        
+                                        suit_Selector.select_suit_EvaGround_NoAtmo(out newTexture, out newNormalMap);
+                                        break;  
                                     }
-                                    else if (needsEVASuit)
+                                    else if (needsEVASuit) // if in space
                                     {
-                                        if (isBadass && isVeteran)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaSpace_VetBad_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaSpace_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaSpace_VetBad_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaSpace_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isVeteran)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaSpace_Veteran_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaSpace_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaSpace_Veteran_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaSpace_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isBadass)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaSpace_Badass_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaSpace_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaSpace_Badass_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaSpace_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_EvaSpace_Standard_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_EvaSpace_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
+                                        suit_Selector.select_suit_EvaSpace(out newTexture, out newNormalMap);
+                                        break;                                        
                                     }
-                                    else
+                                    else // if on the ground with atmo
                                     {
-                                        if (isBadass && isVeteran)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_Iva_VetBad_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_Iva_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_Iva_VetBad_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_Iva_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isVeteran)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_Iva_Veteran_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_Iva_Veteran_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isBadass)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_Iva_Badass_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_Iva_Badass_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_Iva_Standard_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_suit_Iva_Standard_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
+                                        suit_Selector.select_suit_EvaGround_Atmo(out newTexture, out newNormalMap);
+                                        break;                                        
                                     }
                                 }
-                                else
+                                else // if in vehicle
                                 {
-                                    if (isBadass && isVeteran)
+                                    if (needsEVASuit) // if in vehicle unsafe
                                     {
-                                        if (gender == 0)
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_suit_Iva_VetBad_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_suit_Iva_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_suit_Iva_VetBad_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_suit_Iva_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
+                                        suit_Selector.select_suit_IvaUnsafe(out newTexture, out newNormalMap);
+                                        break;
                                     }
-                                    else if (isVeteran)
+                                    else // if in vehicle safe
                                     {
-                                        if (gender == 0)
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_suit_Iva_Veteran_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_suit_Iva_Veteran_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                    }
-                                    else if (isBadass)
-                                    {
-                                        if (gender == 0)
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_suit_Iva_Badass_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_suit_Iva_Badass_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (gender == 0)
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_suit_Iva_Standard_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_suit_Iva_Standard_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_suit_Iva_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                    }
+                                        suit_Selector.select_suit_IvaSafe(out newTexture, out newNormalMap);
+                                        break;
+                                    }                                                                      
                                 }
                             }
                             break;
 
                         case "helmet":
                         case "mesh_female_kerbalAstronaut01_helmet":
-                            if (isEva)
+                            /*if (isEva)
                                 smr.enabled = needsEVASuit;
                             else
-                                smr.sharedMesh = needsEVASuit ? helmetMesh[(int)protoKerbal.gender] : null;
+                                smr.sharedMesh = needsEVASuit ? helmetMesh[(int)protoKerbal.gender] : null;*/
 
                             // Textures have to be replaced even when hidden since it may become visible later on situation change.
                             if (personaliseKerbal_Suit != null)
                             {
-                                if (isEva)
+                                if (isEva) // if out of the vehicle
                                 {
-                                    if (needsEVASuit && needsEVAgroundSuit)
-                                    {
-                                        if (isBadass && isVeteran)
+                                    if (needsEVASuit && needsEVAgroundSuit) // if on the ground without atmo
+                                    {     
+                                        if (personaliseKerbal_Suit.helmet_EvaGround_NoAtmo > 2) // hide the helmet 
                                         {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaGround_VetBad_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaGround_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaGround_VetBad_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaGround_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isVeteran)
+                                            smr.enabled = false;
+                                            break;
+                                        }                                            
+                                        else // otherwise, select the good one and show it
                                         {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaGround_Veteran_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaGround_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaGround_Veteran_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaGround_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isBadass)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaGround_Badass_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaGround_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaGround_Badass_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaGround_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaGround_Standard_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaGround_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaGround_Standard_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaGround_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-
+                                            smr.enabled = true;
+                                            suit_Selector.select_helmet_EvaGround_NoAtmo(out newTexture, out newNormalMap);
+                                            break;
+                                        }  
+                                        
                                     }
-                                    else if (needsEVASuit)
+                                    else if (needsEVASuit) // if in space
                                     {
-                                        if (isBadass && isVeteran)
+                                        if (personaliseKerbal_Suit.helmet_EvaGround_NoAtmo > 2)
                                         {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaSpace_VetBad_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaSpace_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaSpace_VetBad_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaSpace_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isVeteran)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaSpace_Veteran_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaSpace_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaSpace_Veteran_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaSpace_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isBadass)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaSpace_Badass_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaSpace_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaSpace_Badass_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaSpace_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_EvaSpace_Standard_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_EvaSpace_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (isBadass && isVeteran)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_Iva_VetBad_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_Iva_VetBad_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isVeteran)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_Iva_Veteran_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_Iva_Veteran_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isBadass)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_Iva_Badass_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_Iva_Badass_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_Iva_Standard_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_helmet_Iva_Standard_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (isBadass && isVeteran)
-                                    {
-                                        if (gender == 0)
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_helmet_Iva_VetBad_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_VetBad_MaleNRM(protoKerbal.experienceLevel);
+                                            smr.enabled = false;
                                             break;
                                         }
                                         else
                                         {
-                                            newTexture = personaliseKerbal_Suit.get_helmet_Iva_VetBad_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_VetBad_FemaleNRM(protoKerbal.experienceLevel);
+                                            smr.enabled = true;
+                                            suit_Selector.select_helmet_EvaSpace(out newTexture, out newNormalMap);
                                             break;
                                         }
                                     }
-                                    else if (isVeteran)
+                                    else // if on the ground with atmo
                                     {
-                                        if (gender == 0)
+                                        if (personaliseKerbal_Suit.helmet_EvaGround_Atmo > 2) // hide the helmet 
                                         {
-                                            newTexture = personaliseKerbal_Suit.get_helmet_Iva_Veteran_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Veteran_MaleNRM(protoKerbal.experienceLevel);
+                                            smr.enabled = false;
                                             break;
                                         }
-                                        else
+                                        else // otherwise, select the good one and show it
                                         {
-                                            newTexture = personaliseKerbal_Suit.get_helmet_Iva_Veteran_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                    }
-                                    else if (isBadass)
-                                    {
-                                        if (gender == 0)
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_helmet_Iva_Badass_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_helmet_Iva_Badass_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (gender == 0)
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_helmet_Iva_Standard_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_helmet_Iva_Standard_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_helmet_Iva_Standard_FemaleNRM(protoKerbal.experienceLevel);
+                                            smr.enabled = true;
+                                            suit_Selector.select_helmet_EvaGround_Atmo(out newTexture, out newNormalMap);
                                             break;
                                         }
                                     }
                                 }
+                                else // if in vehicle
+                                {
+                                    if (needsEVASuit) // if in vehicle unsafe
+                                    {
+                                        if (personaliseKerbal_Suit.helmet_Iva_Unsafe > 2) // hide the helmet 
+                                        {
+                                            smr.enabled = false;
+                                            smr.sharedMesh =  null;                                            
+                                            break;
+                                        }
+                                        else // otherwise, select the good one and show it
+                                        {
+                                            smr.enabled = true;
+                                            smr.sharedMesh = helmetMesh[(int)protoKerbal.gender];
+                                            suit_Selector.select_helmet_Iva_Unsafe(out newTexture, out newNormalMap);
+                                            break;
+                                        }
+                                    }
+                                    else // if in vehicle safe
+                                    {
+                                        if (personaliseKerbal_Suit.helmet_Iva_Safe > 2) // hide the helmet 
+                                        {
+                                            smr.enabled = false;
+                                            smr.sharedMesh = null;
+                                            break;
+                                        }
+                                        else // otherwise, select the good one and show it
+                                        {
+                                            smr.enabled = true;
+                                            smr.sharedMesh = helmetMesh[(int)protoKerbal.gender];
+                                            suit_Selector.select_helmet_Iva_Safe(out newTexture, out newNormalMap);
+                                            break;
+                                        }
+                                    }
+                                }                
                             }
                             break;
 
                         case "visor":
-                        case "mesh_female_kerbalAstronaut01_visor": 
+                        case "mesh_female_kerbalAstronaut01_visor":
 
-                            if (isEva)
-                                smr.enabled = needsEVASuit;
-                            else
-                                smr.sharedMesh = needsEVASuit ? visorMesh[(int)protoKerbal.gender] : null;
-
-                            // Textures have to be replaced even when hidden since it may become visible later on situation change.
                             if (personaliseKerbal_Suit != null)
                             {
-                                if (isEva)
+                                if (isEva) // if out of the vehicle
                                 {
-                                    if (needsEVASuit && needsEVAgroundSuit)
+                                    if (needsEVASuit && needsEVAgroundSuit) // if on the ground without atmo
                                     {
-                                        if (isBadass && isVeteran)
+                                        if (personaliseKerbal_Suit.visor_EvaGround_NoAtmo > 2) // hide the visor 
                                         {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaGround_VetBad_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaGround_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaGround_VetBad_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaGround_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
+                                            smr.enabled = false;
+                                            break;
                                         }
-                                        else if (isVeteran)
+                                        else // otherwise, select the good one and show it
                                         {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaGround_Veteran_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaGround_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaGround_Veteran_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaGround_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isBadass)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaGround_Badass_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaGround_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaGround_Badass_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaGround_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaGround_Standard_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaGround_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaGround_Standard_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaGround_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
+                                            smr.enabled = true;
+                                            suit_Selector.select_visor_EvaGround_NoAtmo(out newTexture, out newNormalMap);
+                                            
+                                            break;
                                         }
 
                                     }
-                                    else if (needsEVASuit)
+                                    else if (needsEVASuit) // if in space
                                     {
-                                        if (isBadass && isVeteran)
+                                        if (personaliseKerbal_Suit.visor_EvaGround_NoAtmo > 2)
                                         {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaSpace_VetBad_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaSpace_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaSpace_VetBad_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaSpace_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isVeteran)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaSpace_Veteran_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaSpace_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaSpace_Veteran_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaSpace_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isBadass)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaSpace_Badass_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaSpace_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaSpace_Badass_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaSpace_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
+                                            smr.enabled = false;
+                                            break;
                                         }
                                         else
                                         {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_EvaSpace_Standard_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_EvaSpace_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
+                                            smr.enabled = true;
+                                            suit_Selector.select_visor_EvaSpace(out newTexture, out newNormalMap);
+                                            break;
                                         }
                                     }
-                                    else
+                                    else // if on the ground with atmo
                                     {
-                                        if (isBadass && isVeteran)
+                                        if (personaliseKerbal_Suit.visor_EvaGround_Atmo > 2) // hide the visor 
                                         {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_Iva_VetBad_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_Iva_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_Iva_VetBad_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_Iva_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
+                                            smr.enabled = false;
+                                            break;
                                         }
-                                        else if (isVeteran)
+                                        else // otherwise, select the good one and show it
                                         {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_Iva_Veteran_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_Iva_Veteran_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else if (isBadass)
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_Iva_Badass_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_Iva_Badass_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (gender == 0)
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_Iva_Standard_Male(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                newTexture = personaliseKerbal_Suit.get_visor_Iva_Standard_Female(protoKerbal.experienceLevel);
-                                                newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                break;
-                                            }
+                                            smr.enabled = true;
+                                            suit_Selector.select_visor_EvaGround_Atmo(out newTexture, out newNormalMap);
+                                            break;
                                         }
                                     }
                                 }
-                                else
+                                else // if in vehicle
                                 {
-                                    if (isBadass && isVeteran)
+                                    if (needsEVASuit) // if in vehicle unsafe
                                     {
-                                        if (gender == 0)
+                                        if (personaliseKerbal_Suit.visor_Iva_Unsafe > 2) // hide the visor 
                                         {
-                                            newTexture = personaliseKerbal_Suit.get_visor_Iva_VetBad_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_visor_Iva_VetBad_MaleNRM(protoKerbal.experienceLevel);
+                                            smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             break;
                                         }
-                                        else
+                                        else // otherwise, select the good one and show it
                                         {
-                                            newTexture = personaliseKerbal_Suit.get_visor_Iva_VetBad_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_visor_Iva_VetBad_FemaleNRM(protoKerbal.experienceLevel);
+                                            smr.enabled = true;
+                                            smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
+                                            suit_Selector.select_visor_Iva_Unsafe(out newTexture, out newNormalMap);
                                             break;
                                         }
                                     }
-                                    else if (isVeteran)
+                                    else // if in vehicle safe
                                     {
-                                        if (gender == 0)
+                                        if (personaliseKerbal_Suit.visor_Iva_Safe > 2) // hide the visor 
                                         {
-                                            newTexture = personaliseKerbal_Suit.get_visor_Iva_Veteran_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Veteran_MaleNRM(protoKerbal.experienceLevel);
+                                            smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             break;
                                         }
-                                        else
+                                        else // otherwise, select the good one and show it
                                         {
-                                            newTexture = personaliseKerbal_Suit.get_visor_Iva_Veteran_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                    }
-                                    else if (isBadass)
-                                    {
-                                        if (gender == 0)
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_visor_Iva_Badass_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_visor_Iva_Badass_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (gender == 0)
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_visor_Iva_Standard_Male(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            newTexture = personaliseKerbal_Suit.get_visor_Iva_Standard_Female(protoKerbal.experienceLevel);
-                                            newNormalMap = personaliseKerbal_Suit.get_visor_Iva_Standard_FemaleNRM(protoKerbal.experienceLevel);
+                                            smr.enabled = true;
+                                            smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
+                                            suit_Selector.select_visor_Iva_Safe(out newTexture, out newNormalMap);
                                             break;
                                         }
                                     }
                                 }
                             }
-
                             break;
+                        
 
                         case "jetpack":
                         case "mesh_female_kerbalAstronaut01_jetpack":
-                            if (isEva)
+
+                            if (personaliseKerbal_Suit != null)
                             {
-                                smr.enabled = needsEVASuit;
-                                if (personaliseKerbal_Suit != null)
+                                if (isEva) // if out of the vehicle
                                 {
-                                    if (isEva)
+                                    if (needsEVASuit && needsEVAgroundSuit) // if on the ground without atmo
                                     {
-                                        if (needsEVASuit && needsEVAgroundSuit)
+                                        if (personaliseKerbal_Suit.jetpack_EvaGround_NoAtmo > 1) // hide the jetpack 
                                         {
-                                            if (isBadass && isVeteran)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_VetBad_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_VetBad_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else if (isVeteran)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Veteran_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Veteran_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else if (isBadass)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Badass_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Badass_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
+                                            smr.enabled = false;
+                                            break;
+                                        }
+                                        else // otherwise, select the good one and show it
+                                        {
+                                            smr.enabled = true;
+                                            suit_Selector.select_jetpack_EvaGround_NoAtmo(out newTexture, out newNormalMap);
+                                            break;
+                                        }
 
-                                        }
-                                        else if (needsEVASuit)
-                                        {
-                                            if (isBadass && isVeteran)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_VetBad_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_VetBad_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else if (isVeteran)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Veteran_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Veteran_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else if (isBadass)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Badass_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Badass_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        
                                     }
-                                   
-                                }
+                                    else if (needsEVASuit) // if in space
+                                    {
+                                        if (personaliseKerbal_Suit.jetpack_EvaGround_NoAtmo > 1)
+                                        {
+                                            smr.enabled = false;
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            smr.enabled = true;
+                                            suit_Selector.select_jetpack_EvaSpace(out newTexture, out newNormalMap);
+                                            break;
+                                        }
+                                    }
+                                    else // if on the ground with atmo
+                                    {
+                                        if (personaliseKerbal_Suit.jetpack_EvaGround_Atmo > 1) // hide the jetpack 
+                                        {
+                                            smr.enabled = false;
+                                            break;
+                                        }
+                                        else // otherwise, select the good one and show it
+                                        {
+                                            smr.enabled = true;
+                                            suit_Selector.select_jetpack_EvaGround_Atmo(out newTexture, out newNormalMap);
+                                            break;
+                                        }
+                                    }
+                                }                                
                             }
-
                             break;
+
+                            /* if (isEva)
+                             {
+                                 smr.enabled = needsEVASuit;
+                                 if (personaliseKerbal_Suit != null)
+                                 {
+                                     if (isEva)
+                                     {
+                                         if (needsEVASuit && needsEVAgroundSuit)
+                                         {
+                                             suit_Filter.get_jetpack_EvaGround(out newTexture, out newNormalMap);
+                                             break;
+                                         }
+                                         else if (needsEVASuit)
+                                         {
+                                             suit_Filter.get_jetpack_EvaSpace(out newTexture, out newNormalMap);
+                                             break;
+                                         }
+                                         else
+                                         {                                            
+                                             break;
+                                         }
+                                     }
+                                     else
+                                     {                                        
+                                         break;
+                                     }
+                                 }
+                             }
+
+                            break;*/
+
                         default: // Jetpack.
-                            if (isEva)
-                            {
-                                smr.enabled = needsEVASuit;
-                                if (personaliseKerbal_Suit != null)
-                                {
-                                    if (isEva)
-                                    {
-                                        if (needsEVASuit && needsEVAgroundSuit)
-                                        {
-                                            if (isBadass && isVeteran)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_VetBad_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_VetBad_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else if (isVeteran)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Veteran_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Veteran_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else if (isBadass)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Badass_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Badass_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaGround_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
 
-                                        }
-                                        else if (needsEVASuit)
+                            if (personaliseKerbal_Suit != null)
+                            {
+                                if (isEva) // if out of the vehicle
+                                {
+                                    if (needsEVASuit && needsEVAgroundSuit) // if on the ground without atmo
+                                    {
+                                        if (personaliseKerbal_Suit.jetpack_EvaGround_NoAtmo > 1) // hide the jetpack 
                                         {
-                                            if (isBadass && isVeteran)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_VetBad_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_VetBad_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_VetBad_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_VetBad_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else if (isVeteran)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Veteran_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Veteran_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Veteran_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Veteran_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else if (isBadass)
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Badass_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Badass_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Badass_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Badass_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                if (gender == 0)
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_Male(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_MaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    newTexture = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_Female(protoKerbal.experienceLevel);
-                                                    newNormalMap = personaliseKerbal_Suit.get_jetpack_EvaSpace_Standard_FemaleNRM(protoKerbal.experienceLevel);
-                                                    break;
-                                                }
-                                            }
+                                            smr.enabled = false;
+                                            break;
+                                        }
+                                        else // otherwise, select the good one and show it
+                                        {
+                                            smr.enabled = true;
+                                            suit_Selector.select_jetpack_EvaGround_NoAtmo(out newTexture, out newNormalMap);
+                                            break;
                                         }
 
                                     }
-
+                                    else if (needsEVASuit) // if in space
+                                    {
+                                        if (personaliseKerbal_Suit.jetpack_EvaGround_NoAtmo > 1)
+                                        {
+                                            smr.enabled = false;
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            smr.enabled = true;
+                                            suit_Selector.select_jetpack_EvaSpace(out newTexture, out newNormalMap);
+                                            break;
+                                        }
+                                    }
+                                    else // if on the ground with atmo
+                                    {
+                                        if (personaliseKerbal_Suit.jetpack_EvaGround_Atmo > 1) // hide the jetpack 
+                                        {
+                                            smr.enabled = false;
+                                            break;
+                                        }
+                                        else // otherwise, select the good one and show it
+                                        {
+                                            smr.enabled = true;
+                                            suit_Selector.select_jetpack_EvaGround_Atmo(out newTexture, out newNormalMap);
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                             break;
+                            /* if (isEva)
+                             {
+                                 smr.enabled = needsEVASuit;
+                                 if (personaliseKerbal_Suit != null)
+                                 {
+                                     if (isEva)
+                                     {
+                                         if (needsEVASuit && needsEVAgroundSuit)
+                                         {
+                                             suit_Filter.get_jetpack_EvaGround(out newTexture, out newNormalMap);
+                                             break;
+                                         }
+                                         else if (needsEVASuit)
+                                         {
+                                             suit_Filter.get_jetpack_EvaSpace(out newTexture, out newNormalMap);
+                                             break;
+                                         }
+                                         else
+                                         {
+                                             break;
+                                         }
+                                     }
+                                     else
+                                     {
+                                         break;
+                                     }
+                                 }
+                             }
+                             break;*/
                     }
 
                     if (newTexture != null)
@@ -2146,7 +1466,7 @@ namespace TextureReplacerReplaced
 
             Personaliser personaliser = Personaliser.instance;
            
-            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false);
+            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false, 0);
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -2164,6 +1484,8 @@ namespace TextureReplacerReplaced
             foreach (Part part in vessel.parts.Where(p => p.internalModel != null))
             {
                 Kerbal[] kerbals = part.internalModel.GetComponentsInChildren<Kerbal>();
+                             
+
                 if (kerbals.Length != 0)
                 {
                     bool hideHelmets = isSituationSafe(vessel);
@@ -2173,6 +1495,12 @@ namespace TextureReplacerReplaced
 
                     foreach (Kerbal kerbal in kerbals.Where(k => k.showHelmet))
                     {
+
+                        KerbalData kerbalData = getKerbalData(kerbal.protoCrewMember);
+                        Suit_Set suit = getKerbalSuit(kerbal.protoCrewMember, kerbalData);
+
+                        
+
                         // `Kerbal.ShowHelmet(false)` irreversibly removes a helmet while
                         // `Kerbal.ShowHelmet(true)` has no effect at all. We need the following workaround.
                         foreach (SkinnedMeshRenderer smr in kerbal.helmetTransform.GetComponentsInChildren<SkinnedMeshRenderer>())
@@ -2279,7 +1607,7 @@ namespace TextureReplacerReplaced
                // if (selection == 0) ScreenMessages.PostScreenMessage("IVA suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                 //else if (selection== 1) ScreenMessages.PostScreenMessage("EVA Ground suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                // else if (selection== 2) ScreenMessages.PostScreenMessage("EVA Space suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
-                personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit);
+                personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit,selection);
             }
             return selection;
         }        
@@ -2298,10 +1626,33 @@ namespace TextureReplacerReplaced
 
             KerbalRoster roster = HighLogic.CurrentGame.CrewRoster;
 
-            /*for (int i = 0; i < 2; i++)
+            //string sceneName = SceneManager.GetSceneByName("").g
+
+            //GameObject[] goArray = SceneManager.LoadScene("Menu_Level").GetRootGameObjects();
+           /* Util.log("++++++++++++++++++++++++++++++++++++ pouet+++++++++++++++++++++++++++++++++++++++++");
+
+            Util.log("scene count = {0}",SceneManager.sceneCount);
+            GameObject[] goArray = SceneManager.GetSceneByName("VABmodern").GetRootGameObjects();
+            if (goArray.Length > 0)
             {
-                maleAndfemaleHeadNumberOfUSe[i] = maleAndfemaleHeadsDB_cleaned[i].ToDictionary(k => k.headSetName, v => 0);
+                foreach (GameObject rootGo in goArray)
+                {
+                    Util.log(rootGo.name);
+                }
+                //GameObject rootGo = goArray[0];
+                // Do something with rootGo here...                          
+
             }*/
+
+
+           // KSPAssets.Loaders.AssetLoader.
+
+
+            foreach (ProtoCrewMember protoKerb in roster.Crew)
+            {
+                Util.log(protoKerb.name);
+            }
+
 
             foreach (ProtoCrewMember ProtoKerbal in roster.Crew.Concat(roster.Tourist).Concat(roster.Unowned))
             {
@@ -2310,6 +1661,7 @@ namespace TextureReplacerReplaced
                 {
                     continue;
                 }
+                                
 
                 KerbalData kerbalData = getKerbalData(ProtoKerbal);
 
@@ -2538,32 +1890,32 @@ namespace TextureReplacerReplaced
             {
                 if (reset)
                 {
-                    suitSet.Iva_Use = defaultMap.Iva_Use;
+                   /* suitSet.Iva_Use = defaultMap.Iva_Use;
                     suitSet.Iva_ForceUse = defaultMap.Iva_ForceUse;
                     suitSet.Iva_ForceUseHelmetAndVisor = defaultMap.Iva_ForceUseHelmetAndVisor;
                     suitSet.Iva_HideHelmet_InAtmo = defaultMap.Iva_HideHelmet_InAtmo;
                     suitSet.Iva_HideHelmet_OutAtmo = defaultMap.Iva_HideHelmet_OutAtmo;
-                    suitSet.Iva_VisorReflectionAdaptive = defaultMap.Iva_VisorReflectionAdaptive;
-                    suitSet.Iva_VisorReflectionColor = defaultMap.Iva_VisorReflectionColor;
+                    suitSet.visor_Iva_ReflectionAdaptive = defaultMap.visor_Iva_ReflectionAdaptive;
+                    suitSet.visor_Iva_ReflectionColor = defaultMap.visor_Iva_ReflectionColor;
                     suitSet.Iva_HideHelmet_InVehicle = defaultMap.Iva_HideHelmet_InVehicle;
-                    suitSet.Iva_HideHelmet_WhenSafe = defaultMap.Iva_HideHelmet_WhenSafe;
+                    suitSet.visor_Hide_ = defaultMap.visor_Hide_;
                     suitSet.Iva_HideHelmet_WhenUnsafe = defaultMap.Iva_HideHelmet_WhenUnsafe;
 
                     suitSet.EvaGround_Use = defaultMap.EvaGround_Use;
-                    suitSet.EvaGround_ForceUse = defaultMap.EvaGround_ForceUse;
-                    suitSet.EvaGround_ForceUseHelmetAndVisor = defaultMap.EvaGround_ForceUseHelmetAndVisor;
+                    suitSet.EvaGround_ForceUse_Helmet = defaultMap.EvaGround_ForceUse_Helmet;
+                    suitSet.EvaGround_ForceUse_Visor = defaultMap.EvaGround_ForceUse_Visor;
                     suitSet.EvaGround_HideHelmet_InAtmo = defaultMap.EvaGround_HideHelmet_InAtmo;
                     suitSet.EvaGround_HideHelmet_OutAtmo = defaultMap.EvaGround_HideHelmet_OutAtmo;
-                    suitSet.EvaGround_VisorReflectionAdaptive = defaultMap.EvaGround_VisorReflectionAdaptive;
-                    suitSet.EvaGround_VisorReflectionColor = defaultMap.EvaGround_VisorReflectionColor;
+                    suitSet.visor_EvaGround_ReflectionAdaptive = defaultMap.visor_EvaGround_ReflectionAdaptive;
+                    suitSet.visor_EvaGround_ReflectionColor = defaultMap.visor_EvaGround_ReflectionColor;
 
                     suitSet.EvaSpace_Use = defaultMap.EvaSpace_Use;
-                    suitSet.EvaSpace_ForceUse = defaultMap.EvaSpace_ForceUse;
-                    suitSet.EvaSpace_ForceUseHelmetAndVisor = defaultMap.EvaSpace_ForceUseHelmetAndVisor;
+                    suitSet.EvaSpace_ForceUse_Helmet = defaultMap.EvaSpace_ForceUse_Helmet;
+                    suitSet.EvaSpace_ForceUse_Visor = defaultMap.EvaSpace_ForceUse_Visor;
                     suitSet.EvaSpace_HideHelmet_InAtmo = defaultMap.EvaSpace_HideHelmet_InAtmo;
                     suitSet.EvaSpace_HideHelmet_OutAtmo = defaultMap.EvaSpace_HideHelmet_OutAtmo;
-                    suitSet.EvaSpace_VisorReflectionAdaptive = defaultMap.EvaSpace_VisorReflectionAdaptive;
-                    suitSet.EvaSpace_VisorReflectionColor = defaultMap.EvaSpace_VisorReflectionColor;
+                    suitSet.visor_EvaSpace_ReflectionAdaptive = defaultMap.visor_EvaSpace_ReflectionAdaptive;
+                    suitSet.visor_EvaSpace_ReflectionColor = defaultMap.visor_EvaSpace_ReflectionColor;*/
 
                     continue;
                 }
@@ -2571,11 +1923,11 @@ namespace TextureReplacerReplaced
                 ConfigNode savedNode = new ConfigNode();
                 if (node.TryGetNode(suitSet.name, ref savedNode))
                 {
-                    Util.log("Settings found for {0}, using them", suitSet.name);
+                    //Util.log("Settings found for {0}, using them", suitSet.name);
                     bool nodeBool = true;
                     Color32 nodeColor = new Color32(255, 255, 255, 255);
 
-                    if (savedNode.TryGetValue("Iva_Use", ref nodeBool))
+                   /* if (savedNode.TryGetValue("Iva_Use", ref nodeBool))
                         suitSet.Iva_Use = nodeBool;
                     
                     if (savedNode.TryGetValue("Iva_ForceUse", ref nodeBool))
@@ -2591,26 +1943,26 @@ namespace TextureReplacerReplaced
                         suitSet.Iva_HideHelmet_OutAtmo = nodeBool;
                     
                     if (savedNode.TryGetValue("Iva_VisorReflectionAdaptive", ref nodeBool))
-                        suitSet.Iva_VisorReflectionAdaptive = nodeBool;
+                        suitSet.visor_Iva_ReflectionAdaptive = nodeBool;
                     
                     if (savedNode.TryGetValue("Iva_VisorReflectionColor[0]", ref nodeBool))
-                        suitSet.Iva_VisorReflectionColor[0] = nodeColor;
+                        suitSet.visor_Iva_ReflectionColor[0] = nodeColor;
                     if (savedNode.TryGetValue("Iva_VisorReflectionColor[1]", ref nodeBool))
-                        suitSet.Iva_VisorReflectionColor[1] = nodeColor;
+                        suitSet.visor_Iva_ReflectionColor[1] = nodeColor;
                     if (savedNode.TryGetValue("Iva_VisorReflectionColor[2]", ref nodeBool))
-                        suitSet.Iva_VisorReflectionColor[2] = nodeColor;
+                        suitSet.visor_Iva_ReflectionColor[2] = nodeColor;
                     if (savedNode.TryGetValue("Iva_VisorReflectionColor[3]", ref nodeBool))
-                        suitSet.Iva_VisorReflectionColor[3] = nodeColor;
+                        suitSet.visor_Iva_ReflectionColor[3] = nodeColor;
                     if (savedNode.TryGetValue("Iva_VisorReflectionColor[4]", ref nodeBool))
-                        suitSet.Iva_VisorReflectionColor[4] = nodeColor;
+                        suitSet.visor_Iva_ReflectionColor[4] = nodeColor;
                     if (savedNode.TryGetValue("Iva_VisorReflectionColor[5]", ref nodeBool))
-                        suitSet.Iva_VisorReflectionColor[5] = nodeColor;                    
+                        suitSet.visor_Iva_ReflectionColor[5] = nodeColor;                    
 
                     if (savedNode.TryGetValue("Iva_HideHelmet_InVehicle", ref nodeBool))
                         suitSet.Iva_HideHelmet_InVehicle = nodeBool;
                     
                     if (savedNode.TryGetValue("Iva_HideHelmet_WhenSafe", ref nodeBool))
-                        suitSet.Iva_HideHelmet_WhenSafe = nodeBool;
+                        suitSet.visor_Hide_ = nodeBool;
                     
                     if (savedNode.TryGetValue("Iva_HideHelmet_WhenUnsafe", ref nodeBool))
                         suitSet.Iva_HideHelmet_WhenUnsafe = nodeBool;
@@ -2619,10 +1971,10 @@ namespace TextureReplacerReplaced
                         suitSet.EvaGround_Use = nodeBool;
                     
                     if (savedNode.TryGetValue("EvaGround_ForceUse", ref nodeBool))
-                        suitSet.EvaGround_ForceUse = nodeBool;
+                        suitSet.EvaGround_ForceUse_Helmet = nodeBool;
                     
                     if (savedNode.TryGetValue("EvaGround_ForceUseHelmetAndVisor", ref nodeBool))
-                        suitSet.EvaGround_ForceUseHelmetAndVisor = nodeBool;
+                        suitSet.EvaGround_ForceUse_Visor = nodeBool;
                     
                     if (savedNode.TryGetValue("EvaGround_HideHelmet_InAtmo", ref nodeBool))
                         suitSet.EvaGround_HideHelmet_InAtmo = nodeBool;
@@ -2631,29 +1983,29 @@ namespace TextureReplacerReplaced
                         suitSet.EvaGround_HideHelmet_OutAtmo = nodeBool;
                     
                     if (savedNode.TryGetValue("EvaGround_VisorReflectionAdaptive", ref nodeBool))
-                        suitSet.EvaGround_VisorReflectionAdaptive = nodeBool;
+                        suitSet.visor_EvaGround_ReflectionAdaptive = nodeBool;
 
                     if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[0]", ref nodeBool))
-                        suitSet.EvaGround_VisorReflectionColor[0] = nodeColor;
+                        suitSet.visor_EvaGround_ReflectionColor[0] = nodeColor;
                     if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[1]", ref nodeBool))
-                        suitSet.EvaGround_VisorReflectionColor[1] = nodeColor;
+                        suitSet.visor_EvaGround_ReflectionColor[1] = nodeColor;
                     if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[2]", ref nodeBool))
-                        suitSet.EvaGround_VisorReflectionColor[2] = nodeColor;
+                        suitSet.visor_EvaGround_ReflectionColor[2] = nodeColor;
                     if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[3]", ref nodeBool))
-                        suitSet.EvaGround_VisorReflectionColor[3] = nodeColor;
+                        suitSet.visor_EvaGround_ReflectionColor[3] = nodeColor;
                     if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[4]", ref nodeBool))
-                        suitSet.EvaGround_VisorReflectionColor[4] = nodeColor;
+                        suitSet.visor_EvaGround_ReflectionColor[4] = nodeColor;
                     if (savedNode.TryGetValue("EvaGround_VisorReflectionColor[5]", ref nodeBool))
-                        suitSet.EvaGround_VisorReflectionColor[5] = nodeColor;
+                        suitSet.visor_EvaGround_ReflectionColor[5] = nodeColor;
 
                     if (savedNode.TryGetValue("EvaSpace_Use", ref nodeBool))
                         suitSet.EvaSpace_Use = nodeBool;
                     
                     if (savedNode.TryGetValue("EvaSpace_ForceUse", ref nodeBool))
-                        suitSet.EvaSpace_ForceUse = nodeBool;
+                        suitSet.EvaSpace_ForceUse_Helmet = nodeBool;
                     
                     if (savedNode.TryGetValue("EvaSpace_ForceUseHelmetAndVisor", ref nodeBool))
-                        suitSet.EvaSpace_ForceUseHelmetAndVisor = nodeBool;
+                        suitSet.EvaSpace_ForceUse_Visor = nodeBool;
                     
                     if (savedNode.TryGetValue("EvaSpace_HideHelmet_InAtmo", ref nodeBool))
                         suitSet.EvaSpace_HideHelmet_InAtmo = nodeBool;
@@ -2662,22 +2014,22 @@ namespace TextureReplacerReplaced
                         suitSet.EvaSpace_HideHelmet_OutAtmo = nodeBool;
                     
                     if (savedNode.TryGetValue("EvaSpace_VisorReflectionAdaptive", ref nodeBool))
-                        suitSet.EvaSpace_VisorReflectionAdaptive = nodeBool;
+                        suitSet.visor_EvaSpace_ReflectionAdaptive = nodeBool;
 
                     if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[0]", ref nodeBool))
-                        suitSet.EvaSpace_VisorReflectionColor[0] = nodeColor;
+                        suitSet.visor_EvaSpace_ReflectionColor[0] = nodeColor;
                     if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[1]", ref nodeBool))
-                        suitSet.EvaSpace_VisorReflectionColor[1] = nodeColor;
+                        suitSet.visor_EvaSpace_ReflectionColor[1] = nodeColor;
                     if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[2]", ref nodeBool))
-                        suitSet.EvaSpace_VisorReflectionColor[2] = nodeColor;
+                        suitSet.visor_EvaSpace_ReflectionColor[2] = nodeColor;
                     if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[3]", ref nodeBool))
-                        suitSet.EvaSpace_VisorReflectionColor[3] = nodeColor;
+                        suitSet.visor_EvaSpace_ReflectionColor[3] = nodeColor;
                     if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[4]", ref nodeBool))
-                        suitSet.EvaSpace_VisorReflectionColor[4] = nodeColor;
+                        suitSet.visor_EvaSpace_ReflectionColor[4] = nodeColor;
                     if (savedNode.TryGetValue("EvaSpace_VisorReflectionColor[5]", ref nodeBool))
-                        suitSet.EvaSpace_VisorReflectionColor[5] = nodeColor;
+                        suitSet.visor_EvaSpace_ReflectionColor[5] = nodeColor;*/
 
-                }                
+                }               
             }
 
         }
@@ -2689,49 +2041,49 @@ namespace TextureReplacerReplaced
                 ConfigNode subNode = new ConfigNode();
                 node.AddNode(suitSet.name, subNode);
 
-                subNode.AddValue("isExclusive", suitSet.isExclusive);
+               /* subNode.AddValue("isExclusive", suitSet.isExclusive);
 
                 subNode.AddValue("Iva_Use", suitSet.Iva_Use);
                 subNode.AddValue("Iva_ForceUse", suitSet.Iva_ForceUse);
                 subNode.AddValue("Iva_ForceUseHelmetAndVisor", suitSet.Iva_ForceUseHelmetAndVisor);
                 subNode.AddValue("Iva_HideHelmet_InAtmo", suitSet.Iva_HideHelmet_InAtmo);
                 subNode.AddValue("Iva_HideHelmet_OutAtmo", suitSet.Iva_HideHelmet_OutAtmo);
-                subNode.AddValue("Iva_VisorReflectionAdaptive", suitSet.Iva_VisorReflectionAdaptive);
-                subNode.AddValue("Iva_VisorReflectionColor[0]", suitSet.Iva_VisorReflectionColor[0]);
-                subNode.AddValue("Iva_VisorReflectionColor[1]", suitSet.Iva_VisorReflectionColor[1]);
-                subNode.AddValue("Iva_VisorReflectionColor[2]", suitSet.Iva_VisorReflectionColor[2]);
-                subNode.AddValue("Iva_VisorReflectionColor[3]", suitSet.Iva_VisorReflectionColor[3]);
-                subNode.AddValue("Iva_VisorReflectionColor[4]", suitSet.Iva_VisorReflectionColor[4]);
-                subNode.AddValue("Iva_VisorReflectionColor[5]", suitSet.Iva_VisorReflectionColor[5]);
+                subNode.AddValue("Iva_VisorReflectionAdaptive", suitSet.visor_Iva_ReflectionAdaptive);
+                subNode.AddValue("Iva_VisorReflectionColor[0]", suitSet.visor_Iva_ReflectionColor[0]);
+                subNode.AddValue("Iva_VisorReflectionColor[1]", suitSet.visor_Iva_ReflectionColor[1]);
+                subNode.AddValue("Iva_VisorReflectionColor[2]", suitSet.visor_Iva_ReflectionColor[2]);
+                subNode.AddValue("Iva_VisorReflectionColor[3]", suitSet.visor_Iva_ReflectionColor[3]);
+                subNode.AddValue("Iva_VisorReflectionColor[4]", suitSet.visor_Iva_ReflectionColor[4]);
+                subNode.AddValue("Iva_VisorReflectionColor[5]", suitSet.visor_Iva_ReflectionColor[5]);
                 subNode.AddValue("Iva_HideHelmet_InVehicle", suitSet.Iva_HideHelmet_InVehicle);
-                subNode.AddValue("Iva_HideHelmet_WhenSafe", suitSet.Iva_HideHelmet_WhenSafe);
+                subNode.AddValue("Iva_HideHelmet_WhenSafe", suitSet.visor_Hide_);
                 subNode.AddValue("Iva_HideHelmet_WhenUnsafe", suitSet.Iva_HideHelmet_WhenUnsafe);
 
                 subNode.AddValue("EvaGround_Use", suitSet.EvaGround_Use);
-                subNode.AddValue("EvaGround_ForceUse", suitSet.EvaGround_ForceUse);
-                subNode.AddValue("EvaGround_ForceUseHelmetAndVisor", suitSet.EvaGround_ForceUseHelmetAndVisor);
+                subNode.AddValue("EvaGround_ForceUse", suitSet.EvaGround_ForceUse_Helmet);
+                subNode.AddValue("EvaGround_ForceUseHelmetAndVisor", suitSet.EvaGround_ForceUse_Visor);
                 subNode.AddValue("EvaGround_HideHelmet_InAtmo", suitSet.EvaGround_HideHelmet_InAtmo);
                 subNode.AddValue("EvaGround_HideHelmet_OutAtmo", suitSet.EvaGround_HideHelmet_OutAtmo);
-                subNode.AddValue("EvaGround_VisorReflectionAdaptive", suitSet.EvaGround_VisorReflectionAdaptive);
-                subNode.AddValue("EvaGround_VisorReflectionColor[0]", suitSet.EvaGround_VisorReflectionColor[0]);
-                subNode.AddValue("EvaGround_VisorReflectionColor[1]", suitSet.EvaGround_VisorReflectionColor[1]);
-                subNode.AddValue("EvaGround_VisorReflectionColor[2]", suitSet.EvaGround_VisorReflectionColor[2]);
-                subNode.AddValue("EvaGround_VisorReflectionColor[3]", suitSet.EvaGround_VisorReflectionColor[3]);
-                subNode.AddValue("EvaGround_VisorReflectionColor[4]", suitSet.EvaGround_VisorReflectionColor[4]);
-                subNode.AddValue("EvaGround_VisorReflectionColor[5]", suitSet.EvaGround_VisorReflectionColor[5]);
+                subNode.AddValue("EvaGround_VisorReflectionAdaptive", suitSet.visor_EvaGround_ReflectionAdaptive);
+                subNode.AddValue("EvaGround_VisorReflectionColor[0]", suitSet.visor_EvaGround_ReflectionColor[0]);
+                subNode.AddValue("EvaGround_VisorReflectionColor[1]", suitSet.visor_EvaGround_ReflectionColor[1]);
+                subNode.AddValue("EvaGround_VisorReflectionColor[2]", suitSet.visor_EvaGround_ReflectionColor[2]);
+                subNode.AddValue("EvaGround_VisorReflectionColor[3]", suitSet.visor_EvaGround_ReflectionColor[3]);
+                subNode.AddValue("EvaGround_VisorReflectionColor[4]", suitSet.visor_EvaGround_ReflectionColor[4]);
+                subNode.AddValue("EvaGround_VisorReflectionColor[5]", suitSet.visor_EvaGround_ReflectionColor[5]);
 
                 subNode.AddValue("EvaSpace_Use", suitSet.EvaSpace_Use);
-                subNode.AddValue("EvaSpace_ForceUse", suitSet.EvaSpace_ForceUse);
-                subNode.AddValue("EvaSpace_ForceUseHelmetAndVisor", suitSet.EvaSpace_ForceUseHelmetAndVisor);
+                subNode.AddValue("EvaSpace_ForceUse", suitSet.EvaSpace_ForceUse_Helmet);
+                subNode.AddValue("EvaSpace_ForceUseHelmetAndVisor", suitSet.EvaSpace_ForceUse_Visor);
                 subNode.AddValue("EvaSpace_HideHelmet_InAtmo", suitSet.EvaSpace_HideHelmet_InAtmo);
                 subNode.AddValue("EvaSpace_HideHelmet_OutAtmo", suitSet.EvaSpace_HideHelmet_OutAtmo);
-                subNode.AddValue("EvaSpace_VisorReflectionAdaptive", suitSet.EvaSpace_VisorReflectionAdaptive);
-                subNode.AddValue("EvaSpace_VisorReflectionColor[0]", suitSet.EvaSpace_VisorReflectionColor[0]);
-                subNode.AddValue("EvaSpace_VisorReflectionColor[1]", suitSet.EvaSpace_VisorReflectionColor[1]);
-                subNode.AddValue("EvaSpace_VisorReflectionColor[2]", suitSet.EvaSpace_VisorReflectionColor[2]);
-                subNode.AddValue("EvaSpace_VisorReflectionColor[3]", suitSet.EvaSpace_VisorReflectionColor[3]);
-                subNode.AddValue("EvaSpace_VisorReflectionColor[4]", suitSet.EvaSpace_VisorReflectionColor[4]);
-                subNode.AddValue("EvaSpace_VisorReflectionColor[5]", suitSet.EvaSpace_VisorReflectionColor[5]);
+                subNode.AddValue("EvaSpace_VisorReflectionAdaptive", suitSet.visor_EvaSpace_ReflectionAdaptive);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[0]", suitSet.visor_EvaSpace_ReflectionColor[0]);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[1]", suitSet.visor_EvaSpace_ReflectionColor[1]);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[2]", suitSet.visor_EvaSpace_ReflectionColor[2]);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[3]", suitSet.visor_EvaSpace_ReflectionColor[3]);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[4]", suitSet.visor_EvaSpace_ReflectionColor[4]);
+                subNode.AddValue("EvaSpace_VisorReflectionColor[5]", suitSet.visor_EvaSpace_ReflectionColor[5]);*/
             }
         }
 
@@ -2989,8 +2341,8 @@ namespace TextureReplacerReplaced
             Util.parse(rootNode.GetValue("atmSuitPressure"), ref atmSuitPressure);
             Util.addLists(rootNode.GetValues("atmSuitBodies"), atmSuitBodies);
             Util.parse(rootNode.GetValue("forceLegacyFemales"), ref forceLegacyFemales);
-            Util.parse(rootNode.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
-            Util.parse(rootNode.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
+            //Util.parse(rootNode.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
+            //Util.parse(rootNode.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
             Util.parse(rootNode.GetValue("useKspSkin"), ref useKspSkin);
 
         }
@@ -3100,8 +2452,8 @@ namespace TextureReplacerReplaced
 
             Util.parse(node.GetValue("isHelmetRemovalEnabled"), ref isHelmetRemovalEnabled);
             Util.parse(node.GetValue("isAtmSuitEnabled"), ref isAtmSuitEnabled);
-            Util.parse(node.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
-            Util.parse(node.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
+            //Util.parse(node.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
+           // Util.parse(node.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
             Util.parse(node.GetValue("useKspSkin"), ref useKspSkin);
         }
                 
@@ -3120,8 +2472,8 @@ namespace TextureReplacerReplaced
 
             node.AddValue("isHelmetRemovalEnabled", isHelmetRemovalEnabled);
             node.AddValue("isAtmSuitEnabled", isAtmSuitEnabled);
-            node.AddValue("isNewSuitStateEnabled", isNewSuitStateEnabled);
-            node.AddValue("isAutomaticSuitSwitchEnabled", isAutomaticSuitSwitchEnabled);
+           // node.AddValue("isNewSuitStateEnabled", isNewSuitStateEnabled);
+           // node.AddValue("isAutomaticSuitSwitchEnabled", isAutomaticSuitSwitchEnabled);
             node.AddValue("useKspSkin", useKspSkin);
         }
 

@@ -25,6 +25,7 @@ using System.Reflection;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
 
 namespace TextureReplacerReplaced
 {
@@ -85,6 +86,12 @@ namespace TextureReplacerReplaced
             }
 
             Loader.instance.configure();
+
+
+           // Util.log("++++++++++++++++++++++++++++++++++++ pouet+++++++++++++++++++++++++++++++++++++++++");
+
+            //System.Collections.Generic.List
+
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////

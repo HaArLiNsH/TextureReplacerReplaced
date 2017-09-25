@@ -226,6 +226,12 @@ namespace TextureReplacerReplaced
             // Fix female shaders, set normal-mapped shader for head and visor texture on proto-IVA and -EVA Kerbals.
             Kerbal[] kerbals = Resources.FindObjectsOfTypeAll<Kerbal>();
 
+            /*Util.log("++++++++++++++++++++++++++++++++++++ pouet+++++++++++++++++++++++++++++++++++++++++");
+            foreach (Kerbal kerb in kerbals)
+            {
+                Util.log(kerb.name);
+            }*/
+
             Kerbal maleIva = kerbals.First(k => k.transform.name == "kerbalMale");
             Kerbal femaleIva = kerbals.First(k => k.transform.name == "kerbalFemale");
             Part maleEva = PartLoader.getPartInfoByName("kerbalEVA").partPrefab;
