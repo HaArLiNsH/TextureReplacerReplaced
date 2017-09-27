@@ -845,8 +845,16 @@ namespace TextureReplacerReplaced
             GUILayout.EndVertical();
             GUILayout.EndScrollView();
 
-            if (GUILayout.Button("Reset to Defaults"))
-                personaliser.resetKerbals();
+            if (GUILayout.Button("Reset All to Default"))
+            {
+                foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
+                {
+                    ConfigNode headNode = file.config.GetNode("HeadSettings");
+                    if (headNode != null)
+                        personaliser.loadHeadConfig(headNode, personaliser.maleAndfemaleHeadsDB_full, personaliser.defaulMaleAndFemaleHeads, personaliser.maleAndfemaleHeadsDB_cleaned);
+                }
+            }
+                
             GUILayout.EndVertical(); // end of head set name column
 
             // Textures.            
@@ -1640,7 +1648,8 @@ namespace TextureReplacerReplaced
             if (head != null)
             {
                 if (GUILayout.Button("Default", GUILayout.Width(100)))
-                    Util.log("Clicked Button");
+                    personaliser.resetHead(head, personaliser.defaulMaleAndFemaleHeads);
+                //Util.log("Clicked Button");
             }
 
             /*GUILayout.Space(10);
@@ -1765,7 +1774,15 @@ namespace TextureReplacerReplaced
             GUILayout.EndScrollView();
 
             if (GUILayout.Button("Reset all to Defaults"))
-                personaliser.resetKerbals();
+            {
+                foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
+                {
+                    ConfigNode suitNode = file.config.GetNode("SuitSettings");
+                    if (suitNode != null)
+                        personaliser.loadSuitConfig(suitNode, personaliser.KerbalSuitsDB_full, personaliser.defaultSuit, false);
+                }
+            }
+                
             GUILayout.EndVertical(); // end of suit set name column
 
             Suit_Set suit = null;
@@ -2421,7 +2438,7 @@ namespace TextureReplacerReplaced
             /////////////////////////////////////////////////////////////////////////////////////////////////
             // SECOND COLUMN
             /////////////////////////////////////////////////////////////////////////////////////////////////
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////////////
             /////////////////////////////////////////////////////////////////////////////////////////////////
 
             GUILayout.BeginVertical(); // start of the setting column
@@ -2429,8 +2446,9 @@ namespace TextureReplacerReplaced
             {
                 
                 suit.isExclusive = GUILayout.Toggle(suit.isExclusive, "Exclusive");
+
                 if (GUILayout.Button("Reset to Default", GUILayout.Width(100)))
-                    personaliser.resetKerbals();
+                    personaliser.resetSuit(suit, personaliser.defaultSuit);
                 
 
                 GUILayout.Label("Choose your texture for the situation :");

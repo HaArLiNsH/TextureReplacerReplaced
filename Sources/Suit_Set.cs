@@ -78,7 +78,7 @@ namespace TextureReplacerReplaced
         /// 1 = EVA GROUND,
         /// 2 = EVA SPACE
         /// </summary>
-        public int suit_EvaGround_NoAtmo = 2;
+        public int suit_EvaGround_NoAtmo = 1;
 
         /// <summary>
         /// The suit when out of the vehicle, in space
@@ -122,7 +122,7 @@ namespace TextureReplacerReplaced
         /// 2 = EVA SPACE
         /// 3 = NONE
         /// </summary>
-        public int helmet_EvaGround_NoAtmo = 2;
+        public int helmet_EvaGround_NoAtmo = 1;
 
         /// <summary>
         /// The helmet when out of the vehicle, in space
@@ -204,18 +204,16 @@ namespace TextureReplacerReplaced
         
 
         public bool visor_Iva_ReflectionAdaptive = true;
+        public bool visor_EvaGround_ReflectionAdaptive = true;
+        public bool visor_EvaSpace_ReflectionAdaptive = true;
 
         public Color32[] visor_Iva_ReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
                 , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
-
-        public bool visor_EvaGround_ReflectionAdaptive = true;
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };        
 
         public Color32[] visor_EvaGround_ReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
                 , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
-
-        public bool visor_EvaSpace_ReflectionAdaptive = true;
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };        
 
         public Color32[] visor_EvaSpace_ReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
                 , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
@@ -1138,17 +1136,11 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_Male[level] != null)
                 return helmet_EvaGround_Standard_Male[level];
 
-            else if (helmet_EvaSpace_Badass_Male[level] != null)
-                return helmet_EvaSpace_Badass_Male[level];
-
-            else if (helmet_EvaSpace_Standard_Male[level] != null)
-                return helmet_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Badass_Male[level];
 
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1174,17 +1166,11 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
                 return helmet_EvaGround_Standard_MaleNRM[level];
 
-            else if (helmet_EvaSpace_Badass_Male[level] != null)
-                return helmet_EvaSpace_Badass_MaleNRM[level];
-
-            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
-                return helmet_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Badass_MaleNRM[level];
 
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1204,17 +1190,11 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_Male[level] != null)
                 return helmet_EvaGround_Standard_Male[level];
 
-            else if (helmet_EvaSpace_Badass_Male[level] != null)
-                return helmet_EvaSpace_Badass_Male[level];
-
-            else if (helmet_EvaSpace_Standard_Male[level] != null)
-                return helmet_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Badass_Male[level];
 
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1234,16 +1214,10 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
                 return helmet_EvaGround_Standard_MaleNRM[level];
 
-            else if (helmet_EvaSpace_Badass_MaleNRM[level] != null)
-                return helmet_EvaSpace_Badass_MaleNRM[level];
-
-            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
-                return helmet_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Badass_MaleNRM[level];
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1263,11 +1237,8 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_Male[level] != null)
                 return helmet_EvaGround_Standard_Male[level];
 
-            else if (helmet_EvaSpace_Standard_Male[level] != null)
-                return helmet_EvaSpace_Standard_Male[level];
-
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1287,11 +1258,8 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
                 return helmet_EvaGround_Standard_MaleNRM[level];
 
-            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
-                return helmet_EvaSpace_Standard_MaleNRM[level];
-
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1308,11 +1276,8 @@ namespace TextureReplacerReplaced
             if (helmet_EvaGround_Standard_Male[level] != null)
                 return helmet_EvaGround_Standard_Male[level];
 
-            else if (helmet_EvaSpace_Standard_Male[level] != null)
-                return helmet_EvaSpace_Standard_Male[level];
-
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1329,11 +1294,8 @@ namespace TextureReplacerReplaced
             if (helmet_EvaGround_Standard_MaleNRM[level] != null)
                 return helmet_EvaGround_Standard_MaleNRM[level];
 
-            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
-                return helmet_EvaSpace_Standard_MaleNRM[level];
-
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1371,23 +1333,11 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_Male[level] != null)
                 return helmet_EvaGround_Standard_Male[level];
 
-            else if (helmet_EvaSpace_VetBad_Male[level] != null)
-                return helmet_EvaSpace_VetBad_Male[level];
-
-            else if (helmet_EvaSpace_Veteran_Male[level] != null)
-                return helmet_EvaSpace_Veteran_Male[level];
-
-            else if (helmet_EvaSpace_Badass_Male[level] != null)
-                return helmet_EvaSpace_Badass_Male[level];
-
-            else if (helmet_EvaSpace_Standard_Male[level] != null)
-                return helmet_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level];
 
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1425,23 +1375,11 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
                 return helmet_EvaGround_Standard_MaleNRM[level];
 
-            else if (helmet_EvaSpace_VetBad_MaleNRM[level] != null)
-                return helmet_EvaSpace_VetBad_MaleNRM[level];
-
-            else if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
-                return helmet_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (helmet_EvaSpace_Badass_MaleNRM[level] != null)
-                return helmet_EvaSpace_Badass_MaleNRM[level];
-
-            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
-                return helmet_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level];
 
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1467,22 +1405,10 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_Male[level] != null)
                 return helmet_EvaGround_Standard_Male[level];
 
-            else if (helmet_EvaSpace_VetBad_Male[level] != null)
-                return helmet_EvaSpace_VetBad_Male[level];
-
-            else if (helmet_EvaSpace_Veteran_Male[level] != null)
-                return helmet_EvaSpace_Veteran_Male[level];
-
-            else if (helmet_EvaSpace_Badass_Male[level] != null)
-                return helmet_EvaSpace_Badass_Male[level];
-
-            else if (helmet_EvaSpace_Standard_Male[level] != null)
-                return helmet_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1508,22 +1434,10 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
                 return helmet_EvaGround_Standard_MaleNRM[level];
 
-            else if (helmet_EvaSpace_VetBad_MaleNRM[level] != null)
-                return helmet_EvaSpace_VetBad_MaleNRM[level];
-
-            else if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
-                return helmet_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (helmet_EvaSpace_Badass_MaleNRM[level] != null)
-                return helmet_EvaSpace_Badass_MaleNRM[level];
-
-            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
-                return helmet_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1549,16 +1463,10 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_Male[level] != null)
                 return helmet_EvaGround_Standard_Male[level];
 
-            else if (helmet_EvaSpace_Veteran_Male[level] != null)
-                return helmet_EvaSpace_Veteran_Male[level];
-
-            else if (helmet_EvaSpace_Standard_Male[level] != null)
-                return helmet_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1584,16 +1492,10 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
                 return helmet_EvaGround_Standard_MaleNRM[level];
 
-            else if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
-                return helmet_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
-                return helmet_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -1613,16 +1515,10 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_Male[level] != null)
                 return helmet_EvaGround_Standard_Male[level];
 
-            else if (helmet_EvaSpace_Veteran_Male[level] != null)
-                return helmet_EvaSpace_Veteran_Male[level];
-
-            else if (helmet_EvaSpace_Standard_Male[level] != null)
-                return helmet_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -1642,16 +1538,10 @@ namespace TextureReplacerReplaced
             else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
                 return helmet_EvaGround_Standard_MaleNRM[level];
 
-            else if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
-                return helmet_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
-                return helmet_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2591,17 +2481,11 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
 
-            else if (jetpack_EvaSpace_Badass_Male[level] != null)
-                return jetpack_EvaSpace_Badass_Male[level];
-
-            else if (jetpack_EvaSpace_Standard_Male[level] != null)
-                return jetpack_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level];
 
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2627,17 +2511,11 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
 
-            else if (jetpack_EvaSpace_Badass_Male[level] != null)
-                return jetpack_EvaSpace_Badass_MaleNRM[level];
-
-            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Badass_MaleNRM[level];
 
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2657,17 +2535,11 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
 
-            else if (jetpack_EvaSpace_Badass_Male[level] != null)
-                return jetpack_EvaSpace_Badass_Male[level];
-
-            else if (jetpack_EvaSpace_Standard_Male[level] != null)
-                return jetpack_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level];
 
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2687,16 +2559,10 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
 
-            else if (jetpack_EvaSpace_Badass_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Badass_MaleNRM[level];
-
-            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Badass_MaleNRM[level];
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2716,11 +2582,8 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
 
-            else if (jetpack_EvaSpace_Standard_Male[level] != null)
-                return jetpack_EvaSpace_Standard_Male[level];
-
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2740,11 +2603,8 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
 
-            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Standard_MaleNRM[level];
-
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2761,11 +2621,8 @@ namespace TextureReplacerReplaced
             if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
 
-            else if (jetpack_EvaSpace_Standard_Male[level] != null)
-                return jetpack_EvaSpace_Standard_Male[level];
-
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2782,11 +2639,8 @@ namespace TextureReplacerReplaced
             if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
 
-            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Standard_MaleNRM[level];
-
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2824,23 +2678,11 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
 
-            else if (jetpack_EvaSpace_VetBad_Male[level] != null)
-                return jetpack_EvaSpace_VetBad_Male[level];
-
-            else if (jetpack_EvaSpace_Veteran_Male[level] != null)
-                return jetpack_EvaSpace_Veteran_Male[level];
-
-            else if (jetpack_EvaSpace_Badass_Male[level] != null)
-                return jetpack_EvaSpace_Badass_Male[level];
-
-            else if (jetpack_EvaSpace_Standard_Male[level] != null)
-                return jetpack_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level];
 
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2878,23 +2720,11 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
 
-            else if (jetpack_EvaSpace_VetBad_MaleNRM[level] != null)
-                return jetpack_EvaSpace_VetBad_MaleNRM[level];
-
-            else if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (jetpack_EvaSpace_Badass_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Badass_MaleNRM[level];
-
-            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level];
 
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -2920,22 +2750,10 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
 
-            else if (jetpack_EvaSpace_VetBad_Male[level] != null)
-                return jetpack_EvaSpace_VetBad_Male[level];
-
-            else if (jetpack_EvaSpace_Veteran_Male[level] != null)
-                return jetpack_EvaSpace_Veteran_Male[level];
-
-            else if (jetpack_EvaSpace_Badass_Male[level] != null)
-                return jetpack_EvaSpace_Badass_Male[level];
-
-            else if (jetpack_EvaSpace_Standard_Male[level] != null)
-                return jetpack_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -2961,22 +2779,10 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
 
-            else if (jetpack_EvaSpace_VetBad_MaleNRM[level] != null)
-                return jetpack_EvaSpace_VetBad_MaleNRM[level];
-
-            else if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (jetpack_EvaSpace_Badass_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Badass_MaleNRM[level];
-
-            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3002,16 +2808,10 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
 
-            else if (jetpack_EvaSpace_Veteran_Male[level] != null)
-                return jetpack_EvaSpace_Veteran_Male[level];
-
-            else if (jetpack_EvaSpace_Standard_Male[level] != null)
-                return jetpack_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3037,16 +2837,10 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
 
-            else if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3066,16 +2860,10 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_Male[level] != null)
                 return jetpack_EvaGround_Standard_Male[level];
 
-            else if (jetpack_EvaSpace_Veteran_Male[level] != null)
-                return jetpack_EvaSpace_Veteran_Male[level];
-
-            else if (jetpack_EvaSpace_Standard_Male[level] != null)
-                return jetpack_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3095,16 +2883,10 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
                 return jetpack_EvaGround_Standard_MaleNRM[level];
 
-            else if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
-                return jetpack_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3124,17 +2906,11 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaSpace_Standard_Female[level] != null)
                 return jetpack_EvaSpace_Standard_Female[level];
 
-            else if (jetpack_EvaSpace_Badass_Male[level] != null)
-                return jetpack_EvaSpace_Badass_Male[level];
-
-            else if (jetpack_EvaSpace_Standard_Male[level] != null)
-                return jetpack_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level];
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level];
 
             else
-                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3587,17 +3363,11 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_Male[level] != null)
                 return suit_EvaGround_Standard_Male[level];
 
-            else if (suit_EvaSpace_Badass_Male[level] != null)
-                return suit_EvaSpace_Badass_Male[level];
-
-            else if (suit_EvaSpace_Standard_Male[level] != null)
-                return suit_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Badass_Male[level];
 
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3623,17 +3393,11 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_MaleNRM[level] != null)
                 return suit_EvaGround_Standard_MaleNRM[level];
 
-            else if (suit_EvaSpace_Badass_Male[level] != null)
-                return suit_EvaSpace_Badass_MaleNRM[level];
-
-            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
-                return suit_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Badass_MaleNRM[level];
 
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3652,18 +3416,12 @@ namespace TextureReplacerReplaced
 
             else if (suit_EvaGround_Standard_Male[level] != null)
                 return suit_EvaGround_Standard_Male[level];
-            
-            else if (suit_EvaSpace_Badass_Male[level] != null)
-                return suit_EvaSpace_Badass_Male[level];
 
-            else if (suit_EvaSpace_Standard_Male[level] != null)
-                return suit_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Badass_Male[level];
 
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3683,16 +3441,10 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_MaleNRM[level] != null)
                 return suit_EvaGround_Standard_MaleNRM[level];
 
-            else if (suit_EvaSpace_Badass_MaleNRM[level] != null)
-                return suit_EvaSpace_Badass_MaleNRM[level];
-
-            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
-                return suit_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Badass_MaleNRM[level];
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3711,12 +3463,9 @@ namespace TextureReplacerReplaced
 
             else if (suit_EvaGround_Standard_Male[level] != null)
                 return suit_EvaGround_Standard_Male[level];
-            
-            else if (suit_EvaSpace_Standard_Male[level] != null)
-                return suit_EvaSpace_Standard_Male[level];
 
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3736,11 +3485,8 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_MaleNRM[level] != null)
                 return suit_EvaGround_Standard_MaleNRM[level];
 
-            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
-                return suit_EvaSpace_Standard_MaleNRM[level];
-
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3757,11 +3503,8 @@ namespace TextureReplacerReplaced
             if (suit_EvaGround_Standard_Male[level] != null)
                 return suit_EvaGround_Standard_Male[level];
 
-            else if (suit_EvaSpace_Standard_Male[level] != null)
-                return suit_EvaSpace_Standard_Male[level];
-
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3778,11 +3521,8 @@ namespace TextureReplacerReplaced
             if (suit_EvaGround_Standard_MaleNRM[level] != null)
                 return suit_EvaGround_Standard_MaleNRM[level];
 
-            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
-                return suit_EvaSpace_Standard_MaleNRM[level];
-
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3820,23 +3560,11 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_Male[level] != null)
                 return suit_EvaGround_Standard_Male[level];
 
-            else if (suit_EvaSpace_VetBad_Male[level] != null)
-                return suit_EvaSpace_VetBad_Male[level];
-
-            else if (suit_EvaSpace_Veteran_Male[level] != null)
-                return suit_EvaSpace_Veteran_Male[level];
-
-            else if (suit_EvaSpace_Badass_Male[level] != null)
-                return suit_EvaSpace_Badass_Male[level];
-
-            else if (suit_EvaSpace_Standard_Male[level] != null)
-                return suit_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level];
 
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3874,23 +3602,11 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_MaleNRM[level] != null)
                 return suit_EvaGround_Standard_MaleNRM[level];
 
-            else if (suit_EvaSpace_VetBad_MaleNRM[level] != null)
-                return suit_EvaSpace_VetBad_MaleNRM[level];
-
-            else if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
-                return suit_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (suit_EvaSpace_Badass_MaleNRM[level] != null)
-                return suit_EvaSpace_Badass_MaleNRM[level];
-
-            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
-                return suit_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level];
 
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3916,22 +3632,10 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_Male[level] != null)
                 return suit_EvaGround_Standard_Male[level];
 
-            else if (suit_EvaSpace_VetBad_Male[level] != null)
-                return suit_EvaSpace_VetBad_Male[level];
-
-            else if (suit_EvaSpace_Veteran_Male[level] != null)
-                return suit_EvaSpace_Veteran_Male[level];
-
-            else if (suit_EvaSpace_Badass_Male[level] != null)
-                return suit_EvaSpace_Badass_Male[level];
-
-            else if (suit_EvaSpace_Standard_Male[level] != null)
-                return suit_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -3957,22 +3661,10 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_MaleNRM[level] != null)
                 return suit_EvaGround_Standard_MaleNRM[level];
 
-            else if (suit_EvaSpace_VetBad_MaleNRM[level] != null)
-                return suit_EvaSpace_VetBad_MaleNRM[level];
-
-            else if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
-                return suit_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (suit_EvaSpace_Badass_MaleNRM[level] != null)
-                return suit_EvaSpace_Badass_MaleNRM[level];
-
-            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
-                return suit_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -3998,16 +3690,10 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_Male[level] != null)
                 return suit_EvaGround_Standard_Male[level];
 
-            else if (suit_EvaSpace_Veteran_Male[level] != null)
-                return suit_EvaSpace_Veteran_Male[level];
-
-            else if (suit_EvaSpace_Standard_Male[level] != null)
-                return suit_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -4033,16 +3719,10 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_MaleNRM[level] != null)
                 return suit_EvaGround_Standard_MaleNRM[level];
 
-            else if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
-                return suit_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
-                return suit_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -4062,16 +3742,10 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_Male[level] != null)
                 return suit_EvaGround_Standard_Male[level];
 
-            else if (suit_EvaSpace_Veteran_Male[level] != null)
-                return suit_EvaSpace_Veteran_Male[level];
-
-            else if (suit_EvaSpace_Standard_Male[level] != null)
-                return suit_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -4091,16 +3765,10 @@ namespace TextureReplacerReplaced
             else if (suit_EvaGround_Standard_MaleNRM[level] != null)
                 return suit_EvaGround_Standard_MaleNRM[level];
 
-            else if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
-                return suit_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
-                return suit_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -5040,17 +4708,11 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
 
-            else if (visor_EvaSpace_Badass_Male[level] != null)
-                return visor_EvaSpace_Badass_Male[level];
-
-            else if (visor_EvaSpace_Standard_Male[level] != null)
-                return visor_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Badass_Male[level];
 
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -5076,17 +4738,11 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
 
-            else if (visor_EvaSpace_Badass_Male[level] != null)
-                return visor_EvaSpace_Badass_MaleNRM[level];
-
-            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
-                return visor_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Badass_MaleNRM[level];
 
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -5106,17 +4762,11 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
 
-            else if (visor_EvaSpace_Badass_Male[level] != null)
-                return visor_EvaSpace_Badass_Male[level];
-
-            else if (visor_EvaSpace_Standard_Male[level] != null)
-                return visor_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Badass_Male[level];
 
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -5136,16 +4786,10 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
 
-            else if (visor_EvaSpace_Badass_MaleNRM[level] != null)
-                return visor_EvaSpace_Badass_MaleNRM[level];
-
-            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
-                return visor_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Badass_MaleNRM[level];
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -5165,11 +4809,8 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
 
-            else if (visor_EvaSpace_Standard_Male[level] != null)
-                return visor_EvaSpace_Standard_Male[level];
-
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -5189,11 +4830,8 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
 
-            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
-                return visor_EvaSpace_Standard_MaleNRM[level];
-
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -5210,11 +4848,8 @@ namespace TextureReplacerReplaced
             if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
 
-            else if (visor_EvaSpace_Standard_Male[level] != null)
-                return visor_EvaSpace_Standard_Male[level];
-
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -5231,11 +4866,8 @@ namespace TextureReplacerReplaced
             if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
 
-            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
-                return visor_EvaSpace_Standard_MaleNRM[level];
-
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -5273,23 +4905,11 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
 
-            else if (visor_EvaSpace_VetBad_Male[level] != null)
-                return visor_EvaSpace_VetBad_Male[level];
-
-            else if (visor_EvaSpace_Veteran_Male[level] != null)
-                return visor_EvaSpace_Veteran_Male[level];
-
-            else if (visor_EvaSpace_Badass_Male[level] != null)
-                return visor_EvaSpace_Badass_Male[level];
-
-            else if (visor_EvaSpace_Standard_Male[level] != null)
-                return visor_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level];
 
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -5327,23 +4947,11 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
 
-            else if (visor_EvaSpace_VetBad_MaleNRM[level] != null)
-                return visor_EvaSpace_VetBad_MaleNRM[level];
-
-            else if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
-                return visor_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (visor_EvaSpace_Badass_MaleNRM[level] != null)
-                return visor_EvaSpace_Badass_MaleNRM[level];
-
-            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
-                return visor_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level];
 
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -5369,22 +4977,10 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
 
-            else if (visor_EvaSpace_VetBad_Male[level] != null)
-                return visor_EvaSpace_VetBad_Male[level];
-
-            else if (visor_EvaSpace_Veteran_Male[level] != null)
-                return visor_EvaSpace_Veteran_Male[level];
-
-            else if (visor_EvaSpace_Badass_Male[level] != null)
-                return visor_EvaSpace_Badass_Male[level];
-
-            else if (visor_EvaSpace_Standard_Male[level] != null)
-                return visor_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -5410,22 +5006,10 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
 
-            else if (visor_EvaSpace_VetBad_MaleNRM[level] != null)
-                return visor_EvaSpace_VetBad_MaleNRM[level];
-
-            else if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
-                return visor_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (visor_EvaSpace_Badass_MaleNRM[level] != null)
-                return visor_EvaSpace_Badass_MaleNRM[level];
-
-            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
-                return visor_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -5451,16 +5035,10 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
 
-            else if (visor_EvaSpace_Veteran_Male[level] != null)
-                return visor_EvaSpace_Veteran_Male[level];
-
-            else if (visor_EvaSpace_Standard_Male[level] != null)
-                return visor_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -5486,16 +5064,10 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
 
-            else if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
-                return visor_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
-                return visor_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************
@@ -5515,16 +5087,10 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_Male[level] != null)
                 return visor_EvaGround_Standard_Male[level];
 
-            else if (visor_EvaSpace_Veteran_Male[level] != null)
-                return visor_EvaSpace_Veteran_Male[level];
-
-            else if (visor_EvaSpace_Standard_Male[level] != null)
-                return visor_EvaSpace_Standard_Male[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level];
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
@@ -5544,16 +5110,10 @@ namespace TextureReplacerReplaced
             else if (visor_EvaGround_Standard_MaleNRM[level] != null)
                 return visor_EvaGround_Standard_MaleNRM[level];
 
-            else if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
-                return visor_EvaSpace_Veteran_MaleNRM[level];
-
-            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
-                return visor_EvaSpace_Standard_MaleNRM[level];
-
-            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level] != null)
-                return personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level];
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level];
             else
-                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
         }
 
         /// ************************************************************************************

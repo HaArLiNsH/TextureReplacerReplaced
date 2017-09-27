@@ -35,6 +35,8 @@ namespace TextureReplacerReplaced
         /// <param name="node">The name of the config node</param>
         public override void OnLoad(ConfigNode node)
         {
+
+            Util.log("TRR_Scenario : OnLoad()");
             Reflections.instance.loadScenario(node);
             Personaliser.instance.loadScenario(node);
         }
@@ -45,6 +47,7 @@ namespace TextureReplacerReplaced
         /// <param name="node">The name of the config node</param>
         public override void OnSave(ConfigNode node)
         {
+            Util.log("TRR_Scenario : OnSave()");
             Reflections.instance.saveScenario(node);
             Personaliser.instance.saveScenario(node);
         }

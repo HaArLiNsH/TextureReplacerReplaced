@@ -357,11 +357,9 @@ namespace TextureReplacerReplaced
                         texture.wrapMode = TextureWrapMode.Clamp;
                     }
 
-                    if (originalName == "Visor_Default")
+                    if (originalName == "Visor_Iva_Default")
                     {
                         defaultSuit.setTexture("Visor_Iva_Standard_Male0", texture);
-                        defaultSuit.setTexture("Visor_EvaSpace_Standard_Male0", texture);
-                        defaultSuit.setTexture("Visor_EvaGround_Standard_Male0", texture);
                         texture.wrapMode = TextureWrapMode.Clamp;
                     }
 
@@ -419,7 +417,11 @@ namespace TextureReplacerReplaced
                         texture.wrapMode = TextureWrapMode.Clamp;
                     }
 
-
+                    if (originalName == "Visor_EvaSpace_Default")
+                    {                        
+                        defaultSuit.setTexture("Visor_EvaSpace_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
 
 
                     if (originalName == "Suit_EvaGround_Veteran_Default")
@@ -464,6 +466,11 @@ namespace TextureReplacerReplaced
                         texture.wrapMode = TextureWrapMode.Clamp;
                     }
 
+                    if (originalName == "Visor_EvaGround_Default")
+                    {                        
+                        defaultSuit.setTexture("Visor_EvaGround_Standard_Male0", texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                    }
 
                 }
                 //lastTextureName = texture.name;
