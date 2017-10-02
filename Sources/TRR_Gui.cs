@@ -541,11 +541,11 @@ namespace TextureReplacerReplaced
 
             GUILayout.Space(10);
 
-            personaliser.isHelmetRemovalEnabled = GUILayout.Toggle(
-              personaliser.isHelmetRemovalEnabled, "Remove helmets in safe situations");
+           // personaliser.isHelmetRemovalEnabled = GUILayout.Toggle(
+           //   personaliser.isHelmetRemovalEnabled, "Remove helmets in safe situations");
 
-            personaliser.isAtmSuitEnabled = GUILayout.Toggle(
-              personaliser.isAtmSuitEnabled, "Spawn Kerbals in IVA suits when in breathable atmosphere");
+           // personaliser.isAtmSuitEnabled = GUILayout.Toggle(
+            //  personaliser.isAtmSuitEnabled, "Spawn Kerbals in IVA suits when in breathable atmosphere");
 
             //personaliser.isNewSuitStateEnabled = GUILayout.Toggle(
              // personaliser.isNewSuitStateEnabled, "Kerbals use another EVA suit when on the ground and with no air");

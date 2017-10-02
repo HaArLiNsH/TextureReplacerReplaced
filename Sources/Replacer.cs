@@ -171,6 +171,7 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void load()
         {
+            Util.log("++++ 'load()' ++++");
             foreach (SkinnedMeshRenderer smr in Resources.FindObjectsOfTypeAll<SkinnedMeshRenderer>())
             {
                 if (skinningQuality != SkinQuality.Auto)

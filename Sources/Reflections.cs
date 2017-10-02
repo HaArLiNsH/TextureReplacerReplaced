@@ -48,13 +48,21 @@ namespace TextureReplacerReplaced
         /// Reflective shader mapping.
         /// </summary>
         private static Dictionary<string, string> shaderMappingConfig = new Dictionary<string, string> {
+            { "KSP/Diffuse", "ShaderNG/TR_Reflective_Emissive_Alpha" },
+            { "KSP/Specular", "ShaderNG/TR_Reflective_Emissive_Alpha" },
+            { "KSP/Bumped", "ShaderNG/TR_Reflective_Emissive_Alpha" },
+            { "KSP/Bumped Specular", "ShaderNG/TR_Reflective_Emissive_Alpha" },
+            { "KSP/Alpha/Translucent", "KSP/TR/Visor" },
+            { "KSP/Alpha/Translucent Specular", "KSP/TR/Visor" }
+        };
+        /*private static Dictionary<string, string> shaderMappingConfig = new Dictionary<string, string> {
             { "KSP/Diffuse", "Reflective/Bumped Diffuse" },
             { "KSP/Specular", "Reflective/Bumped Diffuse" },
             { "KSP/Bumped", "Reflective/Bumped Diffuse" },
             { "KSP/Bumped Specular", "Reflective/Bumped Diffuse" },
-            { "KSP/Alpha/Translucent", "KSP/TRR/Visor" },
-            { "KSP/Alpha/Translucent Specular", "KSP/TRR/Visor" }
-        };
+            { "KSP/Alpha/Translucent", "KSP/TR/Visor" },
+            { "KSP/Alpha/Translucent Specular", "KSP/TR/Visor" }
+        };*/
 
         /// <summary>
         /// The cull distances for the different parts
@@ -484,6 +492,8 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void load()
         {
+            Util.log("++++ 'load()' ++++");
+
             Texture2D[] envMapFaces = new Texture2D[6];
 
             // Foreach non-null Texture2D in any of the EnvMap Folders

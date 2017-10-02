@@ -48,6 +48,7 @@ namespace TextureReplacerReplaced
         {
             public void Update()
             {
+                //Util.log("++++ 'Update()' ++++");
                 Reflections.Script.updateScripts();
             }
         }        
@@ -59,6 +60,8 @@ namespace TextureReplacerReplaced
         /// ****************************************************************************************
         public void Start()
         {
+            Util.log("++++ 'Start()' ++++");
+
             if (!TextureReplacerReplaced.isLoaded)
                 return;
 
