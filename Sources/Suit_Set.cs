@@ -2906,11 +2906,11 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaSpace_Standard_Female[level] != null)
                 return jetpack_EvaSpace_Standard_Female[level];
 
-            else if (personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level] != null)
-                return personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level];
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level];
 
             else
-                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
         }
 
         /// ************************************************************************************
