@@ -104,7 +104,7 @@ namespace TextureReplacerReplaced
             if (reflections.reflectionType == Reflections.Type.NONE)
                 return;
             if (reflections.reflectionType == Reflections.Type.REAL)
-                script = new Reflections.Script(part, updateInterval);
+                script = new Reflections.Script(part, updateInterval, reflectionColour);
 
             if (reflections.logReflectiveMeshes)
                 Util.log("Part \"{0}\"", part.name);

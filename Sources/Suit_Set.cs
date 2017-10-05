@@ -207,17 +207,17 @@ namespace TextureReplacerReplaced
         public bool visor_EvaGround_ReflectionAdaptive = true;
         public bool visor_EvaSpace_ReflectionAdaptive = true;
 
-        public Color32[] visor_Iva_ReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };        
+        public Color32[] visor_Iva_ReflectionColor = { new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255) };        
 
-        public Color32[] visor_EvaGround_ReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };        
+        public Color32[] visor_EvaGround_ReflectionColor = { new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255) };        
 
-        public Color32[] visor_EvaSpace_ReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
+        public Color32[] visor_EvaSpace_ReflectionColor = { new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255) };
         
         /// <summary>
         /// The texture list for the helmet_EvaGround_Badass_Female

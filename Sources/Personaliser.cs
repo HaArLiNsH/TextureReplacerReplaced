@@ -126,6 +126,8 @@ namespace TextureReplacerReplaced
         /// </summary>
         private Mesh[] visorMesh = { null, null };
 
+        private Mesh[] jetpackMesh = { null, null };
+
         /// <summary>
         /// Remove IVA helmets in safe situations (landed/splashed and in orbit).
         /// <para>This is only initial setting for new games! Use the GUI to change it later. </para>
@@ -445,6 +447,7 @@ namespace TextureReplacerReplaced
 
                 Personaliser personaliser = Personaliser.instance;
                 bool useVisor = true;
+                Color32 visorReflectioncolor = new Color32(128, 128, 128, 255);
 
                 // new suit State for TRR
                 if (personaliser.isNewSuitStateEnabled)
@@ -473,7 +476,7 @@ namespace TextureReplacerReplaced
                         actualSuitState = 0;
                     }
                 }
-                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor))
+                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor))
                 {
                     case 0:     //IVA suit, if no air switch to state 1 : EVAground
                         actualSuitState = 0;
@@ -512,9 +515,10 @@ namespace TextureReplacerReplaced
         public override void OnStart(StartState state)
             {
                 Util.log("++++ 'OnStart()' ++++");
-                Util.log("{0}", state);
+                Util.log("+++++ {0} +++++", state);
                 Personaliser personaliser = Personaliser.instance;
                 bool useVisor = true;
+                Color32 visorReflectioncolor = new Color32(128, 128, 128, 255);
 
                 if (!isInitialised)
                 {
@@ -528,7 +532,7 @@ namespace TextureReplacerReplaced
                     isInitialised = true;
                 }
 
-                if (personaliser.personaliseEva(part, actualSuitState, out useVisor) == 2)
+                if (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor) == 2)
                 {
                     actualSuitState = 2;
                     hasEvaSuit = true;
@@ -537,7 +541,7 @@ namespace TextureReplacerReplaced
                 if (Reflections.instance.isVisorReflectionEnabled
                 && Reflections.instance.reflectionType == Reflections.Type.REAL)
                 {
-                    reflectionScript = new Reflections.Script(part, 1);
+                    reflectionScript = new Reflections.Script(part, 1, visorReflectioncolor);
                     reflectionScript.setActive(useVisor);
                 }
             }
@@ -552,15 +556,20 @@ namespace TextureReplacerReplaced
                    
                 Personaliser personaliser = Personaliser.instance;
                 bool useVisor = true;
+                Color32 visorReflectioncolor = new Color32(128, 128, 128, 255);
 
-                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor))
+                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor))
                 {
                     case 0:     //IVA suit, if no air switch to state 1 : EVAground
                         actualSuitState = 0;
                         hasEvaSuit = false;
                         hasEvaGroundSuit = false;
                         if (reflectionScript != null)
+                        {
                             reflectionScript.setActive(useVisor);
+                            reflectionScript.updateReflectioncolor(part, visorReflectioncolor);
+                        }
+                            
                         //ScreenMessages.PostScreenMessage("IVA wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                         break;
                     case 1:     //EVAground suit
@@ -568,7 +577,10 @@ namespace TextureReplacerReplaced
                         hasEvaSuit = true;
                         hasEvaGroundSuit = true;
                         if (reflectionScript != null)
+                        {
                             reflectionScript.setActive(useVisor);
+                            reflectionScript.updateReflectioncolor(part, visorReflectioncolor);
+                        }
                         //ScreenMessages.PostScreenMessage("EVA ground wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                         break;
                     case 2:     //EVA suit
@@ -576,7 +588,10 @@ namespace TextureReplacerReplaced
                         hasEvaSuit = true;
                         hasEvaGroundSuit = false;
                         if (reflectionScript != null)
+                        {
                             reflectionScript.setActive(useVisor);
+                            reflectionScript.updateReflectioncolor(part, visorReflectioncolor);
+                        }
                         //ScreenMessages.PostScreenMessage("EVA space wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                         break;
                 }
@@ -811,7 +826,8 @@ namespace TextureReplacerReplaced
         /// <param name="needsEVASuit">Does the kerbal need a EVA suit? (space or ground)</param>
         /// <param name="needsEVAgroundSuit">Does the kerbal need a EVA ground suit ?</param>
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
-        private void personaliseKerbal(Component component, ProtoCrewMember protoKerbal, Part cabin, bool needsEVASuit, bool needsEVAgroundSuit, int suitState, out bool hasVisor)
+        private void personaliseKerbal(Component component, ProtoCrewMember protoKerbal, Part cabin, bool needsEVASuit, 
+            bool needsEVAgroundSuit, int suitState, out bool hasVisor, out Color32 visorReflection_Color)
         {
             Personaliser personaliser = Personaliser.instance;
 
@@ -826,6 +842,8 @@ namespace TextureReplacerReplaced
             bool isBadass = kerbalData.isBadass;
 
             bool useVisor = true;
+
+            Color32 visorReflectionColor = new Color32(128, 128, 128, 255);
 
             Head_Set personaliseKerbal_Head = getKerbalHead(protoKerbal, kerbalData);
            // Suit_Set personaliseKerbal_Suit = null;
@@ -1131,12 +1149,14 @@ namespace TextureReplacerReplaced
                                     {     
                                         if (personaliseKerbal_Suit.helmet_EvaGround_NoAtmo > 2) // hide the helmet 
                                         {
-                                            smr.enabled = false;                                            
+                                            smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             break;
                                         }                                            
                                         else // otherwise, select the good one and show it
                                         {
                                             smr.enabled = true;
+                                            smr.sharedMesh = helmetMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_helmet_EvaGround_NoAtmo(out newTexture, out newNormalMap);
                                             break;
                                         }  
@@ -1147,11 +1167,13 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.helmet_EvaGround_NoAtmo > 2)// hide the helmet 
                                         {
                                             smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             break;
                                         }
                                         else
                                         {
                                             smr.enabled = true;
+                                            smr.sharedMesh = helmetMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_helmet_EvaSpace(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1161,11 +1183,13 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.helmet_EvaGround_Atmo > 2) // hide the helmet 
                                         {
                                             smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             break;
                                         }
                                         else // otherwise, select the good one and show it
                                         {
                                             smr.enabled = true;
+                                            smr.sharedMesh = helmetMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_helmet_EvaGround_Atmo(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1221,13 +1245,17 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.visor_EvaGround_NoAtmo > 2) // hide the visor 
                                         {
                                             smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             useVisor = false;
                                             break;
                                         }
                                         else // otherwise, select the good one and show it
                                         {
                                             smr.enabled = true;
-                                            suit_Selector.select_visor_EvaGround_NoAtmo(out newTexture, out newNormalMap);
+                                            smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
+                                            suit_Selector.select_visor_EvaGround_NoAtmo(out newTexture, out newNormalMap, out visorReflectionColor);
+
+                                           // smr.sharedMaterial.color = personaliseKerbal_Head.get_PupilColor_Left(protoKerbal.experienceLevel);                                            
                                             useVisor = true;
                                             break;
                                         }
@@ -1238,13 +1266,15 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.visor_EvaGround_NoAtmo > 2)
                                         {
                                             smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             useVisor = false;
                                             break;
                                         }
                                         else
                                         {
                                             smr.enabled = true;
-                                            suit_Selector.select_visor_EvaSpace(out newTexture, out newNormalMap);
+                                            smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
+                                            suit_Selector.select_visor_EvaSpace(out newTexture, out newNormalMap, out visorReflectionColor);
                                             useVisor = true;
                                             break;
                                         }
@@ -1254,13 +1284,15 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.visor_EvaGround_Atmo > 2) // hide the visor 
                                         {
                                             smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             useVisor = false;
                                             break;
                                         }
                                         else // otherwise, select the good one and show it
                                         {
                                             smr.enabled = true;
-                                            suit_Selector.select_visor_EvaGround_Atmo(out newTexture, out newNormalMap);
+                                            smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
+                                            suit_Selector.select_visor_EvaGround_Atmo(out newTexture, out newNormalMap, out visorReflectionColor);
                                             useVisor = true;
                                             break;
                                         }
@@ -1281,7 +1313,7 @@ namespace TextureReplacerReplaced
                                         {
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
-                                            suit_Selector.select_visor_Iva_Unsafe(out newTexture, out newNormalMap);
+                                            suit_Selector.select_visor_Iva_Unsafe(out newTexture, out newNormalMap, out visorReflectionColor);
                                             useVisor = true;
                                             break;
                                         }
@@ -1299,7 +1331,7 @@ namespace TextureReplacerReplaced
                                         {
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];                                            
-                                            suit_Selector.select_visor_Iva_Safe(out newTexture, out newNormalMap);
+                                            suit_Selector.select_visor_Iva_Safe(out newTexture, out newNormalMap, out visorReflectionColor);
                                             smr.sharedMaterial.color = Color.white;
                                             useVisor = true;
                                             break;
@@ -1322,11 +1354,13 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.jetpack_EvaGround_NoAtmo > 1) // hide the jetpack 
                                         {
                                             smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             break;
                                         }
                                         else // otherwise, select the good one and show it
                                         {
                                             smr.enabled = true;
+                                            smr.sharedMesh = jetpackMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_jetpack_EvaGround_NoAtmo(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1337,11 +1371,13 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.jetpack_EvaGround_NoAtmo > 1)
                                         {
                                             smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             break;
                                         }
                                         else
                                         {
                                             smr.enabled = true;
+                                            smr.sharedMesh = jetpackMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_jetpack_EvaSpace(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1351,11 +1387,13 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.jetpack_EvaGround_Atmo > 1) // hide the jetpack 
                                         {
                                             smr.enabled = false;
+                                            smr.sharedMesh = null;
                                             break;
                                         }
                                         else // otherwise, select the good one and show it
                                         {
                                             smr.enabled = true;
+                                            smr.sharedMesh = jetpackMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_jetpack_EvaGround_Atmo(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1364,36 +1402,7 @@ namespace TextureReplacerReplaced
                             }
                             break;
 
-                            /* if (isEva)
-                             {
-                                 smr.enabled = needsEVASuit;
-                                 if (personaliseKerbal_Suit != null)
-                                 {
-                                     if (isEva)
-                                     {
-                                         if (needsEVASuit && needsEVAgroundSuit)
-                                         {
-                                             suit_Filter.get_jetpack_EvaGround(out newTexture, out newNormalMap);
-                                             break;
-                                         }
-                                         else if (needsEVASuit)
-                                         {
-                                             suit_Filter.get_jetpack_EvaSpace(out newTexture, out newNormalMap);
-                                             break;
-                                         }
-                                         else
-                                         {                                            
-                                             break;
-                                         }
-                                     }
-                                     else
-                                     {                                        
-                                         break;
-                                     }
-                                 }
-                             }
-
-                            break;*/
+                            
 
                         default: // Jetpack.
 
@@ -1406,11 +1415,13 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.jetpack_EvaGround_NoAtmo > 1) // hide the jetpack 
                                         {
                                             smr.enabled = false;
+                                            //smr.sharedMesh = null;
                                             break;
                                         }
                                         else // otherwise, select the good one and show it
                                         {
                                             smr.enabled = true;
+                                           // smr.sharedMesh = jetpackMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_jetpack_EvaGround_NoAtmo(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1421,11 +1432,13 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.jetpack_EvaGround_NoAtmo > 1)
                                         {
                                             smr.enabled = false;
+                                            //smr.sharedMesh = null;
                                             break;
                                         }
                                         else
                                         {
                                             smr.enabled = true;
+                                            //smr.sharedMesh = jetpackMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_jetpack_EvaSpace(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1435,11 +1448,13 @@ namespace TextureReplacerReplaced
                                         if (personaliseKerbal_Suit.jetpack_EvaGround_Atmo > 1) // hide the jetpack 
                                         {
                                             smr.enabled = false;
+                                            //smr.sharedMesh = null;
                                             break;
                                         }
                                         else // otherwise, select the good one and show it
                                         {
                                             smr.enabled = true;
+                                            //smr.sharedMesh = jetpackMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_jetpack_EvaGround_Atmo(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1447,35 +1462,7 @@ namespace TextureReplacerReplaced
                                 }
                             }
                             break;
-                            /* if (isEva)
-                             {
-                                 smr.enabled = needsEVASuit;
-                                 if (personaliseKerbal_Suit != null)
-                                 {
-                                     if (isEva)
-                                     {
-                                         if (needsEVASuit && needsEVAgroundSuit)
-                                         {
-                                             suit_Filter.get_jetpack_EvaGround(out newTexture, out newNormalMap);
-                                             break;
-                                         }
-                                         else if (needsEVASuit)
-                                         {
-                                             suit_Filter.get_jetpack_EvaSpace(out newTexture, out newNormalMap);
-                                             break;
-                                         }
-                                         else
-                                         {
-                                             break;
-                                         }
-                                     }
-                                     else
-                                     {
-                                         break;
-                                     }
-                                 }
-                             }
-                             break;*/
+                            
                     }
 
                     if (newTexture != null)
@@ -1487,6 +1474,7 @@ namespace TextureReplacerReplaced
             }
 
             hasVisor = useVisor;
+            visorReflection_Color = visorReflectionColor;
         }
         
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -1501,8 +1489,9 @@ namespace TextureReplacerReplaced
             bool needsSuit = !isSituationSafe(kerbal.InVessel);
 
             Personaliser personaliser = Personaliser.instance;
-           
-            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false, 0, out hasVisor);
+            Color32 visorReflectionColor = new Color32(128, 128, 128, 255);
+
+            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false, 0, out hasVisor, out visorReflectionColor);
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -1567,13 +1556,13 @@ namespace TextureReplacerReplaced
         /// <para>2 = EVA space suit</para></param>
         /// <returns>The selected suit set after the <see cref="isAtmBreathable"/> test</returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        private int personaliseEva(Part evaPart, int suitSelection, out bool hasVisor)
+        private int personaliseEva(Part evaPart, int suitSelection, out bool hasVisor, out Color32 visorReflectionColor)
         {
             int selection = suitSelection;
             bool evaSuit = false;
             bool evaGroundSuit = false;
             bool useVisor = true;
-
+            Color32 reflectionColor = new Color32(128, 128, 128, 255);
             Personaliser personaliser = Personaliser.instance;
 
             List<ProtoCrewMember> crew = evaPart.protoModuleCrew;         
@@ -1642,12 +1631,14 @@ namespace TextureReplacerReplaced
                         break;
 
                 }
-               // if (selection == 0) ScreenMessages.PostScreenMessage("IVA suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
+                // if (selection == 0) ScreenMessages.PostScreenMessage("IVA suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                 //else if (selection== 1) ScreenMessages.PostScreenMessage("EVA Ground suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
-               // else if (selection== 2) ScreenMessages.PostScreenMessage("EVA Space suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
-                personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit,selection, out useVisor);
+                // else if (selection== 2) ScreenMessages.PostScreenMessage("EVA Space suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
+                
+                personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit,selection, out useVisor, out reflectionColor);
             }
             hasVisor = useVisor;
+            visorReflectionColor = reflectionColor;
             return selection;
         }        
 
@@ -3042,6 +3033,8 @@ namespace TextureReplacerReplaced
                         helmetMesh[gender] = smr.sharedMesh;
                     else if (smr.name.EndsWith("visor", StringComparison.Ordinal))
                         visorMesh[gender] = smr.sharedMesh;
+                    else if (smr.name.EndsWith("jetpack", StringComparison.Ordinal))
+                        jetpackMesh[gender] = smr.sharedMesh;
                 }
 
                 // After an IVA space is initialized, suits are reset to these values. Replace stock textures with default ones.

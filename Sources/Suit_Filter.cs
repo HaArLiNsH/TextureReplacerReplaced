@@ -443,7 +443,7 @@ namespace TextureReplacerReplaced
 
         }
 
-        public void get_visor_EvaGround(out Texture2D texture, out Texture2D normalMap)
+        public void get_visor_EvaGround(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
         {
             if (isBadass && isVeteran)
             {
@@ -451,13 +451,13 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_EvaGround_VetBad_Male(level);
                     normalMap = suit.get_visor_EvaGround_VetBad_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_EvaGround_VetBad_Female(level);
                     normalMap = suit.get_visor_EvaGround_VetBad_FemaleNRM(level);
-                    return;
+                    
                 }
             }
             else if (isVeteran)
@@ -466,13 +466,13 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_EvaGround_Veteran_Male(level);
                     normalMap = suit.get_visor_EvaGround_Veteran_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_EvaGround_Veteran_Female(level);
                     normalMap = suit.get_visor_EvaGround_Veteran_FemaleNRM(level);
-                    return;
+                    
                 }
             }
             else if (isBadass)
@@ -481,13 +481,13 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_EvaGround_Badass_Male(level);
                     normalMap = suit.get_visor_EvaGround_Badass_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_EvaGround_Badass_Female(level);
                     normalMap = suit.get_visor_EvaGround_Badass_FemaleNRM(level);
-                    return;
+                    
                 }
             }
             else
@@ -496,19 +496,19 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_EvaGround_Standard_Male(level);
                     normalMap = suit.get_visor_EvaGround_Standard_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_EvaGround_Standard_Female(level);
                     normalMap = suit.get_visor_EvaGround_Standard_FemaleNRM(level);
-                    return;
+                    
                 }
             }
-
+            reflectionColor = suit.get_EvaGround_VisorReflectionColor(level);
         }
 
-        public void get_visor_EvaSpace(out Texture2D texture, out Texture2D normalMap)
+        public void get_visor_EvaSpace(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
         {
             if (isBadass && isVeteran)
             {
@@ -516,13 +516,13 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_EvaSpace_VetBad_Male(level);
                     normalMap = suit.get_visor_EvaSpace_VetBad_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_EvaSpace_VetBad_Female(level);
                     normalMap = suit.get_visor_EvaSpace_VetBad_FemaleNRM(level);
-                    return;
+                    
                 }
             }
             else if (isVeteran)
@@ -531,13 +531,13 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_EvaSpace_Veteran_Male(level);
                     normalMap = suit.get_visor_EvaSpace_Veteran_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_EvaSpace_Veteran_Female(level);
                     normalMap = suit.get_visor_EvaSpace_Veteran_FemaleNRM(level);
-                    return;
+                    
                 }
             }
             else if (isBadass)
@@ -546,13 +546,13 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_EvaSpace_Badass_Male(level);
                     normalMap = suit.get_visor_EvaSpace_Badass_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_EvaSpace_Badass_Female(level);
                     normalMap = suit.get_visor_EvaSpace_Badass_FemaleNRM(level);
-                    return;
+                    
                 }
             }
             else
@@ -561,32 +561,33 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_EvaSpace_Standard_Male(level);
                     normalMap = suit.get_visor_EvaSpace_Standard_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_EvaSpace_Standard_Female(level);
                     normalMap = suit.get_visor_EvaSpace_Standard_FemaleNRM(level);
-                    return;
+                    
                 }
             }
+            reflectionColor = suit.get_EvaSpace_VisorReflectionColor(level);
         }
 
-        public void get_visor_Iva(out Texture2D texture, out Texture2D normalMap)
+        public void get_visor_Iva(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
         {
             if (isBadass && isVeteran)
             {
                 if (gender == 0)
                 {
                     texture = suit.get_visor_Iva_VetBad_Male(level);
-                    normalMap = suit.get_visor_Iva_VetBad_MaleNRM(level);
-                    return;
+                    normalMap = suit.get_visor_Iva_VetBad_MaleNRM(level);                 
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_Iva_VetBad_Female(level);
                     normalMap = suit.get_visor_Iva_VetBad_FemaleNRM(level);
-                    return;
+                    
                 }
             }
             else if (isVeteran)
@@ -595,13 +596,13 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_Iva_Veteran_Male(level);
                     normalMap = suit.get_visor_Iva_Veteran_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_Iva_Veteran_Female(level);
                     normalMap = suit.get_visor_Iva_Veteran_FemaleNRM(level);
-                    return;
+                    
                 }
             }
             else if (isBadass)
@@ -610,13 +611,13 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_Iva_Badass_Male(level);
                     normalMap = suit.get_visor_Iva_Badass_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_Iva_Badass_Female(level);
                     normalMap = suit.get_visor_Iva_Badass_FemaleNRM(level);
-                    return;
+                    
                 }
             }
             else
@@ -625,16 +626,16 @@ namespace TextureReplacerReplaced
                 {
                     texture = suit.get_visor_Iva_Standard_Male(level);
                     normalMap = suit.get_visor_Iva_Standard_MaleNRM(level);
-                    return;
+                    
                 }
                 else
                 {
                     texture = suit.get_visor_Iva_Standard_Female(level);
                     normalMap = suit.get_visor_Iva_Standard_FemaleNRM(level);
-                    return;
+                    
                 }
             }
-
+            reflectionColor = suit.get_Iva_VisorReflectionColor(level);
         }
 
         public void get_jetpack_EvaGround(out Texture2D texture, out Texture2D normalMap)

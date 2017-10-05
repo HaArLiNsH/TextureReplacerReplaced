@@ -1838,10 +1838,10 @@ namespace TextureReplacerReplaced
                     suit.visor_Iva_ReflectionColor[0].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[0].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[0].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[0].b = GUI_B;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -1867,10 +1867,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaGround_ReflectionColor[0].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[0].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[0].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[0].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -1896,10 +1896,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaSpace_ReflectionColor[0].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_EvaSpace_ReflectionColor[0].a;
+                    /*byte GUI_A = suit.visor_EvaSpace_ReflectionColor[0].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_EvaSpace_ReflectionColor[0].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 
@@ -1942,10 +1942,10 @@ namespace TextureReplacerReplaced
                     suit.visor_Iva_ReflectionColor[1].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[1].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[1].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[1].b = GUI_B;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -1971,10 +1971,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaGround_ReflectionColor[1].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[1].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[1].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[1].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -2000,10 +2000,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaSpace_ReflectionColor[1].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_EvaSpace_ReflectionColor[1].a;
+                    /*byte GUI_A = suit.visor_EvaSpace_ReflectionColor[1].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_EvaSpace_ReflectionColor[1].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
 
@@ -2046,10 +2046,10 @@ namespace TextureReplacerReplaced
                     suit.visor_Iva_ReflectionColor[2].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[2].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[2].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[2].b = GUI_B;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -2075,10 +2075,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaGround_ReflectionColor[2].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[2].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[2].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[2].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -2104,10 +2104,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaSpace_ReflectionColor[2].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_EvaSpace_ReflectionColor[2].a;
+                    /*byte GUI_A = suit.visor_EvaSpace_ReflectionColor[2].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_EvaSpace_ReflectionColor[2].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
 
@@ -2150,10 +2150,10 @@ namespace TextureReplacerReplaced
                     suit.visor_Iva_ReflectionColor[3].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[3].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[3].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[3].b = GUI_B;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -2179,10 +2179,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaGround_ReflectionColor[3].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[3].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[3].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[3].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -2208,10 +2208,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaSpace_ReflectionColor[3].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_EvaSpace_ReflectionColor[3].a;
+                    /*byte GUI_A = suit.visor_EvaSpace_ReflectionColor[3].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_EvaSpace_ReflectionColor[3].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
 
@@ -2254,10 +2254,10 @@ namespace TextureReplacerReplaced
                     suit.visor_Iva_ReflectionColor[4].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[4].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[4].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[4].b = GUI_B;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -2283,10 +2283,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaGround_ReflectionColor[4].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[4].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[4].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[4].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -2312,10 +2312,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaSpace_ReflectionColor[4].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_EvaSpace_ReflectionColor[4].a;
+                    /*byte GUI_A = suit.visor_EvaSpace_ReflectionColor[4].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_EvaSpace_ReflectionColor[4].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
 
@@ -2358,10 +2358,10 @@ namespace TextureReplacerReplaced
                     suit.visor_Iva_ReflectionColor[5].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[5].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[5].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[5].b = GUI_B;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -2387,10 +2387,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaGround_ReflectionColor[5].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_Iva_ReflectionColor[5].a;
+                    /*byte GUI_A = suit.visor_Iva_ReflectionColor[5].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_Iva_ReflectionColor[5].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
                 if (suit != null)
@@ -2416,10 +2416,10 @@ namespace TextureReplacerReplaced
                     suit.visor_EvaSpace_ReflectionColor[5].b = GUI_B;
                     GUILayout.Label("B", labelStyle);
 
-                    byte GUI_A = suit.visor_EvaSpace_ReflectionColor[5].a;
+                    /*byte GUI_A = suit.visor_EvaSpace_ReflectionColor[5].a;
                     byte.TryParse(GUILayout.TextField(GUI_A.ToString(), 3, GUILayout.Width(colorCellWidth)), out GUI_A);
                     suit.visor_EvaSpace_ReflectionColor[5].a = GUI_A;
-                    GUILayout.Label("A", labelStyle);
+                    GUILayout.Label("A", labelStyle);*/
                 }
                 GUILayout.EndHorizontal();
 
