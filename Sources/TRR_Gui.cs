@@ -45,7 +45,7 @@ namespace TextureReplacerReplaced
 
         private bool suitGui_IsEnabled = false;
 
-        private Rect suitGui_windowRect = new Rect(60, 80, 1115, 710);
+        private Rect suitGui_windowRect = new Rect(60, 80, 1095, 710);
 
         private const int WINDOW_ID_SUIT = 107058;
 
@@ -1698,7 +1698,7 @@ namespace TextureReplacerReplaced
             int colorCellColumwWidth = 150;
             int suitCellSize = 120;
             int suitImgSize = 150;
-            int textureAndColorColumnWidth = 250;
+            int textureAndColorColumnWidth = 230;
             int suitsetColumnWidth = 130;
             int suitConfigWidth = 375;
 
@@ -1743,7 +1743,7 @@ namespace TextureReplacerReplaced
             GUILayout.BeginVertical(); // start of the Gui column
             GUILayout.BeginHorizontal(); // start of the Gui row
 
-            if (GUI.Button(new Rect(1090, 5, 20, 20), "X"))
+            if (GUI.Button(new Rect(1070, 5, 20, 20), "X"))
             {
                 suitGui_IsEnabled = false;
                 selectedsuitSet = null;
