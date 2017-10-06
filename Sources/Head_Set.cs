@@ -44,7 +44,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Is the head texture for a female model ?
         /// </summary>
-        public bool isFemale;
+        public bool isFemale = false;
 
         /// <summary>
         /// Is the head texture made to be used without the eyes 3D meshes ?

@@ -36,6 +36,8 @@ namespace TextureReplacerReplaced
     /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public class Suit_Set
     {
+
+
         /// <summary>
         /// The name of the suit set
         /// </summary>
@@ -46,964 +48,1070 @@ namespace TextureReplacerReplaced
         /// </summary>
         public bool isExclusive = false;
 
-        public bool Iva_Use = true;
-
-        public bool Iva_ForceUse = false;
-
-        public bool Iva_ForceUseHelmetAndVisor = false;
-
-        public bool Iva_HideHelmet_InAtmo = true;
-
-        public bool Iva_HideHelmet_OutAtmo = false;
-
-        public bool Iva_VisorReflectionAdaptive = true;
-
-        public Color32[] Iva_VisorReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
-
-        public bool Iva_HideHelmet_InVehicle = true;
-
-        public bool Iva_HideHelmet_WhenSafe = true;
-
-        public bool Iva_HideHelmet_WhenUnsafe = false;
-
-
-        public bool EvaGround_Use = false;
-
-        public bool EvaGround_ForceUse = false;
-
-        public bool EvaGround_ForceUseHelmetAndVisor = false;
-
-        public bool EvaGround_HideHelmet_InAtmo = false;
-
-        public bool EvaGround_HideHelmet_OutAtmo = false;
-
-        public bool EvaGround_VisorReflectionAdaptive = true;
-
-        public Color32[] EvaGround_VisorReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
-
-
-        public bool EvaSpace_Use = true;
-
-        public bool EvaSpace_ForceUse = false;
-
-        public bool EvaSpace_ForceUseHelmetAndVisor = false;
-
-        public bool EvaSpace_HideHelmet_InAtmo = false;
-
-        public bool EvaSpace_HideHelmet_OutAtmo = false;
-
-        public bool EvaSpace_VisorReflectionAdaptive = true;
-
-        public Color32[] EvaSpace_VisorReflectionColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
-                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
-
-
-
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  This will disappear !!!!!!!!!!!!!!!!!!!!!!!
         /// <summary>
-        /// Is the suit set made for female kerbal?
+        /// The suit when in vehicle and safe
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
         /// </summary>
-        //public bool isFemale;        
+        public int suit_Iva_Safe = 0;
 
+        /// <summary>
+        /// The suit when in vehicle and unsafe
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// </summary>
+        public int suit_Iva_Unsafe = 0;
+
+        /// <summary>
+        /// The suit when out of the vehicle, on the ground and with atmosphere
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// </summary>
+        public int suit_EvaGround_Atmo = 0;
+
+        /// <summary>
+        /// The suit when out of the vehicle, on the ground and without atmosphere
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// </summary>
+        public int suit_EvaGround_NoAtmo = 1;
+
+        /// <summary>
+        /// The suit when out of the vehicle, in space
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// </summary>
+        public int suit_EvaSpace = 2;
+
+        /// <summary>
+        /// The helmet when in vehicle and safe
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// 3 = NONE
+        /// </summary>
+        public int helmet_Iva_Safe = 3;
+
+        /// <summary>
+        /// The helmet when in vehicle and unsafe
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// 3 = NONE
+        /// </summary>
+        public int helmet_Iva_Unsafe = 0;
+
+        /// <summary>
+        /// The helmet when out of the vehicle, on the ground and with atmosphere
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// 3 = NONE
+        /// </summary>
+        public int helmet_EvaGround_Atmo = 3;
+
+        /// <summary>
+        /// The helmet when out of the vehicle, on the ground and without atmosphere
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// 3 = NONE
+        /// </summary>
+        public int helmet_EvaGround_NoAtmo = 1;
+
+        /// <summary>
+        /// The helmet when out of the vehicle, in space
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// 3 = NONE
+        /// </summary>
+        public int helmet_EvaSpace = 2;
+
+        /// <summary>
+        /// The visor when in vehicle and safe
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// 3 = NONE
+        /// </summary>
+        public int visor_Iva_Safe = 3;
+
+        /// <summary>
+        /// The visor when in vehicle and unsafe
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// 3 = NONE
+        /// </summary>
+        public int visor_Iva_Unsafe = 0;
+
+        /// <summary>
+        /// The visor when out of the vehicle, on the ground and with atmosphere
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// 3 = NONE
+        /// </summary>
+        public int visor_EvaGround_Atmo = 3;
+
+        /// <summary>
+        /// The visor when out of the vehicle, on the ground and without atmosphere
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// 3 = NONE
+        /// </summary>
+        public int visor_EvaGround_NoAtmo = 1;
+
+        /// <summary>
+        /// The visor when out of the vehicle, in space
+        /// 0 = IVA,
+        /// 1 = EVA GROUND,
+        /// 2 = EVA SPACE
+        /// 3 = NONE
+        /// </summary>
+        public int visor_EvaSpace = 2;
+
+        /// <summary>
+        /// The jetpack when out of the vehicle, on the ground and with atmosphere
+        /// 0 = EVA GROUND,
+        /// 1 = EVA SPACE
+        /// 2 = NONE,
+        /// </summary>
+        public int jetpack_EvaGround_Atmo = 2;
+
+        /// <summary>
+        /// The jetpack when out of the vehicle, on the ground and without atmosphere
+        /// 0 = EVA GROUND,
+        /// 1 = EVA SPACE
+        /// 2 = NONE,
+        /// </summary>
+        public int jetpack_EvaGround_NoAtmo = 0;
+
+        /// <summary>
+        /// The jetpack when out of the vehicle, in space
+        /// 0 = EVA GROUND,
+        /// 1 = EVA SPACE
+        /// 2 = NONE,
+        /// </summary>
+        public int jetpack_EvaSpace = 1;
+        
+
+        public bool visor_Iva_ReflectionAdaptive = true;
+        public bool visor_EvaGround_ReflectionAdaptive = true;
+        public bool visor_EvaSpace_ReflectionAdaptive = true;
+
+        public Color32[] visor_Iva_ReflectionColor = { new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255) };        
+
+        public Color32[] visor_EvaGround_ReflectionColor = { new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255) };        
+
+        public Color32[] visor_EvaSpace_ReflectionColor = { new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
+                , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255) };
+        
         /// <summary>
         /// The texture list for the helmet_EvaGround_Badass_Female
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Badass_Female;
+        public Texture2D[] helmet_EvaGround_Badass_Female;
 
         /// <summary>
         /// Normal map list for the helmet_EvaGround_Badass_Female
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Badass_FemaleNRM;
+        public Texture2D[] helmet_EvaGround_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaGround_Badass_Male
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Badass_Male;
+        public Texture2D[] helmet_EvaGround_Badass_Male;
 
         /// <summary>
         /// Normal map list for the helmet_EvaGround_Badass_Male
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Badass_MaleNRM;
+        public Texture2D[] helmet_EvaGround_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaGround_Standard_Female
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Standard_Female;
+        public Texture2D[] helmet_EvaGround_Standard_Female;
 
         /// <summary>
         /// Normal map list for the helmet_EvaGround_Standard_Female
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Standard_FemaleNRM;
+        public Texture2D[] helmet_EvaGround_Standard_FemaleNRM;
 
         /// <summary>
         /// The texture list for the leveled EVA ground helmet
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Standard_Male;
+        public Texture2D[] helmet_EvaGround_Standard_Male;
 
         /// <summary>
         /// Normal map list for the leveled EVA ground helmet
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Standard_MaleNRM;
+        public Texture2D[] helmet_EvaGround_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaGround_VetBad_Female
         /// </summary>
-        private Texture2D[] helmet_EvaGround_VetBad_Female;
+        public Texture2D[] helmet_EvaGround_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the helmet_EvaGround_VetBad_Female
         /// </summary>
-        private Texture2D[] helmet_EvaGround_VetBad_FemaleNRM;
+        public Texture2D[] helmet_EvaGround_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaGround_VetBad_Male
         /// </summary>
-        private Texture2D[] helmet_EvaGround_VetBad_Male;
+        public Texture2D[] helmet_EvaGround_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the helmet_EvaGround_VetBad_Male
         /// </summary>
-        private Texture2D[] helmet_EvaGround_VetBad_MaleNRM;
+        public Texture2D[] helmet_EvaGround_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaGround_Veteran_Female
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Veteran_Female;
+        public Texture2D[] helmet_EvaGround_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the helmet_EvaGround_Veteran_Female
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Veteran_FemaleNRM;
+        public Texture2D[] helmet_EvaGround_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaGround_Veteran_Male
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Veteran_Male;
+        public Texture2D[] helmet_EvaGround_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the helmet_EvaGround_Veteran_Male
         /// </summary>
-        private Texture2D[] helmet_EvaGround_Veteran_MaleNRM;
+        public Texture2D[] helmet_EvaGround_Veteran_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaSpace_Badass_Female
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Badass_Female;
+        public Texture2D[] helmet_EvaSpace_Badass_Female;
 
         /// <summary>
         /// Normal map list for the helmet_EvaSpace_Badass_Female
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Badass_FemaleNRM;
+        public Texture2D[] helmet_EvaSpace_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaSpace_Badass_Male
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Badass_Male;
+        public Texture2D[] helmet_EvaSpace_Badass_Male;
 
         /// <summary>
         /// Normal map list for the helmet_EvaSpace_Badass_Male
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Badass_MaleNRM;
+        public Texture2D[] helmet_EvaSpace_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaSpace_Standard_Female
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Standard_Female;
+        public Texture2D[] helmet_EvaSpace_Standard_Female;
 
         /// <summary>
         /// Normal map list for the helmet_EvaSpace_Standard_Female
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Standard_FemaleNRM;
+        public Texture2D[] helmet_EvaSpace_Standard_FemaleNRM;
         /// <summary>
         /// The texture list for the leveled EVA space helmet
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Standard_Male;
+        public Texture2D[] helmet_EvaSpace_Standard_Male;
 
         /// <summary>
         /// Normal map list for the leveled EVA space helmet
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Standard_MaleNRM;
+        public Texture2D[] helmet_EvaSpace_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaSpace_VetBad_Female
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_VetBad_Female;
+        public Texture2D[] helmet_EvaSpace_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the helmet_EvaSpace_VetBad_Female
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_VetBad_FemaleNRM;
+        public Texture2D[] helmet_EvaSpace_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaSpace_VetBad_Male
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_VetBad_Male;
+        public Texture2D[] helmet_EvaSpace_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the helmet_EvaSpace_VetBad_Male
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_VetBad_MaleNRM;
+        public Texture2D[] helmet_EvaSpace_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaSpace_Veteran_Female
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Veteran_Female;
+        public Texture2D[] helmet_EvaSpace_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the helmet_EvaSpace_Veteran_Female
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Veteran_FemaleNRM;
+        public Texture2D[] helmet_EvaSpace_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_EvaSpace_Veteran_Male
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Veteran_Male;
+        public Texture2D[] helmet_EvaSpace_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the helmet_EvaSpace_Veteran_Male
         /// </summary>
-        private Texture2D[] helmet_EvaSpace_Veteran_MaleNRM;
+        public Texture2D[] helmet_EvaSpace_Veteran_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_Iva_Badass_Female
         /// </summary>
-        private Texture2D[] helmet_Iva_Badass_Female;
+        public Texture2D[] helmet_Iva_Badass_Female;
 
         /// <summary>
         /// Normal map list for the helmet_Iva_Badass_Female
         /// </summary>
-        private Texture2D[] helmet_Iva_Badass_FemaleNRM;
+        public Texture2D[] helmet_Iva_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_Iva_Badass_Male
         /// </summary>
-        private Texture2D[] helmet_Iva_Badass_Male;
+        public Texture2D[] helmet_Iva_Badass_Male;
 
         /// <summary>
         /// Normal map list for the helmet_Iva_Badass_Male
         /// </summary>
-        private Texture2D[] helmet_Iva_Badass_MaleNRM;
+        public Texture2D[] helmet_Iva_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_Iva_Standard_Female
         /// </summary>
-        private Texture2D[] helmet_Iva_Standard_Female;
+        public Texture2D[] helmet_Iva_Standard_Female;
 
         /// <summary>
         /// Normal map list for the helmet_Iva_Standard_Female
         /// </summary>
-        private Texture2D[] helmet_Iva_Standard_FemaleNRM;
+        public Texture2D[] helmet_Iva_Standard_FemaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_Iva_Standard_Male
         /// </summary>
-        private Texture2D[] helmet_Iva_Standard_Male;
+        public Texture2D[] helmet_Iva_Standard_Male;
 
         /// <summary>
         /// Normal map list for the helmet_Iva_Standard_Male
         /// </summary>
-        private Texture2D[] helmet_Iva_Standard_MaleNRM;
+        public Texture2D[] helmet_Iva_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_Iva_VetBad_Female
         /// </summary>
-        private Texture2D[] helmet_Iva_VetBad_Female;
+        public Texture2D[] helmet_Iva_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the helmet_Iva_VetBad_Female
         /// </summary>
-        private Texture2D[] helmet_Iva_VetBad_FemaleNRM;
+        public Texture2D[] helmet_Iva_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_Iva_VetBad_Male
         /// </summary>
-        private Texture2D[] helmet_Iva_VetBad_Male;
+        public Texture2D[] helmet_Iva_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the helmet_Iva_VetBad_Male
         /// </summary>
-        private Texture2D[] helmet_Iva_VetBad_MaleNRM;
+        public Texture2D[] helmet_Iva_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_Iva_Veteran_Female
         /// </summary>
-        private Texture2D[] helmet_Iva_Veteran_Female;
+        public Texture2D[] helmet_Iva_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the helmet_Iva_Veteran_Female
         /// </summary>
-        private Texture2D[] helmet_Iva_Veteran_FemaleNRM;
+        public Texture2D[] helmet_Iva_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the helmet_Iva_Veteran_Male
         /// </summary>
-        private Texture2D[] helmet_Iva_Veteran_Male;
+        public Texture2D[] helmet_Iva_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the helmet_Iva_Veteran_Male
         /// </summary>
-        private Texture2D[] helmet_Iva_Veteran_MaleNRM;
+        public Texture2D[] helmet_Iva_Veteran_MaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaGround_Badass_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Badass_Female;
+        public Texture2D[] jetpack_EvaGround_Badass_Female;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaGround_Badass_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Badass_FemaleNRM;
+        public Texture2D[] jetpack_EvaGround_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaGround_Badass_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Badass_Male;
+        public Texture2D[] jetpack_EvaGround_Badass_Male;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaGround_Badass_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Badass_MaleNRM;
+        public Texture2D[] jetpack_EvaGround_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaGround_Standard_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Standard_Female;
+        public Texture2D[] jetpack_EvaGround_Standard_Female;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaGround_Standard_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Standard_FemaleNRM;
+        public Texture2D[] jetpack_EvaGround_Standard_FemaleNRM;
 
         /// <summary>
         /// The texture list for the leveled EVA ground jetpack
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Standard_Male;
+        public Texture2D[] jetpack_EvaGround_Standard_Male;
 
         /// <summary>
         /// Normal map list for the leveled EVA ground jetpack
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Standard_MaleNRM;
+        public Texture2D[] jetpack_EvaGround_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaGround_VetBad_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_VetBad_Female;
+        public Texture2D[] jetpack_EvaGround_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaGround_VetBad_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_VetBad_FemaleNRM;
+        public Texture2D[] jetpack_EvaGround_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaGround_VetBad_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_VetBad_Male;
+        public Texture2D[] jetpack_EvaGround_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaGround_VetBad_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_VetBad_MaleNRM;
+        public Texture2D[] jetpack_EvaGround_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaGround_Veteran_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Veteran_Female;
+        public Texture2D[] jetpack_EvaGround_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaGround_Veteran_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Veteran_FemaleNRM;
+        public Texture2D[] jetpack_EvaGround_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaGround_Veteran_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Veteran_Male;
+        public Texture2D[] jetpack_EvaGround_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaGround_Veteran_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaGround_Veteran_MaleNRM;       
+        public Texture2D[] jetpack_EvaGround_Veteran_MaleNRM;       
 
         /// <summary>
         /// The texture list for the jetpack_EvaSpace_Badass_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Badass_Female;
+        public Texture2D[] jetpack_EvaSpace_Badass_Female;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaSpace_Badass_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Badass_FemaleNRM;
+        public Texture2D[] jetpack_EvaSpace_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaSpace_Badass_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Badass_Male;
+        public Texture2D[] jetpack_EvaSpace_Badass_Male;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaSpace_Badass_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Badass_MaleNRM;
+        public Texture2D[] jetpack_EvaSpace_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaSpace_Standard_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Standard_Female;
+        public Texture2D[] jetpack_EvaSpace_Standard_Female;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaSpace_Standard_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Standard_FemaleNRM;
+        public Texture2D[] jetpack_EvaSpace_Standard_FemaleNRM;
         /// <summary>
         /// The texture list for the leveled EVA space jetpack
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Standard_Male;
+        public Texture2D[] jetpack_EvaSpace_Standard_Male;
 
         /// <summary>
         /// Normal map list for the leveled EVA space jetpack
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Standard_MaleNRM;
+        public Texture2D[] jetpack_EvaSpace_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaSpace_VetBad_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_VetBad_Female;
+        public Texture2D[] jetpack_EvaSpace_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaSpace_VetBad_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_VetBad_FemaleNRM;
+        public Texture2D[] jetpack_EvaSpace_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaSpace_VetBad_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_VetBad_Male;
+        public Texture2D[] jetpack_EvaSpace_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaSpace_VetBad_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_VetBad_MaleNRM;
+        public Texture2D[] jetpack_EvaSpace_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaSpace_Veteran_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Veteran_Female;
+        public Texture2D[] jetpack_EvaSpace_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaSpace_Veteran_Female
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Veteran_FemaleNRM;
+        public Texture2D[] jetpack_EvaSpace_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the jetpack_EvaSpace_Veteran_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Veteran_Male;
+        public Texture2D[] jetpack_EvaSpace_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the jetpack_EvaSpace_Veteran_Male
         /// </summary>
-        private Texture2D[] jetpack_EvaSpace_Veteran_MaleNRM;       
+        public Texture2D[] jetpack_EvaSpace_Veteran_MaleNRM;       
         
         /// <summary>
         /// The texture list for the suit_EvaGround_Badass_Female
         /// </summary>
-        private Texture2D[] suit_EvaGround_Badass_Female;
+        public Texture2D[] suit_EvaGround_Badass_Female;
 
         /// <summary>
         /// Normal map list for the suit_EvaGround_Badass_Female
         /// </summary>
-        private Texture2D[] suit_EvaGround_Badass_FemaleNRM;
+        public Texture2D[] suit_EvaGround_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaGround_Badass_Male
         /// </summary>
-        private Texture2D[] suit_EvaGround_Badass_Male;
+        public Texture2D[] suit_EvaGround_Badass_Male;
 
         /// <summary>
         /// Normal map list for the suit_EvaGround_Badass_Male
         /// </summary>
-        private Texture2D[] suit_EvaGround_Badass_MaleNRM;
+        public Texture2D[] suit_EvaGround_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaGround_Standard_Female
         /// </summary>
-        private Texture2D[] suit_EvaGround_Standard_Female;
+        public Texture2D[] suit_EvaGround_Standard_Female;
 
         /// <summary>
         /// Normal map list for the suit_EvaGround_Standard_Female
         /// </summary>
-        private Texture2D[] suit_EvaGround_Standard_FemaleNRM;
+        public Texture2D[] suit_EvaGround_Standard_FemaleNRM;
 
         /// <summary>
         /// The texture list for the leveled EVA ground suit
         /// </summary>
-        private Texture2D[] suit_EvaGround_Standard_Male;
+        public Texture2D[] suit_EvaGround_Standard_Male;
 
         /// <summary>
         /// Normal map list for the leveled EVA ground suit
         /// </summary>
-        private Texture2D[] suit_EvaGround_Standard_MaleNRM;
+        public Texture2D[] suit_EvaGround_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaGround_VetBad_Female
         /// </summary>
-        private Texture2D[] suit_EvaGround_VetBad_Female;
+        public Texture2D[] suit_EvaGround_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the suit_EvaGround_VetBad_Female
         /// </summary>
-        private Texture2D[] suit_EvaGround_VetBad_FemaleNRM;
+        public Texture2D[] suit_EvaGround_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaGround_VetBad_Male
         /// </summary>
-        private Texture2D[] suit_EvaGround_VetBad_Male;
+        public Texture2D[] suit_EvaGround_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the suit_EvaGround_VetBad_Male
         /// </summary>
-        private Texture2D[] suit_EvaGround_VetBad_MaleNRM;
+        public Texture2D[] suit_EvaGround_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaGround_Veteran_Female
         /// </summary>
-        private Texture2D[] suit_EvaGround_Veteran_Female;
+        public Texture2D[] suit_EvaGround_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the suit_EvaGround_Veteran_Female
         /// </summary>
-        private Texture2D[] suit_EvaGround_Veteran_FemaleNRM;
+        public Texture2D[] suit_EvaGround_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaGround_Veteran_Male
         /// </summary>
-        private Texture2D[] suit_EvaGround_Veteran_Male;
+        public Texture2D[] suit_EvaGround_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the suit_EvaGround_Veteran_Male
         /// </summary>
-        private Texture2D[] suit_EvaGround_Veteran_MaleNRM;
+        public Texture2D[] suit_EvaGround_Veteran_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaSpace_Badass_Female
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Badass_Female;
+        public Texture2D[] suit_EvaSpace_Badass_Female;
 
         /// <summary>
         /// Normal map list for the suit_EvaSpace_Badass_Female
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Badass_FemaleNRM;
+        public Texture2D[] suit_EvaSpace_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaSpace_Badass_Male
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Badass_Male;
+        public Texture2D[] suit_EvaSpace_Badass_Male;
 
         /// <summary>
         /// Normal map list for the suit_EvaSpace_Badass_Male
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Badass_MaleNRM;
+        public Texture2D[] suit_EvaSpace_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaSpace_Standard_Female
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Standard_Female;
+        public Texture2D[] suit_EvaSpace_Standard_Female;
 
         /// <summary>
         /// Normal map list for the suit_EvaSpace_Standard_Female
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Standard_FemaleNRM;
+        public Texture2D[] suit_EvaSpace_Standard_FemaleNRM;
         /// <summary>
         /// The texture list for the leveled EVA space suit
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Standard_Male;
+        public Texture2D[] suit_EvaSpace_Standard_Male;
 
         /// <summary>
         /// Normal map list for the leveled EVA space suit
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Standard_MaleNRM;
+        public Texture2D[] suit_EvaSpace_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaSpace_VetBad_Female
         /// </summary>
-        private Texture2D[] suit_EvaSpace_VetBad_Female;
+        public Texture2D[] suit_EvaSpace_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the suit_EvaSpace_VetBad_Female
         /// </summary>
-        private Texture2D[] suit_EvaSpace_VetBad_FemaleNRM;
+        public Texture2D[] suit_EvaSpace_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaSpace_VetBad_Male
         /// </summary>
-        private Texture2D[] suit_EvaSpace_VetBad_Male;
+        public Texture2D[] suit_EvaSpace_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the suit_EvaSpace_VetBad_Male
         /// </summary>
-        private Texture2D[] suit_EvaSpace_VetBad_MaleNRM;
+        public Texture2D[] suit_EvaSpace_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaSpace_Veteran_Female
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Veteran_Female;
+        public Texture2D[] suit_EvaSpace_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the suit_EvaSpace_Veteran_Female
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Veteran_FemaleNRM;
+        public Texture2D[] suit_EvaSpace_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the suit_EvaSpace_Veteran_Male
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Veteran_Male;
+        public Texture2D[] suit_EvaSpace_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the suit_EvaSpace_Veteran_Male
         /// </summary>
-        private Texture2D[] suit_EvaSpace_Veteran_MaleNRM;
+        public Texture2D[] suit_EvaSpace_Veteran_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_Iva_Badass_Female
         /// </summary>
-        private Texture2D[] suit_Iva_Badass_Female;
+        public Texture2D[] suit_Iva_Badass_Female;
 
         /// <summary>
         /// Normal map list for the suit_Iva_Badass_Female
         /// </summary>
-        private Texture2D[] suit_Iva_Badass_FemaleNRM;
+        public Texture2D[] suit_Iva_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the suit_Iva_Badass_Male
         /// </summary>
-        private Texture2D[] suit_Iva_Badass_Male;
+        public Texture2D[] suit_Iva_Badass_Male;
 
         /// <summary>
         /// Normal map list for the suit_Iva_Badass_Male
         /// </summary>
-        private Texture2D[] suit_Iva_Badass_MaleNRM;
+        public Texture2D[] suit_Iva_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_Iva_Standard_Female
         /// </summary>
-        private Texture2D[] suit_Iva_Standard_Female;
+        public Texture2D[] suit_Iva_Standard_Female;
 
         /// <summary>
         /// Normal map list for the suit_Iva_Standard_Female
         /// </summary>
-        private Texture2D[] suit_Iva_Standard_FemaleNRM;
+        public Texture2D[] suit_Iva_Standard_FemaleNRM;
 
         /// <summary>
         /// The texture list for the suit_Iva_Standard_Male
         /// </summary>
-        private Texture2D[] suit_Iva_Standard_Male;
+        public Texture2D[] suit_Iva_Standard_Male;
 
         /// <summary>
         /// Normal map list for the suit_Iva_Standard_Male
         /// </summary>
-        private Texture2D[] suit_Iva_Standard_MaleNRM;
+        public Texture2D[] suit_Iva_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_Iva_VetBad_Female
         /// </summary>
-        private Texture2D[] suit_Iva_VetBad_Female;
+        public Texture2D[] suit_Iva_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the suit_Iva_VetBad_Female
         /// </summary>
-        private Texture2D[] suit_Iva_VetBad_FemaleNRM;
+        public Texture2D[] suit_Iva_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the suit_Iva_VetBad_Male
         /// </summary>
-        private Texture2D[] suit_Iva_VetBad_Male;
+        public Texture2D[] suit_Iva_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the suit_Iva_VetBad_Male
         /// </summary>
-        private Texture2D[] suit_Iva_VetBad_MaleNRM;
+        public Texture2D[] suit_Iva_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the suit_Iva_Veteran_Female
         /// </summary>
-        private Texture2D[] suit_Iva_Veteran_Female;
+        public Texture2D[] suit_Iva_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the suit_Iva_Veteran_Female
         /// </summary>
-        private Texture2D[] suit_Iva_Veteran_FemaleNRM;
+        public Texture2D[] suit_Iva_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the suit_Iva_Veteran_Male
         /// </summary>
-        private Texture2D[] suit_Iva_Veteran_Male;
+        public Texture2D[] suit_Iva_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the suit_Iva_Veteran_Male
         /// </summary>
-        private Texture2D[] suit_Iva_Veteran_MaleNRM;
+        public Texture2D[] suit_Iva_Veteran_MaleNRM;
 
         /// <summary>
         /// The texture list for the Visor_EvaGround_Badass_Female
         /// </summary>
-        private Texture2D[] visor_EvaGround_Badass_Female;
+        public Texture2D[] visor_EvaGround_Badass_Female;
 
         /// <summary>
         /// Normal map list for the visor_EvaGround_Badass_Female
         /// </summary>
-        private Texture2D[] visor_EvaGround_Badass_FemaleNRM;
+        public Texture2D[] visor_EvaGround_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaGround_Badass_Male
         /// </summary>
-        private Texture2D[] visor_EvaGround_Badass_Male;
+        public Texture2D[] visor_EvaGround_Badass_Male;
 
         /// <summary>
         /// Normal map list for the visor_EvaGround_Badass_Male
         /// </summary>
-        private Texture2D[] visor_EvaGround_Badass_MaleNRM;
+        public Texture2D[] visor_EvaGround_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaGround_Standard_Female
         /// </summary>
-        private Texture2D[] visor_EvaGround_Standard_Female;
+        public Texture2D[] visor_EvaGround_Standard_Female;
 
         /// <summary>
         /// Normal map list for the visor_EvaGround_Standard_Female
         /// </summary>
-        private Texture2D[] visor_EvaGround_Standard_FemaleNRM;
+        public Texture2D[] visor_EvaGround_Standard_FemaleNRM;
 
         /// <summary>
         /// The texture list for the leveled EVA ground visor
         /// </summary>
-        private Texture2D[] visor_EvaGround_Standard_Male;
+        public Texture2D[] visor_EvaGround_Standard_Male;
 
         /// <summary>
         /// Normal map list for the leveled EVA ground visor
         /// </summary>
-        private Texture2D[] visor_EvaGround_Standard_MaleNRM;
+        public Texture2D[] visor_EvaGround_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaGround_VetBad_Female
         /// </summary>
-        private Texture2D[] visor_EvaGround_VetBad_Female;
+        public Texture2D[] visor_EvaGround_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the visor_EvaGround_VetBad_Female
         /// </summary>
-        private Texture2D[] visor_EvaGround_VetBad_FemaleNRM;
+        public Texture2D[] visor_EvaGround_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaGround_VetBad_Male
         /// </summary>
-        private Texture2D[] visor_EvaGround_VetBad_Male;
+        public Texture2D[] visor_EvaGround_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the visor_EvaGround_VetBad_Male
         /// </summary>
-        private Texture2D[] visor_EvaGround_VetBad_MaleNRM;
+        public Texture2D[] visor_EvaGround_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaGround_Veteran_Female
         /// </summary>
-        private Texture2D[] visor_EvaGround_Veteran_Female;
+        public Texture2D[] visor_EvaGround_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the visor_EvaGround_Veteran_Female
         /// </summary>
-        private Texture2D[] visor_EvaGround_Veteran_FemaleNRM;
+        public Texture2D[] visor_EvaGround_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaGround_Veteran_Male
         /// </summary>
-        private Texture2D[] visor_EvaGround_Veteran_Male;
+        public Texture2D[] visor_EvaGround_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the visor_EvaGround_Veteran_Male
         /// </summary>
-        private Texture2D[] visor_EvaGround_Veteran_MaleNRM;
+        public Texture2D[] visor_EvaGround_Veteran_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaSpace_Badass_Female
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Badass_Female;
+        public Texture2D[] visor_EvaSpace_Badass_Female;
 
         /// <summary>
         /// Normal map list for the visor_EvaSpace_Badass_Female
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Badass_FemaleNRM;
+        public Texture2D[] visor_EvaSpace_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaSpace_Badass_Male
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Badass_Male;
+        public Texture2D[] visor_EvaSpace_Badass_Male;
 
         /// <summary>
         /// Normal map list for the visor_EvaSpace_Badass_Male
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Badass_MaleNRM;
+        public Texture2D[] visor_EvaSpace_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaSpace_Standard_Female
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Standard_Female;
+        public Texture2D[] visor_EvaSpace_Standard_Female;
 
         /// <summary>
         /// Normal map list for the visor_EvaSpace_Standard_Female
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Standard_FemaleNRM;
+        public Texture2D[] visor_EvaSpace_Standard_FemaleNRM;
         /// <summary>
         /// The texture list for the leveled EVA space visor
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Standard_Male;
+        public Texture2D[] visor_EvaSpace_Standard_Male;
 
         /// <summary>
         /// Normal map list for the leveled EVA space visor
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Standard_MaleNRM;
+        public Texture2D[] visor_EvaSpace_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaSpace_VetBad_Female
         /// </summary>
-        private Texture2D[] visor_EvaSpace_VetBad_Female;
+        public Texture2D[] visor_EvaSpace_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the visor_EvaSpace_VetBad_Female
         /// </summary>
-        private Texture2D[] visor_EvaSpace_VetBad_FemaleNRM;
+        public Texture2D[] visor_EvaSpace_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaSpace_VetBad_Male
         /// </summary>
-        private Texture2D[] visor_EvaSpace_VetBad_Male;
+        public Texture2D[] visor_EvaSpace_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the visor_EvaSpace_VetBad_Male
         /// </summary>
-        private Texture2D[] visor_EvaSpace_VetBad_MaleNRM;
+        public Texture2D[] visor_EvaSpace_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaSpace_Veteran_Female
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Veteran_Female;
+        public Texture2D[] visor_EvaSpace_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the visor_EvaSpace_Veteran_Female
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Veteran_FemaleNRM;
+        public Texture2D[] visor_EvaSpace_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the visor_EvaSpace_Veteran_Male
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Veteran_Male;
+        public Texture2D[] visor_EvaSpace_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the visor_EvaSpace_Veteran_Male
         /// </summary>
-        private Texture2D[] visor_EvaSpace_Veteran_MaleNRM;
+        public Texture2D[] visor_EvaSpace_Veteran_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_Iva_Badass_Female
         /// </summary>
-        private Texture2D[] visor_Iva_Badass_Female;
+        public Texture2D[] visor_Iva_Badass_Female;
 
         /// <summary>
         /// Normal map list for the visor_Iva_Badass_Female
         /// </summary>
-        private Texture2D[] visor_Iva_Badass_FemaleNRM;
+        public Texture2D[] visor_Iva_Badass_FemaleNRM;
 
         /// <summary>
         /// The texture list for the visor_Iva_Badass_Male
         /// </summary>
-        private Texture2D[] visor_Iva_Badass_Male;
+        public Texture2D[] visor_Iva_Badass_Male;
 
         /// <summary>
         /// Normal map list for the visor_Iva_Badass_Male
         /// </summary>
-        private Texture2D[] visor_Iva_Badass_MaleNRM;
+        public Texture2D[] visor_Iva_Badass_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_Iva_Standard_Female
         /// </summary>
-        private Texture2D[] visor_Iva_Standard_Female;
+        public Texture2D[] visor_Iva_Standard_Female;
 
         /// <summary>
         /// Normal map list for the visor_Iva_Standard_Female
         /// </summary>
-        private Texture2D[] visor_Iva_Standard_FemaleNRM;
+        public Texture2D[] visor_Iva_Standard_FemaleNRM;
 
         /// <summary>
         /// The texture list for the visor_Iva_Standard_Male
         /// </summary>
-        private Texture2D[] visor_Iva_Standard_Male;
+        public Texture2D[] visor_Iva_Standard_Male;
 
         /// <summary>
         /// Normal map list for the visor_Iva_Standard_Male
         /// </summary>
-        private Texture2D[] visor_Iva_Standard_MaleNRM;
+        public Texture2D[] visor_Iva_Standard_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_Iva_VetBad_Female
         /// </summary>
-        private Texture2D[] visor_Iva_VetBad_Female;
+        public Texture2D[] visor_Iva_VetBad_Female;
 
         /// <summary>
         /// Normal map list for the visor_Iva_VetBad_Female
         /// </summary>
-        private Texture2D[] visor_Iva_VetBad_FemaleNRM;
+        public Texture2D[] visor_Iva_VetBad_FemaleNRM;
 
         /// <summary>
         /// The texture list for the visor_Iva_VetBad_Male
         /// </summary>
-        private Texture2D[] visor_Iva_VetBad_Male;
+        public Texture2D[] visor_Iva_VetBad_Male;
 
         /// <summary>
         /// Normal map list for the visor_Iva_VetBad_Male
         /// </summary>
-        private Texture2D[] visor_Iva_VetBad_MaleNRM;
+        public Texture2D[] visor_Iva_VetBad_MaleNRM;
 
         /// <summary>
         /// The texture list for the visor_Iva_Veteran_Female
         /// </summary>
-        private Texture2D[] visor_Iva_Veteran_Female;
+        public Texture2D[] visor_Iva_Veteran_Female;
 
         /// <summary>
         /// Normal map list for the visor_Iva_Veteran_Female
         /// </summary>
-        private Texture2D[] visor_Iva_Veteran_FemaleNRM;
+        public Texture2D[] visor_Iva_Veteran_FemaleNRM;
 
         /// <summary>
         /// The texture list for the visor_Iva_Veteran_Male
         /// </summary>
-        private Texture2D[] visor_Iva_Veteran_Male;
+        public Texture2D[] visor_Iva_Veteran_Male;
 
         /// <summary>
         /// Normal map list for the visor_Iva_Veteran_Male
         /// </summary>
-        private Texture2D[] visor_Iva_Veteran_MaleNRM;
+        public Texture2D[] visor_Iva_Veteran_MaleNRM;
 
 
 
 
         public Color32 get_Iva_VisorReflectionColor(int level)
         {
-            return Iva_VisorReflectionColor[level];
+            return visor_Iva_ReflectionColor[level];
         }
 
         public Color32 get_EvaGround_VisorReflectionColor(int level)
         {
-            return EvaGround_VisorReflectionColor[level];
+            return visor_EvaGround_ReflectionColor[level];
         }
 
         public Color32 get_EvaSpace_VisorReflectionColor(int level)
         {
-            return EvaSpace_VisorReflectionColor[level];
+            return visor_EvaSpace_ReflectionColor[level];
         }
-
 
         /// ************************************************************************************
         /// <summary>
@@ -1014,39 +1122,4917 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Badass_Female(int level)
         {
+            Personaliser personaliser = Personaliser.instance;
+
             if (helmet_EvaGround_Badass_Female[level] != null)
                 return helmet_EvaGround_Badass_Female[level];
+
             else if (helmet_EvaGround_Standard_Female[level] != null)
                 return helmet_EvaGround_Standard_Female[level];
+
             else if (helmet_EvaGround_Badass_Male[level] != null)
                 return helmet_EvaGround_Badass_Male[level];
+
             else if (helmet_EvaGround_Standard_Male[level] != null)
                 return helmet_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Badass_Male[level];
+
             else
-                return helmet_EvaSpace_Standard_Male[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
         }
 
         /// ************************************************************************************
         /// <summary>
-        /// Used to get the helmet_EvaGround_Badass_FemaleNRM for the level of the kerbal
+        /// Used to get the helmet_EvaGround_Badass_Female for the level of the kerbal
         /// </summary>
         /// <param name="level">The level of the kerbal</param>
-        /// <returns>The helmet_EvaGround_Badass_Female Normal map for the level of the kerbal</returns>
+        /// <returns>The helmet_EvaGround_Badass_Female texture for the level of the kerbal</returns>
         /// ************************************************************************************
         public Texture2D get_helmet_EvaGround_Badass_FemaleNRM(int level)
         {
+            Personaliser personaliser = Personaliser.instance;
+
             if (helmet_EvaGround_Badass_FemaleNRM[level] != null)
                 return helmet_EvaGround_Badass_FemaleNRM[level];
+
             else if (helmet_EvaGround_Standard_FemaleNRM[level] != null)
                 return helmet_EvaGround_Standard_FemaleNRM[level];
+
             else if (helmet_EvaGround_Badass_MaleNRM[level] != null)
                 return helmet_EvaGround_Badass_MaleNRM[level];
+
             else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
                 return helmet_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Badass_MaleNRM[level];
+
             else
-                return helmet_EvaSpace_Standard_MaleNRM[level];
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
         }
 
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_Badass_Male[level] != null)
+                return helmet_EvaGround_Badass_Male[level];
+
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_Badass_MaleNRM[level] != null)
+                return helmet_EvaGround_Badass_MaleNRM[level];
+
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_Standard_Female[level] != null)
+                return helmet_EvaGround_Standard_Female[level];
+
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_Standard_FemaleNRM[level] != null)
+                return helmet_EvaGround_Standard_FemaleNRM[level];
+
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_VetBad_Female[level] != null)
+                return helmet_EvaGround_VetBad_Female[level];
+
+            else if (helmet_EvaGround_Veteran_Female[level] != null)
+                return helmet_EvaGround_Veteran_Female[level];
+
+            else if (helmet_EvaGround_Badass_Female[level] != null)
+                return helmet_EvaGround_Badass_Female[level];
+
+            else if (helmet_EvaGround_Standard_Female[level] != null)
+                return helmet_EvaGround_Standard_Female[level];
+
+            else if (helmet_EvaGround_VetBad_Male[level] != null)
+                return helmet_EvaGround_VetBad_Male[level];
+
+            else if (helmet_EvaGround_Veteran_Male[level] != null)
+                return helmet_EvaGround_Veteran_Male[level];
+
+            else if (helmet_EvaGround_Badass_Male[level] != null)
+                return helmet_EvaGround_Badass_Male[level];
+
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_VetBad_FemaleNRM[level] != null)
+                return helmet_EvaGround_VetBad_FemaleNRM[level];
+
+            else if (helmet_EvaGround_Veteran_FemaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_FemaleNRM[level];
+
+            else if (helmet_EvaGround_Badass_FemaleNRM[level] != null)
+                return helmet_EvaGround_Badass_FemaleNRM[level];
+
+            else if (helmet_EvaGround_Standard_FemaleNRM[level] != null)
+                return helmet_EvaGround_Standard_FemaleNRM[level];
+
+            else if (helmet_EvaGround_VetBad_MaleNRM[level] != null)
+                return helmet_EvaGround_VetBad_MaleNRM[level];
+
+            else if (helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_MaleNRM[level];
+
+            else if (helmet_EvaGround_Badass_MaleNRM[level] != null)
+                return helmet_EvaGround_Badass_MaleNRM[level];
+
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_VetBad_Male[level] != null)
+                return helmet_EvaGround_VetBad_Male[level];
+
+            else if (helmet_EvaGround_Veteran_Male[level] != null)
+                return helmet_EvaGround_Veteran_Male[level];
+
+            else if (helmet_EvaGround_Badass_Male[level] != null)
+                return helmet_EvaGround_Badass_Male[level];
+
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_VetBad_MaleNRM[level] != null)
+                return helmet_EvaGround_VetBad_MaleNRM[level];
+
+            else if (helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_MaleNRM[level];
+
+            else if (helmet_EvaGround_Badass_MaleNRM[level] != null)
+                return helmet_EvaGround_Badass_MaleNRM[level];
+
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_Veteran_Female[level] != null)
+                return helmet_EvaGround_Veteran_Female[level];
+
+            else if (helmet_EvaGround_Standard_Female[level] != null)
+                return helmet_EvaGround_Standard_Female[level];
+
+            else if (helmet_EvaGround_Veteran_Male[level] != null)
+                return helmet_EvaGround_Veteran_Male[level];
+
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_Veteran_FemaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_FemaleNRM[level];
+
+            else if (helmet_EvaGround_Standard_FemaleNRM[level] != null)
+                return helmet_EvaGround_Standard_FemaleNRM[level];
+
+            else if (helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_MaleNRM[level];
+
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_Veteran_Male[level] != null)
+                return helmet_EvaGround_Veteran_Male[level];
+
+            else if (helmet_EvaGround_Standard_Male[level] != null)
+                return helmet_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaGround_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return helmet_EvaGround_Veteran_MaleNRM[level];
+
+            else if (helmet_EvaGround_Standard_MaleNRM[level] != null)
+                return helmet_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Badass_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Badass_Female[level] != null)
+                return helmet_EvaSpace_Badass_Female[level];
+
+            else if (helmet_EvaSpace_Standard_Female[level] != null)
+                return helmet_EvaSpace_Standard_Female[level];
+
+            else if (helmet_EvaSpace_Badass_Male[level] != null)
+                return helmet_EvaSpace_Badass_Male[level];
+
+            else if (helmet_EvaSpace_Standard_Male[level] != null)
+                return helmet_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Badass_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Badass_FemaleNRM[level] != null)
+                return helmet_EvaSpace_Badass_FemaleNRM[level];
+
+            else if (helmet_EvaSpace_Standard_FemaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (helmet_EvaSpace_Badass_MaleNRM[level] != null)
+                return helmet_EvaSpace_Badass_MaleNRM[level];
+
+            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Badass_Male[level] != null)
+                return helmet_EvaSpace_Badass_Male[level];
+
+            else if (helmet_EvaSpace_Standard_Male[level] != null)
+                return helmet_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Badass_MaleNRM[level] != null)
+                return helmet_EvaSpace_Badass_MaleNRM[level];
+
+            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Standard_Female[level] != null)
+                return helmet_EvaSpace_Standard_Female[level];
+
+            else if (helmet_EvaSpace_Standard_Male[level] != null)
+                return helmet_EvaSpace_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Standard_FemaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Standard_Male[level] != null)
+                return helmet_EvaSpace_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_VetBad_Female[level] != null)
+                return helmet_EvaSpace_VetBad_Female[level];
+
+            else if (helmet_EvaSpace_Veteran_Female[level] != null)
+                return helmet_EvaSpace_Veteran_Female[level];
+
+            else if (helmet_EvaSpace_Badass_Female[level] != null)
+                return helmet_EvaSpace_Badass_Female[level];
+
+            else if (helmet_EvaSpace_Standard_Female[level] != null)
+                return helmet_EvaSpace_Standard_Female[level];
+
+            else if (helmet_EvaSpace_VetBad_Male[level] != null)
+                return helmet_EvaSpace_VetBad_Male[level];
+
+            else if (helmet_EvaSpace_Veteran_Male[level] != null)
+                return helmet_EvaSpace_Veteran_Male[level];
+
+            else if (helmet_EvaSpace_Badass_Male[level] != null)
+                return helmet_EvaSpace_Badass_Male[level];
+
+            else if (helmet_EvaSpace_Standard_Male[level] != null)
+                return helmet_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_VetBad_FemaleNRM[level] != null)
+                return helmet_EvaSpace_VetBad_FemaleNRM[level];
+
+            else if (helmet_EvaSpace_Veteran_FemaleNRM[level] != null)
+                return helmet_EvaSpace_Veteran_FemaleNRM[level];
+
+            else if (helmet_EvaSpace_Badass_FemaleNRM[level] != null)
+                return helmet_EvaSpace_Badass_FemaleNRM[level];
+
+            else if (helmet_EvaSpace_Standard_FemaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (helmet_EvaSpace_VetBad_MaleNRM[level] != null)
+                return helmet_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
+                return helmet_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (helmet_EvaSpace_Badass_MaleNRM[level] != null)
+                return helmet_EvaSpace_Badass_MaleNRM[level];
+
+            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_VetBad_Male[level] != null)
+                return helmet_EvaSpace_VetBad_Male[level];
+
+            else if (helmet_EvaSpace_Veteran_Male[level] != null)
+                return helmet_EvaSpace_Veteran_Male[level];
+
+            else if (helmet_EvaSpace_Badass_Male[level] != null)
+                return helmet_EvaSpace_Badass_Male[level];
+
+            else if (helmet_EvaSpace_Standard_Male[level] != null)
+                return helmet_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_VetBad_MaleNRM[level] != null)
+                return helmet_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
+                return helmet_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (helmet_EvaSpace_Badass_MaleNRM[level] != null)
+                return helmet_EvaSpace_Badass_MaleNRM[level];
+
+            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Veteran_Female[level] != null)
+                return helmet_EvaSpace_Veteran_Female[level];
+
+            else if (helmet_EvaSpace_Standard_Female[level] != null)
+                return helmet_EvaSpace_Standard_Female[level];
+
+            else if (helmet_EvaSpace_Veteran_Male[level] != null)
+                return helmet_EvaSpace_Veteran_Male[level];
+
+            else if (helmet_EvaSpace_Standard_Male[level] != null)
+                return helmet_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Veteran_FemaleNRM[level] != null)
+                return helmet_EvaSpace_Veteran_FemaleNRM[level];
+
+            else if (helmet_EvaSpace_Standard_FemaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
+                return helmet_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Veteran_Male[level] != null)
+                return helmet_EvaSpace_Veteran_Male[level];
+
+            else if (helmet_EvaSpace_Standard_Male[level] != null)
+                return helmet_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_EvaSpace_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_EvaSpace_Veteran_MaleNRM[level] != null)
+                return helmet_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (helmet_EvaSpace_Standard_MaleNRM[level] != null)
+                return helmet_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_EvaSpace_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.helmet_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Badass_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Badass_Female[level] != null)
+                return helmet_Iva_Badass_Female[level];
+
+            else if (helmet_Iva_Standard_Female[level] != null)
+                return helmet_Iva_Standard_Female[level];
+
+            else if (helmet_Iva_Badass_Male[level] != null)
+                return helmet_Iva_Badass_Male[level];
+
+            else if (helmet_Iva_Standard_Male[level] != null)
+                return helmet_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Badass_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Badass_FemaleNRM[level] != null)
+                return helmet_Iva_Badass_FemaleNRM[level];
+
+            else if (helmet_Iva_Standard_FemaleNRM[level] != null)
+                return helmet_Iva_Standard_FemaleNRM[level];
+
+            else if (helmet_Iva_Badass_MaleNRM[level] != null)
+                return helmet_Iva_Badass_MaleNRM[level];
+
+            else if (helmet_Iva_Standard_MaleNRM[level] != null)
+                return helmet_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Badass_Male[level] != null)
+                return helmet_Iva_Badass_Male[level];
+
+            else if (helmet_Iva_Standard_Male[level] != null)
+                return helmet_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Badass_MaleNRM[level] != null)
+                return helmet_Iva_Badass_MaleNRM[level];
+
+            else if (helmet_Iva_Standard_MaleNRM[level] != null)
+                return helmet_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Standard_Female[level] != null)
+                return helmet_Iva_Standard_Female[level];
+
+            else if (helmet_Iva_Standard_Male[level] != null)
+                return helmet_Iva_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Standard_FemaleNRM[level] != null)
+                return helmet_Iva_Standard_FemaleNRM[level];
+
+            else if (helmet_Iva_Standard_MaleNRM[level] != null)
+                return helmet_Iva_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Standard_Male[level] != null)
+                return helmet_Iva_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Standard_MaleNRM[level] != null)
+                return helmet_Iva_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_VetBad_Female[level] != null)
+                return helmet_Iva_VetBad_Female[level];
+
+            else if (helmet_Iva_Veteran_Female[level] != null)
+                return helmet_Iva_Veteran_Female[level];
+
+            else if (helmet_Iva_Badass_Female[level] != null)
+                return helmet_Iva_Badass_Female[level];
+
+            else if (helmet_Iva_Standard_Female[level] != null)
+                return helmet_Iva_Standard_Female[level];
+
+            else if (helmet_Iva_VetBad_Male[level] != null)
+                return helmet_Iva_VetBad_Male[level];
+
+            else if (helmet_Iva_Veteran_Male[level] != null)
+                return helmet_Iva_Veteran_Male[level];
+
+            else if (helmet_Iva_Badass_Male[level] != null)
+                return helmet_Iva_Badass_Male[level];
+
+            else if (helmet_Iva_Standard_Male[level] != null)
+                return helmet_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_VetBad_FemaleNRM[level] != null)
+                return helmet_Iva_VetBad_FemaleNRM[level];
+
+            else if (helmet_Iva_Veteran_FemaleNRM[level] != null)
+                return helmet_Iva_Veteran_FemaleNRM[level];
+
+            else if (helmet_Iva_Badass_FemaleNRM[level] != null)
+                return helmet_Iva_Badass_FemaleNRM[level];
+
+            else if (helmet_Iva_Standard_FemaleNRM[level] != null)
+                return helmet_Iva_Standard_FemaleNRM[level];
+
+            else if (helmet_Iva_VetBad_MaleNRM[level] != null)
+                return helmet_Iva_VetBad_MaleNRM[level];
+
+            else if (helmet_Iva_Veteran_MaleNRM[level] != null)
+                return helmet_Iva_Veteran_MaleNRM[level];
+
+            else if (helmet_Iva_Badass_MaleNRM[level] != null)
+                return helmet_Iva_Badass_MaleNRM[level];
+
+            else if (helmet_Iva_Standard_MaleNRM[level] != null)
+                return helmet_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_VetBad_Male[level] != null)
+                return helmet_Iva_VetBad_Male[level];
+
+            else if (helmet_Iva_Veteran_Male[level] != null)
+                return helmet_Iva_Veteran_Male[level];
+
+            else if (helmet_Iva_Badass_Male[level] != null)
+                return helmet_Iva_Badass_Male[level];
+
+            else if (helmet_Iva_Standard_Male[level] != null)
+                return helmet_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_VetBad_MaleNRM[level] != null)
+                return helmet_Iva_VetBad_MaleNRM[level];
+
+            else if (helmet_Iva_Veteran_MaleNRM[level] != null)
+                return helmet_Iva_Veteran_MaleNRM[level];
+
+            else if (helmet_Iva_Badass_MaleNRM[level] != null)
+                return helmet_Iva_Badass_MaleNRM[level];
+
+            else if (helmet_Iva_Standard_MaleNRM[level] != null)
+                return helmet_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Veteran_Female[level] != null)
+                return helmet_Iva_Veteran_Female[level];
+
+            else if (helmet_Iva_Standard_Female[level] != null)
+                return helmet_Iva_Standard_Female[level];
+
+            else if (helmet_Iva_Veteran_Male[level] != null)
+                return helmet_Iva_Veteran_Male[level];
+
+            else if (helmet_Iva_Standard_Male[level] != null)
+                return helmet_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Veteran_FemaleNRM[level] != null)
+                return helmet_Iva_Veteran_FemaleNRM[level];
+
+            else if (helmet_Iva_Standard_FemaleNRM[level] != null)
+                return helmet_Iva_Standard_FemaleNRM[level];
+
+            else if (helmet_Iva_Veteran_MaleNRM[level] != null)
+                return helmet_Iva_Veteran_MaleNRM[level];
+
+            else if (helmet_Iva_Standard_MaleNRM[level] != null)
+                return helmet_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Veteran_Male[level] != null)
+                return helmet_Iva_Veteran_Male[level];
+
+            else if (helmet_Iva_Standard_Male[level] != null)
+                return helmet_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the helmet_Iva_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The helmet_Iva_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_helmet_Iva_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (helmet_Iva_Veteran_MaleNRM[level] != null)
+                return helmet_Iva_Veteran_MaleNRM[level];
+
+            else if (helmet_Iva_Standard_MaleNRM[level] != null)
+                return helmet_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.helmet_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.helmet_Iva_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.helmet_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Badass_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Badass_Female[level] != null)
+                return jetpack_EvaGround_Badass_Female[level];
+
+            else if (jetpack_EvaGround_Standard_Female[level] != null)
+                return jetpack_EvaGround_Standard_Female[level];
+
+            else if (jetpack_EvaGround_Badass_Male[level] != null)
+                return jetpack_EvaGround_Badass_Male[level];
+
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
+                return jetpack_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Badass_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Badass_FemaleNRM[level] != null)
+                return jetpack_EvaGround_Badass_FemaleNRM[level];
+
+            else if (jetpack_EvaGround_Standard_FemaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_FemaleNRM[level];
+
+            else if (jetpack_EvaGround_Badass_MaleNRM[level] != null)
+                return jetpack_EvaGround_Badass_MaleNRM[level];
+
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Badass_Male[level] != null)
+                return jetpack_EvaGround_Badass_Male[level];
+
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
+                return jetpack_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Badass_MaleNRM[level] != null)
+                return jetpack_EvaGround_Badass_MaleNRM[level];
+
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Standard_Female[level] != null)
+                return jetpack_EvaGround_Standard_Female[level];
+
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
+                return jetpack_EvaGround_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Standard_FemaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_FemaleNRM[level];
+
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Standard_Male[level] != null)
+                return jetpack_EvaGround_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_VetBad_Female[level] != null)
+                return jetpack_EvaGround_VetBad_Female[level];
+
+            else if (jetpack_EvaGround_Veteran_Female[level] != null)
+                return jetpack_EvaGround_Veteran_Female[level];
+
+            else if (jetpack_EvaGround_Badass_Female[level] != null)
+                return jetpack_EvaGround_Badass_Female[level];
+
+            else if (jetpack_EvaGround_Standard_Female[level] != null)
+                return jetpack_EvaGround_Standard_Female[level];
+
+            else if (jetpack_EvaGround_VetBad_Male[level] != null)
+                return jetpack_EvaGround_VetBad_Male[level];
+
+            else if (jetpack_EvaGround_Veteran_Male[level] != null)
+                return jetpack_EvaGround_Veteran_Male[level];
+
+            else if (jetpack_EvaGround_Badass_Male[level] != null)
+                return jetpack_EvaGround_Badass_Male[level];
+
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
+                return jetpack_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_VetBad_FemaleNRM[level] != null)
+                return jetpack_EvaGround_VetBad_FemaleNRM[level];
+
+            else if (jetpack_EvaGround_Veteran_FemaleNRM[level] != null)
+                return jetpack_EvaGround_Veteran_FemaleNRM[level];
+
+            else if (jetpack_EvaGround_Badass_FemaleNRM[level] != null)
+                return jetpack_EvaGround_Badass_FemaleNRM[level];
+
+            else if (jetpack_EvaGround_Standard_FemaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_FemaleNRM[level];
+
+            else if (jetpack_EvaGround_VetBad_MaleNRM[level] != null)
+                return jetpack_EvaGround_VetBad_MaleNRM[level];
+
+            else if (jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return jetpack_EvaGround_Veteran_MaleNRM[level];
+
+            else if (jetpack_EvaGround_Badass_MaleNRM[level] != null)
+                return jetpack_EvaGround_Badass_MaleNRM[level];
+
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_VetBad_Male[level] != null)
+                return jetpack_EvaGround_VetBad_Male[level];
+
+            else if (jetpack_EvaGround_Veteran_Male[level] != null)
+                return jetpack_EvaGround_Veteran_Male[level];
+
+            else if (jetpack_EvaGround_Badass_Male[level] != null)
+                return jetpack_EvaGround_Badass_Male[level];
+
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
+                return jetpack_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_VetBad_MaleNRM[level] != null)
+                return jetpack_EvaGround_VetBad_MaleNRM[level];
+
+            else if (jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return jetpack_EvaGround_Veteran_MaleNRM[level];
+
+            else if (jetpack_EvaGround_Badass_MaleNRM[level] != null)
+                return jetpack_EvaGround_Badass_MaleNRM[level];
+
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Veteran_Female[level] != null)
+                return jetpack_EvaGround_Veteran_Female[level];
+
+            else if (jetpack_EvaGround_Standard_Female[level] != null)
+                return jetpack_EvaGround_Standard_Female[level];
+
+            else if (jetpack_EvaGround_Veteran_Male[level] != null)
+                return jetpack_EvaGround_Veteran_Male[level];
+
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
+                return jetpack_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Veteran_FemaleNRM[level] != null)
+                return jetpack_EvaGround_Veteran_FemaleNRM[level];
+
+            else if (jetpack_EvaGround_Standard_FemaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_FemaleNRM[level];
+
+            else if (jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return jetpack_EvaGround_Veteran_MaleNRM[level];
+
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Veteran_Male[level] != null)
+                return jetpack_EvaGround_Veteran_Male[level];
+
+            else if (jetpack_EvaGround_Standard_Male[level] != null)
+                return jetpack_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaGround_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return jetpack_EvaGround_Veteran_MaleNRM[level];
+
+            else if (jetpack_EvaGround_Standard_MaleNRM[level] != null)
+                return jetpack_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Badass_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Badass_Female[level] != null)
+                return jetpack_EvaSpace_Badass_Female[level];
+
+            else if (jetpack_EvaSpace_Standard_Female[level] != null)
+                return jetpack_EvaSpace_Standard_Female[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Badass_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Badass_FemaleNRM[level] != null)
+                return jetpack_EvaSpace_Badass_FemaleNRM[level];
+
+            else if (jetpack_EvaSpace_Standard_FemaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (jetpack_EvaSpace_Badass_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Badass_MaleNRM[level];
+
+            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Badass_Male[level] != null)
+                return jetpack_EvaSpace_Badass_Male[level];
+
+            else if (jetpack_EvaSpace_Standard_Male[level] != null)
+                return jetpack_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Badass_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Badass_MaleNRM[level];
+
+            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Standard_Female[level] != null)
+                return jetpack_EvaSpace_Standard_Female[level];
+
+            else if (jetpack_EvaSpace_Standard_Male[level] != null)
+                return jetpack_EvaSpace_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Standard_FemaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Standard_Male[level] != null)
+                return jetpack_EvaSpace_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_VetBad_Female[level] != null)
+                return jetpack_EvaSpace_VetBad_Female[level];
+
+            else if (jetpack_EvaSpace_Veteran_Female[level] != null)
+                return jetpack_EvaSpace_Veteran_Female[level];
+
+            else if (jetpack_EvaSpace_Badass_Female[level] != null)
+                return jetpack_EvaSpace_Badass_Female[level];
+
+            else if (jetpack_EvaSpace_Standard_Female[level] != null)
+                return jetpack_EvaSpace_Standard_Female[level];
+
+            else if (jetpack_EvaSpace_VetBad_Male[level] != null)
+                return jetpack_EvaSpace_VetBad_Male[level];
+
+            else if (jetpack_EvaSpace_Veteran_Male[level] != null)
+                return jetpack_EvaSpace_Veteran_Male[level];
+
+            else if (jetpack_EvaSpace_Badass_Male[level] != null)
+                return jetpack_EvaSpace_Badass_Male[level];
+
+            else if (jetpack_EvaSpace_Standard_Male[level] != null)
+                return jetpack_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_VetBad_FemaleNRM[level] != null)
+                return jetpack_EvaSpace_VetBad_FemaleNRM[level];
+
+            else if (jetpack_EvaSpace_Veteran_FemaleNRM[level] != null)
+                return jetpack_EvaSpace_Veteran_FemaleNRM[level];
+
+            else if (jetpack_EvaSpace_Badass_FemaleNRM[level] != null)
+                return jetpack_EvaSpace_Badass_FemaleNRM[level];
+
+            else if (jetpack_EvaSpace_Standard_FemaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (jetpack_EvaSpace_VetBad_MaleNRM[level] != null)
+                return jetpack_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (jetpack_EvaSpace_Badass_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Badass_MaleNRM[level];
+
+            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_VetBad_Male[level] != null)
+                return jetpack_EvaSpace_VetBad_Male[level];
+
+            else if (jetpack_EvaSpace_Veteran_Male[level] != null)
+                return jetpack_EvaSpace_Veteran_Male[level];
+
+            else if (jetpack_EvaSpace_Badass_Male[level] != null)
+                return jetpack_EvaSpace_Badass_Male[level];
+
+            else if (jetpack_EvaSpace_Standard_Male[level] != null)
+                return jetpack_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_VetBad_MaleNRM[level] != null)
+                return jetpack_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (jetpack_EvaSpace_Badass_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Badass_MaleNRM[level];
+
+            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Veteran_Female[level] != null)
+                return jetpack_EvaSpace_Veteran_Female[level];
+
+            else if (jetpack_EvaSpace_Standard_Female[level] != null)
+                return jetpack_EvaSpace_Standard_Female[level];
+
+            else if (jetpack_EvaSpace_Veteran_Male[level] != null)
+                return jetpack_EvaSpace_Veteran_Male[level];
+
+            else if (jetpack_EvaSpace_Standard_Male[level] != null)
+                return jetpack_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Veteran_FemaleNRM[level] != null)
+                return jetpack_EvaSpace_Veteran_FemaleNRM[level];
+
+            else if (jetpack_EvaSpace_Standard_FemaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Veteran_Male[level] != null)
+                return jetpack_EvaSpace_Veteran_Male[level];
+
+            else if (jetpack_EvaSpace_Standard_Male[level] != null)
+                return jetpack_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the jetpack_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The jetpack_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_jetpack_EvaSpace_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (jetpack_EvaSpace_Standard_MaleNRM[level] != null)
+                return jetpack_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.jetpack_EvaSpace_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.jetpack_EvaSpace_Standard_MaleNRM[level];
+        }
+                
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Badass_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Badass_Female[level] != null)
+                return suit_EvaGround_Badass_Female[level];
+
+            else if (suit_EvaGround_Standard_Female[level] != null)
+                return suit_EvaGround_Standard_Female[level];
+
+            else if (suit_EvaGround_Badass_Male[level] != null)
+                return suit_EvaGround_Badass_Male[level];
+
+            else if (suit_EvaGround_Standard_Male[level] != null)
+                return suit_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Badass_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Badass_FemaleNRM[level] != null)
+                return suit_EvaGround_Badass_FemaleNRM[level];
+
+            else if (suit_EvaGround_Standard_FemaleNRM[level] != null)
+                return suit_EvaGround_Standard_FemaleNRM[level];
+
+            else if (suit_EvaGround_Badass_MaleNRM[level] != null)
+                return suit_EvaGround_Badass_MaleNRM[level];
+            
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+                return suit_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Badass_Male[level] != null)
+                return suit_EvaGround_Badass_Male[level];
+
+            else if (suit_EvaGround_Standard_Male[level] != null)
+                return suit_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Badass_MaleNRM[level] != null)
+                return suit_EvaGround_Badass_MaleNRM[level];
+
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+                return suit_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Standard_Female[level] != null)
+                return suit_EvaGround_Standard_Female[level];            
+
+            else if (suit_EvaGround_Standard_Male[level] != null)
+                return suit_EvaGround_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Standard_FemaleNRM[level] != null)
+                return suit_EvaGround_Standard_FemaleNRM[level];
+
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+                return suit_EvaGround_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Standard_Male[level] != null)
+                return suit_EvaGround_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Standard_MaleNRM[level] != null)
+                return suit_EvaGround_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_VetBad_Female[level] != null)
+                return suit_EvaGround_VetBad_Female[level];
+
+            else if (suit_EvaGround_Veteran_Female[level] != null)
+                return suit_EvaGround_Veteran_Female[level];
+
+            else if (suit_EvaGround_Badass_Female[level] != null)
+                return suit_EvaGround_Badass_Female[level];
+
+            else if (suit_EvaGround_Standard_Female[level] != null)
+                return suit_EvaGround_Standard_Female[level];
+
+            else if (suit_EvaGround_VetBad_Male[level] != null)
+                return suit_EvaGround_VetBad_Male[level];
+
+            else if (suit_EvaGround_Veteran_Male[level] != null)
+                return suit_EvaGround_Veteran_Male[level];
+
+            else if (suit_EvaGround_Badass_Male[level] != null)
+                return suit_EvaGround_Badass_Male[level];
+
+            else if (suit_EvaGround_Standard_Male[level] != null)
+                return suit_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_VetBad_FemaleNRM[level] != null)
+                return suit_EvaGround_VetBad_FemaleNRM[level];
+
+            else if (suit_EvaGround_Veteran_FemaleNRM[level] != null)
+                return suit_EvaGround_Veteran_FemaleNRM[level];
+
+            else if (suit_EvaGround_Badass_FemaleNRM[level] != null)
+                return suit_EvaGround_Badass_FemaleNRM[level];
+
+            else if (suit_EvaGround_Standard_FemaleNRM[level] != null)
+                return suit_EvaGround_Standard_FemaleNRM[level];
+
+            else if (suit_EvaGround_VetBad_MaleNRM[level] != null)
+                return suit_EvaGround_VetBad_MaleNRM[level];
+
+            else if (suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return suit_EvaGround_Veteran_MaleNRM[level];
+
+            else if (suit_EvaGround_Badass_MaleNRM[level] != null)
+                return suit_EvaGround_Badass_MaleNRM[level];
+
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+                return suit_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_VetBad_Male[level] != null)
+                return suit_EvaGround_VetBad_Male[level];
+
+            else if (suit_EvaGround_Veteran_Male[level] != null)
+                return suit_EvaGround_Veteran_Male[level];
+
+            else if (suit_EvaGround_Badass_Male[level] != null)
+                return suit_EvaGround_Badass_Male[level];
+
+            else if (suit_EvaGround_Standard_Male[level] != null)
+                return suit_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_VetBad_MaleNRM[level] != null)
+                return suit_EvaGround_VetBad_MaleNRM[level];
+
+            else if (suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return suit_EvaGround_Veteran_MaleNRM[level];
+
+            else if (suit_EvaGround_Badass_MaleNRM[level] != null)
+                return suit_EvaGround_Badass_MaleNRM[level];
+
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+                return suit_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Veteran_Female[level] != null)
+                return suit_EvaGround_Veteran_Female[level];
+            
+            else if (suit_EvaGround_Standard_Female[level] != null)
+                return suit_EvaGround_Standard_Female[level];
+
+            else if (suit_EvaGround_Veteran_Male[level] != null)
+                return suit_EvaGround_Veteran_Male[level];
+
+            else if (suit_EvaGround_Standard_Male[level] != null)
+                return suit_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Veteran_FemaleNRM[level] != null)
+                return suit_EvaGround_Veteran_FemaleNRM[level];
+
+            else if (suit_EvaGround_Standard_FemaleNRM[level] != null)
+                return suit_EvaGround_Standard_FemaleNRM[level];
+
+            else if (suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return suit_EvaGround_Veteran_MaleNRM[level];
+
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+                return suit_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Veteran_Male[level] != null)
+                return suit_EvaGround_Veteran_Male[level];
+
+            else if (suit_EvaGround_Standard_Male[level] != null)
+                return suit_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaGround_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return suit_EvaGround_Veteran_MaleNRM[level];
+
+            else if (suit_EvaGround_Standard_MaleNRM[level] != null)
+                return suit_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.suit_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Badass_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Badass_Female[level] != null)
+                return suit_EvaSpace_Badass_Female[level];
+
+            else if (suit_EvaSpace_Standard_Female[level] != null)
+                return suit_EvaSpace_Standard_Female[level];
+
+            else if (suit_EvaSpace_Badass_Male[level] != null)
+                return suit_EvaSpace_Badass_Male[level];
+
+            else if (suit_EvaSpace_Standard_Male[level] != null)
+                return suit_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Badass_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Badass_FemaleNRM[level] != null)
+                return suit_EvaSpace_Badass_FemaleNRM[level];
+
+            else if (suit_EvaSpace_Standard_FemaleNRM[level] != null)
+                return suit_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (suit_EvaSpace_Badass_MaleNRM[level] != null)
+                return suit_EvaSpace_Badass_MaleNRM[level];
+
+            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
+                return suit_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Badass_Male[level] != null)
+                return suit_EvaSpace_Badass_Male[level];
+
+            else if (suit_EvaSpace_Standard_Male[level] != null)
+                return suit_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Badass_MaleNRM[level] != null)
+                return suit_EvaSpace_Badass_MaleNRM[level];
+
+            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
+                return suit_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Standard_Female[level] != null)
+                return suit_EvaSpace_Standard_Female[level];
+
+            else if (suit_EvaSpace_Standard_Male[level] != null)
+                return suit_EvaSpace_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Standard_FemaleNRM[level] != null)
+                return suit_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
+                return suit_EvaSpace_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Standard_Male[level] != null)
+                return suit_EvaSpace_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Standard_MaleNRM[level] != null)
+                return suit_EvaSpace_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_VetBad_Female[level] != null)
+                return suit_EvaSpace_VetBad_Female[level];
+
+            else if (suit_EvaSpace_Veteran_Female[level] != null)
+                return suit_EvaSpace_Veteran_Female[level];
+
+            else if (suit_EvaSpace_Badass_Female[level] != null)
+                return suit_EvaSpace_Badass_Female[level];
+
+            else if (suit_EvaSpace_Standard_Female[level] != null)
+                return suit_EvaSpace_Standard_Female[level];
+
+            else if (suit_EvaSpace_VetBad_Male[level] != null)
+                return suit_EvaSpace_VetBad_Male[level];
+
+            else if (suit_EvaSpace_Veteran_Male[level] != null)
+                return suit_EvaSpace_Veteran_Male[level];
+
+            else if (suit_EvaSpace_Badass_Male[level] != null)
+                return suit_EvaSpace_Badass_Male[level];
+
+            else if (suit_EvaSpace_Standard_Male[level] != null)
+                return suit_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_VetBad_FemaleNRM[level] != null)
+                return suit_EvaSpace_VetBad_FemaleNRM[level];
+
+            else if (suit_EvaSpace_Veteran_FemaleNRM[level] != null)
+                return suit_EvaSpace_Veteran_FemaleNRM[level];
+
+            else if (suit_EvaSpace_Badass_FemaleNRM[level] != null)
+                return suit_EvaSpace_Badass_FemaleNRM[level];
+
+            else if (suit_EvaSpace_Standard_FemaleNRM[level] != null)
+                return suit_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (suit_EvaSpace_VetBad_MaleNRM[level] != null)
+                return suit_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
+                return suit_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (suit_EvaSpace_Badass_MaleNRM[level] != null)
+                return suit_EvaSpace_Badass_MaleNRM[level];
+
+            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
+                return suit_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_VetBad_Male[level] != null)
+                return suit_EvaSpace_VetBad_Male[level];
+
+            else if (suit_EvaSpace_Veteran_Male[level] != null)
+                return suit_EvaSpace_Veteran_Male[level];
+
+            else if (suit_EvaSpace_Badass_Male[level] != null)
+                return suit_EvaSpace_Badass_Male[level];
+
+            else if (suit_EvaSpace_Standard_Male[level] != null)
+                return suit_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_VetBad_MaleNRM[level] != null)
+                return suit_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
+                return suit_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (suit_EvaSpace_Badass_MaleNRM[level] != null)
+                return suit_EvaSpace_Badass_MaleNRM[level];
+
+            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
+                return suit_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Veteran_Female[level] != null)
+                return suit_EvaSpace_Veteran_Female[level];
+
+            else if (suit_EvaSpace_Standard_Female[level] != null)
+                return suit_EvaSpace_Standard_Female[level];
+
+            else if (suit_EvaSpace_Veteran_Male[level] != null)
+                return suit_EvaSpace_Veteran_Male[level];
+
+            else if (suit_EvaSpace_Standard_Male[level] != null)
+                return suit_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Veteran_FemaleNRM[level] != null)
+                return suit_EvaSpace_Veteran_FemaleNRM[level];
+
+            else if (suit_EvaSpace_Standard_FemaleNRM[level] != null)
+                return suit_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
+                return suit_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
+                return suit_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Veteran_Male[level] != null)
+                return suit_EvaSpace_Veteran_Male[level];
+
+            else if (suit_EvaSpace_Standard_Male[level] != null)
+                return suit_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_EvaSpace_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_EvaSpace_Veteran_MaleNRM[level] != null)
+                return suit_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (suit_EvaSpace_Standard_MaleNRM[level] != null)
+                return suit_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_EvaSpace_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.suit_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Badass_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Badass_Female[level] != null)
+                return suit_Iva_Badass_Female[level];
+
+            else if (suit_Iva_Standard_Female[level] != null)
+                return suit_Iva_Standard_Female[level];
+
+            else if (suit_Iva_Badass_Male[level] != null)
+                return suit_Iva_Badass_Male[level];
+
+            else if (suit_Iva_Standard_Male[level] != null)
+                return suit_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Badass_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Badass_FemaleNRM[level] != null)
+                return suit_Iva_Badass_FemaleNRM[level];
+
+            else if (suit_Iva_Standard_FemaleNRM[level] != null)
+                return suit_Iva_Standard_FemaleNRM[level];
+
+            else if (suit_Iva_Badass_MaleNRM[level] != null)
+                return suit_Iva_Badass_MaleNRM[level];
+
+            else if (suit_Iva_Standard_MaleNRM[level] != null)
+                return suit_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Badass_Male[level] != null)
+                return suit_Iva_Badass_Male[level];
+
+            else if (suit_Iva_Standard_Male[level] != null)
+                return suit_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Badass_MaleNRM[level] != null)
+                return suit_Iva_Badass_MaleNRM[level];
+
+            else if (suit_Iva_Standard_MaleNRM[level] != null)
+                return suit_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Standard_Female[level] != null)
+                return suit_Iva_Standard_Female[level];
+
+            else if (suit_Iva_Standard_Male[level] != null)
+                return suit_Iva_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Standard_FemaleNRM[level] != null)
+                return suit_Iva_Standard_FemaleNRM[level];
+
+            else if (suit_Iva_Standard_MaleNRM[level] != null)
+                return suit_Iva_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Standard_Male[level] != null)
+                return suit_Iva_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Standard_MaleNRM[level] != null)
+                return suit_Iva_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_VetBad_Female[level] != null)
+                return suit_Iva_VetBad_Female[level];
+
+            else if (suit_Iva_Veteran_Female[level] != null)
+                return suit_Iva_Veteran_Female[level];
+
+            else if (suit_Iva_Badass_Female[level] != null)
+                return suit_Iva_Badass_Female[level];
+
+            else if (suit_Iva_Standard_Female[level] != null)
+                return suit_Iva_Standard_Female[level];
+
+            else if (suit_Iva_VetBad_Male[level] != null)
+                return suit_Iva_VetBad_Male[level];
+
+            else if (suit_Iva_Veteran_Male[level] != null)
+                return suit_Iva_Veteran_Male[level];
+
+            else if (suit_Iva_Badass_Male[level] != null)
+                return suit_Iva_Badass_Male[level];
+
+            else if (suit_Iva_Standard_Male[level] != null)
+                return suit_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.suit_Iva_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_VetBad_FemaleNRM[level] != null)
+                return suit_Iva_VetBad_FemaleNRM[level];
+
+            else if (suit_Iva_Veteran_FemaleNRM[level] != null)
+                return suit_Iva_Veteran_FemaleNRM[level];
+
+            else if (suit_Iva_Badass_FemaleNRM[level] != null)
+                return suit_Iva_Badass_FemaleNRM[level];
+
+            else if (suit_Iva_Standard_FemaleNRM[level] != null)
+                return suit_Iva_Standard_FemaleNRM[level];
+
+            else if (suit_Iva_VetBad_MaleNRM[level] != null)
+                return suit_Iva_VetBad_MaleNRM[level];
+
+            else if (suit_Iva_Veteran_MaleNRM[level] != null)
+                return suit_Iva_Veteran_MaleNRM[level];
+
+            else if (suit_Iva_Badass_MaleNRM[level] != null)
+                return suit_Iva_Badass_MaleNRM[level];
+
+            else if (suit_Iva_Standard_MaleNRM[level] != null)
+                return suit_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_Iva_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_VetBad_Male[level] != null)
+                return suit_Iva_VetBad_Male[level];
+
+            else if (suit_Iva_Veteran_Male[level] != null)
+                return suit_Iva_Veteran_Male[level];
+
+            else if (suit_Iva_Badass_Male[level] != null)
+                return suit_Iva_Badass_Male[level];
+
+            else if (suit_Iva_Standard_Male[level] != null)
+                return suit_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.suit_Iva_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_VetBad_MaleNRM[level] != null)
+                return suit_Iva_VetBad_MaleNRM[level];
+
+            else if (suit_Iva_Veteran_MaleNRM[level] != null)
+                return suit_Iva_Veteran_MaleNRM[level];
+
+            else if (suit_Iva_Badass_MaleNRM[level] != null)
+                return suit_Iva_Badass_MaleNRM[level];
+
+            else if (suit_Iva_Standard_MaleNRM[level] != null)
+                return suit_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_Iva_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Veteran_Female[level] != null)
+                return suit_Iva_Veteran_Female[level];
+
+            else if (suit_Iva_Standard_Female[level] != null)
+                return suit_Iva_Standard_Female[level];
+
+            else if (suit_Iva_Veteran_Male[level] != null)
+                return suit_Iva_Veteran_Male[level];
+
+            else if (suit_Iva_Standard_Male[level] != null)
+                return suit_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Veteran_FemaleNRM[level] != null)
+                return suit_Iva_Veteran_FemaleNRM[level];
+
+            else if (suit_Iva_Standard_FemaleNRM[level] != null)
+                return suit_Iva_Standard_FemaleNRM[level];
+
+            else if (suit_Iva_Veteran_MaleNRM[level] != null)
+                return suit_Iva_Veteran_MaleNRM[level];
+
+            else if (suit_Iva_Standard_MaleNRM[level] != null)
+                return suit_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Veteran_Male[level] != null)
+                return suit_Iva_Veteran_Male[level];
+
+            else if (suit_Iva_Standard_Male[level] != null)
+                return suit_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the suit_Iva_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The suit_Iva_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_suit_Iva_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (suit_Iva_Veteran_MaleNRM[level] != null)
+                return suit_Iva_Veteran_MaleNRM[level];
+
+            else if (suit_Iva_Standard_MaleNRM[level] != null)
+                return suit_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.suit_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.suit_Iva_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.suit_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Badass_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Badass_Female[level] != null)
+                return visor_EvaGround_Badass_Female[level];
+
+            else if (visor_EvaGround_Standard_Female[level] != null)
+                return visor_EvaGround_Standard_Female[level];
+
+            else if (visor_EvaGround_Badass_Male[level] != null)
+                return visor_EvaGround_Badass_Male[level];
+
+            else if (visor_EvaGround_Standard_Male[level] != null)
+                return visor_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Badass_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Badass_FemaleNRM[level] != null)
+                return visor_EvaGround_Badass_FemaleNRM[level];
+
+            else if (visor_EvaGround_Standard_FemaleNRM[level] != null)
+                return visor_EvaGround_Standard_FemaleNRM[level];
+
+            else if (visor_EvaGround_Badass_MaleNRM[level] != null)
+                return visor_EvaGround_Badass_MaleNRM[level];
+
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
+                return visor_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Badass_Male[level] != null)
+                return visor_EvaGround_Badass_Male[level];
+
+            else if (visor_EvaGround_Standard_Male[level] != null)
+                return visor_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Badass_MaleNRM[level] != null)
+                return visor_EvaGround_Badass_MaleNRM[level];
+
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
+                return visor_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Standard_Female[level] != null)
+                return visor_EvaGround_Standard_Female[level];
+
+            else if (visor_EvaGround_Standard_Male[level] != null)
+                return visor_EvaGround_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Standard_FemaleNRM[level] != null)
+                return visor_EvaGround_Standard_FemaleNRM[level];
+
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
+                return visor_EvaGround_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Standard_Male[level] != null)
+                return visor_EvaGround_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Standard_MaleNRM[level] != null)
+                return visor_EvaGround_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_VetBad_Female[level] != null)
+                return visor_EvaGround_VetBad_Female[level];
+
+            else if (visor_EvaGround_Veteran_Female[level] != null)
+                return visor_EvaGround_Veteran_Female[level];
+
+            else if (visor_EvaGround_Badass_Female[level] != null)
+                return visor_EvaGround_Badass_Female[level];
+
+            else if (visor_EvaGround_Standard_Female[level] != null)
+                return visor_EvaGround_Standard_Female[level];
+
+            else if (visor_EvaGround_VetBad_Male[level] != null)
+                return visor_EvaGround_VetBad_Male[level];
+
+            else if (visor_EvaGround_Veteran_Male[level] != null)
+                return visor_EvaGround_Veteran_Male[level];
+
+            else if (visor_EvaGround_Badass_Male[level] != null)
+                return visor_EvaGround_Badass_Male[level];
+
+            else if (visor_EvaGround_Standard_Male[level] != null)
+                return visor_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_VetBad_FemaleNRM[level] != null)
+                return visor_EvaGround_VetBad_FemaleNRM[level];
+
+            else if (visor_EvaGround_Veteran_FemaleNRM[level] != null)
+                return visor_EvaGround_Veteran_FemaleNRM[level];
+
+            else if (visor_EvaGround_Badass_FemaleNRM[level] != null)
+                return visor_EvaGround_Badass_FemaleNRM[level];
+
+            else if (visor_EvaGround_Standard_FemaleNRM[level] != null)
+                return visor_EvaGround_Standard_FemaleNRM[level];
+
+            else if (visor_EvaGround_VetBad_MaleNRM[level] != null)
+                return visor_EvaGround_VetBad_MaleNRM[level];
+
+            else if (visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return visor_EvaGround_Veteran_MaleNRM[level];
+
+            else if (visor_EvaGround_Badass_MaleNRM[level] != null)
+                return visor_EvaGround_Badass_MaleNRM[level];
+
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
+                return visor_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_VetBad_Male[level] != null)
+                return visor_EvaGround_VetBad_Male[level];
+
+            else if (visor_EvaGround_Veteran_Male[level] != null)
+                return visor_EvaGround_Veteran_Male[level];
+
+            else if (visor_EvaGround_Badass_Male[level] != null)
+                return visor_EvaGround_Badass_Male[level];
+
+            else if (visor_EvaGround_Standard_Male[level] != null)
+                return visor_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_VetBad_MaleNRM[level] != null)
+                return visor_EvaGround_VetBad_MaleNRM[level];
+
+            else if (visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return visor_EvaGround_Veteran_MaleNRM[level];
+
+            else if (visor_EvaGround_Badass_MaleNRM[level] != null)
+                return visor_EvaGround_Badass_MaleNRM[level];
+
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
+                return visor_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Veteran_Female[level] != null)
+                return visor_EvaGround_Veteran_Female[level];
+
+            else if (visor_EvaGround_Standard_Female[level] != null)
+                return visor_EvaGround_Standard_Female[level];
+
+            else if (visor_EvaGround_Veteran_Male[level] != null)
+                return visor_EvaGround_Veteran_Male[level];
+
+            else if (visor_EvaGround_Standard_Male[level] != null)
+                return visor_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Veteran_FemaleNRM[level] != null)
+                return visor_EvaGround_Veteran_FemaleNRM[level];
+
+            else if (visor_EvaGround_Standard_FemaleNRM[level] != null)
+                return visor_EvaGround_Standard_FemaleNRM[level];
+
+            else if (visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return visor_EvaGround_Veteran_MaleNRM[level];
+
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
+                return visor_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Veteran_Male[level] != null)
+                return visor_EvaGround_Veteran_Male[level];
+
+            else if (visor_EvaGround_Standard_Male[level] != null)
+                return visor_EvaGround_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaGround_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaGround_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaGround_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return visor_EvaGround_Veteran_MaleNRM[level];
+
+            else if (visor_EvaGround_Standard_MaleNRM[level] != null)
+                return visor_EvaGround_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaGround_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.visor_EvaGround_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Badass_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Badass_Female[level] != null)
+                return visor_EvaSpace_Badass_Female[level];
+
+            else if (visor_EvaSpace_Standard_Female[level] != null)
+                return visor_EvaSpace_Standard_Female[level];
+
+            else if (visor_EvaSpace_Badass_Male[level] != null)
+                return visor_EvaSpace_Badass_Male[level];
+
+            else if (visor_EvaSpace_Standard_Male[level] != null)
+                return visor_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Badass_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Badass_FemaleNRM[level] != null)
+                return visor_EvaSpace_Badass_FemaleNRM[level];
+
+            else if (visor_EvaSpace_Standard_FemaleNRM[level] != null)
+                return visor_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (visor_EvaSpace_Badass_MaleNRM[level] != null)
+                return visor_EvaSpace_Badass_MaleNRM[level];
+
+            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
+                return visor_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Badass_Male[level] != null)
+                return visor_EvaSpace_Badass_Male[level];
+
+            else if (visor_EvaSpace_Standard_Male[level] != null)
+                return visor_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Badass_MaleNRM[level] != null)
+                return visor_EvaSpace_Badass_MaleNRM[level];
+
+            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
+                return visor_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Standard_Female[level] != null)
+                return visor_EvaSpace_Standard_Female[level];
+
+            else if (visor_EvaSpace_Standard_Male[level] != null)
+                return visor_EvaSpace_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Standard_FemaleNRM[level] != null)
+                return visor_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
+                return visor_EvaSpace_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Standard_Male[level] != null)
+                return visor_EvaSpace_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Standard_MaleNRM[level] != null)
+                return visor_EvaSpace_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_VetBad_Female[level] != null)
+                return visor_EvaSpace_VetBad_Female[level];
+
+            else if (visor_EvaSpace_Veteran_Female[level] != null)
+                return visor_EvaSpace_Veteran_Female[level];
+
+            else if (visor_EvaSpace_Badass_Female[level] != null)
+                return visor_EvaSpace_Badass_Female[level];
+
+            else if (visor_EvaSpace_Standard_Female[level] != null)
+                return visor_EvaSpace_Standard_Female[level];
+
+            else if (visor_EvaSpace_VetBad_Male[level] != null)
+                return visor_EvaSpace_VetBad_Male[level];
+
+            else if (visor_EvaSpace_Veteran_Male[level] != null)
+                return visor_EvaSpace_Veteran_Male[level];
+
+            else if (visor_EvaSpace_Badass_Male[level] != null)
+                return visor_EvaSpace_Badass_Male[level];
+
+            else if (visor_EvaSpace_Standard_Male[level] != null)
+                return visor_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_VetBad_FemaleNRM[level] != null)
+                return visor_EvaSpace_VetBad_FemaleNRM[level];
+
+            else if (visor_EvaSpace_Veteran_FemaleNRM[level] != null)
+                return visor_EvaSpace_Veteran_FemaleNRM[level];
+
+            else if (visor_EvaSpace_Badass_FemaleNRM[level] != null)
+                return visor_EvaSpace_Badass_FemaleNRM[level];
+
+            else if (visor_EvaSpace_Standard_FemaleNRM[level] != null)
+                return visor_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (visor_EvaSpace_VetBad_MaleNRM[level] != null)
+                return visor_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
+                return visor_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (visor_EvaSpace_Badass_MaleNRM[level] != null)
+                return visor_EvaSpace_Badass_MaleNRM[level];
+
+            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
+                return visor_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_VetBad_Male[level] != null)
+                return visor_EvaSpace_VetBad_Male[level];
+
+            else if (visor_EvaSpace_Veteran_Male[level] != null)
+                return visor_EvaSpace_Veteran_Male[level];
+
+            else if (visor_EvaSpace_Badass_Male[level] != null)
+                return visor_EvaSpace_Badass_Male[level];
+
+            else if (visor_EvaSpace_Standard_Male[level] != null)
+                return visor_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_VetBad_MaleNRM[level] != null)
+                return visor_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
+                return visor_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (visor_EvaSpace_Badass_MaleNRM[level] != null)
+                return visor_EvaSpace_Badass_MaleNRM[level];
+
+            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
+                return visor_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Veteran_Female[level] != null)
+                return visor_EvaSpace_Veteran_Female[level];
+
+            else if (visor_EvaSpace_Standard_Female[level] != null)
+                return visor_EvaSpace_Standard_Female[level];
+
+            else if (visor_EvaSpace_Veteran_Male[level] != null)
+                return visor_EvaSpace_Veteran_Male[level];
+
+            else if (visor_EvaSpace_Standard_Male[level] != null)
+                return visor_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Veteran_FemaleNRM[level] != null)
+                return visor_EvaSpace_Veteran_FemaleNRM[level];
+
+            else if (visor_EvaSpace_Standard_FemaleNRM[level] != null)
+                return visor_EvaSpace_Standard_FemaleNRM[level];
+
+            else if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
+                return visor_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
+                return visor_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Veteran_Male[level] != null)
+                return visor_EvaSpace_Veteran_Male[level];
+
+            else if (visor_EvaSpace_Standard_Male[level] != null)
+                return visor_EvaSpace_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_EvaSpace_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_EvaSpace_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_EvaSpace_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_EvaSpace_Veteran_MaleNRM[level] != null)
+                return visor_EvaSpace_Veteran_MaleNRM[level];
+
+            else if (visor_EvaSpace_Standard_MaleNRM[level] != null)
+                return visor_EvaSpace_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_EvaSpace_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.visor_EvaSpace_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Badass_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Badass_Female[level] != null)
+                return visor_Iva_Badass_Female[level];
+
+            else if (visor_Iva_Standard_Female[level] != null)
+                return visor_Iva_Standard_Female[level];
+
+            else if (visor_Iva_Badass_Male[level] != null)
+                return visor_Iva_Badass_Male[level];
+
+            else if (visor_Iva_Standard_Male[level] != null)
+                return visor_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Badass_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Badass_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Badass_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Badass_FemaleNRM[level] != null)
+                return visor_Iva_Badass_FemaleNRM[level];
+
+            else if (visor_Iva_Standard_FemaleNRM[level] != null)
+                return visor_Iva_Standard_FemaleNRM[level];
+
+            else if (visor_Iva_Badass_MaleNRM[level] != null)
+                return visor_Iva_Badass_MaleNRM[level];
+
+            else if (visor_Iva_Standard_MaleNRM[level] != null)
+                return visor_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Badass_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Badass_Male[level] != null)
+                return visor_Iva_Badass_Male[level];
+
+            else if (visor_Iva_Standard_Male[level] != null)
+                return visor_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Badass_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Badass_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Badass_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Badass_MaleNRM[level] != null)
+                return visor_Iva_Badass_MaleNRM[level];
+
+            else if (visor_Iva_Standard_MaleNRM[level] != null)
+                return visor_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Badass_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Standard_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Standard_Female[level] != null)
+                return visor_Iva_Standard_Female[level];
+
+            else if (visor_Iva_Standard_Male[level] != null)
+                return visor_Iva_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Standard_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Standard_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Standard_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Standard_FemaleNRM[level] != null)
+                return visor_Iva_Standard_FemaleNRM[level];
+
+            else if (visor_Iva_Standard_MaleNRM[level] != null)
+                return visor_Iva_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Standard_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Standard_Male[level] != null)
+                return visor_Iva_Standard_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Standard_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Standard_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Standard_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Standard_MaleNRM[level] != null)
+                return visor_Iva_Standard_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_VetBad_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_VetBad_Female[level] != null)
+                return visor_Iva_VetBad_Female[level];
+
+            else if (visor_Iva_Veteran_Female[level] != null)
+                return visor_Iva_Veteran_Female[level];
+
+            else if (visor_Iva_Badass_Female[level] != null)
+                return visor_Iva_Badass_Female[level];
+
+            else if (visor_Iva_Standard_Female[level] != null)
+                return visor_Iva_Standard_Female[level];
+
+            else if (visor_Iva_VetBad_Male[level] != null)
+                return visor_Iva_VetBad_Male[level];
+
+            else if (visor_Iva_Veteran_Male[level] != null)
+                return visor_Iva_Veteran_Male[level];
+
+            else if (visor_Iva_Badass_Male[level] != null)
+                return visor_Iva_Badass_Male[level];
+
+            else if (visor_Iva_Standard_Male[level] != null)
+                return visor_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.visor_Iva_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_VetBad_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_VetBad_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_VetBad_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_VetBad_FemaleNRM[level] != null)
+                return visor_Iva_VetBad_FemaleNRM[level];
+
+            else if (visor_Iva_Veteran_FemaleNRM[level] != null)
+                return visor_Iva_Veteran_FemaleNRM[level];
+
+            else if (visor_Iva_Badass_FemaleNRM[level] != null)
+                return visor_Iva_Badass_FemaleNRM[level];
+
+            else if (visor_Iva_Standard_FemaleNRM[level] != null)
+                return visor_Iva_Standard_FemaleNRM[level];
+
+            else if (visor_Iva_VetBad_MaleNRM[level] != null)
+                return visor_Iva_VetBad_MaleNRM[level];
+
+            else if (visor_Iva_Veteran_MaleNRM[level] != null)
+                return visor_Iva_Veteran_MaleNRM[level];
+
+            else if (visor_Iva_Badass_MaleNRM[level] != null)
+                return visor_Iva_Badass_MaleNRM[level];
+
+            else if (visor_Iva_Standard_MaleNRM[level] != null)
+                return visor_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_Iva_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_VetBad_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_VetBad_Male[level] != null)
+                return visor_Iva_VetBad_Male[level];
+
+            else if (visor_Iva_Veteran_Male[level] != null)
+                return visor_Iva_Veteran_Male[level];
+
+            else if (visor_Iva_Badass_Male[level] != null)
+                return visor_Iva_Badass_Male[level];
+
+            else if (visor_Iva_Standard_Male[level] != null)
+                return visor_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_VetBad_Male[level] != null)
+                return personaliser.defaultSuit.visor_Iva_VetBad_Male[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Veteran_Male[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Badass_Male[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Badass_Male[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_VetBad_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_VetBad_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_VetBad_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_VetBad_MaleNRM[level] != null)
+                return visor_Iva_VetBad_MaleNRM[level];
+
+            else if (visor_Iva_Veteran_MaleNRM[level] != null)
+                return visor_Iva_Veteran_MaleNRM[level];
+
+            else if (visor_Iva_Badass_MaleNRM[level] != null)
+                return visor_Iva_Badass_MaleNRM[level];
+
+            else if (visor_Iva_Standard_MaleNRM[level] != null)
+                return visor_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_VetBad_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_Iva_VetBad_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Veteran_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Badass_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Badass_MaleNRM[level];
+
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Veteran_Female(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Veteran_Female[level] != null)
+                return visor_Iva_Veteran_Female[level];
+
+            else if (visor_Iva_Standard_Female[level] != null)
+                return visor_Iva_Standard_Female[level];
+
+            else if (visor_Iva_Veteran_Male[level] != null)
+                return visor_Iva_Veteran_Male[level];
+
+            else if (visor_Iva_Standard_Male[level] != null)
+                return visor_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Veteran_Female for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Veteran_Female texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Veteran_FemaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Veteran_FemaleNRM[level] != null)
+                return visor_Iva_Veteran_FemaleNRM[level];
+
+            else if (visor_Iva_Standard_FemaleNRM[level] != null)
+                return visor_Iva_Standard_FemaleNRM[level];
+
+            else if (visor_Iva_Veteran_MaleNRM[level] != null)
+                return visor_Iva_Veteran_MaleNRM[level];
+
+            else if (visor_Iva_Standard_MaleNRM[level] != null)
+                return visor_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_MaleNRM[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Veteran_Male(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Veteran_Male[level] != null)
+                return visor_Iva_Veteran_Male[level];
+
+            else if (visor_Iva_Standard_Male[level] != null)
+                return visor_Iva_Standard_Male[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Veteran_Male[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Veteran_Male[level];
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_Male[level];
+        }
+
+        /// ************************************************************************************
+        /// <summary>
+        /// Used to get the visor_Iva_Veteran_Male for the level of the kerbal
+        /// </summary>
+        /// <param name="level">The level of the kerbal</param>
+        /// <returns>The visor_Iva_Veteran_Male texture for the level of the kerbal</returns>
+        /// ************************************************************************************
+        public Texture2D get_visor_Iva_Veteran_MaleNRM(int level)
+        {
+            Personaliser personaliser = Personaliser.instance;
+
+            if (visor_Iva_Veteran_MaleNRM[level] != null)
+                return visor_Iva_Veteran_MaleNRM[level];
+
+            else if (visor_Iva_Standard_MaleNRM[level] != null)
+                return visor_Iva_Standard_MaleNRM[level];
+
+            else if (personaliser.defaultSuit.visor_Iva_Veteran_MaleNRM[level] != null)
+                return personaliser.defaultSuit.visor_Iva_Veteran_MaleNRM[level];
+            else
+                return personaliser.defaultSuit.visor_Iva_Standard_MaleNRM[level];
+        }
+
+
+
+        /*
         /// ************************************************************************************
         /// <summary>
         /// Used to get the helmet_EvaGround_Badass_Male for the level of the kerbal
@@ -4296,7 +9282,7 @@ namespace TextureReplacerReplaced
                 return visor_Iva_Veteran_MaleNRM[level];
             else
                 return visor_Iva_Standard_MaleNRM[level];
-        }
+        }*/
 
         /// ************************************************************************************
         /// <summary>

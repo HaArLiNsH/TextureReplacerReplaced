@@ -48,13 +48,21 @@ namespace TextureReplacerReplaced
         /// Reflective shader mapping.
         /// </summary>
         private static Dictionary<string, string> shaderMappingConfig = new Dictionary<string, string> {
+            { "KSP/Diffuse", "ShaderNG/TR_Reflective_Emissive_Alpha" },
+            { "KSP/Specular", "ShaderNG/TR_Reflective_Emissive_Alpha" },
+            { "KSP/Bumped", "ShaderNG/TR_Reflective_Emissive_Alpha" },
+            { "KSP/Bumped Specular", "ShaderNG/TR_Reflective_Emissive_Alpha" },
+            { "KSP/Alpha/Translucent", "KSP/TR/Visor" },
+            { "KSP/Alpha/Translucent Specular", "KSP/TR/Visor" }
+        };
+        /*private static Dictionary<string, string> shaderMappingConfig = new Dictionary<string, string> {
             { "KSP/Diffuse", "Reflective/Bumped Diffuse" },
             { "KSP/Specular", "Reflective/Bumped Diffuse" },
             { "KSP/Bumped", "Reflective/Bumped Diffuse" },
             { "KSP/Bumped Specular", "Reflective/Bumped Diffuse" },
-            { "KSP/Alpha/Translucent", "KSP/TRR/Visor" },
-            { "KSP/Alpha/Translucent Specular", "KSP/TRR/Visor" }
-        };
+            { "KSP/Alpha/Translucent", "KSP/TR/Visor" },
+            { "KSP/Alpha/Translucent Specular", "KSP/TR/Visor" }
+        };*/
 
         /// <summary>
         /// The cull distances for the different parts
@@ -156,10 +164,10 @@ namespace TextureReplacerReplaced
 
             private static int currentScript = 0;
 
-            private readonly Cubemap envMap;
-            private readonly Transform transform;
-            private readonly bool isEva;
-            private readonly int interval;
+            private Cubemap envMap;
+            private Transform transform;
+            private bool isEva;
+            private int interval;
             private int counter;
             private int currentFace;
             private bool isActive = true;
@@ -171,7 +179,7 @@ namespace TextureReplacerReplaced
             /// <param name="part"></param>
             /// <param name="updateInterval"></param>
             /// ************************************************************************************
-            public Script(Part part, int updateInterval)
+            public Script(Part part, int updateInterval, Color32 reflectioncolor)
             {
                 envMap = new Cubemap(reflectionResolution, TextureFormat.ARGB32, true);
                 envMap.hideFlags = HideFlags.HideAndDontSave;
@@ -193,7 +201,7 @@ namespace TextureReplacerReplaced
 
                         material.shader = instance.visorShader;
                         material.SetTexture(Util.CUBE_PROPERTY, envMap);
-                        material.SetColor(Util.REFLECT_COLOR_PROPERTY, visorReflectionColour);
+                        material.SetColor(Util.REFLECT_COLOR_PROPERTY, reflectioncolor);
                     }
 
                     // TODO ICI ! 
@@ -254,6 +262,34 @@ namespace TextureReplacerReplaced
 
                 Object.DestroyImmediate(envMap);
             }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="reflectionColour"></param>
+            public void updateReflectioncolor(Part part, Color32 reflectionColour)
+            {
+                transform = part.transform;
+                isEva = part.GetComponent<KerbalEVA>() != null;
+
+                if (isEva)
+                {
+                    transform = transform.Find("model01");
+
+                    SkinnedMeshRenderer visor = transform.GetComponentsInChildren<SkinnedMeshRenderer>(true)
+                      .FirstOrDefault(m => m.name == "visor");
+
+                    if (visor != null)
+                    {
+                        Material material = visor.material;
+
+                        material.shader = instance.visorShader;
+                        material.SetTexture(Util.CUBE_PROPERTY, envMap);
+                        material.SetColor(Util.REFLECT_COLOR_PROPERTY, reflectionColour);
+                    }
+                }
+            }
+
 
             /// ************************************************************************************
             /// <summary>
@@ -358,7 +394,7 @@ namespace TextureReplacerReplaced
                 camera = new GameObject("TRReflectionCamera", new[] { typeof(Camera) }).GetComponent<Camera>();
                 camera.enabled = false;
                 camera.clearFlags = CameraClearFlags.Depth;
-                // Any smaller number and visors will refect internals of helmets.
+                // Any smaller number and visors will reflect internals of helmets.
                 camera.nearClipPlane = 0.125f;
                 camera.layerCullDistances = CULL_DISTANCES;
             }
@@ -480,10 +516,13 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Post-load initialisation.
+        /// called the the Start() after the awake() of KSP
         /// </summary>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void load()
         {
+            Util.log("++++ 'load()' ++++");
+
             Texture2D[] envMapFaces = new Texture2D[6];
 
             // Foreach non-null Texture2D in any of the EnvMap Folders

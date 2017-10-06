@@ -25,6 +25,7 @@ using System.Reflection;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
 
 namespace TextureReplacerReplaced
 {
@@ -85,6 +86,12 @@ namespace TextureReplacerReplaced
             }
 
             Loader.instance.configure();
+
+
+           // Util.log("++++++++++++++++++++++++++++++++++++ pouet+++++++++++++++++++++++++++++++++++++++++");
+
+            //System.Collections.Generic.List
+
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -94,7 +101,7 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         void Start()
         {
-
+            Util.log("++++ 'Start()' ++++");
             Loader.instance.processTextures();
 
             Loader.instance.initialise();
@@ -104,7 +111,7 @@ namespace TextureReplacerReplaced
             Personaliser.instance.load();
             
             isLoaded = true;
-            Util.log("TRR is loaded");
+            Util.log("++++ 'TRR is loaded'++++");
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////

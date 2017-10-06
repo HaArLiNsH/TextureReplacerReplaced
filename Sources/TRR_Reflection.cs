@@ -83,6 +83,8 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public override void OnStart(StartState state)
         {
+            Util.log("++++ 'OnStart()' ++++");
+
             Reflections reflections = Reflections.instance;
 
             Shader reflectiveShader = shader.Length == 0 ? null : TextureReplacerReplaced.GetShader(shader);
@@ -102,7 +104,7 @@ namespace TextureReplacerReplaced
             if (reflections.reflectionType == Reflections.Type.NONE)
                 return;
             if (reflections.reflectionType == Reflections.Type.REAL)
-                script = new Reflections.Script(part, updateInterval);
+                script = new Reflections.Script(part, updateInterval, reflectionColour);
 
             if (reflections.logReflectiveMeshes)
                 Util.log("Part \"{0}\"", part.name);
