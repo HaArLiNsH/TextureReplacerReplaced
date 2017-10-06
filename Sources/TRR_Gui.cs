@@ -84,9 +84,13 @@ namespace TextureReplacerReplaced
 
         private static readonly string[] LEVEL_CHOICES = {"Level 0", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5"};
 
-        private static readonly string[] SUIT_STATES = {"IVA Safe : In Vehicle, Safe (landed or in orbit)", "IVA Unsafe : In Vehicle, UnSafe (flying)" ,
-            "EVAground Atmo : Out Of Vehicle, On the Ground, With Atmosphere", "EVAground NoAtmo : Out Of Vehicle, On the Ground, Without Atmosphere",
-        "EVAspace : Out Of Vehicle, In Space"};
+        private static readonly string[] SUIT_STATES = {
+            "EVAground Atmo : Out Of Vehicle, On the Ground, With Atmosphere",
+            "EVAground NoAtmo : Out Of Vehicle, On the Ground, Without Atmosphere",
+            "EVAspace : Out Of Vehicle, In Space",
+            "IVA Safe : In Vehicle, Safe (landed or in orbit)",
+            "IVA Unsafe : In Vehicle, UnSafe (flying)"
+        };
 
 
         /// <summary>
@@ -2485,855 +2489,8 @@ namespace TextureReplacerReplaced
                 GUILayout.BeginVertical();
                 
                 switch (stateIndex)
-                {
-                case 0: // IVA Safe
-                        GUILayout.BeginVertical(); // start of the IVA_safe
-                        //GUILayout.Label("In Vehicle and Safe (non flying or in orbit)");
-
-                        GUILayout.BeginVertical();// start of the suit selection 
-                        GUILayout.BeginHorizontal();
-                        GUILayout.Label("Suit :");
-                        suit.suit_Iva_Safe = GUILayout.SelectionGrid(suit.suit_Iva_Safe, SUIT_3_CHOICES, 3);
-                        GUILayout.EndHorizontal();
-                        GUILayout.BeginVertical();
-
-                        switch (suit.suit_Iva_Safe)
-                        {
-                            case 0:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 1:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 2:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-                        }
-                        GUILayout.EndVertical();
-                        GUILayout.EndVertical();// end of the suit selection
-
-                        GUILayout.BeginVertical();// start of the helmet selection 
-                        GUILayout.BeginHorizontal();
-                        GUILayout.Label("Helmet :");
-                        suit.helmet_Iva_Safe = GUILayout.SelectionGrid(suit.helmet_Iva_Safe, SUIT_4_CHOICES, 4);
-                        GUILayout.EndHorizontal();
-                        GUILayout.BeginVertical();
-
-                        switch (suit.helmet_Iva_Safe)
-                        {
-                            case 0:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 1:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 2:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-                        }
-                        GUILayout.EndVertical();
-                        GUILayout.EndVertical();// end of the helmet selection
-
-                        GUILayout.BeginVertical();// start of the visor selection 
-                        GUILayout.BeginHorizontal();
-                        GUILayout.Label("Visor :");
-                        suit.visor_Iva_Safe = GUILayout.SelectionGrid(suit.visor_Iva_Safe, SUIT_4_CHOICES, 4);
-                        GUILayout.EndHorizontal();
-                        GUILayout.BeginVertical();
-
-                        switch (suit.visor_Iva_Safe)
-                        {
-                            case 0:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 1:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 2:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-                        }
-                        GUILayout.EndVertical();
-                        GUILayout.EndVertical();// end of the visor selection
-
-                        GUILayout.EndVertical(); // end of the IVA_safe
-                        break;
-
-                    /////////////////////////////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////////////////////////////
-
-                    case 1:
-                        GUILayout.BeginVertical(); // start of the IVA_Unsafe
-                        //GUILayout.Label("In Vehicle and Unsafe (flying) :");
-
-                        GUILayout.BeginVertical();// start of the suit selection 
-                        GUILayout.BeginHorizontal();
-                        GUILayout.Label("Suit :");
-                        suit.suit_Iva_Unsafe = GUILayout.SelectionGrid(suit.suit_Iva_Unsafe, SUIT_3_CHOICES, 3);
-                        GUILayout.EndHorizontal();
-                        GUILayout.BeginVertical();
-
-                        switch (suit.suit_Iva_Unsafe)
-                        {
-                            case 0:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 1:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 2:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_suit_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-                        }
-                        GUILayout.EndVertical();
-                        GUILayout.EndVertical();// end of the suit selection
-
-                        GUILayout.BeginVertical();// start of the helmet selection 
-                        GUILayout.BeginHorizontal();
-                        GUILayout.Label("Helmet :");
-                        suit.helmet_Iva_Unsafe = GUILayout.SelectionGrid(suit.helmet_Iva_Unsafe, SUIT_4_CHOICES, 4);
-                        GUILayout.EndHorizontal();
-                        GUILayout.BeginVertical();
-
-                        switch (suit.helmet_Iva_Unsafe)
-                        {
-                            case 0:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 1:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 2:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_helmet_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-                        }
-                        GUILayout.EndVertical();
-                        GUILayout.EndVertical();// end of the helmet selection
-
-                        GUILayout.BeginVertical();// start of the visor selection 
-                        GUILayout.BeginHorizontal();
-                        GUILayout.Label("Visor :");
-                        suit.visor_Iva_Unsafe = GUILayout.SelectionGrid(suit.visor_Iva_Unsafe, SUIT_4_CHOICES, 4);
-                        GUILayout.EndHorizontal();
-                        GUILayout.BeginVertical();
-
-                        switch (suit.visor_Iva_Unsafe)
-                        {
-                            case 0:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 1:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-
-                            case 2:
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Female standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-
-                                GUILayout.Space(10);
-
-                                GUILayout.BeginHorizontal();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Veteran", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male Badass", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.BeginVertical();
-                                GUILayout.Box(suit.get_visor_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
-                                GUILayout.Label("Male standard", labelStyle);
-                                GUILayout.EndVertical();
-                                GUILayout.EndHorizontal();
-                                break;
-                        }
-                        GUILayout.EndVertical();
-                        GUILayout.EndVertical();// end of the visor selection
-                        GUILayout.EndVertical(); // end of the IVA_Unsafe
-                        break;
-
-                    /////////////////////////////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////////////////////////////
-
-                    case 2:
+                {      
+                    case 0:
                         GUILayout.BeginVertical(); // start of the EVAground_Atmo
                         //GUILayout.Label("Out of Vehicle, On the Ground, With Atmosphere :");
 
@@ -3859,7 +3016,7 @@ namespace TextureReplacerReplaced
                         /////////////////////////////////////////////////////////////////////////////////////////////////
                         /////////////////////////////////////////////////////////////////////////////////////////////////
 
-                    case 3:
+                    case 1:
                         GUILayout.BeginVertical(); // start of the EVAground_NOAtmo
 
                         GUILayout.BeginVertical();// start of the suit selection 
@@ -4386,7 +3543,7 @@ namespace TextureReplacerReplaced
                     /////////////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////////////
 
-                    case 4:
+                    case 2:
                         GUILayout.BeginVertical(); // start of the EVAspace
                         GUILayout.BeginVertical();// start of the suit selection 
                         GUILayout.BeginHorizontal();
@@ -4909,6 +4066,849 @@ namespace TextureReplacerReplaced
 
                     /////////////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////////////
+                    case 3: // IVA Safe
+                        GUILayout.BeginVertical(); // start of the IVA_safe
+                        //GUILayout.Label("In Vehicle and Safe (non flying or in orbit)");
+
+                        GUILayout.BeginVertical();// start of the suit selection 
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label("Suit :");
+                        suit.suit_Iva_Safe = GUILayout.SelectionGrid(suit.suit_Iva_Safe, SUIT_3_CHOICES, 3);
+                        GUILayout.EndHorizontal();
+                        GUILayout.BeginVertical();
+
+                        switch (suit.suit_Iva_Safe)
+                        {
+                            case 0:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 1:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 2:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+                        }
+                        GUILayout.EndVertical();
+                        GUILayout.EndVertical();// end of the suit selection
+
+                        GUILayout.BeginVertical();// start of the helmet selection 
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label("Helmet :");
+                        suit.helmet_Iva_Safe = GUILayout.SelectionGrid(suit.helmet_Iva_Safe, SUIT_4_CHOICES, 4);
+                        GUILayout.EndHorizontal();
+                        GUILayout.BeginVertical();
+
+                        switch (suit.helmet_Iva_Safe)
+                        {
+                            case 0:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 1:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 2:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+                        }
+                        GUILayout.EndVertical();
+                        GUILayout.EndVertical();// end of the helmet selection
+
+                        GUILayout.BeginVertical();// start of the visor selection 
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label("Visor :");
+                        suit.visor_Iva_Safe = GUILayout.SelectionGrid(suit.visor_Iva_Safe, SUIT_4_CHOICES, 4);
+                        GUILayout.EndHorizontal();
+                        GUILayout.BeginVertical();
+
+                        switch (suit.visor_Iva_Safe)
+                        {
+                            case 0:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 1:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 2:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+                        }
+                        GUILayout.EndVertical();
+                        GUILayout.EndVertical();// end of the visor selection
+
+                        GUILayout.EndVertical(); // end of the IVA_safe
+                        break;
+
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    case 4:
+                        GUILayout.BeginVertical(); // start of the IVA_Unsafe
+                        //GUILayout.Label("In Vehicle and Unsafe (flying) :");
+
+                        GUILayout.BeginVertical();// start of the suit selection 
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label("Suit :");
+                        suit.suit_Iva_Unsafe = GUILayout.SelectionGrid(suit.suit_Iva_Unsafe, SUIT_3_CHOICES, 3);
+                        GUILayout.EndHorizontal();
+                        GUILayout.BeginVertical();
+
+                        switch (suit.suit_Iva_Unsafe)
+                        {
+                            case 0:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 1:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 2:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_suit_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+                        }
+                        GUILayout.EndVertical();
+                        GUILayout.EndVertical();// end of the suit selection
+
+                        GUILayout.BeginVertical();// start of the helmet selection 
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label("Helmet :");
+                        suit.helmet_Iva_Unsafe = GUILayout.SelectionGrid(suit.helmet_Iva_Unsafe, SUIT_4_CHOICES, 4);
+                        GUILayout.EndHorizontal();
+                        GUILayout.BeginVertical();
+
+                        switch (suit.helmet_Iva_Unsafe)
+                        {
+                            case 0:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 1:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 2:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_helmet_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+                        }
+                        GUILayout.EndVertical();
+                        GUILayout.EndVertical();// end of the helmet selection
+
+                        GUILayout.BeginVertical();// start of the visor selection 
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label("Visor :");
+                        suit.visor_Iva_Unsafe = GUILayout.SelectionGrid(suit.visor_Iva_Unsafe, SUIT_4_CHOICES, 4);
+                        GUILayout.EndHorizontal();
+                        GUILayout.BeginVertical();
+
+                        switch (suit.visor_Iva_Unsafe)
+                        {
+                            case 0:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_Iva_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 1:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaGround_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+
+                            case 2:
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_VetBad_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Veteran_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Badass_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Standard_Female(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Female standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+
+                                GUILayout.Space(10);
+
+                                GUILayout.BeginHorizontal();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_VetBad_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Veteran_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Veteran", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Badass_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male Badass", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.BeginVertical();
+                                GUILayout.Box(suit.get_visor_EvaSpace_Standard_Male(levelIndex), imageStyle, GUILayout.Width(suitImgSize), GUILayout.Height(suitImgSize));
+                                GUILayout.Label("Male standard", labelStyle);
+                                GUILayout.EndVertical();
+                                GUILayout.EndHorizontal();
+                                break;
+                        }
+                        GUILayout.EndVertical();
+                        GUILayout.EndVertical();// end of the visor selection
+                        GUILayout.EndVertical(); // end of the IVA_Unsafe
+                        break;
                 }
                 
                 GUILayout.EndVertical();

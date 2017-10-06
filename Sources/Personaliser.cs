@@ -21,12 +21,11 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-using KSP.UI.Screens;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace TextureReplacerReplaced
 {
@@ -95,7 +94,7 @@ namespace TextureReplacerReplaced
 
         /// <summary>
         /// Backed-up personalized textures from main configuration files.
-        /// <para>These are used to initialise kerbals if a saved game doesn't contain `TRScenario`. </para>
+        /// <para>These are used to initialise kerbals if a saved game doesn't contain `TRR_Scenario`. </para>
         /// </summary>
         private ConfigNode customKerbalsNode = new ConfigNode();
                 
@@ -3400,7 +3399,7 @@ namespace TextureReplacerReplaced
                     {
                         //Util.log("Settings found for {0}, using them", suitSet.name);
                         bool nodebool = true;
-                        Color32 nodeColor = new Color32(255, 255, 255, 255);
+                        Color32 nodeColor = new Color32();
                         int nodeInt = 0;
 
                         // suit settings

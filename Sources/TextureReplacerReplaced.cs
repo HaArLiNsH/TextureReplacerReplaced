@@ -21,11 +21,12 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+
 using System.Reflection;
-using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 namespace TextureReplacerReplaced
 {

@@ -27,7 +27,6 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-
 namespace TextureReplacerReplaced
 {
     class Textures_Importer
