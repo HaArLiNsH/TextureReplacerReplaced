@@ -1253,7 +1253,7 @@ namespace TextureReplacerReplaced
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_visor_EvaGround_NoAtmo(out newTexture, out newNormalMap, out visorReflectionColor);
-
+                                            smr.sharedMaterial.color = Color.white;
                                            // smr.sharedMaterial.color = personaliseKerbal_Head.get_PupilColor_Left(protoKerbal.experienceLevel);                                            
                                             useVisor = true;
                                             break;
@@ -1274,6 +1274,7 @@ namespace TextureReplacerReplaced
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_visor_EvaSpace(out newTexture, out newNormalMap, out visorReflectionColor);
+                                            smr.sharedMaterial.color = Color.white;
                                             useVisor = true;
                                             break;
                                         }
@@ -1292,6 +1293,7 @@ namespace TextureReplacerReplaced
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_visor_EvaGround_Atmo(out newTexture, out newNormalMap, out visorReflectionColor);
+                                            smr.sharedMaterial.color = Color.white;
                                             useVisor = true;
                                             break;
                                         }
@@ -1313,6 +1315,7 @@ namespace TextureReplacerReplaced
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_visor_Iva_Unsafe(out newTexture, out newNormalMap, out visorReflectionColor);
+                                            smr.sharedMaterial.color = Color.white;
                                             useVisor = true;
                                             break;
                                         }
