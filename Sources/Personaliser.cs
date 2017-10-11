@@ -1163,7 +1163,7 @@ namespace TextureReplacerReplaced
                                     }
                                     else if (needsEVASuit) // if in space
                                     {
-                                        if (personaliseKerbal_Suit.helmet_EvaGround_NoAtmo > 2)// hide the helmet 
+                                        if (personaliseKerbal_Suit.helmet_EvaSpace > 2)// hide the helmet 
                                         {
                                             smr.enabled = false;
                                             smr.sharedMesh = null;
@@ -1262,7 +1262,7 @@ namespace TextureReplacerReplaced
                                     }
                                     else if (needsEVASuit) // if in space
                                     {
-                                        if (personaliseKerbal_Suit.visor_EvaGround_NoAtmo > 2)
+                                        if (personaliseKerbal_Suit.visor_EvaSpace > 2)
                                         {
                                             smr.enabled = false;
                                             smr.sharedMesh = null;
@@ -1370,7 +1370,7 @@ namespace TextureReplacerReplaced
                                     }
                                     else if (needsEVASuit) // if in space
                                     {
-                                        if (personaliseKerbal_Suit.jetpack_EvaGround_NoAtmo > 1)
+                                        if (personaliseKerbal_Suit.jetpack_EvaSpace > 1)
                                         {
                                             smr.enabled = false;
                                             smr.sharedMesh = null;
@@ -1431,7 +1431,7 @@ namespace TextureReplacerReplaced
                                     }
                                     else if (needsEVASuit) // if in space
                                     {
-                                        if (personaliseKerbal_Suit.jetpack_EvaGround_NoAtmo > 1)
+                                        if (personaliseKerbal_Suit.jetpack_EvaSpace > 1)
                                         {
                                             smr.enabled = false;
                                             //smr.sharedMesh = null;
