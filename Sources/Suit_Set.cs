@@ -218,7 +218,21 @@ namespace TextureReplacerReplaced
         public Color32[] visor_EvaSpace_ReflectionColor = { new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
                 , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255)
                 , new Color32(128, 128, 128, 255), new Color32(128, 128, 128, 255) };
-        
+
+
+
+        public Color32[] visor_Iva_BaseColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
+
+        public Color32[] visor_EvaGround_BaseColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
+
+        public Color32[] visor_EvaSpace_BaseColor = { new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255)
+                , new Color32(255, 255, 255, 255), new Color32(255, 255, 255, 255) };
+
         /// <summary>
         /// The texture list for the helmet_EvaGround_Badass_Female
         /// </summary>
@@ -1112,6 +1126,25 @@ namespace TextureReplacerReplaced
         {
             return visor_EvaSpace_ReflectionColor[level];
         }
+
+
+
+        public Color32 get_Iva_VisorBaseColor(int level)
+        {
+            return visor_Iva_BaseColor[level];
+        }
+
+        public Color32 get_EvaGround_VisorBaseColor(int level)
+        {
+            return visor_EvaGround_BaseColor[level];
+        }
+
+        public Color32 get_EvaSpace_VisorBaseColor(int level)
+        {
+            return visor_EvaSpace_BaseColor[level];
+        }
+
+
 
         /// ************************************************************************************
         /// <summary>

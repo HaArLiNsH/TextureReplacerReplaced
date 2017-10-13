@@ -661,6 +661,8 @@ namespace TextureReplacerReplaced
 
             Color32 visorReflectionColor = new Color32(128, 128, 128, 255);
 
+            Color32 visorBasecolor = new Color32(255, 255, 255, 255);
+
             Head_Set personaliseKerbal_Head = getKerbalHead(protoKerbal, kerbalData);
            
             Suit_Set personaliseKerbal_Suit = getKerbalSuit(protoKerbal, kerbalData);
@@ -1057,8 +1059,8 @@ namespace TextureReplacerReplaced
                                         {
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
-                                            suit_Selector.select_visor_EvaGround_NoAtmo(out newTexture, out newNormalMap, out visorReflectionColor);
-                                            smr.sharedMaterial.color = Color.white;                                                                                    
+                                            suit_Selector.select_visor_EvaGround_NoAtmo(out newTexture, out newNormalMap, out visorReflectionColor, out visorBasecolor);
+                                            smr.sharedMaterial.color = visorBasecolor;                                                                                    
                                             useVisor = true;
                                             break;
                                         }
@@ -1077,8 +1079,8 @@ namespace TextureReplacerReplaced
                                         {
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
-                                            suit_Selector.select_visor_EvaSpace(out newTexture, out newNormalMap, out visorReflectionColor);
-                                            smr.sharedMaterial.color = Color.white;
+                                            suit_Selector.select_visor_EvaSpace(out newTexture, out newNormalMap, out visorReflectionColor, out visorBasecolor);
+                                            smr.sharedMaterial.color = visorBasecolor;
                                             useVisor = true;
                                             break;
                                         }
@@ -1096,8 +1098,8 @@ namespace TextureReplacerReplaced
                                         {
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
-                                            suit_Selector.select_visor_EvaGround_Atmo(out newTexture, out newNormalMap, out visorReflectionColor);
-                                            smr.sharedMaterial.color = Color.white;
+                                            suit_Selector.select_visor_EvaGround_Atmo(out newTexture, out newNormalMap, out visorReflectionColor, out visorBasecolor);
+                                            smr.sharedMaterial.color = visorBasecolor;
                                             useVisor = true;
                                             break;
                                         }
@@ -1118,8 +1120,8 @@ namespace TextureReplacerReplaced
                                         {
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
-                                            suit_Selector.select_visor_Iva_Unsafe(out newTexture, out newNormalMap, out visorReflectionColor);
-                                            smr.sharedMaterial.color = Color.white;
+                                            suit_Selector.select_visor_Iva_Unsafe(out newTexture, out newNormalMap, out visorReflectionColor, out visorBasecolor);
+                                            smr.sharedMaterial.color = visorBasecolor;
                                             useVisor = true;
                                             break;
                                         }
@@ -1137,8 +1139,8 @@ namespace TextureReplacerReplaced
                                         {
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];                                            
-                                            suit_Selector.select_visor_Iva_Safe(out newTexture, out newNormalMap, out visorReflectionColor);
-                                            smr.sharedMaterial.color = Color.white;
+                                            suit_Selector.select_visor_Iva_Safe(out newTexture, out newNormalMap, out visorReflectionColor, out visorBasecolor);
+                                            smr.sharedMaterial.color = visorBasecolor;
                                             useVisor = true;
                                             break;
                                         }
@@ -1699,6 +1701,46 @@ namespace TextureReplacerReplaced
                 if (defaultNode.TryGetValue("visor_EvaSpace_ReflectionAdaptive", ref nodebool))
                     defaultMap.visor_EvaSpace_ReflectionAdaptive = nodebool;
 
+                if (defaultNode.TryGetValue("visor_Iva_BaseColor[0]", ref nodeColor))
+                    defaultMap.visor_Iva_BaseColor[0] = nodeColor;
+                if (defaultNode.TryGetValue("visor_Iva_BaseColor[1]", ref nodeColor))
+                    defaultMap.visor_Iva_BaseColor[1] = nodeColor;
+                if (defaultNode.TryGetValue("visor_Iva_BaseColor[2]", ref nodeColor))
+                    defaultMap.visor_Iva_BaseColor[2] = nodeColor;
+                if (defaultNode.TryGetValue("visor_Iva_BaseColor[3]", ref nodeColor))
+                    defaultMap.visor_Iva_BaseColor[3] = nodeColor;
+                if (defaultNode.TryGetValue("visor_Iva_BaseColor[4]", ref nodeColor))
+                    defaultMap.visor_Iva_BaseColor[4] = nodeColor;
+                if (defaultNode.TryGetValue("visor_Iva_BaseColor[5]", ref nodeColor))
+                    defaultMap.visor_Iva_BaseColor[5] = nodeColor;
+
+                if (defaultNode.TryGetValue("visor_EvaGround_BaseColor[0]", ref nodeColor))
+                    defaultMap.visor_EvaGround_BaseColor[0] = nodeColor;
+                if (defaultNode.TryGetValue("visor_EvaGround_BaseColor[1]", ref nodeColor))
+                    defaultMap.visor_EvaGround_BaseColor[1] = nodeColor;
+                if (defaultNode.TryGetValue("visor_EvaGround_BaseColor[2]", ref nodeColor))
+                    defaultMap.visor_EvaGround_BaseColor[2] = nodeColor;
+                if (defaultNode.TryGetValue("visor_EvaGround_BaseColor[3]", ref nodeColor))
+                    defaultMap.visor_EvaGround_BaseColor[3] = nodeColor;
+                if (defaultNode.TryGetValue("visor_EvaGround_BaseColor[4]", ref nodeColor))
+                    defaultMap.visor_EvaGround_BaseColor[4] = nodeColor;
+                if (defaultNode.TryGetValue("visor_EvaGround_BaseColor[5]", ref nodeColor))
+                    defaultMap.visor_EvaGround_BaseColor[5] = nodeColor;
+
+                if (defaultNode.TryGetValue("visor_EvaSpace_BaseColor[0]", ref nodeColor))
+                    defaultMap.visor_EvaSpace_BaseColor[0] = nodeColor;
+                if (defaultNode.TryGetValue("visor_EvaSpace_BaseColor[1]", ref nodeColor))
+                    defaultMap.visor_EvaSpace_BaseColor[1] = nodeColor;
+                if (defaultNode.TryGetValue("visor_EvaSpace_BaseColor[2]", ref nodeColor))
+                    defaultMap.visor_EvaSpace_BaseColor[2] = nodeColor;
+                if (defaultNode.TryGetValue("visor_EvaSpace_BaseColor[3]", ref nodeColor))
+                    defaultMap.visor_EvaSpace_BaseColor[3] = nodeColor;
+                if (defaultNode.TryGetValue("visor_EvaSpace_BaseColor[4]", ref nodeColor))
+                    defaultMap.visor_EvaSpace_BaseColor[4] = nodeColor;
+                if (defaultNode.TryGetValue("visor_EvaSpace_BaseColor[5]", ref nodeColor))
+                    defaultMap.visor_EvaSpace_BaseColor[5] = nodeColor;
+
+
                 if (defaultNode.TryGetValue("visor_Iva_ReflectionColor[0]", ref nodeColor))
                     defaultMap.visor_Iva_ReflectionColor[0] = nodeColor;
                 if (defaultNode.TryGetValue("visor_Iva_ReflectionColor[1]", ref nodeColor))
@@ -1872,6 +1914,101 @@ namespace TextureReplacerReplaced
                     else
                         suitSet.visor_EvaSpace_ReflectionAdaptive = defaultMap.visor_EvaSpace_ReflectionAdaptive;
 
+                    // visor base color settings
+                    if (savedNode.TryGetValue("visor_Iva_BaseColor[0]", ref nodeColor))
+                        suitSet.visor_Iva_BaseColor[0] = nodeColor;
+                    else
+                        suitSet.visor_Iva_BaseColor[0] = defaultMap.visor_Iva_BaseColor[0];
+
+                    if (savedNode.TryGetValue("visor_Iva_BaseColor[1]", ref nodeColor))
+                        suitSet.visor_Iva_BaseColor[1] = nodeColor;
+                    else
+                        suitSet.visor_Iva_BaseColor[1] = defaultMap.visor_Iva_BaseColor[1];
+
+                    if (savedNode.TryGetValue("visor_Iva_BaseColor[2]", ref nodeColor))
+                        suitSet.visor_Iva_BaseColor[2] = nodeColor;
+                    else
+                        suitSet.visor_Iva_BaseColor[2] = defaultMap.visor_Iva_BaseColor[2];
+
+                    if (savedNode.TryGetValue("visor_Iva_BaseColor[3]", ref nodeColor))
+                        suitSet.visor_Iva_BaseColor[3] = nodeColor;
+                    else
+                        suitSet.visor_Iva_BaseColor[3] = defaultMap.visor_Iva_BaseColor[3];
+
+                    if (savedNode.TryGetValue("visor_Iva_BaseColor[4]", ref nodeColor))
+                        suitSet.visor_Iva_BaseColor[4] = nodeColor;
+                    else
+                        suitSet.visor_Iva_BaseColor[4] = defaultMap.visor_Iva_BaseColor[4];
+
+                    if (savedNode.TryGetValue("visor_Iva_BaseColor[5]", ref nodeColor))
+                        suitSet.visor_Iva_BaseColor[5] = nodeColor;
+                    else
+                        suitSet.visor_Iva_BaseColor[5] = defaultMap.visor_Iva_BaseColor[5];
+
+
+                    if (savedNode.TryGetValue("visor_EvaGround_BaseColor[0]", ref nodeColor))
+                        suitSet.visor_EvaGround_BaseColor[0] = nodeColor;
+                    else
+                        suitSet.visor_EvaGround_BaseColor[0] = defaultMap.visor_EvaGround_BaseColor[0];
+
+                    if (savedNode.TryGetValue("visor_EvaGround_BaseColor[1]", ref nodeColor))
+                        suitSet.visor_EvaGround_BaseColor[1] = nodeColor;
+                    else
+                        suitSet.visor_EvaGround_BaseColor[1] = defaultMap.visor_EvaGround_BaseColor[1];
+
+                    if (savedNode.TryGetValue("visor_EvaGround_BaseColor[2]", ref nodeColor))
+                        suitSet.visor_EvaGround_BaseColor[2] = nodeColor;
+                    else
+                        suitSet.visor_EvaGround_BaseColor[2] = defaultMap.visor_EvaGround_BaseColor[2];
+
+                    if (savedNode.TryGetValue("visor_EvaGround_BaseColor[3]", ref nodeColor))
+                        suitSet.visor_EvaGround_BaseColor[3] = nodeColor;
+                    else
+                        suitSet.visor_EvaGround_BaseColor[3] = defaultMap.visor_EvaGround_BaseColor[3];
+
+                    if (savedNode.TryGetValue("visor_EvaGround_BaseColor[4]", ref nodeColor))
+                        suitSet.visor_EvaGround_BaseColor[4] = nodeColor;
+                    else
+                        suitSet.visor_EvaGround_BaseColor[4] = defaultMap.visor_EvaGround_BaseColor[4];
+
+                    if (savedNode.TryGetValue("visor_EvaGround_BaseColor[5]", ref nodeColor))
+                        suitSet.visor_EvaGround_BaseColor[5] = nodeColor;
+                    else
+                        suitSet.visor_EvaGround_BaseColor[5] = defaultMap.visor_EvaGround_BaseColor[5];
+
+
+                    if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[0]", ref nodeColor))
+                        suitSet.visor_EvaSpace_BaseColor[0] = nodeColor;
+                    else
+                        suitSet.visor_EvaSpace_BaseColor[0] = defaultMap.visor_EvaSpace_BaseColor[0];
+
+                    if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[1]", ref nodeColor))
+                        suitSet.visor_EvaSpace_BaseColor[1] = nodeColor;
+                    else
+                        suitSet.visor_EvaSpace_BaseColor[1] = defaultMap.visor_EvaSpace_BaseColor[1];
+
+                    if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[2]", ref nodeColor))
+                        suitSet.visor_EvaSpace_BaseColor[2] = nodeColor;
+                    else
+                        suitSet.visor_EvaSpace_BaseColor[2] = defaultMap.visor_EvaSpace_BaseColor[2];
+
+                    if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[3]", ref nodeColor))
+                        suitSet.visor_EvaSpace_BaseColor[3] = nodeColor;
+                    else
+                        suitSet.visor_EvaSpace_BaseColor[3] = defaultMap.visor_EvaSpace_BaseColor[3];
+
+                    if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[4]", ref nodeColor))
+                        suitSet.visor_EvaSpace_BaseColor[4] = nodeColor;
+                    else
+                        suitSet.visor_EvaSpace_BaseColor[4] = defaultMap.visor_EvaSpace_BaseColor[4];
+
+                    if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[5]", ref nodeColor))
+                        suitSet.visor_EvaSpace_BaseColor[5] = nodeColor;
+                    else
+                        suitSet.visor_EvaSpace_BaseColor[5] = defaultMap.visor_EvaSpace_BaseColor[5];
+
+
+
                     // visor reflection color settings
                     if (savedNode.TryGetValue("visor_Iva_ReflectionColor[0]", ref nodeColor))
                         suitSet.visor_Iva_ReflectionColor[0] = nodeColor;
@@ -2001,7 +2138,32 @@ namespace TextureReplacerReplaced
                     suitSet.visor_EvaGround_ReflectionAdaptive = defaultMap.visor_EvaGround_ReflectionAdaptive;
                     suitSet.visor_EvaSpace_ReflectionAdaptive = defaultMap.visor_EvaSpace_ReflectionAdaptive;
 
-                    // visor reflection color settings
+
+                    // visor Base color settings
+                    suitSet.visor_Iva_BaseColor[0] = defaultMap.visor_Iva_BaseColor[0];
+                    suitSet.visor_Iva_BaseColor[1] = defaultMap.visor_Iva_BaseColor[1];
+                    suitSet.visor_Iva_BaseColor[2] = defaultMap.visor_Iva_BaseColor[2];
+                    suitSet.visor_Iva_BaseColor[3] = defaultMap.visor_Iva_BaseColor[3];
+                    suitSet.visor_Iva_BaseColor[4] = defaultMap.visor_Iva_BaseColor[4];
+                    suitSet.visor_Iva_BaseColor[5] = defaultMap.visor_Iva_BaseColor[5];
+
+
+                    suitSet.visor_EvaGround_BaseColor[0] = defaultMap.visor_EvaGround_BaseColor[0];
+                    suitSet.visor_EvaGround_BaseColor[1] = defaultMap.visor_EvaGround_BaseColor[1];
+                    suitSet.visor_EvaGround_BaseColor[2] = defaultMap.visor_EvaGround_BaseColor[2];
+                    suitSet.visor_EvaGround_BaseColor[3] = defaultMap.visor_EvaGround_BaseColor[3];
+                    suitSet.visor_EvaGround_BaseColor[4] = defaultMap.visor_EvaGround_BaseColor[4];
+                    suitSet.visor_EvaGround_BaseColor[5] = defaultMap.visor_EvaGround_BaseColor[5];
+
+
+                    suitSet.visor_EvaSpace_BaseColor[0] = defaultMap.visor_EvaSpace_BaseColor[0];
+                    suitSet.visor_EvaSpace_BaseColor[1] = defaultMap.visor_EvaSpace_BaseColor[1];
+                    suitSet.visor_EvaSpace_BaseColor[2] = defaultMap.visor_EvaSpace_BaseColor[2];
+                    suitSet.visor_EvaSpace_BaseColor[3] = defaultMap.visor_EvaSpace_BaseColor[3];
+                    suitSet.visor_EvaSpace_BaseColor[4] = defaultMap.visor_EvaSpace_BaseColor[4];
+                    suitSet.visor_EvaSpace_BaseColor[5] = defaultMap.visor_EvaSpace_BaseColor[5];
+
+                    // visor Reflection color settings
                     suitSet.visor_Iva_ReflectionColor[0] = defaultMap.visor_Iva_ReflectionColor[0];
                     suitSet.visor_Iva_ReflectionColor[1] = defaultMap.visor_Iva_ReflectionColor[1];
                     suitSet.visor_Iva_ReflectionColor[2] = defaultMap.visor_Iva_ReflectionColor[2];
@@ -2062,6 +2224,29 @@ namespace TextureReplacerReplaced
             defaultNode.AddValue("visor_EvaGround_ReflectionAdaptive", defaultMap.visor_EvaGround_ReflectionAdaptive);
             defaultNode.AddValue("visor_EvaSpace_ReflectionAdaptive", defaultMap.visor_EvaSpace_ReflectionAdaptive);
 
+            defaultNode.AddValue("visor_Iva_BaseColor[0]", defaultMap.visor_Iva_BaseColor[0]);
+            defaultNode.AddValue("visor_Iva_BaseColor[1]", defaultMap.visor_Iva_BaseColor[1]);
+            defaultNode.AddValue("visor_Iva_BaseColor[2]", defaultMap.visor_Iva_BaseColor[2]);
+            defaultNode.AddValue("visor_Iva_BaseColor[3]", defaultMap.visor_Iva_BaseColor[3]);
+            defaultNode.AddValue("visor_Iva_BaseColor[4]", defaultMap.visor_Iva_BaseColor[4]);
+            defaultNode.AddValue("visor_Iva_BaseColor[5]", defaultMap.visor_Iva_BaseColor[5]);
+
+            defaultNode.AddValue("visor_EvaGround_BaseColor[0]", defaultMap.visor_EvaGround_BaseColor[0]);
+            defaultNode.AddValue("visor_EvaGround_BaseColor[1]", defaultMap.visor_EvaGround_BaseColor[1]);
+            defaultNode.AddValue("visor_EvaGround_BaseColor[2]", defaultMap.visor_EvaGround_BaseColor[2]);
+            defaultNode.AddValue("visor_EvaGround_BaseColor[3]", defaultMap.visor_EvaGround_BaseColor[3]);
+            defaultNode.AddValue("visor_EvaGround_BaseColor[4]", defaultMap.visor_EvaGround_BaseColor[4]);
+            defaultNode.AddValue("visor_EvaGround_BaseColor[5]", defaultMap.visor_EvaGround_BaseColor[5]);
+
+            defaultNode.AddValue("visor_EvaSpace_BaseColor[0]", defaultMap.visor_EvaSpace_BaseColor[0]);
+            defaultNode.AddValue("visor_EvaSpace_BaseColor[1]", defaultMap.visor_EvaSpace_BaseColor[1]);
+            defaultNode.AddValue("visor_EvaSpace_BaseColor[2]", defaultMap.visor_EvaSpace_BaseColor[2]);
+            defaultNode.AddValue("visor_EvaSpace_BaseColor[3]", defaultMap.visor_EvaSpace_BaseColor[3]);
+            defaultNode.AddValue("visor_EvaSpace_BaseColor[4]", defaultMap.visor_EvaSpace_BaseColor[4]);
+            defaultNode.AddValue("visor_EvaSpace_BaseColor[5]", defaultMap.visor_EvaSpace_BaseColor[5]);
+
+
+
             defaultNode.AddValue("visor_Iva_ReflectionColor[0]", defaultMap.visor_Iva_ReflectionColor[0]);
             defaultNode.AddValue("visor_Iva_ReflectionColor[1]", defaultMap.visor_Iva_ReflectionColor[1]);
             defaultNode.AddValue("visor_Iva_ReflectionColor[2]", defaultMap.visor_Iva_ReflectionColor[2]);
@@ -2116,6 +2301,30 @@ namespace TextureReplacerReplaced
                 subNode.AddValue("visor_Iva_ReflectionAdaptive", suitSet.visor_Iva_ReflectionAdaptive);
                 subNode.AddValue("visor_EvaGround_ReflectionAdaptive", suitSet.visor_EvaGround_ReflectionAdaptive);
                 subNode.AddValue("visor_EvaSpace_ReflectionAdaptive", suitSet.visor_EvaSpace_ReflectionAdaptive);
+
+                subNode.AddValue("visor_Iva_BaseColor[0]", suitSet.visor_Iva_BaseColor[0]);
+                subNode.AddValue("visor_Iva_BaseColor[1]", suitSet.visor_Iva_BaseColor[1]);
+                subNode.AddValue("visor_Iva_BaseColor[2]", suitSet.visor_Iva_BaseColor[2]);
+                subNode.AddValue("visor_Iva_BaseColor[3]", suitSet.visor_Iva_BaseColor[3]);
+                subNode.AddValue("visor_Iva_BaseColor[4]", suitSet.visor_Iva_BaseColor[4]);
+                subNode.AddValue("visor_Iva_BaseColor[5]", suitSet.visor_Iva_BaseColor[5]);
+
+                subNode.AddValue("visor_EvaGround_BaseColor[0]", suitSet.visor_EvaGround_BaseColor[0]);
+                subNode.AddValue("visor_EvaGround_BaseColor[1]", suitSet.visor_EvaGround_BaseColor[1]);
+                subNode.AddValue("visor_EvaGround_BaseColor[2]", suitSet.visor_EvaGround_BaseColor[2]);
+                subNode.AddValue("visor_EvaGround_BaseColor[3]", suitSet.visor_EvaGround_BaseColor[3]);
+                subNode.AddValue("visor_EvaGround_BaseColor[4]", suitSet.visor_EvaGround_BaseColor[4]);
+                subNode.AddValue("visor_EvaGround_BaseColor[5]", suitSet.visor_EvaGround_BaseColor[5]);
+
+                subNode.AddValue("visor_EvaSpace_BaseColor[0]", suitSet.visor_EvaSpace_BaseColor[0]);
+                subNode.AddValue("visor_EvaSpace_BaseColor[1]", suitSet.visor_EvaSpace_BaseColor[1]);
+                subNode.AddValue("visor_EvaSpace_BaseColor[2]", suitSet.visor_EvaSpace_BaseColor[2]);
+                subNode.AddValue("visor_EvaSpace_BaseColor[3]", suitSet.visor_EvaSpace_BaseColor[3]);
+                subNode.AddValue("visor_EvaSpace_BaseColor[4]", suitSet.visor_EvaSpace_BaseColor[4]);
+                subNode.AddValue("visor_EvaSpace_BaseColor[5]", suitSet.visor_EvaSpace_BaseColor[5]);
+
+
+
 
                 subNode.AddValue("visor_Iva_ReflectionColor[0]", suitSet.visor_Iva_ReflectionColor[0]);
                 subNode.AddValue("visor_Iva_ReflectionColor[1]", suitSet.visor_Iva_ReflectionColor[1]);
@@ -3300,6 +3509,101 @@ namespace TextureReplacerReplaced
                         else
                             suitSet.visor_EvaSpace_ReflectionAdaptive = defaultMap.visor_EvaSpace_ReflectionAdaptive;
 
+                        // visor base color settings
+                        if (savedNode.TryGetValue("visor_Iva_BaseColor[0]", ref nodeColor))
+                            suitSet.visor_Iva_BaseColor[0] = nodeColor;
+                        else
+                            suitSet.visor_Iva_BaseColor[0] = defaultMap.visor_Iva_BaseColor[0];
+
+                        if (savedNode.TryGetValue("visor_Iva_BaseColor[1]", ref nodeColor))
+                            suitSet.visor_Iva_BaseColor[1] = nodeColor;
+                        else
+                            suitSet.visor_Iva_BaseColor[1] = defaultMap.visor_Iva_BaseColor[1];
+
+                        if (savedNode.TryGetValue("visor_Iva_BaseColor[2]", ref nodeColor))
+                            suitSet.visor_Iva_BaseColor[2] = nodeColor;
+                        else
+                            suitSet.visor_Iva_BaseColor[2] = defaultMap.visor_Iva_BaseColor[2];
+
+                        if (savedNode.TryGetValue("visor_Iva_BaseColor[3]", ref nodeColor))
+                            suitSet.visor_Iva_BaseColor[3] = nodeColor;
+                        else
+                            suitSet.visor_Iva_BaseColor[3] = defaultMap.visor_Iva_BaseColor[3];
+
+                        if (savedNode.TryGetValue("visor_Iva_BaseColor[4]", ref nodeColor))
+                            suitSet.visor_Iva_BaseColor[4] = nodeColor;
+                        else
+                            suitSet.visor_Iva_BaseColor[4] = defaultMap.visor_Iva_BaseColor[4];
+
+                        if (savedNode.TryGetValue("visor_Iva_BaseColor[5]", ref nodeColor))
+                            suitSet.visor_Iva_BaseColor[5] = nodeColor;
+                        else
+                            suitSet.visor_Iva_BaseColor[5] = defaultMap.visor_Iva_BaseColor[5];
+
+
+                        if (savedNode.TryGetValue("visor_EvaGround_BaseColor[0]", ref nodeColor))
+                            suitSet.visor_EvaGround_BaseColor[0] = nodeColor;
+                        else
+                            suitSet.visor_EvaGround_BaseColor[0] = defaultMap.visor_EvaGround_BaseColor[0];
+
+                        if (savedNode.TryGetValue("visor_EvaGround_BaseColor[1]", ref nodeColor))
+                            suitSet.visor_EvaGround_BaseColor[1] = nodeColor;
+                        else
+                            suitSet.visor_EvaGround_BaseColor[1] = defaultMap.visor_EvaGround_BaseColor[1];
+
+                        if (savedNode.TryGetValue("visor_EvaGround_BaseColor[2]", ref nodeColor))
+                            suitSet.visor_EvaGround_BaseColor[2] = nodeColor;
+                        else
+                            suitSet.visor_EvaGround_BaseColor[2] = defaultMap.visor_EvaGround_BaseColor[2];
+
+                        if (savedNode.TryGetValue("visor_EvaGround_BaseColor[3]", ref nodeColor))
+                            suitSet.visor_EvaGround_BaseColor[3] = nodeColor;
+                        else
+                            suitSet.visor_EvaGround_BaseColor[3] = defaultMap.visor_EvaGround_BaseColor[3];
+
+                        if (savedNode.TryGetValue("visor_EvaGround_BaseColor[4]", ref nodeColor))
+                            suitSet.visor_EvaGround_BaseColor[4] = nodeColor;
+                        else
+                            suitSet.visor_EvaGround_BaseColor[4] = defaultMap.visor_EvaGround_BaseColor[4];
+
+                        if (savedNode.TryGetValue("visor_EvaGround_BaseColor[5]", ref nodeColor))
+                            suitSet.visor_EvaGround_BaseColor[5] = nodeColor;
+                        else
+                            suitSet.visor_EvaGround_BaseColor[5] = defaultMap.visor_EvaGround_BaseColor[5];
+
+
+                        if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[0]", ref nodeColor))
+                            suitSet.visor_EvaSpace_BaseColor[0] = nodeColor;
+                        else
+                            suitSet.visor_EvaSpace_BaseColor[0] = defaultMap.visor_EvaSpace_BaseColor[0];
+
+                        if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[1]", ref nodeColor))
+                            suitSet.visor_EvaSpace_BaseColor[1] = nodeColor;
+                        else
+                            suitSet.visor_EvaSpace_BaseColor[1] = defaultMap.visor_EvaSpace_BaseColor[1];
+
+                        if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[2]", ref nodeColor))
+                            suitSet.visor_EvaSpace_BaseColor[2] = nodeColor;
+                        else
+                            suitSet.visor_EvaSpace_BaseColor[2] = defaultMap.visor_EvaSpace_BaseColor[2];
+
+                        if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[3]", ref nodeColor))
+                            suitSet.visor_EvaSpace_BaseColor[3] = nodeColor;
+                        else
+                            suitSet.visor_EvaSpace_BaseColor[3] = defaultMap.visor_EvaSpace_BaseColor[3];
+
+                        if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[4]", ref nodeColor))
+                            suitSet.visor_EvaSpace_BaseColor[4] = nodeColor;
+                        else
+                            suitSet.visor_EvaSpace_BaseColor[4] = defaultMap.visor_EvaSpace_BaseColor[4];
+
+                        if (savedNode.TryGetValue("visor_EvaSpace_BaseColor[5]", ref nodeColor))
+                            suitSet.visor_EvaSpace_BaseColor[5] = nodeColor;
+                        else
+                            suitSet.visor_EvaSpace_BaseColor[5] = defaultMap.visor_EvaSpace_BaseColor[5];
+
+
+
                         // visor reflection color settings
                         if (savedNode.TryGetValue("visor_Iva_ReflectionColor[0]", ref nodeColor))
                             suitSet.visor_Iva_ReflectionColor[0] = nodeColor;
@@ -3429,7 +3733,32 @@ namespace TextureReplacerReplaced
                         suitSet.visor_EvaGround_ReflectionAdaptive = defaultMap.visor_EvaGround_ReflectionAdaptive;
                         suitSet.visor_EvaSpace_ReflectionAdaptive = defaultMap.visor_EvaSpace_ReflectionAdaptive;
 
-                        // visor reflection color settings
+                        // visor Base color settings
+                        suitSet.visor_Iva_BaseColor[0] = defaultMap.visor_Iva_BaseColor[0];
+                        suitSet.visor_Iva_BaseColor[1] = defaultMap.visor_Iva_BaseColor[1];
+                        suitSet.visor_Iva_BaseColor[2] = defaultMap.visor_Iva_BaseColor[2];
+                        suitSet.visor_Iva_BaseColor[3] = defaultMap.visor_Iva_BaseColor[3];
+                        suitSet.visor_Iva_BaseColor[4] = defaultMap.visor_Iva_BaseColor[4];
+                        suitSet.visor_Iva_BaseColor[5] = defaultMap.visor_Iva_BaseColor[5];
+
+
+                        suitSet.visor_EvaGround_BaseColor[0] = defaultMap.visor_EvaGround_BaseColor[0];
+                        suitSet.visor_EvaGround_BaseColor[1] = defaultMap.visor_EvaGround_BaseColor[1];
+                        suitSet.visor_EvaGround_BaseColor[2] = defaultMap.visor_EvaGround_BaseColor[2];
+                        suitSet.visor_EvaGround_BaseColor[3] = defaultMap.visor_EvaGround_BaseColor[3];
+                        suitSet.visor_EvaGround_BaseColor[4] = defaultMap.visor_EvaGround_BaseColor[4];
+                        suitSet.visor_EvaGround_BaseColor[5] = defaultMap.visor_EvaGround_BaseColor[5];
+
+
+                        suitSet.visor_EvaSpace_BaseColor[0] = defaultMap.visor_EvaSpace_BaseColor[0];
+                        suitSet.visor_EvaSpace_BaseColor[1] = defaultMap.visor_EvaSpace_BaseColor[1];
+                        suitSet.visor_EvaSpace_BaseColor[2] = defaultMap.visor_EvaSpace_BaseColor[2];
+                        suitSet.visor_EvaSpace_BaseColor[3] = defaultMap.visor_EvaSpace_BaseColor[3];
+                        suitSet.visor_EvaSpace_BaseColor[4] = defaultMap.visor_EvaSpace_BaseColor[4];
+                        suitSet.visor_EvaSpace_BaseColor[5] = defaultMap.visor_EvaSpace_BaseColor[5];
+
+
+                        // visor Reflection color settings
                         suitSet.visor_Iva_ReflectionColor[0] = defaultMap.visor_Iva_ReflectionColor[0];
                         suitSet.visor_Iva_ReflectionColor[1] = defaultMap.visor_Iva_ReflectionColor[1];
                         suitSet.visor_Iva_ReflectionColor[2] = defaultMap.visor_Iva_ReflectionColor[2];

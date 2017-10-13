@@ -265,18 +265,18 @@ namespace TextureReplacerReplaced
             }
         }
 
-        public void select_visor_EvaGround_NoAtmo(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
+        public void select_visor_EvaGround_NoAtmo(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor, out Color32 baseColor)
         {
             switch (suit.visor_EvaGround_NoAtmo)
             {
                 case 0:
-                    suit_Filter.get_visor_Iva(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_Iva(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
                 case 1:
-                    suit_Filter.get_visor_EvaGround(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_EvaGround(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
                 case 2:
-                    suit_Filter.get_visor_EvaSpace(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_EvaSpace(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
 
                 default:
@@ -284,22 +284,24 @@ namespace TextureReplacerReplaced
                     normalMap = null;
                     Color32 col = new Color32(128, 128, 128, 255);
                     reflectionColor = col;
+                    Color32 col2 = new Color32(255, 255, 255, 255);
+                    baseColor = col2;
                     return;
             }
         }
 
-        public void select_visor_EvaSpace(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
+        public void select_visor_EvaSpace(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor, out Color32 baseColor)
         {
             switch (suit.visor_EvaSpace)
             {
                 case 0:
-                    suit_Filter.get_visor_Iva(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_Iva(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
                 case 1:
-                    suit_Filter.get_visor_EvaGround(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_EvaGround(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
                 case 2:
-                    suit_Filter.get_visor_EvaSpace(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_EvaSpace(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
 
                 default:
@@ -307,22 +309,24 @@ namespace TextureReplacerReplaced
                     normalMap = null;
                     Color32 col = new Color32(128, 128, 128, 255);
                     reflectionColor = col;
+                    Color32 col2 = new Color32(255, 255, 255, 255);
+                    baseColor = col2;
                     return;
             }
         }
 
-        public void select_visor_EvaGround_Atmo(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
+        public void select_visor_EvaGround_Atmo(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor, out Color32 baseColor)
         {
             switch (suit.visor_EvaGround_Atmo)
             {
                 case 0:
-                    suit_Filter.get_visor_Iva(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_Iva(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
                 case 1:
-                    suit_Filter.get_visor_EvaGround(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_EvaGround(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
                 case 2:
-                    suit_Filter.get_visor_EvaSpace(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_EvaSpace(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
 
                 default:
@@ -330,22 +334,24 @@ namespace TextureReplacerReplaced
                     normalMap = null;
                     Color32 col = new Color32(128, 128, 128, 255);
                     reflectionColor = col;
+                    Color32 col2 = new Color32(255, 255, 255, 255);
+                    baseColor = col2;
                     return;
             }
         }
 
-        public void select_visor_Iva_Unsafe(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
+        public void select_visor_Iva_Unsafe(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor, out Color32 baseColor)
         {
             switch (suit.visor_Iva_Unsafe)
             {
                 case 0:
-                    suit_Filter.get_visor_Iva(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_Iva(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
                 case 1:
-                    suit_Filter.get_visor_EvaGround(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_EvaGround(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
                 case 2:
-                    suit_Filter.get_visor_EvaSpace(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_EvaSpace(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
 
                 default:
@@ -353,22 +359,24 @@ namespace TextureReplacerReplaced
                     normalMap = null;
                     Color32 col = new Color32(128, 128, 128, 255);
                     reflectionColor = col;
+                    Color32 col2 = new Color32(255, 255, 255, 255);
+                    baseColor = col2;
                     return;
             }
         }
 
-        public void select_visor_Iva_Safe(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
+        public void select_visor_Iva_Safe(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor, out Color32 baseColor)
         {
             switch (suit.visor_Iva_Safe)
             {
                 case 0:
-                    suit_Filter.get_visor_Iva(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_Iva(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
                 case 1:
-                    suit_Filter.get_visor_EvaGround(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_EvaGround(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
                 case 2:
-                    suit_Filter.get_visor_EvaSpace(out texture, out normalMap, out reflectionColor);
+                    suit_Filter.get_visor_EvaSpace(out texture, out normalMap, out reflectionColor, out baseColor);
                     return;
 
                 default:
@@ -376,6 +384,8 @@ namespace TextureReplacerReplaced
                     normalMap = null;
                     Color32 col = new Color32(128, 128, 128, 255);
                     reflectionColor = col;
+                    Color32 col2 = new Color32(255, 255, 255, 255);
+                    baseColor = col2;
                     return;
             }
         }
