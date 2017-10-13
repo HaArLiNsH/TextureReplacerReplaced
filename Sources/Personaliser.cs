@@ -212,7 +212,7 @@ namespace TextureReplacerReplaced
             /// </summary>
             public void Start()
             {
-                Util.log("++++ 'Start()' ++++");
+                //Util.log("++++ 'Start()' ++++");
                 bool hasVisor = true;
                 Personaliser.instance.personaliseIva(GetComponent<Kerbal>(), out hasVisor);
                 //Destroy(this);
@@ -2150,7 +2150,7 @@ namespace TextureReplacerReplaced
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
         public void loadHeadConfig (ConfigNode node, List<Head_Set>[] listFull, Head_Set[] defaultHead, List<Head_Set>[] listClean)
         {
-            Util.log("+++++ 'loadHeadConfig()' +++++");
+            //Util.log("+++++ 'loadHeadConfig()' +++++");
 
 
             List<string> exclusivedHeads = new List<string>();
@@ -2727,7 +2727,7 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private void readKerbalsConfigs()
         {
-            Util.log("+++++ 'readKerbalconfig()' +++++");
+            //Util.log("+++++ 'readKerbalconfig()' +++++");
 
             foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
             {
