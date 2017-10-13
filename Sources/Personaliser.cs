@@ -346,7 +346,7 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public override void OnStart(StartState state)
             {
-                Util.log("++++ 'OnStart()' ++++");
+                //Util.log("++++ 'OnStart()' ++++");
                 //Util.log("+++++ '{0}' +++++", state);
                 Personaliser personaliser = Personaliser.instance;
                 bool useVisor = true;
@@ -2150,7 +2150,7 @@ namespace TextureReplacerReplaced
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
         public void loadHeadConfig (ConfigNode node, List<Head_Set>[] listFull, Head_Set[] defaultHead, List<Head_Set>[] listClean)
         {
-            //Util.log("+++++ 'loadHeadConfig()' +++++");
+            Util.log("+++++ 'loadHeadConfig()' +++++");
 
 
             List<string> exclusivedHeads = new List<string>();
@@ -2192,7 +2192,7 @@ namespace TextureReplacerReplaced
 
                 if (defaultNode.TryGetValue("eyeballColor_Left[0]", ref nodeColor))
                     defaultHead[0].eyeballColor_Left[0] = nodeColor;
-                Util.log("Settings for {0} = {1}", defaultHead[0].name, defaultHead[0].eyeballColor_Left[0]);
+                //Util.log("Settings for {0} = {1}", defaultHead[0].name, defaultHead[0].eyeballColor_Left[0]);
 
                 if (defaultNode.TryGetValue("eyeballColor_Left[1]", ref nodeColor))
                     defaultHead[0].eyeballColor_Left[1] = nodeColor;
@@ -2612,8 +2612,22 @@ namespace TextureReplacerReplaced
             listClean[1].AddRange(listFull[1].Where(h => !exclusivedHeads.Contains(h.name)));
             listClean[0].TrimExcess();
             listClean[1].TrimExcess();
-            Util.log(" +++ listClean[0] : {0} +++", listClean[0]);
-            Util.log(" +++ listClean[1] : {0} +++", listClean[1]);
+
+            /*for (int i = 0; i < 2; i++)
+            {
+                if (listClean[i] != null)
+                {
+                    foreach (Head_Set head in listClean[i])
+                    {
+                        Util.log(" +++ listClean{0}] : {1} +++", i, head.name);
+                    }
+                }
+                else
+                {
+                    Util.log(" +++ listClean[0] is null +++");
+                }
+
+            }*/
         }       
 
         private static void saveHeadConfig (ConfigNode node, List<Head_Set>[] map, Head_Set[] defaultMap)
