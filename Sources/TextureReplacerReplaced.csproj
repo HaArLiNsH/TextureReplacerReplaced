@@ -21,7 +21,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="Suit_Selector.cs" />
-    <Compile Include="Textures_Importer.cs" />
     <Compile Include="Suit_Filter.cs" />
     <Compile Include="KerbalData.cs" />
     <Compile Include="Textures_Loader.cs" />

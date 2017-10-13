@@ -34,9 +34,7 @@ namespace TextureReplacerReplaced
     /// </summary>
     [KSPAddon(KSPAddon.Startup.FlightAndKSC, false)]
     public class TRR_Gui : MonoBehaviour
-    {
-        //Head_Gui head_Gui = new Head_Gui();
-
+    {      
         private bool headGui_IsEnabled = false;
 
         private Rect headGui_windowRect = new Rect(60, 80, 660, 710);

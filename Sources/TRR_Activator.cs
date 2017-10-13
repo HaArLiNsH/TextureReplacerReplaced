@@ -60,7 +60,7 @@ namespace TextureReplacerReplaced
         /// ****************************************************************************************
         public void Start()
         {
-            Util.log("++++ 'Start()' ++++");
+            //Util.log("++++ 'Start()' ++++");
 
             if (!TextureReplacerReplaced.isLoaded)
                 return;

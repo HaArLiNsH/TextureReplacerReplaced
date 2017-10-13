@@ -88,15 +88,8 @@ namespace TextureReplacerReplaced
 
         /// <summary>
         /// Here we have the list of all the kerbal and the head set each one uses.
-        /// </summary>
-       /* public Dictionary<string, int>[] maleAndfemaleHeadNumberOfUSe = new Dictionary<string, int>[]
-        {
-            new Dictionary<string, int>(), new Dictionary<string, int>()
-        };*/
-
+        /// </summary>  
         public Dictionary<string, string> KerbalAndTheirHeadsDB = new Dictionary<string, string>();
-
-        public Dictionary<string, int> headCount = new Dictionary<string, int>();
 
         /// <summary>
         /// List of your personalized Kerbals with their KerbalData
@@ -122,27 +115,22 @@ namespace TextureReplacerReplaced
         public readonly Dictionary<string, Suit_Set> defaultClassSuits = new Dictionary<string, Suit_Set>();
 
         /// <summary>
-        /// List of cabin specific suits
-        /// </summary>
-        //private readonly Dictionary<string, Suit_Set> cabinSuits = new Dictionary<string, Suit_Set>();
-
-        /// <summary>
         /// Used for the helmet removal
+        /// /// this is the saved mesh
         /// </summary>
         private Mesh[] helmetMesh = { null, null };
 
         /// <summary>
         /// Used for the helmet removal
+        /// this is the saved mesh
         /// </summary>
         private Mesh[] visorMesh = { null, null };
 
-        private Mesh[] jetpackMesh = { null, null };
-
         /// <summary>
-        /// Remove IVA helmets in safe situations (landed/splashed and in orbit).
-        /// <para>This is only initial setting for new games! Use the GUI to change it later. </para>
+        /// Used for the jetpack removal
+        /// this is the saved mesh
         /// </summary>
-        //public bool isHelmetRemovalEnabled = true;
+        private Mesh[] jetpackMesh = { null, null };
 
         /// <summary>
         /// Does the kerbal needs his helmet?
@@ -155,13 +143,7 @@ namespace TextureReplacerReplaced
         /// <para>used in the @default.cfg file </para>
         /// </summary>
         private bool forceLegacyFemales = false;
-
-        /// <summary>
-        /// Spawn a Kerbal on EVA in his/her IVA suit without helmet and jetpack when in breathable atmosphere (+ sufficient pressure).
-        /// /// <para>This is only initial setting for new games! Use the GUI to change it later. </para>
-        /// </summary>
-        //public bool isAtmSuitEnabled = true;
-
+        
         /// <summary>
         /// Spawn a Kerbal on EVA ground suit when on ground and no atmosphere
         /// /// <para>This is only initial setting for new games! Use the GUI to change it later. </para>
@@ -215,161 +197,7 @@ namespace TextureReplacerReplaced
         /// </summary>
         public bool isCollarRemovalEnabled = false;
 
-        public bool useKspSkin = true;
-
-
-        // !!!!!!!!!!!!!!!!!!!!!!!!   Need to implement these options and make a GUI for them !!!!!!!!!!!!!!!!!
-        // !!!!!!!!!!!!!!!!!!!!!!!!   Maybe a new class  ??                                    !!!!!!!!!!!!!!!
-        /* =========================================================================================
-         * personal suit options
-         * used for each suit texture pack
-         * =========================================================================================
-         */
-/*
-        /// <summary>
-        /// Do the suit set is made to be used by the Veteran kerbals?
-        /// </summary>
-        public bool isMadeforveteran = false;
-
-        /// <summary>
-        /// Do the suit set include the veteran version for the suit ?
-        /// </summary>
-        public bool includeVeteran = false;
-
-        /// <summary>
-        /// Do the suit set is made to be used by the Badass(fearless) kerbals  ?
-        /// </summary>
-        public bool isMadeForBadass = false;
-
-        /// <summary>
-        /// Do the suit set include the Badass version for the suit ?
-        /// </summary>
-        public bool includeBadass = false;
-
-        /// <summary>
-        /// Do the suit set include the veteran badass version for the suit ?
-        /// </summary>
-        public bool includeVeteranBadass = false;
-
-        /// <summary>
-        /// Do the suit set use the male version of the suits ? 
-        /// </summary>
-        public bool UseMaleSuitenabled = true;
-
-        /// <summary>
-        /// Do the suit set use the female version of the suits ? 
-        /// </summary>
-        public bool UseFemaleSuitenabled = true;
-
-        /// <summary>
-        /// Is this suit set exclusive to his configured class? 
-        /// </summary>
-        public bool isSuitExclusive_Class = true;
-
-        /// <summary>
-        /// Is this suit set exclusive to his configured kerbal? 
-        /// </summary>
-        public bool isSuitExclusive_Kerbal = false;
-
-        /// <summary>
-        /// Force use Atmospheric IVA suit
-        /// </summary>
-        public bool ForceisAtmoIVAsuitEnabled = false;
-
-        /// <summary>
-        /// Force DON'T use Atmospheric IVA suit
-        /// </summary>
-        public bool ForceisAtmoIVAsuitDisabled = false;
-
-        /// <summary>
-        /// Force use EVA ground suit
-        /// </summary>
-        public bool ForceisEVAgroundSuitEnabled = false;
-
-        /// <summary>
-        /// Force DON'T use EVA ground suit
-        /// </summary>
-        public bool ForceisEVAgroundSuitDisabled = false;
-
-        /// <summary>
-        /// Force always use the IVA helmet
-        /// </summary>
-        public bool forceIVAhelmet = false;
-
-        /// <summary>
-        /// Force never use the IVA helmet
-        /// </summary>
-        public bool ForceIVAhelmetRemoval = false;
-
-        /// <summary>
-        /// Force never use the EVA ground helmet
-        /// </summary>
-        public bool ForceEVAgroundHelmetRemoval = false;
-
-        /// <summary>
-        /// Force never use the EVA space helmet
-        /// </summary>
-        public bool ForceEVAspaceHelmetRemoval = false;
-
-        /// <summary>
-        /// Force IVA suit state when toggle suit (bypass atmospheric & safe situation check)
-        /// </summary>
-        public bool ForceIvaSuitToggle = false;
-
-        /// <summary>
-        /// Force EVA ground suit state when toggle suit (bypass under suborbital check)
-        /// </summary>
-        public bool ForceEvaGroundSuitToggle = false;       
-
-        /// <summary>
-        /// Force IVA suit use IVA helmet
-        /// </summary>
-        public bool ForceIvaSuitUse_IVAhelmet = false;
-
-        /// <summary>
-        /// Force IVA suit use EVA ground helmet
-        /// </summary>
-        public bool ForceIvaSuitUse_EVAgroundHelmet = false;
-
-        /// <summary>
-        /// Force IVA suit use EVA space helmet
-        /// </summary>
-        public bool ForceIvaSuitUse_EVAspaceHelmet = true;
-
-        /// <summary>
-        /// Force use reflections for this suit
-        /// </summary>
-        public bool ForceUseReflections = false;
-
-        /// <summary>
-        /// Force DONT use reflections for this suit
-        /// </summary>
-        public bool ForceNoReflections = false;
-
-        /// <summary>
-        /// Choose the reflections colors 
-        /// </summary>
-        public Color ForcedVisorReflectionColour = new Color(0.5f, 0.5f, 0.5f);
-
-        /// <summary>
-        /// Force collar removal on IVA suits (for later)
-        /// </summary>
-        public bool ForceCollarRemoval = false;
-
-        /// <summary>
-        /// Force collar use on the IVA suits (for later)
-        /// </summary>
-        public bool ForceCollarUse = false;
-
-        /// <summary>
-        /// Force IVA suit on ground with no atmosphere
-        /// </summary>
-        public bool ForceIVAgroundSuit = false;
-
-        /// <summary>
-        /// Force IVA suit in space
-        /// </summary>
-        public bool ForceIVAspaceSuit = false;     */     
+        public bool useKspSkin = true;   
                 
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
@@ -429,12 +257,6 @@ namespace TextureReplacerReplaced
             /// </summary>
             [KSPField(isPersistant = true)]
             public bool hasEvaGroundSuit = false;
-
-            /// <summary>
-            /// To check if your kerbal has a visor
-            /// </summary>
-            //[KSPField(isPersistant = true)]
-            //public bool hasVisor = true;
 
             /// <summary>
             /// The actual selection of the suit. The suit selection goes like this : 
@@ -531,14 +353,7 @@ namespace TextureReplacerReplaced
                 Color32 visorReflectioncolor = new Color32(128, 128, 128, 255);
 
                 if (!isInitialised)
-                {
-                    /*if (!personaliser.isAtmSuitEnabled)
-                    {
-                        Events.First().active = false;
-                        hasEvaSuit = true;
-                        actualSuitState = 2;
-                    }*/
-
+                {                    
                     isInitialised = true;
                 }
 
@@ -579,7 +394,6 @@ namespace TextureReplacerReplaced
                             reflectionScript.setActive(useVisor);
                             reflectionScript.updateReflectioncolor(part, visorReflectioncolor);
                         }
-                            
                         //ScreenMessages.PostScreenMessage("IVA wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                         break;
                     case 1:     //EVAground suit
@@ -659,7 +473,7 @@ namespace TextureReplacerReplaced
         public bool isUnderSubOrbit(Vessel vessel)
         {
             bool value = false;
-            //Vessel vessel = kerbal.InVessel;
+            
             if (vessel == null)
             {
                 return value;
@@ -812,14 +626,6 @@ namespace TextureReplacerReplaced
             if (KerbalSuitsDB_cleaned.Count == 0)
                 return defaultSuit;
 
-            /*List<Suit_Set> genderSuits = maleAndfemaleSuitsDB_cleaned[0];
-
-            // Use female suits only if available, fall back to male suits otherwise.
-            if (kerbalData.gender != 0 && maleAndfemaleSuitsDB_cleaned[1].Count != 0)
-                genderSuits = maleAndfemaleSuitsDB_cleaned[1];
-            else if (genderSuits.Count == 0)
-                return defaultSuit;*/
-
             // We must use a different prime here to increase randomization so that the same head is not always combined with
             // the same suit.
             int number = ((kerbalData.hash + kerbal.name.Length) * 2053) & 0x7fffffff;
@@ -856,26 +662,20 @@ namespace TextureReplacerReplaced
             Color32 visorReflectionColor = new Color32(128, 128, 128, 255);
 
             Head_Set personaliseKerbal_Head = getKerbalHead(protoKerbal, kerbalData);
-           // Suit_Set personaliseKerbal_Suit = null;
-
-            // if (isEva || !cabinSuits.TryGetValue(cabin.partInfo.name, out kerbalData.cabinSuit))
-            // personaliseKerbal_Suit = getKerbalSuit(protoKerbal, kerbalData);
-
-            //if (isEva)
+           
             Suit_Set personaliseKerbal_Suit = getKerbalSuit(protoKerbal, kerbalData);
 
             Suit_Filter suit_Filter = new Suit_Filter(kerbalData,level, personaliseKerbal_Suit);
             Suit_Selector suit_Selector = new Suit_Selector(kerbalData, level, personaliseKerbal_Suit);
-
-            //personaliseKerbal_Head = personaliseKerbal_Head == defaulMaleAndFemaleHeads[(int)protoKerbal.gender] ? null : personaliseKerbal_Head;
-            //personaliseKerbal_Suit = (isEva && needsEVASuit) || kerbalData.cabinSuit == null ? personaliseKerbal_Suit : kerbalData.cabinSuit;
-            //personaliseKerbal_Suit = personaliseKerbal_Suit == defaultSuit ? null : personaliseKerbal_Suit;
+            
 
             Transform model = isEva ? component.transform.Find("model01") : component.transform.Find("kbIVA@idle/model01");
             Transform flag = isEva ? component.transform.Find("model/kbEVA_flagDecals") : null;
 
             if (isEva)
-                flag.GetComponent<Renderer>().enabled = needsEVASuit;
+                // remove the flag from the jetpack to "fix" it
+                //flag.GetComponent<Renderer>().enabled = needsEVASuit;
+                flag.GetComponent<Renderer>().enabled = false;
 
             // We must include hidden meshes, since flares are hidden when light is turned off.
             // All other meshes are always visible, so no performance hit here.
@@ -901,7 +701,7 @@ namespace TextureReplacerReplaced
                         case "mesh_female_kerbalAstronaut01_kerbalGirl_mesh_eyeballLeft":
                             if (personaliseKerbal_Head != null)
                             {
-                                //Util.log("+++++ {0} is level {1} : {2}.lvlToHide_Eye_Left  = {3} +++++", protoKerbal.name, protoKerbal.experienceLevel, personaliseKerbal_Head.name, personaliseKerbal_Head.lvlToHide_Eye_Left);
+                                
                                if (personaliseKerbal_Head.lvlToHide_Eye_Left <= protoKerbal.experienceLevel)
                                 {
                                    // Util.log("*** HIDE for {0}",protoKerbal.name);                                    
@@ -1104,8 +904,6 @@ namespace TextureReplacerReplaced
 
                         case "body01":
                         case "mesh_female_kerbalAstronaut01_body01":
-                            
-                           // defaultSuit.suit_EvaSpace
 
                             if (personaliseKerbal_Suit != null)
                             {   
@@ -1145,11 +943,7 @@ namespace TextureReplacerReplaced
 
                         case "helmet":
                         case "mesh_female_kerbalAstronaut01_helmet":
-                            /*if (isEva)
-                                smr.enabled = needsEVASuit;
-                            else
-                                smr.sharedMesh = needsEVASuit ? helmetMesh[(int)protoKerbal.gender] : null;*/
-
+                            
                             // Textures have to be replaced even when hidden since it may become visible later on situation change.
                             if (personaliseKerbal_Suit != null)
                             {
@@ -1264,8 +1058,7 @@ namespace TextureReplacerReplaced
                                             smr.enabled = true;
                                             smr.sharedMesh = visorMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_visor_EvaGround_NoAtmo(out newTexture, out newNormalMap, out visorReflectionColor);
-                                            smr.sharedMaterial.color = Color.white;
-                                           // smr.sharedMaterial.color = personaliseKerbal_Head.get_PupilColor_Left(protoKerbal.experienceLevel);                                            
+                                            smr.sharedMaterial.color = Color.white;                                                                                    
                                             useVisor = true;
                                             break;
                                         }
@@ -1434,7 +1227,6 @@ namespace TextureReplacerReplaced
                                         else // otherwise, select the good one and show it
                                         {
                                             smr.enabled = true;
-                                           // smr.sharedMesh = jetpackMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_jetpack_EvaGround_NoAtmo(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1451,7 +1243,6 @@ namespace TextureReplacerReplaced
                                         else
                                         {
                                             smr.enabled = true;
-                                            //smr.sharedMesh = jetpackMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_jetpack_EvaSpace(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1467,7 +1258,6 @@ namespace TextureReplacerReplaced
                                         else // otherwise, select the good one and show it
                                         {
                                             smr.enabled = true;
-                                            //smr.sharedMesh = jetpackMesh[(int)protoKerbal.gender];
                                             suit_Selector.select_jetpack_EvaGround_Atmo(out newTexture, out newNormalMap);
                                             break;
                                         }
@@ -1497,8 +1287,7 @@ namespace TextureReplacerReplaced
         /// <param name="kerbal">The kerbal we want to personalize</param>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void personaliseIva(Kerbal kerbal, out bool hasVisor)
-        {
-            //bool needsSuit = !isHelmetRemovalEnabled || !isSituationSafe(kerbal.InVessel);
+        {            
             bool needsSuit = !isSituationSafe(kerbal.InVessel);
 
             Personaliser personaliser = Personaliser.instance;
@@ -1516,7 +1305,7 @@ namespace TextureReplacerReplaced
         private void updateHelmets(GameEvents.HostedFromToAction<Vessel, Vessel.Situations> action)
         {
             Vessel vessel = action.host;
-            //if (!isHelmetRemovalEnabled || vessel == null)
+            
             if (vessel == null)
                 return;
 
@@ -1528,17 +1317,12 @@ namespace TextureReplacerReplaced
                 if (kerbals.Length != 0)
                 {
                     bool hideHelmets = isSituationSafe(vessel);
-                    //bool hideHelmets = (isSituationSafe(vessel) && isHelmetRemovalEnabled);
-                    //Util.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    //Util.log("hidehelmet = : {0}", hideHelmets);
 
                     foreach (Kerbal kerbal in kerbals.Where(k => k.showHelmet))
                     {
 
                         KerbalData kerbalData = getKerbalData(kerbal.protoCrewMember);
                         Suit_Set suit = getKerbalSuit(kerbal.protoCrewMember, kerbalData);
-
-                        
 
                         // `Kerbal.ShowHelmet(false)` irreversibly removes a helmet while
                         // `Kerbal.ShowHelmet(true)` has no effect at all. We need the following workaround.
@@ -1643,11 +1427,7 @@ namespace TextureReplacerReplaced
                         evaGroundSuit = false;                        
                         break;
 
-                }
-                // if (selection == 0) ScreenMessages.PostScreenMessage("IVA suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
-                //else if (selection== 1) ScreenMessages.PostScreenMessage("EVA Ground suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
-                // else if (selection== 2) ScreenMessages.PostScreenMessage("EVA Space suit", 2.0f, ScreenMessageStyle.UPPER_CENTER);
-                
+                }                
                 personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit,selection, out useVisor, out reflectionColor);
             }
             hasVisor = useVisor;
@@ -1668,13 +1448,7 @@ namespace TextureReplacerReplaced
             node = node ?? customKerbalsNode;
 
             KerbalRoster roster = HighLogic.CurrentGame.CrewRoster;
-
-            /*foreach (ProtoCrewMember protoKerb in roster.Crew)
-            {
-                Util.log(protoKerb.name);
-            }*/
-
-
+            
             foreach (ProtoCrewMember ProtoKerbal in roster.Crew.Concat(roster.Tourist).Concat(roster.Unowned))
             {
                 if (ProtoKerbal.rosterStatus == ProtoCrewMember.RosterStatus.Dead
@@ -1804,8 +1578,6 @@ namespace TextureReplacerReplaced
                 Suit_Set suitSet = getKerbalSuit(kerbal, kerbalData);
 
                 string genderName = kerbalData.gender == 0 ? "M" : "F";
-                //string headName = kerbalData.head == null ? "GENERIC" : kerbalData.head.name;
-                // string suitName = kerbalData.suit == null ? "GENERIC" : kerbalData.suit.name; 
 
                 node.AddValue(kerbal.name, genderName + " " + headSet.name + " " + suitSet.name);
             }
@@ -2378,7 +2150,7 @@ namespace TextureReplacerReplaced
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
         public void loadHeadConfig (ConfigNode node, List<Head_Set>[] listFull, Head_Set[] defaultHead, List<Head_Set>[] listClean)
         {
-            Util.log("+++++ 'loadHeadConfig()' +++++");
+            //Util.log("+++++ 'loadHeadConfig()' +++++");
 
 
             List<string> exclusivedHeads = new List<string>();
@@ -2941,9 +2713,6 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private void readKerbalsConfigs()
         {
-
-            // var eyelessHeads = new List<string>();
-
             Util.log("+++++ 'readKerbalconfig()' +++++");
 
             foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
@@ -2957,16 +2726,7 @@ namespace TextureReplacerReplaced
                         customKerbalsNode.RemoveValue(entry.name);
                         customKerbalsNode.AddValue(entry.name, entry.value);
                     }
-                }
-
-               // ConfigNode genericNode = file.config.GetNode("GenericKerbals");
-
-                /*if (genericNode != null)
-                {
-                    Util.addLists(genericNode.GetValues("excludedHeads"), excludedHeads);
-                    Util.addLists(genericNode.GetValues("excludedSuits"), excludedSuits);                   
-                    //Util.addLists(genericNode.GetValues("eyelessHeads"), eyelessHeads);
-                }*/
+                }               
 
                 ConfigNode classNode = file.config.GetNode("ClassSuits");
                 if (classNode != null)
@@ -2981,15 +2741,6 @@ namespace TextureReplacerReplaced
                     loadSuitConfig(suitNode, KerbalSuitsDB_full, defaultSuit, false);
                 
             }
-
-
-            
-
-            // Tag female and eye-less heads.
-            /*foreach (Head_Set head in KerbalHeadsDB_full)
-            {
-                head.isEyeless = eyelessHeads.Contains(head.name);
-            }*/
             
             // Create lists of male heads and suits.            
             KerbalSuitsDB_cleaned.AddRange(KerbalSuitsDB_full.Where(s => !excludedSuits.Contains(s.name)));
@@ -3015,15 +2766,11 @@ namespace TextureReplacerReplaced
         public void readConfig(ConfigNode rootNode)
         {
 
-            Util.log("+++++ 'readConfig()' +++++");
+            //Util.log("+++++ 'readConfig()' +++++");
 
-            //Util.parse(rootNode.GetValue("isHelmetRemovalEnabled"), ref isHelmetRemovalEnabled);
-            //Util.parse(rootNode.GetValue("isAtmSuitEnabled"), ref isAtmSuitEnabled);
             Util.parse(rootNode.GetValue("atmSuitPressure"), ref atmSuitPressure);
             Util.addLists(rootNode.GetValues("atmSuitBodies"), atmSuitBodies);
             Util.parse(rootNode.GetValue("forceLegacyFemales"), ref forceLegacyFemales);
-            //Util.parse(rootNode.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
-            //Util.parse(rootNode.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
             Util.parse(rootNode.GetValue("useKspSkin"), ref useKspSkin);
 
         }
@@ -3078,7 +2825,8 @@ namespace TextureReplacerReplaced
                     eva.gameObject.AddComponent<TRR_EvaModule>();
             }
 
-            // Re-read scenario if database is reloaded during the space center scene to avoid losing all per-game settings.
+            // Re-read scenario if database is reloaded during the space center scene to avoid losing all per-game settings.(broken)
+            /*
             if (HighLogic.CurrentGame != null)
             {
                 Util.log("+++++ 'HighLogic ok' +++++");
@@ -3089,16 +2837,9 @@ namespace TextureReplacerReplaced
                 if (scenarioNode != null)
                     Util.log("++++ 'loadScenario()' +++++");
                     loadScenario(scenarioNode);
-            }
-
-            /*ConfigNode test = new ConfigNode();
-            HighLogic.CurrentGame.config.TryGetNode("TRR_Scenario", ref test);
-
-            if (test != null)
-            {
-                Util.log("+++++ 'POUET' +++++");
             }*/
 
+            
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -3130,7 +2871,7 @@ namespace TextureReplacerReplaced
         public void loadScenario(ConfigNode node)
         {
 
-            Util.log("+++++ 'loadscenario()' +++++");
+            //Util.log("+++++ 'loadscenario()' +++++");
             gameKerbalsDB.Clear();
             classSuitsDB.Clear();
 
@@ -3149,10 +2890,6 @@ namespace TextureReplacerReplaced
                 loadSuitConfig(suitNode, KerbalSuitsDB_full, defaultSuit, false);
             }
 
-            //Util.parse(node.GetValue("isHelmetRemovalEnabled"), ref isHelmetRemovalEnabled);
-           // Util.parse(node.GetValue("isAtmSuitEnabled"), ref isAtmSuitEnabled);
-            //Util.parse(node.GetValue("isNewSuitStateEnabled"), ref isNewSuitStateEnabled);
-           // Util.parse(node.GetValue("isAutomaticSuitSwitchEnabled"), ref isAutomaticSuitSwitchEnabled);
             Util.parse(node.GetValue("useKspSkin"), ref useKspSkin);
         }
                 
@@ -3169,10 +2906,6 @@ namespace TextureReplacerReplaced
             saveHeadConfig(node.AddNode("HeadSettings"), maleAndfemaleHeadsDB_full, defaulMaleAndFemaleHeads);
             saveSuitConfig(node.AddNode("SuitSettings"), KerbalSuitsDB_full, defaultSuit);
 
-           // node.AddValue("isHelmetRemovalEnabled", isHelmetRemovalEnabled);
-           // node.AddValue("isAtmSuitEnabled", isAtmSuitEnabled);
-           // node.AddValue("isNewSuitStateEnabled", isNewSuitStateEnabled);
-           // node.AddValue("isAutomaticSuitSwitchEnabled", isAutomaticSuitSwitchEnabled);
             node.AddValue("useKspSkin", useKspSkin);
         }
 
@@ -3189,7 +2922,6 @@ namespace TextureReplacerReplaced
             
             loadKerbals(null);           
             loadSuitMap(null, classSuitsDB, defaultClassSuits);
-            //loadSuitConfig(null, KerbalSuitsDB_full, defaultSuit, true);
         }
 
         public void resetHead(Head_Set headSet, Head_Set[] defaultHead)
