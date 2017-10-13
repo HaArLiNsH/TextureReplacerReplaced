@@ -30,7 +30,9 @@ namespace TextureReplacerReplaced
     /// </summary>
     [KSPScenario(ScenarioCreationOptions.AddToAllGames, new GameScenes[] {
             GameScenes.SPACECENTER,
-            GameScenes.FLIGHT
+            GameScenes.EDITOR,
+            GameScenes.FLIGHT,
+            GameScenes.TRACKSTATION,
         })
 ]
     public class TRR_Scenario : ScenarioModule
