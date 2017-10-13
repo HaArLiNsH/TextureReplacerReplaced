@@ -84,7 +84,6 @@ namespace TextureReplacerReplaced
         {
             string[] gender = { "Male", "Female" };
             var headDirs = new Dictionary<string, int>();
-            //string lastTextureName = "";
 
             // temp fix when there is no default texture
             foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
@@ -255,52 +254,7 @@ namespace TextureReplacerReplaced
             }
             
             
-        }
-
-        /// <summary>
-        /// Loads the Default heads
-        /// </summary>
-       /* internal static void DefaultHeads(Head_Set[] heads)
-        {
-                foreach (KeyValuePair<Texture2D, string> texInfo in DEFAULT())
-            {
-                Texture2D texture = texInfo.Key;
-                string originalName = texInfo.Value;
-
-                if (originalName == "kerbalHead")
-                {
-                    for (int i = 0 ; i < 6; ++i)
-                    {
-                        heads[0].headTexture[i] = texture;
-                        texture.wrapMode = TextureWrapMode.Clamp;
-                    }        
-                }
-                else if (originalName == "kerbalHeadNRM")
-                {
-                    for (int i = 0; i < 6; ++i)
-                    {
-                        heads[0].headTextureNRM[i] = texture;
-                        texture.wrapMode = TextureWrapMode.Clamp;
-                    }
-                }
-                else if (originalName == "kerbalGirl_06_BaseColor")
-                {
-                    for (int i = 0; i < 6; ++i)
-                    {
-                        heads[1].headTexture[i] = texture;
-                        texture.wrapMode = TextureWrapMode.Clamp;
-                    }
-                }
-                else if (originalName == "kerbalGirl_06_BaseColorNRM")
-                {
-                    for (int i = 0; i < 6; ++i)
-                    {
-                        heads[1].headTextureNRM[i] = texture;
-                        texture.wrapMode = TextureWrapMode.Clamp;
-                    }
-                }
-            }
-        }*/
+        }        
 
         /// <summary>
         /// 
@@ -310,9 +264,6 @@ namespace TextureReplacerReplaced
         internal static void LoadSuits(List<Suit_Set> suitsList, Suit_Set defaultSuit)
         {
             var suitDirs = new Dictionary<string, int>();
-            //string lastTextureName = "";
-
-
 
             //temp fix for default suit
             foreach (GameDatabase.TextureInfo texInfo in GameDatabase.Instance.databaseTexture)
@@ -473,7 +424,7 @@ namespace TextureReplacerReplaced
                     }
 
                 }
-                //lastTextureName = texture.name;
+                
             }
 
             // search all default/ folders and assign the default suit texture
@@ -496,7 +447,7 @@ namespace TextureReplacerReplaced
                             texture.wrapMode = TextureWrapMode.Clamp;
                         }
                     }
-                    //lastTextureName = texture.name;
+                    
                 }
             }
 
@@ -535,13 +486,12 @@ namespace TextureReplacerReplaced
                             }
 
                             Suit_Set suit = suitsList[index];
-                            //suit = defaultSuit;
+                            
                             if (!suit.setTexture(originalName, texture))
                                 Util.log("Unknown suit texture name \"{0}\": {1}", originalName, texture.name);
                         }
                     }
-
-                    //lastTextureName = texture.name;
+                    
                 }
             }
             

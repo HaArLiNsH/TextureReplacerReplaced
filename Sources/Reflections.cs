@@ -516,7 +516,7 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Post-load initialisation.
-        /// called the the Start() after the awake() of KSP
+        /// called after the awake() of KSP
         /// </summary>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void load()

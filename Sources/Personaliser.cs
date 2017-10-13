@@ -56,7 +56,7 @@ namespace TextureReplacerReplaced
         public readonly List<Suit_Set> KerbalSuitsDB_full = new List<Suit_Set>();
 
         /// <summary>
-        /// Male and female heads textures (minus excluded).
+        /// ordered list of the male and female heads textures, including excluded by configuration.
         /// </summary>
         public readonly List<Head_Set>[] maleAndfemaleHeadsDB_full = { new List<Head_Set>(), new List<Head_Set>() };
 
@@ -69,6 +69,17 @@ namespace TextureReplacerReplaced
         /// Male and female suits textures (minus excluded).  
         /// </summary>
         private readonly List<Suit_Set>[] maleAndfemaleSuitsDB_cleaned = { new List<Suit_Set>(), new List<Suit_Set>() };
+
+        /// <summary>
+        /// the list of exclusive heads
+        /// </summary>
+        public List<string> excludedHeads = new List<string>();
+
+        /// <summary>
+        /// the list of exclusive suits
+        /// </summary>
+        public List<string> excludedSuits = new List<string>();
+
 
         /// <summary>
         /// List of the suit set (minus excluded). 
@@ -514,7 +525,7 @@ namespace TextureReplacerReplaced
         public override void OnStart(StartState state)
             {
                 Util.log("++++ 'OnStart()' ++++");
-                Util.log("+++++ {0} +++++", state);
+                //Util.log("+++++ '{0}' +++++", state);
                 Personaliser personaliser = Personaliser.instance;
                 bool useVisor = true;
                 Color32 visorReflectioncolor = new Color32(128, 128, 128, 255);
@@ -1658,32 +1669,10 @@ namespace TextureReplacerReplaced
 
             KerbalRoster roster = HighLogic.CurrentGame.CrewRoster;
 
-            //string sceneName = SceneManager.GetSceneByName("").g
-
-            //GameObject[] goArray = SceneManager.LoadScene("Menu_Level").GetRootGameObjects();
-           /* Util.log("++++++++++++++++++++++++++++++++++++ pouet+++++++++++++++++++++++++++++++++++++++++");
-
-            Util.log("scene count = {0}",SceneManager.sceneCount);
-            GameObject[] goArray = SceneManager.GetSceneByName("VABmodern").GetRootGameObjects();
-            if (goArray.Length > 0)
-            {
-                foreach (GameObject rootGo in goArray)
-                {
-                    Util.log(rootGo.name);
-                }
-                //GameObject rootGo = goArray[0];
-                // Do something with rootGo here...                          
-
-            }*/
-
-
-           // KSPAssets.Loaders.AssetLoader.
-
-
-            foreach (ProtoCrewMember protoKerb in roster.Crew)
+            /*foreach (ProtoCrewMember protoKerb in roster.Crew)
             {
                 Util.log(protoKerb.name);
-            }
+            }*/
 
 
             foreach (ProtoCrewMember ProtoKerbal in roster.Crew.Concat(roster.Tourist).Concat(roster.Unowned))
@@ -2389,7 +2378,12 @@ namespace TextureReplacerReplaced
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
         public void loadHeadConfig (ConfigNode node, List<Head_Set>[] listFull, Head_Set[] defaultHead, List<Head_Set>[] listClean)
         {
+            Util.log("+++++ 'loadHeadConfig()' +++++");
 
+
+            List<string> exclusivedHeads = new List<string>();
+
+            // here we load the default settings for the DEFAULT_MALE head
             ConfigNode defaultNode = new ConfigNode();
             if (node.TryGetNode("DEFAULT_MALE", ref defaultNode))
             {
@@ -2498,6 +2492,7 @@ namespace TextureReplacerReplaced
                     defaultHead[0].pupilColor_Right[5] = nodeColor;
             }
 
+            // here we load the default settings for the DEFAULT_FEMALE head
             if (node.TryGetNode("DEFAULT_FEMALE", ref defaultNode))
             {
                 int nodeLvl = new int();
@@ -2604,6 +2599,7 @@ namespace TextureReplacerReplaced
                     defaultHead[1].pupilColor_Right[5] = nodeColor;
             }
 
+            // here we load the settings for the custom heads
             for (int i = 0; i < 2; i++)
             {
                 foreach (Head_Set headSet in listFull[i])
@@ -2826,8 +2822,26 @@ namespace TextureReplacerReplaced
                         headSet.pupilColor_Right[4] = defaultHead[i].pupilColor_Right[4];
                         headSet.pupilColor_Right[5] = defaultHead[i].pupilColor_Right[5];
                     }
+
+                    
+                    if (headSet.isExclusive)
+                    {
+                        exclusivedHeads.Add(headSet.name);
+                    }
+
+                    
                 }
-            }  
+            }
+
+            // Create/update the list of male and female heads minus the exclusive ones
+            listClean[0].Clear();
+            listClean[1].Clear();
+            listClean[0].AddRange(listFull[0].Where(h => !exclusivedHeads.Contains(h.name)));
+            listClean[1].AddRange(listFull[1].Where(h => !exclusivedHeads.Contains(h.name)));
+            listClean[0].TrimExcess();
+            listClean[1].TrimExcess();
+            Util.log(" +++ listClean[0] : {0} +++", listClean[0]);
+            Util.log(" +++ listClean[1] : {0} +++", listClean[1]);
         }       
 
         private static void saveHeadConfig (ConfigNode node, List<Head_Set>[] map, Head_Set[] defaultMap)
@@ -2922,13 +2936,15 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Fill config for custom Kerbal heads and suits.
+        /// called once at the main menu 
         /// </summary>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         private void readKerbalsConfigs()
         {
-            List<string> excludedHeads = new List<string>();
-            List<string> excludedSuits = new List<string>();           
-           // var eyelessHeads = new List<string>();
+
+            // var eyelessHeads = new List<string>();
+
+            Util.log("+++++ 'readKerbalconfig()' +++++");
 
             foreach (UrlDir.UrlConfig file in GameDatabase.Instance.GetConfigs("TextureReplacerReplaced"))
             {
@@ -2943,13 +2959,14 @@ namespace TextureReplacerReplaced
                     }
                 }
 
-                ConfigNode genericNode = file.config.GetNode("GenericKerbals");
-                if (genericNode != null)
+               // ConfigNode genericNode = file.config.GetNode("GenericKerbals");
+
+                /*if (genericNode != null)
                 {
                     Util.addLists(genericNode.GetValues("excludedHeads"), excludedHeads);
                     Util.addLists(genericNode.GetValues("excludedSuits"), excludedSuits);                   
                     //Util.addLists(genericNode.GetValues("eyelessHeads"), eyelessHeads);
-                }
+                }*/
 
                 ConfigNode classNode = file.config.GetNode("ClassSuits");
                 if (classNode != null)
@@ -2978,15 +2995,15 @@ namespace TextureReplacerReplaced
             KerbalSuitsDB_cleaned.AddRange(KerbalSuitsDB_full.Where(s => !excludedSuits.Contains(s.name)));
 
             // Create lists of female heads and suits.
-            maleAndfemaleHeadsDB_cleaned[0].AddRange(KerbalHeadsDB_full.Where(h => !h.isFemale && !excludedHeads.Contains(h.name)));
-            maleAndfemaleHeadsDB_cleaned[1].AddRange(KerbalHeadsDB_full.Where(h => h.isFemale && !excludedHeads.Contains(h.name)));
+           // maleAndfemaleHeadsDB_cleaned[0].AddRange(KerbalHeadsDB_full.Where(h => !h.isFemale && !excludedHeads.Contains(h.name)));
+           // maleAndfemaleHeadsDB_cleaned[1].AddRange(KerbalHeadsDB_full.Where(h => h.isFemale && !excludedHeads.Contains(h.name)));
             
             // Trim lists.
             KerbalHeadsDB_full.TrimExcess();
             KerbalSuitsDB_full.TrimExcess();
             KerbalSuitsDB_cleaned.TrimExcess();
-            maleAndfemaleHeadsDB_cleaned[0].TrimExcess();            
-            maleAndfemaleHeadsDB_cleaned[1].TrimExcess();
+           // maleAndfemaleHeadsDB_cleaned[0].TrimExcess();            
+           // maleAndfemaleHeadsDB_cleaned[1].TrimExcess();
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -2997,6 +3014,9 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void readConfig(ConfigNode rootNode)
         {
+
+            Util.log("+++++ 'readConfig()' +++++");
+
             //Util.parse(rootNode.GetValue("isHelmetRemovalEnabled"), ref isHelmetRemovalEnabled);
             //Util.parse(rootNode.GetValue("isAtmSuitEnabled"), ref isAtmSuitEnabled);
             Util.parse(rootNode.GetValue("atmSuitPressure"), ref atmSuitPressure);
@@ -3061,12 +3081,24 @@ namespace TextureReplacerReplaced
             // Re-read scenario if database is reloaded during the space center scene to avoid losing all per-game settings.
             if (HighLogic.CurrentGame != null)
             {
+                Util.log("+++++ 'HighLogic ok' +++++");
+
                 ConfigNode scenarioNode = HighLogic.CurrentGame.config.GetNodes("SCENARIO")
                   .FirstOrDefault(n => n.GetValue("name") == "TRR_Scenario");
 
                 if (scenarioNode != null)
+                    Util.log("++++ 'loadScenario()' +++++");
                     loadScenario(scenarioNode);
             }
+
+            /*ConfigNode test = new ConfigNode();
+            HighLogic.CurrentGame.config.TryGetNode("TRR_Scenario", ref test);
+
+            if (test != null)
+            {
+                Util.log("+++++ 'POUET' +++++");
+            }*/
+
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -3097,6 +3129,8 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void loadScenario(ConfigNode node)
         {
+
+            Util.log("+++++ 'loadscenario()' +++++");
             gameKerbalsDB.Clear();
             classSuitsDB.Clear();
 

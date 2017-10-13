@@ -115,6 +115,14 @@ namespace TextureReplacerReplaced
             Util.log("++++ 'TRR is loaded'++++");
         }
 
+
+
+        public void Update()
+        {
+            //Util.log("++++ 'Update()' ++++");
+            //if (HighLogic.LoadedScene is 5)
+        }
+
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Load all shaders into the system and fill our shader database.

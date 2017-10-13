@@ -765,29 +765,6 @@ namespace TextureReplacerReplaced
                     return;
                 }
             }
-        }    
-        
-        
-        
-       /* public void get_Filtered_helmet_EvaGround(out Texture2D texture, out Texture2D normalMap)
-        {
-            if (suit.EvaGround_ForceUse_Helmet)
-            {
-                get_helmet_EvaGround(out texture, out normalMap);
-                return;
-            }
-            else if (suit.EvaSpace_ForceUse_Helmet)
-            {
-                get_helmet_EvaSpace(out texture, out normalMap);
-                return;
-            }
-            else
-            {
-                get_helmet_Iva(out texture, out normalMap);
-                return;
-            }            
-        }*/
-
-
+        }  
     }
 }

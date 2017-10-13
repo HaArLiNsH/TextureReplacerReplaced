@@ -1558,6 +1558,8 @@ namespace TextureReplacerReplaced
             if (head != null)
             {
                 head.isExclusive = GUILayout.Toggle(head.isExclusive, "Exclusive");
+                GUILayout.Label("Need to save");
+                GUILayout.Label("to take effect");
 
                 GUILayout.Space(20);
 
