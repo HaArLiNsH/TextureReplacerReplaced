@@ -483,6 +483,7 @@ namespace TextureReplacerReplaced
                                 index = suitsList.Count;
                                 suitsList.Add(new Suit_Set { name = dirName });
                                 suitDirs.Add(dirName, index);
+                                Util.log("SuitSet added : {0}", dirName);
                             }
 
                             Suit_Set suit = suitsList[index];
