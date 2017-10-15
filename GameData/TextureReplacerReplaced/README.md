@@ -242,14 +242,17 @@ I recommend using only NO relfection or REAL reflections.
 `TRReflection` part module can be used as in the following example that adds
 reflections onto the windows of Mk1-2 pod:
 
-    MODULE
-    {
-      name = TRReflection
-      shader = Reflective/Bumped Diffuse
-      colour = 0.5 0.5 0.5
-      interval = 1
-      meshes = FrontWindow SideWindow
-    }
+		@PART[Mark1-2Pod]:HAS[!MODULE[TRR_Reflection]]:NEEDS[TextureReplacerReplaced]
+	{
+		%MODULE[TRR_Reflection]
+		{
+	%name = TRR_Reflection
+	%shader = ShaderNG/TR_Reflective_Emissive_Alpha
+	%colour = 0.5 0.5 0.5
+	%interval = 4
+	%meshes = SideWindow FrontWindow
+		}
+	}
 
 There are several parameters, all optional:
 
