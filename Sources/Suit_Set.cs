@@ -8233,6 +8233,13 @@ namespace TextureReplacerReplaced
                 case "Suit_EvaGround_Veteran_Male3":
                 case "Suit_EvaGround_Veteran_Male4":
                 case "Suit_EvaGround_Veteran_Male5":
+                case "EVAgroundTextureVeteran":
+                case "EVAgroundTextureVeteran0":
+                case "EVAgroundTextureVeteran1":
+                case "EVAgroundTextureVeteran2":
+                case "EVAgroundTextureVeteran3":
+                case "EVAgroundTextureVeteran4":
+                case "EVAgroundTextureVeteran5":
                     try
                     {
                         string temp = originalName.Substring(originalName.Length - 1);
@@ -8567,6 +8574,13 @@ namespace TextureReplacerReplaced
                 case "Suit_EvaSpace_Veteran_Male3":
                 case "Suit_EvaSpace_Veteran_Male4":
                 case "Suit_EvaSpace_Veteran_Male5":
+                case "EVAtextureVeteran":
+                case "EVAtextureVeteran0":
+                case "EVAtextureVeteran1":
+                case "EVAtextureVeteran2":
+                case "EVAtextureVeteran3":
+                case "EVAtextureVeteran4":
+                case "EVAtextureVeteran5":
                     try
                     {
                         string temp = originalName.Substring(originalName.Length - 1);

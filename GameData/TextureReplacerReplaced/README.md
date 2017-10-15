@@ -1,5 +1,4 @@
-﻿![logo](https://cloud.githubusercontent.com/assets/11577601/19346143/808bc27c-914a-11e6-8bc9-4d80a0c08ae2.png)
-
+﻿![logo](https://user-images.githubusercontent.com/2094592/31586173-e980b41e-b1cd-11e7-9ec5-d35d8298968f.png)
 TextureReplacerReplaced
 ===============
 
@@ -16,8 +15,8 @@ More specifically, it can:
 * replace stock textures with custom ones,
 * assign personalised head and suit textures for each Kerbal,
 * assign suits based on class and experience level,
-* remove IVA helmets in safe situations,
-* toggle between EVA suit and IVA suit without helmet in breathable atmosphere,
+* configure the elements the head and suits,
+* toggle between 3 suits : Iva , Eva Ground, Eva Space
 * add reflections to parts and helmet visors,
 * generate missing mipmaps for PNG and JPEG model textures,
 * compress uncompressed textures from `GameData/` to shrink textures in VRAM,
@@ -41,87 +40,177 @@ Special thanks to:
 * Proot, Scart91, Green Skull and others for creating texture packs and
 * Sylith and Scart91 for giving others permissions to make derivatives of their
   texture packs.
+* Sigma88 for his contribution on the MM compatibility and the new folder system.
+* Ger_space for his brilliant work on the shader system. 
+
 
 
 Instructions
 ------------
 
+You can find more informations on the custom head/suit set in the [TRR_Guide](https://github.com/HaArLiNsH/TRR_Guide)
+
+### Important Stuf ###
+
+TRR is provided with mandatory default textures. 
+
+DON'T REMOVE THEM except for these 4 if you don't like them: 
+
+* Suit_Iva_Veteran_Default : this the veteran version of the IVA suit
+* Suit_EvaSpace_Veteran_Default : this the veteran version of the EVAground suit
+* Suit_EvaGround_Veteran_Default : this the veteran version of the EVAspace suit
+* logoFullRed_alt : this is the custom logo at the main menu
+
+You can still replace these textures as you did before with Texture Replacer, but if you remove them , your game WILL crash.
+
+
+### It is now recommended that you use a different folder than TRR for your custom textures ### 
+
+You can find an empty premade [here](https://github.com/HaArLiNsH/TextureReplacerReplaced/releases/download/untagged-ef040eb633011347ae99/TRR_MyTextureMod.zip) 
+
+You just have to make 3 steps to make it ready for you (well this is not critical, but you are are here to custom things don't you ?)
+
+Change the name "MyTextureMod" by the one you want.
+
+1: Of the folder that goes in GameData/ 
+2: Of the file MyTextureMod.cfg 
+3: Inside this .cfg 
+
+
+You can make this "MyTextureMod.cfg" also by yourself, 
+make a MyTextureMod.txt file and rename it MyTextureMod.cfg and put this inside : 
+
+
+	TextureReplacerReplaced
+	{
+	Folders
+	{
+		Default = MyTextureMod/Default/
+		EnvMap = MyTextureMod/EnvMap/
+		Heads = MyTextureMod/Heads/
+		Suits = MyTextureMod/Suits/		
+	}
+	}
+
+### General Suit settings ###
+
+
+Your kerbals have now 3 suits that are used generally this way : 
+
+* IVA : Used inside vehicle and outside of vehicle, on the ground, with atmosphere
+* EVA Ground : Used outside of vehicle, on the ground, without atmosphere
+* EVA Space : Used outside of Vehicle, in Space
+
+You can assign one of these suits (and their elements, suit,helmet,visor and jetpack) for each of these situations : 
+
+* EVAground Atmo : Out Of Vehicle, On the Ground, With Atmosphere",
+* EVAground NoAtmo : Out Of Vehicle, On the Ground, Without Atmosphere",
+* EVAspace : Out Of Vehicle, In Space",
+* IVA Safe : In Vehicle, Safe (landed or in orbit)",
+* IVA Unsafe : In Vehicle, UnSafe (flying)"
+
+You can also configure the color and the reflection color of the 3 visors. This setting will affect how your visor custom texture will appear. 
+TRR is  provided with 3 visor textures with different transparency level 
+
+* IVA : grey 40% (clear but you still see the reflections)
+* EVAground : grey 70% 
+* EVAspace : grey 85% 
+
+The EVAspace visor is colored in yellow by default. Don't forget to change the base color if you use a custom texture.
+
+
 ### General Textures ###
 
 General replacement textures are of the form
 
-    GameData/TextureReplacer/Default/<internalName>
+    GameData/MyTextureMod/Default/<internalName>
 
 where `<internalName>` is the texture's internal name in KSP or path of a
 texture inside `GameData/` (plus .dds/.png/.jpg/.tga extension, of course).
 
+.dds IS RECOMMENDED (especially for the normal maps)
+
 Examples:
 
-    GameData/TextureReplacer/
-      Default/kerbalHead                  // teeth and male head
-      Default/kerbalHeadNRM               // teeth and male head normal map
-      Default/kerbalGirl_06_BaseColor     // female head
-      Default/kerbalGirl_06_BaseColorNRM  // female head normal map
-      Default/kerbalMain                  // IVA suit (veteran/orange)
-      Default/kerbalMainGrey              // IVA suit (standard/grey)
-      Default/kerbalMainNRM               // IVA suit normal map
-      Default/kerbalHelmetGrey            // IVA helmet
-      Default/kerbalHelmetNRM             // IVA & EVA helmet normal map
-      Default/kerbalVisor                 // IVA helmet visor
-      Default/EVAtexture                  // EVA suit
-      Default/EVAtextureNRM               // EVA suit normal map
-      Default/EVAhelmet                   // EVA helmet
-      Default/EVAvisor                    // EVA helmet visor
-      Default/EVAjetpack                  // EVA jetpack
-      Default/EVAjetpackNRM               // EVA jetpack normal map
+    GameData/MyTextureMod/
+	
+      Default/kerbalHead                  			// male and female teeth and male head
+      Default/kerbalHeadNRM               			// male and female teeth and male head normal map
+      Default/kerbalGirl_06_BaseColor     		// female head
+      Default/kerbalGirl_06_BaseColorNRM 	// female head normal map	  
+	  
+      Default/kerbalMain                  				// IVA veteran suit (veteran/orange)
+      Default/kerbalMainGrey              			// IVA suit (standard/grey)
+      Default/kerbalMainNRM               			// IVA suit normal map	  
+      Default/kerbalHelmetGrey           			// IVA helmet
+      Default/kerbalHelmetNRM             		// IVA helmet normal map
+      Default/kerbalVisor                 				// IVA helmet visor
+	  Default/kerbalVisorNRM                 		// IVA helmet visor normal map
+	  
+	  Default/EVAgroundTexture                  	// EVA ground suit (standard/grey)
+	  Default/EVAgroundTextureVeteran         // EVA ground suit (veteran/orange)
+      Default/EVAgroundTextureNRM              // EVA ground suit normal map	  
+      Default/EVAgroundHelmet                   	// EVA ground helmet
+	  Default/EVAgroundHelmetNRM             	// EVA ground helmet normal map
+      Default/EVAgroundVisor                    	// EVA ground helmet visor	 
+	  Default/EVAgroundVisorNRM                 // EVA ground helmet visor	normal map 
+      Default/EVAgroundJetpack                  	// EVA ground jetpack
+      Default/EVAgroundJetpackNRM              // EVA ground jetpack normal map 
+	  
+      Default/EVAtexture                  			// EVA space suit (standard/grey)
+	  Default/EVAtextureVeteran                  	// EVA space suit (veteran/orange)
+      Default/EVAtextureNRM               			// EVA space suit normal map	  
+      Default/EVAhelmet                   			// EVA space helmet
+	  Default/EVAhelmetNRM               			// EVA space helmet normal map
+      Default/EVAvisor                    				// EVA space helmet visor
+	  Default/EVAvisorNRM              				// EVA space helmet visor normal map	  
+      Default/EVAjetpack                  			// EVA space jetpack
+      Default/EVAjetpackNRM              			// EVA space jetpack normal map     
 
-      Default/HUDNavBall                  // HUD NavBall
-      Default/IVANavBall                  // IVA NavBall, horizontally flipped
+      Default/GalaxyTex_PositiveX        		// skybox right face (if you don't put these in your custom folder, they wont work)
+      Default/GalaxyTex_NegativeX         		// skybox left face
+      Default/GalaxyTex_PositiveY         		// skybox bottom face rotated for 180°
+      Default/GalaxyTex_NegativeY         		// skybox top face
+      Default/GalaxyTex_PositiveZ        		// skybox front face
+      Default/GalaxyTex_NegativeZ         		// skybox back face
 
-      Default/GalaxyTex_PositiveX         // skybox right face
-      Default/GalaxyTex_NegativeX         // skybox left face
-      Default/GalaxyTex_PositiveY         // skybox bottom face rotated for 180°
-      Default/GalaxyTex_NegativeY         // skybox top face
-      Default/GalaxyTex_PositiveZ         // skybox front face
-      Default/GalaxyTex_NegativeZ         // skybox back face
-
-      Default/moho00                      // Moho
-      Default/moho01                      // Moho normal map
-      Default/Eve2_00                     // Eve
-      Default/Eve2_01                     // Eve normal map
-      Default/evemoon100                  // Gilly
-      Default/evemoon101                  // Gilly normal map
-      Default/KerbinScaledSpace300        // Kerbin
-      Default/KerbinScaledSpace401        // Kerbin normal map
-      Default/NewMunSurfaceMapDiffuse     // Mün
-      Default/NewMunSurfaceMapNormals     // Mün normal map
-      Default/NewMunSurfaceMap00          // Minmus
-      Default/NewMunSurfaceMap01          // Minmus normal map
-      Default/Duna5_00                    // Duna
-      Default/Duna5_01                    // Duna normal map
-      Default/desertplanetmoon00          // Ike
-      Default/desertplanetmoon01          // Ike normal map
-      Default/dwarfplanet100              // Dres
-      Default/dwarfplanet101              // Dres normal map
-      Default/gas1_clouds                 // Jool
-      Default/cloud_normal                // Jool normal map
-      Default/newoceanmoon00              // Laythe
-      Default/newoceanmoon01              // Laythe normal map
-      Default/gp1icemoon00                // Vall
-      Default/gp1icemoon01                // Vall normal map
-      Default/rockyMoon00                 // Tylo
-      Default/rockyMoon01                 // Tylo normal map
-      Default/gp1minormoon100             // Bop
-      Default/gp1minormoon101             // Bop normal map
-      Default/gp1minormoon200             // Pol
-      Default/gp1minormoon201             // Pol normal map
-      Default/snowydwarfplanet00          // Eeloo
-      Default/snowydwarfplanet01          // Eeloo normal map
+      Default/moho00                      				// Moho
+      Default/moho01                      				// Moho normal map
+      Default/Eve2_00                     				// Eve
+      Default/Eve2_01                     				// Eve normal map
+      Default/evemoon100                 			// Gilly
+      Default/evemoon101                  			// Gilly normal map
+      Default/KerbinScaledSpace300        		// Kerbin
+      Default/KerbinScaledSpace401        		// Kerbin normal map
+      Default/NewMunSurfaceMapDiffuse     	// Mün
+      Default/NewMunSurfaceMapNormals     	// Mün normal map
+      Default/NewMunSurfaceMap00          	// Minmus
+      Default/NewMunSurfaceMap01          	// Minmus normal map
+      Default/Duna5_00                    			// Duna
+      Default/Duna5_01                    			// Duna normal map
+      Default/desertplanetmoon00         		// Ike
+      Default/desertplanetmoon01          		// Ike normal map
+      Default/dwarfplanet100              			// Dres
+      Default/dwarfplanet101              			// Dres normal map
+      Default/gas1_clouds                 			// Jool
+      Default/cloud_normal                			// Jool normal map
+      Default/newoceanmoon00              		// Laythe
+      Default/newoceanmoon01              		// Laythe normal map
+      Default/gp1icemoon00                			// Vall
+      Default/gp1icemoon01                			// Vall normal map
+      Default/rockyMoon00                 			// Tylo
+      Default/rockyMoon01                 			// Tylo normal map
+      Default/gp1minormoon100             		// Bop
+      Default/gp1minormoon101             		// Bop normal map
+      Default/gp1minormoon200             		// Pol
+      Default/gp1minormoon201             		// Pol normal map
+      Default/snowydwarfplanet00          		// Eeloo
+      Default/snowydwarfplanet01          		// Eeloo normal map
 
 It's also possible to replace textures from `GameData/` if one specifies
 the full directory hierarchy:
 
-    GameData/TextureReplacer/
+    GameData/MyTextureMod/
       Default/Squad/Parts/Command/Mk1-2Pod/model000  // Mk1-2 pod texture
       Default/Squad/Parts/Command/Mk1-2Pod/model001  // Mk1-2 pod normal map
 
@@ -134,7 +223,7 @@ Reflections are shown on visors of Kerbals' helmets and on parts that include
 Real reflections reflect the environment of a part while static reflections
 reflect the skybox from `EnvMap/` directory:
 
-    GameData/TextureReplacer/
+    GameData/MyTextureMod/
       EnvMap/PositiveX         // fake skybox right face, vertically flipped
       EnvMap/NegativeX         // fake skybox left face, vertically flipped
       EnvMap/PositiveY         // fake skybox top face, vertically flipped
@@ -144,6 +233,11 @@ reflect the skybox from `EnvMap/` directory:
 
 Note that all textures must be quares and have the same dimensions that are
 powers of two. Cube map textures are slow, so keep them as low-res as possible.
+
+The static reflections textures don't work well with KSP 1.3.xxx. 
+I recommend using only NO relfection or REAL reflections. 
+
+
 
 `TRReflection` part module can be used as in the following example that adds
 reflections onto the windows of Mk1-2 pod:
@@ -181,56 +275,265 @@ e.g. `interval = 2` makes the part update half less frequently.
 ### Personalised Kerbal Textures ###
 
 Heads and suits are assigned either manually or automatically (configured in the
-GUI while configuration files can provide initial settings). "Random" assignment
-of heads and suits is based on Kerbals' names, which ensures the same head/suit
-is always assigned to a given Kerbal. Additionally, special per-class suit can
-be set for each class.
+GUI while configuration files can provide initial settings). 
 
-Head textures reside inside `Heads/` directory (and its subdirectories) and have
-arbitrary names. Normal maps are optional. To provide a normal map, name it the
-same as the head texture but add "NRM" suffix.
+You have now different GUI that can be used either in the spacecenter scene and in the Flightscene.
 
-    GameData/TextureReplacer/
-      Heads/[<subDir>/]<head>     // Head texture
-      Heads/[<subDir>/]<head>NRM  // Normal map for <head> (optional)
+"Random" assignment of heads try to give the head set the less used first, sometimes you wont
+have a lot of possibilities because all of your head set must be assign first to one kerbal before 
+it is randomly assigned to another kerbal (this don't account the exclusive heads)
 
-Suit textures' names are identical as for the default texture replacement except
-that there is no `kerbalMain` texture (`kerbalMainGrey` replaces both) and class
-level variants of suit and helmet textures are possible. Each suit must reside
-inside its own directory:
+Additionally, special per-class suit can be set for each class.
 
-    GameData/TextureReplacer/
-      Suits/[<subDir>/]<suit>/kerbalMainGrey     // IVA suit
-      Suits/[<subDir>/]<suit>/kerbalMainGrey1    // IVA suit (level 1)
-      Suits/[<subDir>/]<suit>/kerbalMainGrey2    // IVA suit (level 2)
-      Suits/[<subDir>/]<suit>/kerbalMainGrey3    // IVA suit (level 3)
-      Suits/[<subDir>/]<suit>/kerbalMainGrey4    // IVA suit (level 4)
-      Suits/[<subDir>/]<suit>/kerbalMainGrey5    // IVA suit (level 5)
-      Suits/[<subDir>/]<suit>/kerbalMainNRM      // IVA suit normal map
-      Suits/[<subDir>/]<suit>/kerbalHelmetGrey   // IVA helmet
-      Suits/[<subDir>/]<suit>/kerbalHelmetGrey1  // IVA helmet (level 1)
-      Suits/[<subDir>/]<suit>/kerbalHelmetGrey2  // IVA helmet (level 2)
-      Suits/[<subDir>/]<suit>/kerbalHelmetGrey3  // IVA helmet (level 3)
-      Suits/[<subDir>/]<suit>/kerbalHelmetGrey4  // IVA helmet (level 4)
-      Suits/[<subDir>/]<suit>/kerbalHelmetGrey5  // IVA helmet (level 5)
-      Suits/[<subDir>/]<suit>/kerbalHelmetNRM    // IVA & EVA helmet normal map
-      Suits/[<subDir>/]<suit>/kerbalVisor        // IVA helmet visor
-      Suits/[<subDir>/]<suit>/EVAtexture         // EVA suit
-      Suits/[<subDir>/]<suit>/EVAtexture1        // EVA suit (level 1)
-      Suits/[<subDir>/]<suit>/EVAtexture2        // EVA suit (level 2)
-      Suits/[<subDir>/]<suit>/EVAtexture3        // EVA suit (level 3)
-      Suits/[<subDir>/]<suit>/EVAtexture4        // EVA suit (level 4)
-      Suits/[<subDir>/]<suit>/EVAtexture5        // EVA suit (level 5)
-      Suits/[<subDir>/]<suit>/EVAtextureNRM      // EVA suit normal map
-      Suits/[<subDir>/]<suit>/EVAhelmet          // EVA helmet
-      Suits/[<subDir>/]<suit>/EVAhelmet1         // EVA helmet (level 1)
-      Suits/[<subDir>/]<suit>/EVAhelmet2         // EVA helmet (level 2)
-      Suits/[<subDir>/]<suit>/EVAhelmet3         // EVA helmet (level 3)
-      Suits/[<subDir>/]<suit>/EVAhelmet4         // EVA helmet (level 4)
-      Suits/[<subDir>/]<suit>/EVAhelmet5         // EVA helmet (level 5)
-      Suits/[<subDir>/]<suit>/EVAvisor           // EVA helmet visor
-      Suits/[<subDir>/]<suit>/EVAjetpack         // EVA jetpack
-      Suits/[<subDir>/]<suit>/EVAjetpackNRM      // EVA jetpack normal map
+
+### Head Set ###
+
+Head textures reside inside a directory inside either `Heads/Male/` or `Heads/Female/`
+directory. Each head set must reside inside its own directory:
+
+    GameData/MyTextureMod/Heads/Male/				// for the male heads
+	GameData/MyTextureMod/Heads/Female/			// for the female heads
+      MyTextureModMaleHead1/								// the custom folder for your head set
+				HeadTexture0										//	The texture for the head at level 0 (mandatory)
+				HeadTexture1										//	The texture for the head at level 1
+				HeadTexture2										//	The texture for the head at level 2
+				HeadTexture3										//	The texture for the head at level 3
+				HeadTexture4										//	The texture for the head at level 4
+				HeadTexture5										//	The texture for the head at level 5
+				
+				HeadTextureNRM0									//	The normal map for the head at level 0 (mandatory)
+				HeadTextureNRM1									//	The normal map for the head at level 1
+				HeadTextureNRM2									//	The normal map for the head at level 2
+				HeadTextureNRM3									//	The normal map for the head at level 3
+				HeadTextureNRM4									//	The normal map for the head at level 4
+				HeadTextureNRM5									//	The normal map for the head at level 5
+      
+
+### Suit Set ###	  
+	  
+Suit textures reside inside a directory and their name are not the same as the 
+ones you use to replace the default textures. You can make variants for the level, 
+the gender and the veteran, badass, veteran badass status of each elements and their normal maps
+Each suit set must reside inside its own directory:
+	  
+
+    GameData/MyTextureMod/Suits/
+	  MyTextureModMaleHead1/
+			
+
+// -----------------------------------------------------
+// Helmet
+// -----------------------------------------------------
+
+	Helmet_EvaGround_Badass_Female0
+	Helmet_EvaGround_Badass_FemaleNRM0
+	Helmet_EvaGround_Badass_Male0
+	Helmet_EvaGround_Badass_MaleNRM0
+	Helmet_EvaGround_Standard_Female0
+	Helmet_EvaGround_Standard_FemaleNRM0
+	Helmet_EvaGround_Standard_Male0
+	Helmet_EvaGround_Standard_MaleNRM0
+	Helmet_EvaGround_VetBad_Female0
+	Helmet_EvaGround_VetBad_FemaleNRM0
+	Helmet_EvaGround_VetBad_Male0
+	Helmet_EvaGround_VetBad_MaleNRM0
+	Helmet_EvaGround_Veteran_Female0
+	Helmet_EvaGround_Veteran_FemaleNRM0
+	Helmet_EvaGround_Veteran_Male0
+	Helmet_EvaGround_Veteran_MaleNRM0
+
+	Helmet_EvaSpace_Badass_Female0
+	Helmet_EvaSpace_Badass_FemaleNRM0
+	Helmet_EvaSpace_Badass_Male0
+	Helmet_EvaSpace_Badass_MaleNRM0
+	Helmet_EvaSpace_Standard_Female0
+	Helmet_EvaSpace_Standard_FemaleNRM0
+	Helmet_EvaSpace_Standard_Male0
+	Helmet_EvaSpace_Standard_MaleNRM0
+	Helmet_EvaSpace_VetBad_Female0
+	Helmet_EvaSpace_VetBad_FemaleNRM0
+	Helmet_EvaSpace_VetBad_Male0
+	Helmet_EvaSpace_VetBad_MaleNRM0
+	Helmet_EvaSpace_Veteran_Female0
+	Helmet_EvaSpace_Veteran_FemaleNRM0
+	Helmet_EvaSpace_Veteran_Male0
+	Helmet_EvaSpace_Veteran_MaleNRM0
+	
+	Helmet_Iva_Badass_Female0
+	Helmet_Iva_Badass_FemaleNRM0
+	Helmet_Iva_Badass_Male0
+	Helmet_Iva_Badass_MaleNRM0
+	Helmet_Iva_Standard_Female0
+	Helmet_Iva_Standard_FemaleNRM0
+	Helmet_Iva_Standard_Male0
+	Helmet_Iva_Standard_MaleNRM0
+	Helmet_Iva_VetBad_Female0
+	Helmet_Iva_VetBad_FemaleNRM0
+	Helmet_Iva_VetBad_Male0
+	Helmet_Iva_VetBad_MaleNRM0
+	Helmet_Iva_Veteran_Female0
+	Helmet_Iva_Veteran_FemaleNRM0
+	Helmet_Iva_Veteran_Male0
+	Helmet_Iva_Veteran_MaleNRM0
+
+// -----------------------------------------------------
+// Jetpack
+// -----------------------------------------------------
+
+	Jetpack_EvaGround_Badass_Female0
+	Jetpack_EvaGround_Badass_FemaleNRM0
+	Jetpack_EvaGround_Badass_Male0
+	Jetpack_EvaGround_Badass_MaleNRM0
+	Jetpack_EvaGround_Standard_Female0
+	Jetpack_EvaGround_Standard_FemaleNRM0
+	Jetpack_EvaGround_Standard_Male0
+	Jetpack_EvaGround_Standard_MaleNRM0
+	Jetpack_EvaGround_VetBad_Female0
+	Jetpack_EvaGround_VetBad_FemaleNRM0
+	Jetpack_EvaGround_VetBad_Male0
+	Jetpack_EvaGround_VetBad_MaleNRM0
+	Jetpack_EvaGround_Veteran_Female0
+	Jetpack_EvaGround_Veteran_FemaleNRM0
+	Jetpack_EvaGround_Veteran_Male0
+	Jetpack_EvaGround_Veteran_MaleNRM0
+
+	Jetpack_EvaSpace_Badass_Female0
+	Jetpack_EvaSpace_Badass_FemaleNRM0
+	Jetpack_EvaSpace_Badass_Male0
+	Jetpack_EvaSpace_Badass_MaleNRM0
+	Jetpack_EvaSpace_Standard_Female0
+	Jetpack_EvaSpace_Standard_FemaleNRM0
+	Jetpack_EvaSpace_Standard_Male0
+	Jetpack_EvaSpace_Standard_MaleNRM0
+	Jetpack_EvaSpace_VetBad_Female0
+	Jetpack_EvaSpace_VetBad_FemaleNRM0
+	Jetpack_EvaSpace_VetBad_Male0
+	Jetpack_EvaSpace_VetBad_MaleNRM0
+	Jetpack_EvaSpace_Veteran_Female0
+	Jetpack_EvaSpace_Veteran_FemaleNRM0
+	Jetpack_EvaSpace_Veteran_Male0
+	Jetpack_EvaSpace_Veteran_MaleNRM0
+
+// -----------------------------------------------------
+// Suit
+// -----------------------------------------------------
+
+	Suit_EvaGround_Badass_Female0
+	Suit_EvaGround_Badass_FemaleNRM0
+	Suit_EvaGround_Badass_Male0
+	Suit_EvaGround_Badass_MaleNRM0
+	Suit_EvaGround_Standard_Female0
+	Suit_EvaGround_Standard_FemaleNRM0
+	Suit_EvaGround_Standard_Male0
+	Suit_EvaGround_Standard_MaleNRM0
+	Suit_EvaGround_VetBad_Female0
+	Suit_EvaGround_VetBad_FemaleNRM0
+	Suit_EvaGround_VetBad_Male0
+	Suit_EvaGround_VetBad_MaleNRM0
+	Suit_EvaGround_Veteran_Female0
+	Suit_EvaGround_Veteran_FemaleNRM0
+	Suit_EvaGround_Veteran_Male0
+	Suit_EvaGround_Veteran_MaleNRM0
+
+	Suit_EvaSpace_Badass_Female0
+	Suit_EvaSpace_Badass_FemaleNRM0
+	Suit_EvaSpace_Badass_Male0
+	Suit_EvaSpace_Badass_MaleNRM0
+	Suit_EvaSpace_Standard_Female0
+	Suit_EvaSpace_Standard_FemaleNRM0
+	Suit_EvaSpace_Standard_Male0
+	Suit_EvaSpace_Standard_MaleNRM0
+	Suit_EvaSpace_VetBad_Female0
+	Suit_EvaSpace_VetBad_FemaleNRM0
+	Suit_EvaSpace_VetBad_Male0
+	Suit_EvaSpace_VetBad_MaleNRM0
+	Suit_EvaSpace_Veteran_Female0
+	Suit_EvaSpace_Veteran_FemaleNRM0
+	Suit_EvaSpace_Veteran_Male0
+	Suit_EvaSpace_Veteran_MaleNRM0
+
+	Suit_Iva_Badass_Female0
+	Suit_Iva_Badass_FemaleNRM0
+	Suit_Iva_Badass_Male0
+	Suit_Iva_Badass_MaleNRM0
+	Suit_Iva_Standard_Female0
+	Suit_Iva_Standard_FemaleNRM0
+	Suit_Iva_Standard_Male0
+	Suit_Iva_Standard_MaleNRM0
+	Suit_Iva_VetBad_Female0
+	Suit_Iva_VetBad_FemaleNRM0
+	Suit_Iva_VetBad_Male0
+	Suit_Iva_VetBad_MaleNRM0
+	Suit_Iva_Veteran_Female0
+	Suit_Iva_Veteran_FemaleNRM0
+	Suit_Iva_Veteran_Male0
+	Suit_Iva_Veteran_MaleNRM0
+
+// -----------------------------------------------------
+// Visor
+// -----------------------------------------------------
+
+	Visor_EvaGround_Badass_Female0
+	Visor_EvaGround_Badass_FemaleNRM0
+	Visor_EvaGround_Badass_Male0
+	Visor_EvaGround_Badass_MaleNRM0
+	Visor_EvaGround_Standard_Female0
+	Visor_EvaGround_Standard_FemaleNRM0
+	Visor_EvaGround_Standard_Male0
+	Visor_EvaGround_Standard_MaleNRM0
+	Visor_EvaGround_VetBad_Female0
+	Visor_EvaGround_VetBad_FemaleNRM0
+	Visor_EvaGround_VetBad_Male0
+	Visor_EvaGround_VetBad_MaleNRM0
+	Visor_EvaGround_Veteran_Female0
+	Visor_EvaGround_Veteran_FemaleNRM0
+	Visor_EvaGround_Veteran_Male0
+	Visor_EvaGround_Veteran_MaleNRM0
+
+	Visor_EvaSpace_Badass_Female0
+	Visor_EvaSpace_Badass_FemaleNRM0
+	Visor_EvaSpace_Badass_Male0
+	Visor_EvaSpace_Badass_MaleNRM0
+	Visor_EvaSpace_Standard_Female0
+	Visor_EvaSpace_Standard_FemaleNRM0
+	Visor_EvaSpace_Standard_Male0
+	Visor_EvaSpace_Standard_MaleNRM0
+	Visor_EvaSpace_VetBad_Female0
+	Visor_EvaSpace_VetBad_FemaleNRM0
+	Visor_EvaSpace_VetBad_Male0
+	Visor_EvaSpace_VetBad_MaleNRM0
+	Visor_EvaSpace_Veteran_Female0
+	Visor_EvaSpace_Veteran_FemaleNRM0
+	Visor_EvaSpace_Veteran_Male0
+	Visor_EvaSpace_Veteran_MaleNRM0
+
+	Visor_Iva_Badass_Female0
+	Visor_Iva_Badass_FemaleNRM0
+	Visor_Iva_Badass_Male0
+	Visor_Iva_Badass_MaleNRM0
+	Visor_Iva_Standard_Female0
+	Visor_Iva_Standard_FemaleNRM0
+	Visor_Iva_Standard_Male0
+	Visor_Iva_Standard_MaleNRM0
+	Visor_Iva_VetBad_Female0
+	Visor_Iva_VetBad_FemaleNRM0
+	Visor_Iva_VetBad_male0
+	Visor_Iva_VetBad_MaleNRM0
+	Visor_Iva_Veteran_Female0
+	Visor_Iva_Veteran_FemaleNRM0
+	Visor_Iva_Veteran_Male0
+	Visor_Iva_Veteran_MaleNRM0
+
+
+All these files goes from level 0 to level 5 as this : 
+
+	Helmet_EvaGround_Badass_Female0
+	Helmet_EvaGround_Badass_Female1
+	Helmet_EvaGround_Badass_Female2
+	Helmet_EvaGround_Badass_Female3
+	Helmet_EvaGround_Badass_Female4
+	Helmet_EvaGround_Badass_Female5
+		
 
 The level textures are optional. If a level texture is missing, the one from the
 previous level is inherited.
@@ -253,19 +556,7 @@ pack-specific head/suit assignment rules in a separate file. All `*.cfg` files
 in `@Default.cfg` ensures it is processed first and overridden by subsequent
 custom configuration files).
 
-### Normal Maps ###
 
-Unity uses "grey" normal maps (RGBA = YYYX) to minimise artefacts when applying
-DXT5 texture compression on them. When a normal map has a "NRM" suffix Unity
-converts it from RGB = XYZ ("blue") to RGBA = YYYX ("grey") normal map unless
-it is in DDS format.
-
-In short: you should supply "blue" normal maps when a texture has "NRM" suffix
-and is in PNG format (JPEGs and TGAs are not recommended for normal maps) and
-"grey" normal map for textures in DDS format or without "NRM" suffix.
-
-"Grey" normal maps can be created by saving the standard "blue" normal map as a
-DDS with DXT5nm compression or by manually shuffling its channels RGBA -> GGGR.
 
 
 Notes
@@ -282,12 +573,13 @@ Notes
 
 Known Issues
 ------------
-
-* Atmospheric skybox is not reflected.
-* Reflections disable part highlighting.
-* Clouds from EVE are only reflected when on/near the ground or over 160 km.
-* Clouds from EVE Overhaul are not correctly reflected.
-* Cabin-specific IVA suits don't persist through scene switches while on EVA.
+* STATIC reflections are not recommended.
+* Reseting a suit in the visor menu or in the suit menu will reset it for both.
+* You need to get out/get in the vehicle or reload the scene to see the change in the IVA_safe and IVA_unsafe situation.
+* female teeth texture use only the one from the 'DEFAULT_MALE', the male use the head's texture one normaly.
+* the 'lvlToHide_TeethUp' setting works for both teeth for the male and normaly for the female.
+* the 'lvlToHide_TeethDown' setting don't work for the male and work normaly for the female.
+* the 'lvlToHide_Ponytail' don't work for the male (obiously).
 
 
 Licence
