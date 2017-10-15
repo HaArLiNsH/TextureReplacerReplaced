@@ -68,13 +68,13 @@ You can still replace these textures as you did before with Texture Replacer, bu
 
 You can find an empty premade [here](https://github.com/HaArLiNsH/TextureReplacerReplaced/releases/download/untagged-ef040eb633011347ae99/TRR_MyTextureMod.zip) 
 
-You just have to make 3 steps to make it ready for you (well this is not critical, but you are are here to custom things don't you ?)
+You just have to make 3 steps to make it ready for you :
 
-Change the name "MyTextureMod" by the one you want.
+Change the name "MyTextureMod" by the one you want,
 
-1: Of the folder that goes in GameData/ 
-2: Of the file MyTextureMod.cfg 
-3: Inside this .cfg 
+* Of the folder that goes in GameData/ 
+* Of the file MyTextureMod.cfg 
+* Inside this .cfg 
 
 
 You can make this "MyTextureMod.cfg" also by yourself, 
@@ -103,11 +103,11 @@ Your kerbals have now 3 suits that are used generally this way :
 
 You can assign one of these suits (and their elements, suit,helmet,visor and jetpack) for each of these situations : 
 
-* EVAground Atmo : Out Of Vehicle, On the Ground, With Atmosphere",
-* EVAground NoAtmo : Out Of Vehicle, On the Ground, Without Atmosphere",
-* EVAspace : Out Of Vehicle, In Space",
-* IVA Safe : In Vehicle, Safe (landed or in orbit)",
-* IVA Unsafe : In Vehicle, UnSafe (flying)"
+* EVAground Atmo : Out Of Vehicle, On the Ground, With Atmosphere,
+* EVAground NoAtmo : Out Of Vehicle, On the Ground, Without Atmosphere,
+* EVAspace : Out Of Vehicle, In Space,
+* IVA Safe : In Vehicle, Safe (landed or in orbit),
+* IVA Unsafe : In Vehicle, UnSafe (flying)
 
 You can also configure the color and the reflection color of the 3 visors. This setting will affect how your visor custom texture will appear. 
 TRR is  provided with 3 visor textures with different transparency level 
@@ -134,13 +134,13 @@ Examples:
 
     GameData/MyTextureMod/
 	
-      Default/kerbalHead                  			// male and female teeth and male head
-      Default/kerbalHeadNRM               			// male and female teeth and male head normal map
-      Default/kerbalGirl_06_BaseColor     		// female head
-      Default/kerbalGirl_06_BaseColorNRM 	// female head normal map	  
+      Default/kerbalHead								// male and female teeth and male head
+      Default/kerbalHeadNRM						// male and female teeth and male head normal map
+      Default/kerbalGirl_06_BaseColor			// female head
+      Default/kerbalGirl_06_BaseColorNRM	// female head normal map	  
 	  
-      Default/kerbalMain                  				// IVA veteran suit (veteran/orange)
-      Default/kerbalMainGrey              			// IVA suit (standard/grey)
+      Default/kerbalMain								// IVA veteran suit (veteran/orange)
+      Default/kerbalMainGrey						// IVA suit (standard/grey)
       Default/kerbalMainNRM               			// IVA suit normal map	  
       Default/kerbalHelmetGrey           			// IVA helmet
       Default/kerbalHelmetNRM             		// IVA helmet normal map
