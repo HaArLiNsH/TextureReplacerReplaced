@@ -134,78 +134,78 @@ Examples:
 
     GameData/MyTextureMod/
 	
-      Default/kerbalHead								// male and female teeth and male head
-      Default/kerbalHeadNRM						// male and female teeth and male head normal map
-      Default/kerbalGirl_06_BaseColor			// female head
-      Default/kerbalGirl_06_BaseColorNRM	// female head normal map	  
+      Default/kerbalHead                             // male and female teeth and male head
+      Default/kerbalHeadNRM                      // male and female teeth and male head normal map
+      Default/kerbalGirl_06_BaseColor         // female head
+      Default/kerbalGirl_06_BaseColorNRM  // female head normal map	  
 	  
-      Default/kerbalMain								// IVA veteran suit (veteran/orange)
-      Default/kerbalMainGrey						// IVA suit (standard/grey)
-      Default/kerbalMainNRM               			// IVA suit normal map	  
-      Default/kerbalHelmetGrey           			// IVA helmet
-      Default/kerbalHelmetNRM             		// IVA helmet normal map
-      Default/kerbalVisor                 				// IVA helmet visor
-	  Default/kerbalVisorNRM                 		// IVA helmet visor normal map
+      Default/kerbalMain                            // IVA veteran suit (veteran/orange)
+      Default/kerbalMainGrey                     // IVA suit (standard/grey)
+      Default/kerbalMainNRM                      // IVA suit normal map	  
+      Default/kerbalHelmetGrey                  // IVA helmet
+      Default/kerbalHelmetNRM                   // IVA helmet normal map
+      Default/kerbalVisor                            // IVA helmet visor
+	  Default/kerbalVisorNRM                      // IVA helmet visor normal map
 	  
-	  Default/EVAgroundTexture                  	// EVA ground suit (standard/grey)
-	  Default/EVAgroundTextureVeteran         // EVA ground suit (veteran/orange)
-      Default/EVAgroundTextureNRM              // EVA ground suit normal map	  
-      Default/EVAgroundHelmet                   	// EVA ground helmet
-	  Default/EVAgroundHelmetNRM             	// EVA ground helmet normal map
-      Default/EVAgroundVisor                    	// EVA ground helmet visor	 
-	  Default/EVAgroundVisorNRM                 // EVA ground helmet visor	normal map 
-      Default/EVAgroundJetpack                  	// EVA ground jetpack
-      Default/EVAgroundJetpackNRM              // EVA ground jetpack normal map 
+	  Default/EVAgroundTexture                 // EVA ground suit (standard/grey)
+	  Default/EVAgroundTextureVeteran      // EVA ground suit (veteran/orange)
+      Default/EVAgroundTextureNRM          // EVA ground suit normal map	  
+      Default/EVAgroundHelmet                  // EVA ground helmet
+	  Default/EVAgroundHelmetNRM            // EVA ground helmet normal map
+      Default/EVAgroundVisor                     // EVA ground helmet visor	 
+	  Default/EVAgroundVisorNRM               // EVA ground helmet visor normal map 
+      Default/EVAgroundJetpack                  // EVA ground jetpack
+      Default/EVAgroundJetpackNRM           // EVA ground jetpack normal map 
 	  
-      Default/EVAtexture                  			// EVA space suit (standard/grey)
-	  Default/EVAtextureVeteran                  	// EVA space suit (veteran/orange)
-      Default/EVAtextureNRM               			// EVA space suit normal map	  
-      Default/EVAhelmet                   			// EVA space helmet
-	  Default/EVAhelmetNRM               			// EVA space helmet normal map
-      Default/EVAvisor                    				// EVA space helmet visor
-	  Default/EVAvisorNRM              				// EVA space helmet visor normal map	  
-      Default/EVAjetpack                  			// EVA space jetpack
-      Default/EVAjetpackNRM              			// EVA space jetpack normal map     
+      Default/EVAtexture                            // EVA space suit (standard/grey)
+	  Default/EVAtextureVeteran                // EVA space suit (veteran/orange)
+      Default/EVAtextureNRM                     // EVA space suit normal map	  
+      Default/EVAhelmet                            // EVA space helmet
+	  Default/EVAhelmetNRM                      // EVA space helmet normal map
+      Default/EVAvisor                               // EVA space helmet visor
+	  Default/EVAvisorNRM                         // EVA space helmet visor normal map	  
+      Default/EVAjetpack                           // EVA space jetpack
+      Default/EVAjetpackNRM                     // EVA space jetpack normal map     
 
-      Default/GalaxyTex_PositiveX        		// skybox right face (if you don't put these in your custom folder, they wont work)
-      Default/GalaxyTex_NegativeX         		// skybox left face
-      Default/GalaxyTex_PositiveY         		// skybox bottom face rotated for 180°
-      Default/GalaxyTex_NegativeY         		// skybox top face
-      Default/GalaxyTex_PositiveZ        		// skybox front face
-      Default/GalaxyTex_NegativeZ         		// skybox back face
+      Default/GalaxyTex_PositiveX             // skybox right face (if you don't put these in your custom folder, they wont work)
+      Default/GalaxyTex_NegativeX           // skybox left face
+      Default/GalaxyTex_PositiveY             // skybox bottom face rotated for 180°
+      Default/GalaxyTex_NegativeY           // skybox top face
+      Default/GalaxyTex_PositiveZ            // skybox front face
+      Default/GalaxyTex_NegativeZ          // skybox back face
 
-      Default/moho00                      				// Moho
-      Default/moho01                      				// Moho normal map
-      Default/Eve2_00                     				// Eve
-      Default/Eve2_01                     				// Eve normal map
-      Default/evemoon100                 			// Gilly
-      Default/evemoon101                  			// Gilly normal map
-      Default/KerbinScaledSpace300        		// Kerbin
-      Default/KerbinScaledSpace401        		// Kerbin normal map
-      Default/NewMunSurfaceMapDiffuse     	// Mün
-      Default/NewMunSurfaceMapNormals     	// Mün normal map
-      Default/NewMunSurfaceMap00          	// Minmus
-      Default/NewMunSurfaceMap01          	// Minmus normal map
-      Default/Duna5_00                    			// Duna
-      Default/Duna5_01                    			// Duna normal map
-      Default/desertplanetmoon00         		// Ike
-      Default/desertplanetmoon01          		// Ike normal map
-      Default/dwarfplanet100              			// Dres
-      Default/dwarfplanet101              			// Dres normal map
-      Default/gas1_clouds                 			// Jool
-      Default/cloud_normal                			// Jool normal map
-      Default/newoceanmoon00              		// Laythe
-      Default/newoceanmoon01              		// Laythe normal map
-      Default/gp1icemoon00                			// Vall
-      Default/gp1icemoon01                			// Vall normal map
-      Default/rockyMoon00                 			// Tylo
-      Default/rockyMoon01                 			// Tylo normal map
-      Default/gp1minormoon100             		// Bop
-      Default/gp1minormoon101             		// Bop normal map
-      Default/gp1minormoon200             		// Pol
-      Default/gp1minormoon201             		// Pol normal map
-      Default/snowydwarfplanet00          		// Eeloo
-      Default/snowydwarfplanet01          		// Eeloo normal map
+      Default/moho00                               // Moho
+      Default/moho01                               // Moho normal map
+      Default/Eve2_00                              // Eve
+      Default/Eve2_01                              // Eve normal map
+      Default/evemoon100                       // Gilly
+      Default/evemoon101                       // Gilly normal map
+      Default/KerbinScaledSpace300         // Kerbin
+      Default/KerbinScaledSpace401         // Kerbin normal map
+      Default/NewMunSurfaceMapDiffuse   // Mün
+      Default/NewMunSurfaceMapNormals  // Mün normal map
+      Default/NewMunSurfaceMap00          // Minmus
+      Default/NewMunSurfaceMap01          // Minmus normal map
+      Default/Duna5_00                           // Duna
+      Default/Duna5_01                           // Duna normal map
+      Default/desertplanetmoon00            // Ike
+      Default/desertplanetmoon01            // Ike normal map
+      Default/dwarfplanet100                   // Dres
+      Default/dwarfplanet101                   // Dres normal map
+      Default/gas1_clouds                       // Jool
+      Default/cloud_normal                     // Jool normal map
+      Default/newoceanmoon00              // Laythe
+      Default/newoceanmoon01              // Laythe normal map
+      Default/gp1icemoon00                   // Vall
+      Default/gp1icemoon01                   // Vall normal map
+      Default/rockyMoon00                     // Tylo
+      Default/rockyMoon01                     // Tylo normal map
+      Default/gp1minormoon100             // Bop
+      Default/gp1minormoon101            // Bop normal map
+      Default/gp1minormoon200            // Pol
+      Default/gp1minormoon201            // Pol normal map
+      Default/snowydwarfplanet00         // Eeloo
+      Default/snowydwarfplanet01         // Eeloo normal map
 
 It's also possible to replace textures from `GameData/` if one specifies
 the full directory hierarchy:
