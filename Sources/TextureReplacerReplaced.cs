@@ -21,11 +21,12 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+
 using System.Reflection;
-using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 namespace TextureReplacerReplaced
 {
@@ -113,7 +114,7 @@ namespace TextureReplacerReplaced
             isLoaded = true;
             Util.log("++++ 'TRR is loaded'++++");
         }
-
+               
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Load all shaders into the system and fill our shader database.

@@ -65,11 +65,7 @@ namespace TextureReplacerReplaced
         /// The suit set of the kerbal
         /// </summary>
         public Suit_Set suit;
-
-        /// <summary>
-        /// The forced cabin suit (IVA) of the kerbal
-        /// </summary>
-        //public Suit_Set cabinSuit;
+        
     }
 
 

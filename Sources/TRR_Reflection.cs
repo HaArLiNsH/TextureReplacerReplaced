@@ -83,7 +83,7 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public override void OnStart(StartState state)
         {
-            Util.log("++++ 'OnStart()' ++++");
+            //Util.log("++++ 'OnStart()' ++++");
 
             Reflections reflections = Reflections.instance;
 

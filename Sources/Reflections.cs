@@ -204,7 +204,8 @@ namespace TextureReplacerReplaced
                         material.SetColor(Util.REFLECT_COLOR_PROPERTY, reflectioncolor);
                     }
 
-                    // TODO ICI ! 
+                    // TODO ICI FOR EYES REFLECTION !!!!
+                    ///// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
                    /* SkinnedMeshRenderer eyeballLeft = transform.GetComponentsInChildren<SkinnedMeshRenderer>(true)
                       .FirstOrDefault(m => m.name == "eyeballLeft");
 
@@ -216,6 +217,7 @@ namespace TextureReplacerReplaced
                         material.SetTexture(Util.CUBE_PROPERTY, envMap);
                         material.SetColor(Util.REFLECT_COLOR_PROPERTY, visorReflectionColour);
                     }*/
+                    ////// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                 }
 
                 interval = updateInterval;
@@ -516,7 +518,7 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Post-load initialisation.
-        /// called the the Start() after the awake() of KSP
+        /// called after the awake() of KSP
         /// </summary>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void load()

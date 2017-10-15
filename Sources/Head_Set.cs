@@ -44,12 +44,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Is the head texture for a female model ?
         /// </summary>
-        public bool isFemale = false;
-
-        /// <summary>
-        /// Is the head texture made to be used without the eyes 3D meshes ?
-        /// </summary>
-        //public bool isEyeless;
+        public bool isFemale = false;        
 
         /// <summary>
         ///	Is the head exclusive to one kerbal ? 
@@ -444,41 +439,6 @@ namespace TextureReplacerReplaced
         {
             return teeth_Up_RightNRM[level];
         }
-        /*
-        /// <summary>
-        /// Used to set the color the Left eyeBall 
-        /// </summary>
-        /// <returns></returns>
-        public void set_EyeballColor_Left(Color32 wantedColor)
-        {
-            eyeballColor_Left = wantedColor;
-        }
-
-        /// <summary>
-        /// Used to set the color the Right eyeBall 
-        /// </summary>
-        /// <returns></returns>
-        public void set_EyeballColor_Right(Color32 wantedColor)
-        {
-            eyeballColor_Right = wantedColor;
-        }
-        /// <summary>
-        /// Used to set the color the Left Pupil 
-        /// </summary>
-        /// <returns></returns>
-        public void set_PupilColor_Left(Color32 wantedColor)
-        {
-            pupilColor_Left = wantedColor;
-        }
-
-        /// <summary>
-        /// Used to set the color the Right Pupil 
-        /// </summary>
-        /// <returns></returns>
-        public void set_PupilColor_Right(Color32 wantedColor)
-        {
-            pupilColor_Right = wantedColor;
-        }*/
 
         /// <summary>
         /// Search for the name of the texture, then set the good one in the suit set.

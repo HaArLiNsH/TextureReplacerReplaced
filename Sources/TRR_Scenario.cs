@@ -21,12 +21,20 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+
+
 namespace TextureReplacerReplaced
 {
     /// <summary>
     /// This class handle the load and save of the configuration data in the persistant.sfs save
     /// </summary>
-    [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.SPACECENTER | GameScenes.FLIGHT)]
+    [KSPScenario(ScenarioCreationOptions.AddToAllGames, new GameScenes[] {
+            GameScenes.SPACECENTER,
+            GameScenes.EDITOR,
+            GameScenes.FLIGHT,
+            GameScenes.TRACKSTATION,
+        })
+]
     public class TRR_Scenario : ScenarioModule
     {
         /// <summary>
@@ -36,7 +44,7 @@ namespace TextureReplacerReplaced
         public override void OnLoad(ConfigNode node)
         {
 
-            Util.log("++++ 'OnLoad()' ++++");
+            //Util.log("++++ 'OnLoad()' ++++");
             Reflections.instance.loadScenario(node);
             Personaliser.instance.loadScenario(node);
         }
@@ -47,9 +55,13 @@ namespace TextureReplacerReplaced
         /// <param name="node">The name of the config node</param>
         public override void OnSave(ConfigNode node)
         {
-            Util.log("++++ 'OnSave()' ++++");
+            //Util.log("++++ 'OnSave()' ++++");
             Reflections.instance.saveScenario(node);
             Personaliser.instance.saveScenario(node);
         }
+        
+        
+
+        
     }
 }

@@ -443,7 +443,7 @@ namespace TextureReplacerReplaced
 
         }
 
-        public void get_visor_EvaGround(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
+        public void get_visor_EvaGround(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor, out Color32 baseColor)
         {
             if (isBadass && isVeteran)
             {
@@ -506,9 +506,10 @@ namespace TextureReplacerReplaced
                 }
             }
             reflectionColor = suit.get_EvaGround_VisorReflectionColor(level);
+            baseColor = suit.get_EvaGround_VisorBaseColor(level);
         }
 
-        public void get_visor_EvaSpace(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
+        public void get_visor_EvaSpace(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor, out Color32 baseColor)
         {
             if (isBadass && isVeteran)
             {
@@ -571,9 +572,10 @@ namespace TextureReplacerReplaced
                 }
             }
             reflectionColor = suit.get_EvaSpace_VisorReflectionColor(level);
+            baseColor = suit.get_EvaSpace_VisorBaseColor(level);
         }
 
-        public void get_visor_Iva(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor)
+        public void get_visor_Iva(out Texture2D texture, out Texture2D normalMap, out Color32 reflectionColor, out Color32 baseColor)
         {
             if (isBadass && isVeteran)
             {
@@ -636,6 +638,7 @@ namespace TextureReplacerReplaced
                 }
             }
             reflectionColor = suit.get_Iva_VisorReflectionColor(level);
+            baseColor = suit.get_Iva_VisorBaseColor(level);
         }
 
         public void get_jetpack_EvaGround(out Texture2D texture, out Texture2D normalMap)
@@ -765,29 +768,6 @@ namespace TextureReplacerReplaced
                     return;
                 }
             }
-        }    
-        
-        
-        
-       /* public void get_Filtered_helmet_EvaGround(out Texture2D texture, out Texture2D normalMap)
-        {
-            if (suit.EvaGround_ForceUse_Helmet)
-            {
-                get_helmet_EvaGround(out texture, out normalMap);
-                return;
-            }
-            else if (suit.EvaSpace_ForceUse_Helmet)
-            {
-                get_helmet_EvaSpace(out texture, out normalMap);
-                return;
-            }
-            else
-            {
-                get_helmet_Iva(out texture, out normalMap);
-                return;
-            }            
-        }*/
-
-
+        }  
     }
 }

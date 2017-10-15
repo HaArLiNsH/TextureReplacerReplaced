@@ -8,3 +8,9 @@ Unity/Temp/*
 Unity/Unity.CSharp.csproj
 Unity/Unity.sln
 *.suo
+GameData/TextureReplacerReplaced/Plugins/Assembly-CSharp-firstpass.dll
+GameData/TextureReplacerReplaced/Plugins/Assembly-CSharp.dll
+*.dll
+GameData/TextureReplacerReplaced/Plugins/UnityEngine.xml
+GameData/TextureReplacerReplaced/Plugins/UnityEngine.xml
+CodeMap1.dgml
