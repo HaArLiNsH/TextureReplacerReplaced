@@ -8,6 +8,6 @@
 [assembly: AssemblyCopyright("© 2013-2017 Davorin Učakar, Ryan Bray, RangeMachine, HaArLiNsH")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("0.5")]
+[assembly: AssemblyVersion("0.5.1")]
 
 [assembly: KSPAssembly("Texture Replacer Replaced", 0, 5)]
