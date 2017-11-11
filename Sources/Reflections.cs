@@ -192,7 +192,7 @@ namespace TextureReplacerReplaced
                 {
                     transform = transform.Find("model01");
 
-                    SkinnedMeshRenderer visor = transform.GetComponentsInChildren<SkinnedMeshRenderer>(true)
+                    SkinnedMeshRenderer visor = transform.GetComponentsInChildren<SkinnedMeshRenderer>(false)
                       .FirstOrDefault(m => m.name == "visor");
 
                     if (visor != null)
@@ -278,7 +278,7 @@ namespace TextureReplacerReplaced
                 {
                     transform = transform.Find("model01");
 
-                    SkinnedMeshRenderer visor = transform.GetComponentsInChildren<SkinnedMeshRenderer>(true)
+                    SkinnedMeshRenderer visor = transform.GetComponentsInChildren<SkinnedMeshRenderer>(false)
                       .FirstOrDefault(m => m.name == "visor");
 
                     if (visor != null)

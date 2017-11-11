@@ -314,24 +314,24 @@ namespace TextureReplacerReplaced
                         actualSuitState = 0;
                         hasEvaSuit = false;
                         hasEvaGroundSuit = false;
-                        if (reflectionScript != null)
-                            reflectionScript.setActive(useVisor);
+//                         if (reflectionScript != null)
+//                             reflectionScript.setActive(useVisor);
                         //ScreenMessages.PostScreenMessage("IVA wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                         break;
                     case 1:     //EVAground suit
                         actualSuitState = 1;
                         hasEvaSuit = true;
                         hasEvaGroundSuit = true;
-                        if (reflectionScript != null)
-                            reflectionScript.setActive(useVisor);
+//                         if (reflectionScript != null)
+//                             reflectionScript.setActive(useVisor);
                         //ScreenMessages.PostScreenMessage("EVA ground wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                         break;
                     case 2:     //EVA suit
                         actualSuitState = 2;
                         hasEvaSuit = true;
                         hasEvaGroundSuit = false;
-                        if (reflectionScript != null)
-                            reflectionScript.setActive(useVisor);
+//                         if (reflectionScript != null)
+//                             reflectionScript.setActive(useVisor);
                         //ScreenMessages.PostScreenMessage("EVA space wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
                         break;
                 }
@@ -366,7 +366,7 @@ namespace TextureReplacerReplaced
                 if (Reflections.instance.isVisorReflectionEnabled
                 && Reflections.instance.reflectionType == Reflections.Type.REAL)
                 {
-                    reflectionScript = new Reflections.Script(part, 1, visorReflectioncolor);
+                    reflectionScript = new Reflections.Script(part, 2, visorReflectioncolor);
                     reflectionScript.setActive(useVisor);
                 }
             }
@@ -391,7 +391,7 @@ namespace TextureReplacerReplaced
                         hasEvaGroundSuit = false;
                         if (reflectionScript != null)
                         {
-                            reflectionScript.setActive(useVisor);
+                            //reflectionScript.setActive(useVisor);
                             reflectionScript.updateReflectioncolor(part, visorReflectioncolor);
                         }
                         //ScreenMessages.PostScreenMessage("IVA wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
@@ -402,7 +402,7 @@ namespace TextureReplacerReplaced
                         hasEvaGroundSuit = true;
                         if (reflectionScript != null)
                         {
-                            reflectionScript.setActive(useVisor);
+                            //reflectionScript.setActive(useVisor);
                             reflectionScript.updateReflectioncolor(part, visorReflectioncolor);
                         }
                         //ScreenMessages.PostScreenMessage("EVA ground wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
@@ -413,7 +413,7 @@ namespace TextureReplacerReplaced
                         hasEvaGroundSuit = false;
                         if (reflectionScript != null)
                         {
-                            reflectionScript.setActive(useVisor);
+                           // reflectionScript.setActive(useVisor);
                             reflectionScript.updateReflectioncolor(part, visorReflectioncolor);
                         }
                         //ScreenMessages.PostScreenMessage("EVA space wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);

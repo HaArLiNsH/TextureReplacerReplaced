@@ -2939,6 +2939,12 @@ namespace TextureReplacerReplaced
             else if (jetpack_EvaSpace_Standard_Female[level] != null)
                 return jetpack_EvaSpace_Standard_Female[level];
 
+            else if (jetpack_EvaSpace_Badass_Male[level] != null)
+                return jetpack_EvaSpace_Badass_Male[level];
+
+            else if (jetpack_EvaSpace_Standard_Male[level] != null)
+                return jetpack_EvaSpace_Standard_Male[level];
+
             else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level] != null)
                 return personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level];
 
