@@ -44,9 +44,14 @@ namespace TextureReplacerReplaced
         public string name;
 
         /// <summary>
+        /// check to see if the suit set has already loaded the settings from the .cfg
+        /// </summary>
+        public bool hasLoadedFromConfig = false;
+
+        /// <summary>
         ///	Is the suit exclusive to one kerbal ? 
         /// </summary>
-        public bool isExclusive = false;
+        //public bool isExclusive = false;
 
         /// <summary>
         /// The suit when in vehicle and safe

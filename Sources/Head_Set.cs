@@ -42,6 +42,11 @@ namespace TextureReplacerReplaced
         public string name;
 
         /// <summary>
+        /// check to see if the suit set has already loaded the settings from the .cfg
+        /// </summary>
+        public bool hasLoadedFromConfig = false;
+
+        /// <summary>
         /// Is the head texture for a female model ?
         /// </summary>
         public bool isFemale = false;        

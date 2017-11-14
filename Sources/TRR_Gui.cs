@@ -316,7 +316,7 @@ namespace TextureReplacerReplaced
                             GUILayout.EndVertical();
                         GUILayout.EndScrollView();
 
-                    if (GUILayout.Button("Reset to Defaults", buttonStyle))
+                    if (GUILayout.Button("Reset TRR", buttonStyle))
                         personaliser.resetKerbals();
 
                     GUILayout.EndVertical();
@@ -1846,9 +1846,9 @@ namespace TextureReplacerReplaced
             if (suit != null)
             {
                 
-                suit.isExclusive = GUILayout.Toggle(suit.isExclusive, "Exclusive");
+                //suit.isExclusive = GUILayout.Toggle(suit.isExclusive, "Exclusive");
 
-                if (GUILayout.Button("Reset to Default", GUILayout.Width(100)))
+                if (GUILayout.Button("Reset to DEFAULT_SUIT", GUILayout.Width(160)))
                     personaliser.resetSuit(suit, personaliser.defaultSuit);
                 
 

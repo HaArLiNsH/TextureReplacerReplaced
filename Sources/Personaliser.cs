@@ -1647,9 +1647,13 @@ namespace TextureReplacerReplaced
 
         public void loadSuitConfig(ConfigNode node, List<Suit_Set> map, Suit_Set defaultMap, bool reset)
         {
+            //Util.log("loadSuitConfig");
+            bool hasCfgEntry = false;
+
             ConfigNode defaultNode = new ConfigNode();
             if (node.TryGetNode("DEFAULT_SUIT", ref defaultNode))
             {
+                Util.log("Settings found for {0}, using them", defaultMap.name);
                 Color32 nodeColor = new Color32(255, 255, 255, 255);
                 int nodeInt = 0;
                 bool nodebool = true;
@@ -1780,6 +1784,8 @@ namespace TextureReplacerReplaced
                 if (defaultNode.TryGetValue("visor_EvaSpace_ReflectionColor[5]", ref nodeColor))
                     defaultMap.visor_EvaSpace_ReflectionColor[5] = nodeColor;
 
+                defaultMap.hasLoadedFromConfig = true;
+
             }
 
             foreach (Suit_Set suitSet in map)
@@ -1794,16 +1800,18 @@ namespace TextureReplacerReplaced
                 // if the suit set has an entry in the .cfg, try to load the settings, if empty, load the default settings
                 if (node.TryGetNode(suitSet.name, ref savedNode))
                 {
-                    //Util.log("Settings found for {0}, using them", suitSet.name);
+                    Util.log("Settings found for Suit Set {0}, using them", suitSet.name);
+                    hasCfgEntry = true;
+
                     bool nodebool = true;
                     Color32 nodeColor = new Color32(255, 255, 255, 255);                    
                     int nodeInt = 0;
 
                     // suit settings
-                    if (savedNode.TryGetValue("isExclusive", ref nodebool))
+                    /*if (savedNode.TryGetValue("isExclusive", ref nodebool))
                         suitSet.isExclusive = nodebool;
                     else
-                        suitSet.isExclusive = defaultMap.isExclusive;
+                        suitSet.isExclusive = defaultMap.isExclusive;*/
 
                     if (savedNode.TryGetValue("suit_Iva_Safe", ref nodeInt))
                         suitSet.suit_Iva_Safe = nodeInt;
@@ -1821,9 +1829,17 @@ namespace TextureReplacerReplaced
                         suitSet.suit_EvaGround_Atmo = defaultMap.suit_EvaGround_Atmo;
 
                     if (savedNode.TryGetValue("suit_EvaGround_NoAtmo", ref nodeInt))
+                    {
                         suitSet.suit_EvaGround_NoAtmo = nodeInt;
+                        //Util.log("suit_EvaGround_NoAtmo for {0} = {1}", suitSet.name, suitSet.suit_EvaGround_NoAtmo);
+                    }
                     else
+                        
+                    {
                         suitSet.suit_EvaGround_NoAtmo = defaultMap.suit_EvaGround_NoAtmo;
+                        //Util.log("USING DEFAULT suit_EvaGround_NoAtmo for {0} = {1}", suitSet.name, suitSet.suit_EvaGround_NoAtmo);
+                    }
+                    
 
                     if (savedNode.TryGetValue("suit_EvaSpace", ref nodeInt))
                         suitSet.suit_EvaSpace = nodeInt;
@@ -2101,91 +2117,100 @@ namespace TextureReplacerReplaced
                         suitSet.visor_EvaSpace_ReflectionColor[5] = nodeColor;
                     else
                         suitSet.visor_EvaSpace_ReflectionColor[5] = defaultMap.visor_EvaSpace_ReflectionColor[5];
+
+                    suitSet.hasLoadedFromConfig = true;
                 }
                 // if the suit set has no entry in the .cfg, load the default settings
-                else
+                if (hasCfgEntry == false)
                 {
-                    suitSet.isExclusive = defaultMap.isExclusive;
+                    if (suitSet.hasLoadedFromConfig == false)
+                    {
+                        //Util.log("Settings NOT found for {0}, using default", suitSet.name);
+                        //suitSet.isExclusive = defaultMap.isExclusive;
 
-                    // suit settings
-                    suitSet.suit_Iva_Safe = defaultMap.suit_Iva_Safe;
-                    suitSet.suit_Iva_Unsafe = defaultMap.suit_Iva_Unsafe;
-                    suitSet.suit_EvaGround_Atmo = defaultMap.suit_EvaGround_Atmo;
-                    suitSet.suit_EvaGround_NoAtmo = defaultMap.suit_EvaGround_NoAtmo;
-                    suitSet.suit_EvaSpace = defaultMap.suit_EvaSpace;
+                        // suit settings
+                        suitSet.suit_Iva_Safe = defaultMap.suit_Iva_Safe;
+                        suitSet.suit_Iva_Unsafe = defaultMap.suit_Iva_Unsafe;
+                        suitSet.suit_EvaGround_Atmo = defaultMap.suit_EvaGround_Atmo;
+                        suitSet.suit_EvaGround_NoAtmo = defaultMap.suit_EvaGround_NoAtmo;
+                       // Util.log("suit_EvaGround_NoAtmo for {0} = {1}", suitSet.name, suitSet.suit_EvaGround_NoAtmo);
+                        suitSet.suit_EvaSpace = defaultMap.suit_EvaSpace;
 
-                    //helmet settings
-                    suitSet.helmet_Iva_Safe = defaultMap.helmet_Iva_Safe;
-                    suitSet.helmet_Iva_Unsafe = defaultMap.helmet_Iva_Unsafe;
-                    suitSet.helmet_EvaGround_Atmo = defaultMap.helmet_EvaGround_Atmo;
-                    suitSet.helmet_EvaGround_NoAtmo = defaultMap.helmet_EvaGround_NoAtmo;
-                    suitSet.helmet_EvaSpace = defaultMap.helmet_EvaSpace;
+                        //helmet settings
+                        suitSet.helmet_Iva_Safe = defaultMap.helmet_Iva_Safe;
+                        suitSet.helmet_Iva_Unsafe = defaultMap.helmet_Iva_Unsafe;
+                        suitSet.helmet_EvaGround_Atmo = defaultMap.helmet_EvaGround_Atmo;
+                        suitSet.helmet_EvaGround_NoAtmo = defaultMap.helmet_EvaGround_NoAtmo;
+                        suitSet.helmet_EvaSpace = defaultMap.helmet_EvaSpace;
 
-                    //visor settings
-                    suitSet.visor_Iva_Safe = defaultMap.visor_Iva_Safe;
-                    suitSet.visor_Iva_Unsafe = defaultMap.visor_Iva_Unsafe;
-                    suitSet.visor_EvaGround_Atmo = defaultMap.visor_EvaGround_Atmo;
-                    suitSet.visor_EvaGround_NoAtmo = defaultMap.visor_EvaGround_NoAtmo;
-                    suitSet.visor_EvaSpace = defaultMap.visor_EvaSpace;
+                        //visor settings
+                        suitSet.visor_Iva_Safe = defaultMap.visor_Iva_Safe;
+                        suitSet.visor_Iva_Unsafe = defaultMap.visor_Iva_Unsafe;
+                        suitSet.visor_EvaGround_Atmo = defaultMap.visor_EvaGround_Atmo;
+                        suitSet.visor_EvaGround_NoAtmo = defaultMap.visor_EvaGround_NoAtmo;
+                        suitSet.visor_EvaSpace = defaultMap.visor_EvaSpace;
 
-                    // jetpack settings
-                    suitSet.jetpack_EvaGround_Atmo = defaultMap.jetpack_EvaGround_Atmo;
-                    suitSet.jetpack_EvaGround_NoAtmo = defaultMap.jetpack_EvaGround_NoAtmo;
-                    suitSet.jetpack_EvaSpace = defaultMap.jetpack_EvaSpace;
+                        // jetpack settings
+                        suitSet.jetpack_EvaGround_Atmo = defaultMap.jetpack_EvaGround_Atmo;
+                        suitSet.jetpack_EvaGround_NoAtmo = defaultMap.jetpack_EvaGround_NoAtmo;
+                        suitSet.jetpack_EvaSpace = defaultMap.jetpack_EvaSpace;
 
-                    // visor reflection settings
-                    suitSet.visor_Iva_ReflectionAdaptive = defaultMap.visor_Iva_ReflectionAdaptive;
-                    suitSet.visor_EvaGround_ReflectionAdaptive = defaultMap.visor_EvaGround_ReflectionAdaptive;
-                    suitSet.visor_EvaSpace_ReflectionAdaptive = defaultMap.visor_EvaSpace_ReflectionAdaptive;
-
-
-                    // visor Base color settings
-                    suitSet.visor_Iva_BaseColor[0] = defaultMap.visor_Iva_BaseColor[0];
-                    suitSet.visor_Iva_BaseColor[1] = defaultMap.visor_Iva_BaseColor[1];
-                    suitSet.visor_Iva_BaseColor[2] = defaultMap.visor_Iva_BaseColor[2];
-                    suitSet.visor_Iva_BaseColor[3] = defaultMap.visor_Iva_BaseColor[3];
-                    suitSet.visor_Iva_BaseColor[4] = defaultMap.visor_Iva_BaseColor[4];
-                    suitSet.visor_Iva_BaseColor[5] = defaultMap.visor_Iva_BaseColor[5];
+                        // visor reflection settings
+                        suitSet.visor_Iva_ReflectionAdaptive = defaultMap.visor_Iva_ReflectionAdaptive;
+                        suitSet.visor_EvaGround_ReflectionAdaptive = defaultMap.visor_EvaGround_ReflectionAdaptive;
+                        suitSet.visor_EvaSpace_ReflectionAdaptive = defaultMap.visor_EvaSpace_ReflectionAdaptive;
 
 
-                    suitSet.visor_EvaGround_BaseColor[0] = defaultMap.visor_EvaGround_BaseColor[0];
-                    suitSet.visor_EvaGround_BaseColor[1] = defaultMap.visor_EvaGround_BaseColor[1];
-                    suitSet.visor_EvaGround_BaseColor[2] = defaultMap.visor_EvaGround_BaseColor[2];
-                    suitSet.visor_EvaGround_BaseColor[3] = defaultMap.visor_EvaGround_BaseColor[3];
-                    suitSet.visor_EvaGround_BaseColor[4] = defaultMap.visor_EvaGround_BaseColor[4];
-                    suitSet.visor_EvaGround_BaseColor[5] = defaultMap.visor_EvaGround_BaseColor[5];
+                        // visor Base color settings
+                        suitSet.visor_Iva_BaseColor[0] = defaultMap.visor_Iva_BaseColor[0];
+                        suitSet.visor_Iva_BaseColor[1] = defaultMap.visor_Iva_BaseColor[1];
+                        suitSet.visor_Iva_BaseColor[2] = defaultMap.visor_Iva_BaseColor[2];
+                        suitSet.visor_Iva_BaseColor[3] = defaultMap.visor_Iva_BaseColor[3];
+                        suitSet.visor_Iva_BaseColor[4] = defaultMap.visor_Iva_BaseColor[4];
+                        suitSet.visor_Iva_BaseColor[5] = defaultMap.visor_Iva_BaseColor[5];
 
 
-                    suitSet.visor_EvaSpace_BaseColor[0] = defaultMap.visor_EvaSpace_BaseColor[0];
-                    suitSet.visor_EvaSpace_BaseColor[1] = defaultMap.visor_EvaSpace_BaseColor[1];
-                    suitSet.visor_EvaSpace_BaseColor[2] = defaultMap.visor_EvaSpace_BaseColor[2];
-                    suitSet.visor_EvaSpace_BaseColor[3] = defaultMap.visor_EvaSpace_BaseColor[3];
-                    suitSet.visor_EvaSpace_BaseColor[4] = defaultMap.visor_EvaSpace_BaseColor[4];
-                    suitSet.visor_EvaSpace_BaseColor[5] = defaultMap.visor_EvaSpace_BaseColor[5];
-
-                    // visor Reflection color settings
-                    suitSet.visor_Iva_ReflectionColor[0] = defaultMap.visor_Iva_ReflectionColor[0];
-                    suitSet.visor_Iva_ReflectionColor[1] = defaultMap.visor_Iva_ReflectionColor[1];
-                    suitSet.visor_Iva_ReflectionColor[2] = defaultMap.visor_Iva_ReflectionColor[2];
-                    suitSet.visor_Iva_ReflectionColor[3] = defaultMap.visor_Iva_ReflectionColor[3];
-                    suitSet.visor_Iva_ReflectionColor[4] = defaultMap.visor_Iva_ReflectionColor[4];
-                    suitSet.visor_Iva_ReflectionColor[5] = defaultMap.visor_Iva_ReflectionColor[5];
+                        suitSet.visor_EvaGround_BaseColor[0] = defaultMap.visor_EvaGround_BaseColor[0];
+                        suitSet.visor_EvaGround_BaseColor[1] = defaultMap.visor_EvaGround_BaseColor[1];
+                        suitSet.visor_EvaGround_BaseColor[2] = defaultMap.visor_EvaGround_BaseColor[2];
+                        suitSet.visor_EvaGround_BaseColor[3] = defaultMap.visor_EvaGround_BaseColor[3];
+                        suitSet.visor_EvaGround_BaseColor[4] = defaultMap.visor_EvaGround_BaseColor[4];
+                        suitSet.visor_EvaGround_BaseColor[5] = defaultMap.visor_EvaGround_BaseColor[5];
 
 
-                    suitSet.visor_EvaGround_ReflectionColor[0] = defaultMap.visor_EvaGround_ReflectionColor[0];
-                    suitSet.visor_EvaGround_ReflectionColor[1] = defaultMap.visor_EvaGround_ReflectionColor[1];
-                    suitSet.visor_EvaGround_ReflectionColor[2] = defaultMap.visor_EvaGround_ReflectionColor[2];
-                    suitSet.visor_EvaGround_ReflectionColor[3] = defaultMap.visor_EvaGround_ReflectionColor[3];
-                    suitSet.visor_EvaGround_ReflectionColor[4] = defaultMap.visor_EvaGround_ReflectionColor[4];
-                    suitSet.visor_EvaGround_ReflectionColor[5] = defaultMap.visor_EvaGround_ReflectionColor[5];
+                        suitSet.visor_EvaSpace_BaseColor[0] = defaultMap.visor_EvaSpace_BaseColor[0];
+                        suitSet.visor_EvaSpace_BaseColor[1] = defaultMap.visor_EvaSpace_BaseColor[1];
+                        suitSet.visor_EvaSpace_BaseColor[2] = defaultMap.visor_EvaSpace_BaseColor[2];
+                        suitSet.visor_EvaSpace_BaseColor[3] = defaultMap.visor_EvaSpace_BaseColor[3];
+                        suitSet.visor_EvaSpace_BaseColor[4] = defaultMap.visor_EvaSpace_BaseColor[4];
+                        suitSet.visor_EvaSpace_BaseColor[5] = defaultMap.visor_EvaSpace_BaseColor[5];
+
+                        // visor Reflection color settings
+                        suitSet.visor_Iva_ReflectionColor[0] = defaultMap.visor_Iva_ReflectionColor[0];
+                        suitSet.visor_Iva_ReflectionColor[1] = defaultMap.visor_Iva_ReflectionColor[1];
+                        suitSet.visor_Iva_ReflectionColor[2] = defaultMap.visor_Iva_ReflectionColor[2];
+                        suitSet.visor_Iva_ReflectionColor[3] = defaultMap.visor_Iva_ReflectionColor[3];
+                        suitSet.visor_Iva_ReflectionColor[4] = defaultMap.visor_Iva_ReflectionColor[4];
+                        suitSet.visor_Iva_ReflectionColor[5] = defaultMap.visor_Iva_ReflectionColor[5];
 
 
-                    suitSet.visor_EvaSpace_ReflectionColor[0] = defaultMap.visor_EvaSpace_ReflectionColor[0];
-                    suitSet.visor_EvaSpace_ReflectionColor[1] = defaultMap.visor_EvaSpace_ReflectionColor[1];
-                    suitSet.visor_EvaSpace_ReflectionColor[2] = defaultMap.visor_EvaSpace_ReflectionColor[2];
-                    suitSet.visor_EvaSpace_ReflectionColor[3] = defaultMap.visor_EvaSpace_ReflectionColor[3];
-                    suitSet.visor_EvaSpace_ReflectionColor[4] = defaultMap.visor_EvaSpace_ReflectionColor[4];
-                    suitSet.visor_EvaSpace_ReflectionColor[5] = defaultMap.visor_EvaSpace_ReflectionColor[5];
+                        suitSet.visor_EvaGround_ReflectionColor[0] = defaultMap.visor_EvaGround_ReflectionColor[0];
+                        suitSet.visor_EvaGround_ReflectionColor[1] = defaultMap.visor_EvaGround_ReflectionColor[1];
+                        suitSet.visor_EvaGround_ReflectionColor[2] = defaultMap.visor_EvaGround_ReflectionColor[2];
+                        suitSet.visor_EvaGround_ReflectionColor[3] = defaultMap.visor_EvaGround_ReflectionColor[3];
+                        suitSet.visor_EvaGround_ReflectionColor[4] = defaultMap.visor_EvaGround_ReflectionColor[4];
+                        suitSet.visor_EvaGround_ReflectionColor[5] = defaultMap.visor_EvaGround_ReflectionColor[5];
+
+
+                        suitSet.visor_EvaSpace_ReflectionColor[0] = defaultMap.visor_EvaSpace_ReflectionColor[0];
+                        suitSet.visor_EvaSpace_ReflectionColor[1] = defaultMap.visor_EvaSpace_ReflectionColor[1];
+                        suitSet.visor_EvaSpace_ReflectionColor[2] = defaultMap.visor_EvaSpace_ReflectionColor[2];
+                        suitSet.visor_EvaSpace_ReflectionColor[3] = defaultMap.visor_EvaSpace_ReflectionColor[3];
+                        suitSet.visor_EvaSpace_ReflectionColor[4] = defaultMap.visor_EvaSpace_ReflectionColor[4];
+                        suitSet.visor_EvaSpace_ReflectionColor[5] = defaultMap.visor_EvaSpace_ReflectionColor[5];
+                    }
+
+                    
                 }
             }
 
@@ -2196,7 +2221,7 @@ namespace TextureReplacerReplaced
             ConfigNode defaultNode = new ConfigNode();
             node.AddNode("DEFAULT_SUIT", defaultNode);
 
-            defaultNode.AddValue("isExclusive", defaultMap.isExclusive);
+            //defaultNode.AddValue("isExclusive", defaultMap.isExclusive);
 
             defaultNode.AddValue("suit_Iva_Safe", defaultMap.suit_Iva_Safe);
             defaultNode.AddValue("suit_Iva_Unsafe", defaultMap.suit_Iva_Unsafe);
@@ -2274,7 +2299,7 @@ namespace TextureReplacerReplaced
                 ConfigNode subNode = new ConfigNode();
                 node.AddNode(suitSet.name, subNode);
 
-                subNode.AddValue("isExclusive", suitSet.isExclusive);
+                //subNode.AddValue("isExclusive", suitSet.isExclusive);
 
                 subNode.AddValue("suit_Iva_Safe", suitSet.suit_Iva_Safe);
                 subNode.AddValue("suit_Iva_Unsafe", suitSet.suit_Iva_Unsafe);
@@ -2360,7 +2385,7 @@ namespace TextureReplacerReplaced
         public void loadHeadConfig (ConfigNode node, List<Head_Set>[] listFull, Head_Set[] defaultHead, List<Head_Set>[] listClean)
         {
             //Util.log("+++++ 'loadHeadConfig()' +++++");
-
+            bool hasCfgEntry = false;
 
             List<string> exclusivedHeads = new List<string>();
 
@@ -2372,7 +2397,7 @@ namespace TextureReplacerReplaced
                 bool nodeBool = false;
                 Color32 nodeColor = new Color32(255, 255, 255, 255);
 
-                //Util.log("Settings found for {0}, using them", headSet.name);              
+                Util.log("Settings found for {0}, using them", defaultHead[0].name);              
 
                 if (defaultNode.TryGetValue("isExclusive", ref nodeBool))
                     defaultHead[0].isExclusive = nodeBool;
@@ -2471,6 +2496,9 @@ namespace TextureReplacerReplaced
 
                 if (defaultNode.TryGetValue("pupilColor_Right[5]", ref nodeColor))
                     defaultHead[0].pupilColor_Right[5] = nodeColor;
+
+                defaultHead[0].hasLoadedFromConfig = true;
+
             }
 
             // here we load the default settings for the DEFAULT_FEMALE head
@@ -2480,7 +2508,7 @@ namespace TextureReplacerReplaced
                 bool nodeBool = false;
                 Color32 nodeColor = new Color32();
 
-                //Util.log("Settings found for {0}, using them", headSet.name);              
+                Util.log("Settings found for {0}, using them", defaultHead[1].name);              
 
                 if (defaultNode.TryGetValue("isExclusive", ref nodeBool))
                     defaultHead[1].isExclusive = nodeBool;
@@ -2578,6 +2606,8 @@ namespace TextureReplacerReplaced
 
                 if (defaultNode.TryGetValue("pupilColor_Right[5]", ref nodeColor))
                     defaultHead[1].pupilColor_Right[5] = nodeColor;
+
+                defaultHead[0].hasLoadedFromConfig = true;
             }
 
             // here we load the settings for the custom heads
@@ -2594,7 +2624,9 @@ namespace TextureReplacerReplaced
                     // if the headset has an entry in the .cfg, try to load the settings, if empty, load the default settings
                     if ( node.TryGetNode(headSet.name, ref savedNode)) 
                     {
-                        //Util.log("Settings found for {0}, using them", headSet.name);
+                        Util.log("Settings found for Head Set {0}, using them", headSet.name);
+                        hasCfgEntry = true;
+
                         int nodeLvl = new int();
                         bool nodeBool = false;
                         Color32 nodeColor = new Color32();                        
@@ -2761,47 +2793,54 @@ namespace TextureReplacerReplaced
                         else
                             headSet.pupilColor_Right[5] = defaultHead[i].pupilColor_Right[5];
 
+                        headSet.hasLoadedFromConfig = true;
+
                     }
                     // if the headset has no entry in the .cfg, load the default settings
-                    else
+                    if (hasCfgEntry == false)
                     {
-                        headSet.isExclusive = defaultHead[i].isExclusive;
+                        if (headSet.hasLoadedFromConfig == false)
+                        {
+                            headSet.isExclusive = defaultHead[i].isExclusive;
 
-                        headSet.lvlToHide_Eye_Left = defaultHead[i].lvlToHide_Eye_Left;
-                        headSet.lvlToHide_Eye_Right = defaultHead[i].lvlToHide_Eye_Right;
-                        headSet.lvlToHide_Pupil_Left = defaultHead[i].lvlToHide_Pupil_Left;
-                        headSet.lvlToHide_Pupil_Right = defaultHead[i].lvlToHide_Pupil_Right;
-                        headSet.lvlToHide_TeethUp = defaultHead[i].lvlToHide_TeethUp;
-                        headSet.lvlToHide_TeethDown = defaultHead[i].lvlToHide_TeethDown;
-                        headSet.lvlToHide_Ponytail = defaultHead[i].lvlToHide_Ponytail;
+                            headSet.lvlToHide_Eye_Left = defaultHead[i].lvlToHide_Eye_Left;
+                            headSet.lvlToHide_Eye_Right = defaultHead[i].lvlToHide_Eye_Right;
+                            headSet.lvlToHide_Pupil_Left = defaultHead[i].lvlToHide_Pupil_Left;
+                            headSet.lvlToHide_Pupil_Right = defaultHead[i].lvlToHide_Pupil_Right;
+                            headSet.lvlToHide_TeethUp = defaultHead[i].lvlToHide_TeethUp;
+                            headSet.lvlToHide_TeethDown = defaultHead[i].lvlToHide_TeethDown;
+                            headSet.lvlToHide_Ponytail = defaultHead[i].lvlToHide_Ponytail;
 
-                        headSet.eyeballColor_Left[0] = defaultHead[i].eyeballColor_Left[0];
-                        headSet.eyeballColor_Left[1] = defaultHead[i].eyeballColor_Left[1];
-                        headSet.eyeballColor_Left[2] = defaultHead[i].eyeballColor_Left[2];
-                        headSet.eyeballColor_Left[3] = defaultHead[i].eyeballColor_Left[3];
-                        headSet.eyeballColor_Left[4] = defaultHead[i].eyeballColor_Left[4];
-                        headSet.eyeballColor_Left[5] = defaultHead[i].eyeballColor_Left[5];
+                            headSet.eyeballColor_Left[0] = defaultHead[i].eyeballColor_Left[0];
+                            headSet.eyeballColor_Left[1] = defaultHead[i].eyeballColor_Left[1];
+                            headSet.eyeballColor_Left[2] = defaultHead[i].eyeballColor_Left[2];
+                            headSet.eyeballColor_Left[3] = defaultHead[i].eyeballColor_Left[3];
+                            headSet.eyeballColor_Left[4] = defaultHead[i].eyeballColor_Left[4];
+                            headSet.eyeballColor_Left[5] = defaultHead[i].eyeballColor_Left[5];
 
-                        headSet.eyeballColor_Right[0] = defaultHead[i].eyeballColor_Right[0];
-                        headSet.eyeballColor_Right[1] = defaultHead[i].eyeballColor_Right[1];
-                        headSet.eyeballColor_Right[2] = defaultHead[i].eyeballColor_Right[2];
-                        headSet.eyeballColor_Right[3] = defaultHead[i].eyeballColor_Right[3];
-                        headSet.eyeballColor_Right[4] = defaultHead[i].eyeballColor_Right[4];
-                        headSet.eyeballColor_Right[5] = defaultHead[i].eyeballColor_Right[5];
+                            headSet.eyeballColor_Right[0] = defaultHead[i].eyeballColor_Right[0];
+                            headSet.eyeballColor_Right[1] = defaultHead[i].eyeballColor_Right[1];
+                            headSet.eyeballColor_Right[2] = defaultHead[i].eyeballColor_Right[2];
+                            headSet.eyeballColor_Right[3] = defaultHead[i].eyeballColor_Right[3];
+                            headSet.eyeballColor_Right[4] = defaultHead[i].eyeballColor_Right[4];
+                            headSet.eyeballColor_Right[5] = defaultHead[i].eyeballColor_Right[5];
 
-                        headSet.pupilColor_Left[0] = defaultHead[i].pupilColor_Left[0];
-                        headSet.pupilColor_Left[1] = defaultHead[i].pupilColor_Left[1];
-                        headSet.pupilColor_Left[2] = defaultHead[i].pupilColor_Left[2];
-                        headSet.pupilColor_Left[3] = defaultHead[i].pupilColor_Left[3];
-                        headSet.pupilColor_Left[4] = defaultHead[i].pupilColor_Left[4];
-                        headSet.pupilColor_Left[5] = defaultHead[i].pupilColor_Left[5];
+                            headSet.pupilColor_Left[0] = defaultHead[i].pupilColor_Left[0];
+                            headSet.pupilColor_Left[1] = defaultHead[i].pupilColor_Left[1];
+                            headSet.pupilColor_Left[2] = defaultHead[i].pupilColor_Left[2];
+                            headSet.pupilColor_Left[3] = defaultHead[i].pupilColor_Left[3];
+                            headSet.pupilColor_Left[4] = defaultHead[i].pupilColor_Left[4];
+                            headSet.pupilColor_Left[5] = defaultHead[i].pupilColor_Left[5];
 
-                        headSet.pupilColor_Right[0] = defaultHead[i].pupilColor_Right[0];
-                        headSet.pupilColor_Right[1] = defaultHead[i].pupilColor_Right[1];
-                        headSet.pupilColor_Right[2] = defaultHead[i].pupilColor_Right[2];
-                        headSet.pupilColor_Right[3] = defaultHead[i].pupilColor_Right[3];
-                        headSet.pupilColor_Right[4] = defaultHead[i].pupilColor_Right[4];
-                        headSet.pupilColor_Right[5] = defaultHead[i].pupilColor_Right[5];
+                            headSet.pupilColor_Right[0] = defaultHead[i].pupilColor_Right[0];
+                            headSet.pupilColor_Right[1] = defaultHead[i].pupilColor_Right[1];
+                            headSet.pupilColor_Right[2] = defaultHead[i].pupilColor_Right[2];
+                            headSet.pupilColor_Right[3] = defaultHead[i].pupilColor_Right[3];
+                            headSet.pupilColor_Right[4] = defaultHead[i].pupilColor_Right[4];
+                            headSet.pupilColor_Right[5] = defaultHead[i].pupilColor_Right[5];
+                        }
+
+                        
                     }
 
                     
@@ -3389,16 +3428,16 @@ namespace TextureReplacerReplaced
                     // if the suit set has an entry in the .cfg, try to load the settings, if empty, load the default settings
                     if (node.TryGetNode(suitSet.name, ref savedNode))
                     {
-                        //Util.log("Settings found for {0}, using them", suitSet.name);
+                        Util.log("Settings found for {0}, using them", suitSet.name);
                         bool nodebool = true;
                         Color32 nodeColor = new Color32();
                         int nodeInt = 0;
 
                         // suit settings
-                        if (savedNode.TryGetValue("isExclusive", ref nodebool))
+                        /*if (savedNode.TryGetValue("isExclusive", ref nodebool))
                             suitSet.isExclusive = nodebool;
                         else
-                            suitSet.isExclusive = defaultMap.isExclusive;
+                            suitSet.isExclusive = defaultMap.isExclusive;*/
 
                         if (savedNode.TryGetValue("suit_Iva_Safe", ref nodeInt))
                             suitSet.suit_Iva_Safe = nodeInt;
@@ -3700,7 +3739,7 @@ namespace TextureReplacerReplaced
                     // if the suit set has no entry in the .cfg, load the default settings
                     else
                     {
-                        suitSet.isExclusive = defaultMap.isExclusive;
+                        //suitSet.isExclusive = defaultMap.isExclusive;
 
                         // suit settings
                         suitSet.suit_Iva_Safe = defaultMap.suit_Iva_Safe;
