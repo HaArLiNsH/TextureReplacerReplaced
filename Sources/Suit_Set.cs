@@ -44,9 +44,14 @@ namespace TextureReplacerReplaced
         public string name;
 
         /// <summary>
+        /// check to see if the suit set has already loaded the settings from the .cfg
+        /// </summary>
+        public bool hasLoadedFromConfig = false;
+
+        /// <summary>
         ///	Is the suit exclusive to one kerbal ? 
         /// </summary>
-        public bool isExclusive = false;
+        //public bool isExclusive = false;
 
         /// <summary>
         /// The suit when in vehicle and safe
@@ -2938,6 +2943,12 @@ namespace TextureReplacerReplaced
 
             else if (jetpack_EvaSpace_Standard_Female[level] != null)
                 return jetpack_EvaSpace_Standard_Female[level];
+
+            else if (jetpack_EvaSpace_Badass_Male[level] != null)
+                return jetpack_EvaSpace_Badass_Male[level];
+
+            else if (jetpack_EvaSpace_Standard_Male[level] != null)
+                return jetpack_EvaSpace_Standard_Male[level];
 
             else if (personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level] != null)
                 return personaliser.defaultSuit.jetpack_EvaSpace_Badass_Male[level];
