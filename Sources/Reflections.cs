@@ -186,6 +186,8 @@ namespace TextureReplacerReplaced
                 envMap.wrapMode = TextureWrapMode.Clamp;
 
                 transform = part.transform;
+                
+                
                 isEva = part.GetComponent<KerbalEVA>() != null;
 
                 if (isEva)
@@ -310,7 +312,8 @@ namespace TextureReplacerReplaced
                 for (int i = 0; i < meshes.Length; ++i)
                 {
                     meshStates[i] = meshes[i].enabled;
-                    meshes[i].enabled = false;
+                    // FIX FOR MOUTH ANIMATION KSP 1.3. don't hide the mesh.  
+                   // meshes[i].enabled = false;
                 }
 
                 // Skybox.
