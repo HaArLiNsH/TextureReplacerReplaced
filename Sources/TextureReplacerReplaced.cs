@@ -49,6 +49,9 @@ namespace TextureReplacerReplaced
         /// </summary>
         internal static ConfigNode[] SETTINGS = new ConfigNode[] { };
 
+		// Allows to load shaders bundle only once.
+		private static bool BundleLoaded = false;
+
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Unity MoneBehaviour Awake call, this is when all the modules wake up and get loaded
@@ -115,13 +118,50 @@ namespace TextureReplacerReplaced
             Util.log("++++ 'TRR is loaded'++++");
         }
                
-        /// ////////////////////////////////////////////////////////////////////////////////////////
+ 
+		public static void LoadBundle()
+		{
+			if (BundleLoaded)
+				return;
+
+			string bundleName;
+			if ((Application.platform == RuntimePlatform.WindowsPlayer && SystemInfo.graphicsDeviceVersion.StartsWith ("OpenGL"))
+				|| Application.platform == RuntimePlatform.LinuxPlayer) {
+				bundleName = "shaders.linux";
+			} else if (Application.platform == RuntimePlatform.WindowsPlayer) {
+				bundleName = "shaders.windows";
+			} else {
+				bundleName = "shaders.osx";
+			}
+
+			using (WWW www = new WWW("file://" + KSPUtil.ApplicationRootPath + "GameData/TextureReplacerReplaced/Shaders/" + bundleName))
+			{
+				if (www.error != null)
+					Debug.Log("Shaders bundle not found!");
+
+				AssetBundle bundle = www.assetBundle;
+
+				Shader[] shaders = bundle.LoadAllAssets<Shader>();
+
+				foreach (Shader shader in shaders)
+				{
+					Debug.Log("Shader " + shader.name + " is loaded");
+				}
+
+				bundle.Unload(false);
+				www.Dispose();
+
+				BundleLoaded = true;
+			}
+		}
+		/// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Load all shaders into the system and fill our shader database.
         /// </summary>
         /// ////////////////////////////////////////////////////////////////////////////////////////
         internal void LoadShaders()
         {
+			LoadBundle();
             // the most important call: Loads all shaders into the memory, even, when they are not used by any GameObject
             //Shader.WarmupAllShaders();
             foreach (var shader in Resources.FindObjectsOfTypeAll<Shader>())
