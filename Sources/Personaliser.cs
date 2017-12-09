@@ -391,7 +391,7 @@ namespace TextureReplacerReplaced
                         hasEvaGroundSuit = false;
                         if (reflectionScript != null)
                         {
-                            //reflectionScript.setActive(useVisor);
+                            reflectionScript.setActive(useVisor);
                             reflectionScript.updateReflectioncolor(part, visorReflectioncolor);
                         }
                         //ScreenMessages.PostScreenMessage("IVA wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
@@ -402,7 +402,7 @@ namespace TextureReplacerReplaced
                         hasEvaGroundSuit = true;
                         if (reflectionScript != null)
                         {
-                            //reflectionScript.setActive(useVisor);
+                            reflectionScript.setActive(useVisor);
                             reflectionScript.updateReflectioncolor(part, visorReflectioncolor);
                         }
                         //ScreenMessages.PostScreenMessage("EVA ground wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
@@ -413,7 +413,7 @@ namespace TextureReplacerReplaced
                         hasEvaGroundSuit = false;
                         if (reflectionScript != null)
                         {
-                           // reflectionScript.setActive(useVisor);
+                            reflectionScript.setActive(useVisor);
                             reflectionScript.updateReflectioncolor(part, visorReflectioncolor);
                         }
                         //ScreenMessages.PostScreenMessage("EVA space wanted", 2.0f, ScreenMessageStyle.UPPER_CENTER);
