@@ -75,6 +75,112 @@ namespace TextureReplacerReplaced
         /// </summary>
         public static Replacer instance = null;
 
+        public GameObject[] bodies = new GameObject[0];
+        public GameObject bodyTest = new GameObject();
+        public GameObject SpaceSuit = new GameObject();
+        public GameObject CivilShort = new GameObject();
+        public GameObject CivilLong = new GameObject();
+
+        public Transform scientist_transf = null;
+        public Transform worker_transf = null;
+        public Transform hazmat_transf = null;
+
+        public SkinnedMeshRenderer scientist_mesh = null;
+        public SkinnedMeshRenderer worker_mesh = null;
+        public SkinnedMeshRenderer hazmat_mesh = null;
+
+
+        private void saveCivilMeshes()
+        {
+            //GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+            Util.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            Util.log("List of objects");
+            int bodycount = 0;
+
+            foreach (GameObject obj in Resources.FindObjectsOfTypeAll<GameObject>())
+            {
+                //Material material = obj
+                
+                //Util.log("{0} ", obj.name);
+
+                if (obj.name == "model01")
+                {
+                   // bodies.AddUnique(obj);
+                    bodycount++;
+
+                    
+                }
+
+                if (obj.name == "mortimer")
+                {
+                    Util.log("pouet mortimer !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+                    foreach (SkinnedMeshRenderer smr in obj.GetComponentsInChildren<SkinnedMeshRenderer>())
+                    {
+                        if (smr.name.EndsWith("model01", StringComparison.Ordinal))
+                        {
+                            scientist_mesh = smr;
+                            if (scientist_mesh != null)
+                            {
+                                Util.log("good  :)  ============================");
+
+                            }
+                        }
+                           
+                    }
+
+                    scientist_transf = obj.transform.Find("model01");
+
+                    if (scientist_transf != null)
+                    {
+                        Util.log("good transform ,,,,,,,,,");
+                        foreach (Renderer renderer in scientist_transf.GetComponentsInChildren<Renderer>(true))
+                        {
+                            var smr = renderer as SkinnedMeshRenderer;
+
+                            if (smr != null)
+                            {
+                                switch (smr.name)
+                                {
+                                    case "body01":
+                                        scientist_mesh = smr;
+
+                                        break;
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+
+                if (obj.name == "PR_Guy")
+                {
+                    Util.log("pouet PR_Guy !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                }
+
+                if (obj.name == "Gus")
+                {
+                    Util.log("pouet Gus !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                }
+
+                if (obj.name == "linus")
+                {
+                    Util.log("pouet linus !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                }
+
+                if (obj.name == "WernerVonKerman")
+                {
+                    Util.log("pouet WernerVonKerman !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                }
+
+
+            }
+            Util.log("bodycount = {0} ", bodycount);
+        }
+
+
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// General texture replacement step.
@@ -91,6 +197,8 @@ namespace TextureReplacerReplaced
 
                 if (logTextures)
                     Util.log("[{0}] {1}", material.name, texture.name);
+
+                findCivilMeshes(material, texture);
 
                 Texture2D newTexture;
                 mappedTextures.TryGetValue(texture.name, out newTexture);
@@ -126,6 +234,12 @@ namespace TextureReplacerReplaced
                     }
                 }
             }
+        }
+
+
+        public void findCivilMeshes(Material material, Texture texture)
+        {
+
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -446,6 +560,7 @@ namespace TextureReplacerReplaced
         public void beginScene()
         {
             replaceTextures();
+            saveCivilMeshes();
         }
     }
 }

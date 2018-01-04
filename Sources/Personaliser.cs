@@ -647,6 +647,8 @@ namespace TextureReplacerReplaced
         {
             Personaliser personaliser = Personaliser.instance;
 
+            Replacer replacer = Replacer.instance;
+
             KerbalData kerbalData = getKerbalData(protoKerbal);
 
             int level = protoKerbal.experienceLevel;
@@ -906,6 +908,9 @@ namespace TextureReplacerReplaced
 
                         case "body01":
                         case "mesh_female_kerbalAstronaut01_body01":
+
+
+                            smr.sharedMesh = replacer.scientist_mesh.sharedMesh;
 
                             if (personaliseKerbal_Suit != null)
                             {   

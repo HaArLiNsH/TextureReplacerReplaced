@@ -78,7 +78,7 @@ namespace TextureReplacerReplaced
 			Personaliser.instance = new Personaliser();
 
 			SETTINGS = GameDatabase.Instance.GetConfigNodes("TextureReplacerReplaced");
-			Debug.Log("SigmaLog: SETTINGS NODES = " + SETTINGS.Length);
+			//Debug.Log("SigmaLog: SETTINGS NODES = " + SETTINGS.Length);
 
 			Folders.LoadFolders();
 
