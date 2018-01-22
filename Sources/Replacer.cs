@@ -75,109 +75,181 @@ namespace TextureReplacerReplaced
         /// </summary>
         public static Replacer instance = null;
 
-        public GameObject[] bodies = new GameObject[0];
-        public GameObject bodyTest = new GameObject();
-        public GameObject SpaceSuit = new GameObject();
-        public GameObject CivilShort = new GameObject();
-        public GameObject CivilLong = new GameObject();
+        public Transform mortimer_body01_transf = null;        
+        public Transform mortimer_hand_left01_transf = null;
+        public Transform mortimer_hand_right01_transf = null;
+        public Transform mortimer_mesh_bowTie01_transf = null;
 
-        public Transform scientist_transf = null;
-        public Transform worker_transf = null;
-        public Transform hazmat_transf = null;
+        public SkinnedMeshRenderer mortimer_body01_smr = null;
+        public SkinnedMeshRenderer mortimer_hand_left01_smr = null;
+        public SkinnedMeshRenderer mortimer_hand_right01_smr = null;
+        public SkinnedMeshRenderer mortimer_mesh_bowTie01_smr = null;
 
-        public SkinnedMeshRenderer scientist_mesh = null;
-        public SkinnedMeshRenderer worker_mesh = null;
-        public SkinnedMeshRenderer hazmat_mesh = null;
+        public SkinnedMeshRenderer mortimer_body01_smrSRC = null;
+        public SkinnedMeshRenderer mortimer_hand_left01_smrSRC = null;
+        public SkinnedMeshRenderer mortimer_hand_right01_smrSRC = null;
+        public SkinnedMeshRenderer mortimer_mesh_bowTie01_smrSRC = null;
 
+        public Mesh mortimer_body01_mesh = new Mesh();
+        public Mesh mortimer_hand_left01_mesh = new Mesh();
+        public Mesh mortimer_hand_right01_mesh = new Mesh();
+        public Mesh mortimer_mesh_bowTie01_mesh = new Mesh();
 
-        private void saveCivilMeshes()
+        public GameObject mortimer_obj = new GameObject("mortimerTRR");
+
+        public GameObject mortimer_body_src = new GameObject("mortimerBodySrc");
+
+        private void saveCivilMeshes(Part maleEva)
         {
-            //GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+            
 
             Util.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             Util.log("List of objects");
-            int bodycount = 0;
+            
 
             foreach (GameObject obj in Resources.FindObjectsOfTypeAll<GameObject>())
             {
-                //Material material = obj
-                
-                //Util.log("{0} ", obj.name);
-
-                if (obj.name == "model01")
-                {
-                   // bodies.AddUnique(obj);
-                    bodycount++;
-
-                    
-                }
+                                
 
                 if (obj.name == "mortimer")
                 {
-                    Util.log("pouet mortimer !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    Util.log("found mortimer +++");
 
-                    foreach (SkinnedMeshRenderer smr in obj.GetComponentsInChildren<SkinnedMeshRenderer>())
-                    {
-                        if (smr.name.EndsWith("model01", StringComparison.Ordinal))
-                        {
-                            scientist_mesh = smr;
-                            if (scientist_mesh != null)
-                            {
-                                Util.log("good  :)  ============================");
 
-                            }
-                        }
-                           
+                    mortimer_obj = obj;
+
+
+
+
+                    //                     scientist_animation = obj.GetComponent<Animation>(); 
+                    //                     if (scientist_animation == null)
+                    //                     {
+                    //                         Util.log("scientist_animation is null");
+                    //                     }
+                    // 
+                    //                     scientist_animator = obj.GetComponent<Animator>();
+                    //                     if (scientist_animator == null)
+                    //                     {
+                    //                         Util.log("scientist_animator is null");
+                    //                     }
+
+
+                    var srcBody_Tansf = mortimer_obj.transform.Find("model01/body01");
+                    if (srcBody_Tansf == null)
+                    {                       
+                        Util.log("mortimer_body_transf is null");
                     }
 
-                    scientist_transf = obj.transform.Find("model01");
+                   
+//                     var srcBody_smr = srcBody_Tansf.GetComponent<SkinnedMeshRenderer>();
+//                     if (srcBody_smr == null)
+//                     {
+//                         Util.log("srcBody_smr is null");
+//                     }
 
-                    if (scientist_transf != null)
+                    mortimer_body01_smrSRC = srcBody_Tansf.GetComponent<SkinnedMeshRenderer>();
+                    if (mortimer_body01_smrSRC == null)
                     {
-                        Util.log("good transform ,,,,,,,,,");
-                        foreach (Renderer renderer in scientist_transf.GetComponentsInChildren<Renderer>(true))
-                        {
-                            var smr = renderer as SkinnedMeshRenderer;
-
-                            if (smr != null)
-                            {
-                                switch (smr.name)
-                                {
-                                    case "body01":
-                                        scientist_mesh = smr;
-
-                                        break;
-                                }
-                            }
-                        }
-
+                        Util.log("mortimer_body01_smrSRC is null");
                     }
+
+                    mortimer_body01_smrSRC.name = "mortimer_body";
+
+                    var srcHead_Transf = mortimer_obj.transform.Find("model01/head01");
+                    if (srcHead_Transf == null)
+                    {
+                        Util.log("srcHead_Transf is null");
+                    }
+                    srcHead_Transf.gameObject.DestroyGameObject();
+
+
+                    //                     Mesh motimerBody_mesh = GameObject.Instantiate(mortimer_body01_smrSRC.sharedMesh);
+                    // 
+                    //                     mortimer_body01_mesh = motimerBody_mesh;
+                    // 
+                    //                     mortimer_body01_mesh.triangles = mortimer_body01_smrSRC.sharedMesh.triangles;
+                    //                     mortimer_body01_mesh.vertices = mortimer_body01_smrSRC.sharedMesh.vertices;
+                    //                     mortimer_body01_mesh.uv = mortimer_body01_smrSRC.sharedMesh.uv;
+                    //                    
+                    //                     mortimer_body01_mesh.bindposes = mortimer_body01_smrSRC.sharedMesh.bindposes;
+                    //                     mortimer_body01_mesh.boneWeights = mortimer_body01_smrSRC.sharedMesh.boneWeights;
+                    //                     mortimer_body01_mesh.normals = mortimer_body01_smrSRC.sharedMesh.normals;
+                    //                     mortimer_body01_mesh.Optimize();
+                    // 
+                    //                     var mortimer_body01_smr = maleEva.gameObject.AddComponent<SkinnedMeshRenderer>();
+                    //                     mortimer_body01_smr.name = "mortimer_body";
+                    // 
+                    //                     mortimer_body01_smr.sharedMesh = mortimer_body01_mesh;
+                    //                     mortimer_body01_smr.bones = maleEva.GetComponent<SkinnedMeshRenderer>().bones;
+                    //mortimer_body01_smr.transform.SetParent(baseModel.transform, true);
+
+                    //                     mortimer_body01_smr = mortimer_obj.AddComponent<SkinnedMeshRenderer>();
+                    // 
+                    //                     
+                    // 
+                    //                     mortimer_body01_smr.name = "mortimer_body";
+                    // 
+                    //                     mortimer_body01_smr.sharedMaterial = srcBody_smr.sharedMaterial;
+                    //                     mortimer_body01_smr.sharedMesh = mortimer_body01_mesh;
+                    //                     mortimer_body01_smr.bones = srcBody_smr.bones;
+                    // 
+                    //                     mortimer_obj.transform.position = mortimer_body01_smr.transform.position;
+                    //                     mortimer_obj.transform.rotation = mortimer_body01_smr.transform.rotation;
+                    //mortimer_obj.layer = mortimer_body01_smr.gameObject.layer;
+
+                    //                     Util.log(" body01 Root bone name : {0} +++", mortimer_body01_smr.rootBone.name);
+                    // 
+                    //                     foreach (var bone in mortimer_body01_smr.bones)
+                    //                     {
+                    //                         Util.log("body01 bone name : {0}", bone.name);
+                    //                     }
+
+                    //mortimer_obj.transform.parent = helmetModel.transform; // now disabling the helmet will disable the helmet's collar, too
+
+
+
+                    //                     foreach (Renderer renderer in mortimer_obj.GetComponentsInChildren<Renderer>(true))
+                    //                     {
+                    //                         Util.log("mortimer_obj render : {0}",renderer.name);
+                    //                     }
 
                 }
 
                 if (obj.name == "PR_Guy")
                 {
-                    Util.log("pouet PR_Guy !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    Util.log("found PR_Guy +++");
                 }
 
                 if (obj.name == "Gus")
                 {
-                    Util.log("pouet Gus !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    Util.log("found Gus +++");
                 }
 
                 if (obj.name == "linus")
                 {
-                    Util.log("pouet linus !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    Util.log("found linus +++");
                 }
 
                 if (obj.name == "WernerVonKerman")
                 {
-                    Util.log("pouet WernerVonKerman !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    Util.log("found WernerVonKerman +++");
+                    
+                }
+
+                if (obj.name == "GroundCrew01")
+                {
+                    Util.log("found GroundCrew01 +++");
+                }
+
+                if (obj.name == "Mechanic01")
+                {
+                    Util.log("found Mechanic01 +++");
                 }
 
 
             }
-            Util.log("bodycount = {0} ", bodycount);
+//             Util.log("bodycount = {0} ", bodycount);
+//             Util.log("werner count = {0} ", wernerCount);
         }
 
 
@@ -198,7 +270,7 @@ namespace TextureReplacerReplaced
                 if (logTextures)
                     Util.log("[{0}] {1}", material.name, texture.name);
 
-                findCivilMeshes(material, texture);
+                
 
                 Texture2D newTexture;
                 mappedTextures.TryGetValue(texture.name, out newTexture);
@@ -236,12 +308,7 @@ namespace TextureReplacerReplaced
             }
         }
 
-
-        public void findCivilMeshes(Material material, Texture texture)
-        {
-
-        }
-
+        
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///  Replace NavBalls' textures.
@@ -342,17 +409,12 @@ namespace TextureReplacerReplaced
             // Fix female shaders, set normal-mapped shader for head and visor texture on proto-IVA and -EVA Kerbals.
             Kerbal[] kerbals = Resources.FindObjectsOfTypeAll<Kerbal>();
 
-            /*Util.log("++++++++++++++++++++++++++++++++++++ pouet+++++++++++++++++++++++++++++++++++++++++");
-            foreach (Kerbal kerb in kerbals)
-            {
-                Util.log(kerb.name);
-            }*/
-
             Kerbal maleIva = kerbals.First(k => k.transform.name == "kerbalMale");
             Kerbal femaleIva = kerbals.First(k => k.transform.name == "kerbalFemale");
             Part maleEva = PartLoader.getPartInfoByName("kerbalEVA").partPrefab;
             Part femaleEva = PartLoader.getPartInfoByName("kerbalEVAfemale").partPrefab;
 
+            
             SkinnedMeshRenderer[][] maleMeshes = {
                 maleIva.GetComponentsInChildren<SkinnedMeshRenderer>(true),
                 maleEva.GetComponentsInChildren<SkinnedMeshRenderer>(true)
@@ -362,6 +424,11 @@ namespace TextureReplacerReplaced
                 femaleIva.GetComponentsInChildren<SkinnedMeshRenderer>(true),
                 femaleEva.GetComponentsInChildren<SkinnedMeshRenderer>(true)
             };
+
+            
+
+            saveCivilMeshes(maleEva);
+
 
             // Male materials to be copied to females to fix tons of female issues (missing normal maps, non-bumpmapped
             // shaders, missing teeth texture ...)
@@ -433,6 +500,15 @@ namespace TextureReplacerReplaced
                             smr.sharedMaterial.shader = suitShader;
 
                             suitMaterials[i] = smr.sharedMaterial;
+
+//                             Util.log(" body01 Root bone name : {0} +++", smr.rootBone.name);
+// 
+//                             foreach (var bone in smr.bones)
+//                             {
+//                                 Util.log("body01 bone name : {0}", bone.name);
+//                             }
+
+
                             break;
                             
                         case "helmet":
@@ -509,23 +585,47 @@ namespace TextureReplacerReplaced
                 }
             }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /// DISABLED/BROKEN
             // Find NavBall replacement textures if available.
-            if (mappedTextures.TryGetValue(HUD_NAVBALL, out hudNavBallTexture))
-            {
-                mappedTextures.Remove(HUD_NAVBALL);
+//             if (mappedTextures.TryGetValue(HUD_NAVBALL, out hudNavBallTexture))
+//             {
+//                 mappedTextures.Remove(HUD_NAVBALL);
+// 
+//                 if (hudNavBallTexture.mipmapCount != 1)
+//                     Util.log("HUDNavBall texture should not have mipmaps!");
+//             }
+// 
+//             if (mappedTextures.TryGetValue(IVA_NAVBALL, out ivaNavBallTexture))
+//             {
+//                 mappedTextures.Remove(IVA_NAVBALL);
+// 
+//                 if (ivaNavBallTexture.mipmapCount != 1)
+//                     Util.log("IVANavBall texture should not have mipmaps!");
+//             }
 
-                if (hudNavBallTexture.mipmapCount != 1)
-                    Util.log("HUDNavBall texture should not have mipmaps!");
-            }
-
-            if (mappedTextures.TryGetValue(IVA_NAVBALL, out ivaNavBallTexture))
-            {
-                mappedTextures.Remove(IVA_NAVBALL);
-
-                if (ivaNavBallTexture.mipmapCount != 1)
-                    Util.log("IVANavBall texture should not have mipmaps!");
-            }
+           //saveCivilMeshes();
+           //extractMeshes();
         }
+
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -534,11 +634,12 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void beginFlight()
         {
-            if (hudNavBallTexture != null || ivaNavBallTexture != null)
-            {
-                updateNavball(FlightGlobals.ActiveVessel);
-                GameEvents.onVesselChange.Add(updateNavball);
-            }
+            /// DISABLED
+//             if (hudNavBallTexture != null || ivaNavBallTexture != null)
+//             {
+//                 updateNavball(FlightGlobals.ActiveVessel);
+//                 GameEvents.onVesselChange.Add(updateNavball);
+//             }
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -548,8 +649,9 @@ namespace TextureReplacerReplaced
         /// ////////////////////////////////////////////////////////////////////////////////////////
         public void endFlight()
         {
-            if (hudNavBallTexture != null || ivaNavBallTexture != null)
-                GameEvents.onVesselChange.Remove(updateNavball);
+            /// DISABLED
+//             if (hudNavBallTexture != null || ivaNavBallTexture != null)
+//                 GameEvents.onVesselChange.Remove(updateNavball);
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -560,7 +662,7 @@ namespace TextureReplacerReplaced
         public void beginScene()
         {
             replaceTextures();
-            saveCivilMeshes();
+            //saveCivilMeshes();
         }
     }
 }

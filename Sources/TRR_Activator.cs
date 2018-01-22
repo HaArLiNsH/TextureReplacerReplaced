@@ -55,7 +55,7 @@ namespace TextureReplacerReplaced
 
         /// ****************************************************************************************
         /// <summary>
-        /// Start() <see cref="TRR_Activator.TRReflectionUpdater"/>
+        /// Start() >
         /// </summary>
         /// ****************************************************************************************
         public void Start()
@@ -84,7 +84,7 @@ namespace TextureReplacerReplaced
 
         /// ****************************************************************************************
         /// <summary>
-        /// OnDestroy() <see cref="TRR_Activator.TRReflectionUpdater"/>
+        /// OnDestroy() >
         /// </summary>
         /// ****************************************************************************************
         public void OnDestroy()

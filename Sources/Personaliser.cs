@@ -163,7 +163,11 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Instance of Personaliser
         /// </summary>
-        public static Personaliser instance = null;        
+        public static Personaliser instance = null;
+
+        private bool isMortimer_Body_loaded = false;
+
+
 
         /* =========================================================================================
          * general TRR options
@@ -171,7 +175,7 @@ namespace TextureReplacerReplaced
          * =========================================================================================
          */
 
-        /// <summary>
+        /*/// <summary>
         /// Do we remove the helmet in safe situation ?
         /// </summary>
         public bool isSafeHelmetRemovalEnabled = true;
@@ -195,7 +199,7 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// remove collar on IVA suits ? (for later)
         /// </summary>
-        public bool isCollarRemovalEnabled = false;
+        public bool isCollarRemovalEnabled = false;*/
 
         public bool useKspSkin = true;   
                 
@@ -308,7 +312,7 @@ namespace TextureReplacerReplaced
                         actualSuitState = 0;
                     }
                 }
-                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor))
+                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor, false))
                 {
                     case 0:     //IVA suit, if no air switch to state 1 : EVAground
                         actualSuitState = 0;
@@ -346,18 +350,22 @@ namespace TextureReplacerReplaced
         /// ************************************************************************************
         public override void OnStart(StartState state)
             {
-                //Util.log("++++ 'OnStart()' ++++");
+                Util.log("++++ 'OnStart()' ++++");
                 //Util.log("+++++ '{0}' +++++", state);
                 Personaliser personaliser = Personaliser.instance;
                 bool useVisor = true;
                 Color32 visorReflectioncolor = new Color32(128, 128, 128, 255);
+
+
+
+
 
                 if (!isInitialised)
                 {                    
                     isInitialised = true;
                 }
 
-                if (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor) == 2)
+                if (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor, true) == 2)
                 {
                     actualSuitState = 2;
                     hasEvaSuit = true;
@@ -383,7 +391,7 @@ namespace TextureReplacerReplaced
                 bool useVisor = true;
                 Color32 visorReflectioncolor = new Color32(128, 128, 128, 255);
 
-                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor))
+                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor, false))
                 {
                     case 0:     //IVA suit, if no air switch to state 1 : EVAground
                         actualSuitState = 0;
@@ -643,7 +651,7 @@ namespace TextureReplacerReplaced
         /// <param name="needsEVAgroundSuit">Does the kerbal need a EVA ground suit ?</param>
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
         private void personaliseKerbal(Component component, ProtoCrewMember protoKerbal, Part cabin, bool needsEVASuit, 
-            bool needsEVAgroundSuit, int suitState, out bool hasVisor, out Color32 visorReflection_Color)
+            bool needsEVAgroundSuit, int suitState, out bool hasVisor, out Color32 visorReflection_Color, bool initialisation)
         {
             Personaliser personaliser = Personaliser.instance;
 
@@ -681,10 +689,53 @@ namespace TextureReplacerReplaced
                 //flag.GetComponent<Renderer>().enabled = needsEVASuit;
                 flag.GetComponent<Renderer>().enabled = false;
 
+            // model = replacer.scientist_body_transf;
+
+            //component.transform.
+
+            GameObject baseModel = component.transform.gameObject;
+
+            if (initialisation == true)
+            {
+                Util.log("Mortimer_Body is loading +++");
+
+              //  var mortimer_body01_smr = baseModel.AddComponent<SkinnedMeshRenderer>();
+             //   mortimer_body01_smr.name = "mortimer_body";
+
+                GameObject morty = GameObject.Instantiate(replacer.mortimer_obj);
+
+               Stitch(morty, baseModel);
+
+
+              //  mortimer_body01_smr.transform.parent = baseModel.transform;
+
+              //  Util.log("parent = {0}", mortimer_body01_smr.transform.parent);
+
+                //mortimer_body01_smr.sharedMaterial = replacer.mortimer_body01_smr.sharedMaterial;
+              //  mortimer_body01_smr.sharedMesh = replacer.mortimer_body01_mesh;
+               // mortimer_body01_smr.bones = baseModel.GetComponent<SkinnedMeshRenderer>().bones;
+               // mortimer_body01_smr.transform.SetParent(baseModel.transform, true);
+
+//                 mortimer_body01_smr.transform.position = baseModel.transform.position;
+//                 mortimer_body01_smr.transform.rotation = baseModel.transform.rotation;
+//                 mortimer_body01_smr.gameObject.layer = baseModel.gameObject.layer;
+//                 mortimer_body01_smr.transform.parent = baseModel.transform.parent;
+
+                Util.log("Mortimer_Body is loaded !!! ");
+                isMortimer_Body_loaded = true;
+            }
+
+            
+
+
+
             // We must include hidden meshes, since flares are hidden when light is turned off.
             // All other meshes are always visible, so no performance hit here.
-            foreach (Renderer renderer in model.GetComponentsInChildren<Renderer>(true))
+            //foreach (Renderer renderer in model.GetComponentsInChildren<Renderer>(true))
+            foreach (Renderer renderer in baseModel.GetComponentsInChildren<Renderer>(true))
             {
+                //Util.log("pouet +++ {0}" , renderer.name);
+
                 var smr = renderer as SkinnedMeshRenderer;
 
                 // Thruster jets, flag decals and headlight flares.
@@ -902,15 +953,68 @@ namespace TextureReplacerReplaced
                                 }
                             }
                             break;
-                        
 
+                        case "grp_mesh_bowTie01":
+                        case "mesh_bowTie01":
+                            Util.log(" pouet grp_mesh_bowTie01");
+                            smr.transform.position = baseModel.transform.position;
+                            smr.transform.rotation = baseModel.transform.rotation;
+                            smr.GetComponentInChildren<Renderer>().enabled = true;
+                            break;
 
+                        case "hand_right01":
+                            Util.log(" pouet hand_right01");
+                            smr.transform.position = baseModel.transform.position;
+                            smr.transform.rotation = baseModel.transform.rotation;
+                            smr.GetComponentInChildren<Renderer>().enabled = true;
+                            break;
+
+                        case "hand_left01":
+                            Util.log(" pouet handleft01");
+                            smr.transform.position = baseModel.transform.position;
+                            smr.transform.rotation = baseModel.transform.rotation;
+                            smr.GetComponentInChildren<Renderer>().enabled = true;
+                            break;
+
+                        case "mortimer_body":
+                        case "mortimerTRR":
+                           // Util.log(" pouet mortimer_body ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                            smr.transform.position = baseModel.transform.position;
+                            smr.transform.rotation = baseModel.transform.rotation;
+                            smr.GetComponentInChildren<Renderer>().enabled = true;
+
+                            break;
 
                         case "body01":
                         case "mesh_female_kerbalAstronaut01_body01":
 
+                            smr.GetComponentInChildren<Renderer>().enabled = false;
 
-                            smr.sharedMesh = replacer.scientist_mesh.sharedMesh;
+                            //smr = replacer.mortimer_body01_smr;
+
+                            //                             Util.log(" body01 Root bone name : {0} +++", smr.rootBone.name);
+                            // 
+                            //                             foreach (var bone in smr.bones)
+                            //                             {
+                            //                                 Util.log("body01 bone name : {0}", bone.name);
+                            //                             }
+
+                            //smr.sharedMesh = replacer.scientist_mesh;
+                            // Mesh mesh = smr.sharedMesh;
+                            // mesh = replacer.scientist_mesh;
+                            //smr.transform.position = replacer.mortimer_body01_smr.transform.position;
+                            //smr.transform.rotation = replacer.mortimer_body01_smr.transform.rotation;
+
+
+                            //smr.bones = replacer.mortimer_body01_smr.bones;
+
+
+                            //                             smr.sharedMesh.vertices = replacer.scientist_smr.sharedMesh.vertices;
+                            //                             smr.sharedMesh.uv = replacer.scientist_smr.sharedMesh.uv;
+                            //                             smr.sharedMesh.triangles = replacer.scientist_smr.sharedMesh.triangles;
+                            //                             smr.sharedMesh.boneWeights = replacer.scientist_smr.sharedMesh.boneWeights;
+                            //                             smr.sharedMesh.normals = replacer.scientist_smr.sharedMesh.normals;
+
 
                             if (personaliseKerbal_Suit != null)
                             {   
@@ -1300,7 +1404,7 @@ namespace TextureReplacerReplaced
             Personaliser personaliser = Personaliser.instance;
             Color32 visorReflectionColor = new Color32(128, 128, 128, 255);
 
-            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false, 0, out hasVisor, out visorReflectionColor);
+            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false, 0, out hasVisor, out visorReflectionColor, false);
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -1360,7 +1464,7 @@ namespace TextureReplacerReplaced
         /// <para>2 = EVA space suit</para></param>
         /// <returns>The selected suit set after the <see cref="isAtmBreathable"/> test</returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        private int personaliseEva(Part evaPart, int suitSelection, out bool hasVisor, out Color32 visorReflectionColor)
+        private int personaliseEva(Part evaPart, int suitSelection, out bool hasVisor, out Color32 visorReflectionColor, bool initialisation)
         {
             int selection = suitSelection;
             bool evaSuit = false;
@@ -1435,7 +1539,7 @@ namespace TextureReplacerReplaced
                         break;
 
                 }                
-                personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit,selection, out useVisor, out reflectionColor);
+                personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit,selection, out useVisor, out reflectionColor, initialisation);
             }
             hasVisor = useVisor;
             visorReflectionColor = reflectionColor;
@@ -3833,6 +3937,100 @@ namespace TextureReplacerReplaced
                
 
         }
+
+
+
+        /// <summary>
+        /// Stitch clothing onto an avatar.  Both clothing and avatar must be instantiated however clothing may be destroyed after.
+        /// </summary>
+        /// <param name="sourceClothing"></param>
+        /// <param name="targetAvatar"></param>
+        /// <returns>Newly created clothing on avatar</returns>
+        public GameObject Stitch(GameObject sourceClothing, GameObject targetAvatar)
+        {
+            var boneCatalog = new TransformCatalog(targetAvatar.transform);
+            var skinnedMeshRenderers = sourceClothing.GetComponentsInChildren<SkinnedMeshRenderer>();
+            var targetClothing = AddChild(sourceClothing, targetAvatar.transform);
+
+
+            foreach (var sourceRenderer in skinnedMeshRenderers)
+            {
+                var targetRenderer = AddSkinnedMeshRenderer(sourceRenderer, targetClothing);
+                targetRenderer.bones = TranslateTransforms(sourceRenderer.bones, boneCatalog);
+            }
+            return targetClothing;
+        }
+
+        private GameObject AddChild(GameObject source, Transform parent)
+        {
+            source.transform.parent = parent;
+
+            foreach (Transform child in source.transform)
+            {
+                UnityEngine.Object.Destroy(child.gameObject);
+            }
+
+            return source;
+        }
+
+        private SkinnedMeshRenderer AddSkinnedMeshRenderer(SkinnedMeshRenderer source, GameObject parent)
+        {
+            GameObject meshObject = new GameObject(source.name);
+            meshObject.transform.parent = parent.transform;
+
+            var target = meshObject.AddComponent<SkinnedMeshRenderer>();
+            target.sharedMesh = source.sharedMesh;
+            target.materials = source.materials;
+            return target;
+        }
+
+        private Transform[] TranslateTransforms(Transform[] sources, TransformCatalog transformCatalog)
+        {
+            var targets = new Transform[sources.Length];
+            for (var index = 0; index < sources.Length; index++)
+                targets[index] = DictionaryExtensions.Find(transformCatalog, sources[index].name);
+            return targets;
+        }
+
+        #region TransformCatalog
+        private class TransformCatalog : Dictionary<string, Transform>
+        {
+            #region Constructors
+            public TransformCatalog(Transform transform)
+            {
+                Catalog(transform);
+            }
+            #endregion
+
+            #region Catalog
+            private void Catalog(Transform transform)
+            {
+                if (ContainsKey(transform.name))
+                {
+                    Remove(transform.name);
+                    Add(transform.name, transform);
+                }
+                else
+                    Add(transform.name, transform);
+                foreach (Transform child in transform)
+                    Catalog(child);
+            }
+            #endregion
+        }
+        #endregion
+
+
+        #region DictionaryExtensions
+        private class DictionaryExtensions
+        {
+            public static TValue Find<TKey, TValue>(Dictionary<TKey, TValue> source, TKey key)
+            {
+                TValue value;
+                source.TryGetValue(key, out value);
+                return value;
+            }
+        }
+        #endregion
 
     }
 }
