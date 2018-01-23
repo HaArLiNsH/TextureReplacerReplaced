@@ -23,6 +23,8 @@
     <Compile Include="BodySwap.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Class2.cs" />
+    <Compile Include="Class3.cs" />
+    <Compile Include="Class4.cs" />
     <Compile Include="Stitcher.cs" />
     <Compile Include="Suit_Selector.cs" />
     <Compile Include="Suit_Filter.cs" />

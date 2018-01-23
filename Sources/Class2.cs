@@ -1,10 +1,10 @@
-﻿namespace Jax.Utils
+﻿namespace TextureReplacerReplaced
 {
     using UnityEngine;
     using System.Collections.Generic;
 
     using HierarchyDict = System.Collections.Generic.Dictionary<string, UnityEngine.Transform>;
-    using BoneTransformDict = System.Collections.Generic.Dictionary<string, Jax.Utils.Tuple<UnityEngine.Transform, string>>;
+    using BoneTransformDict = System.Collections.Generic.Dictionary<string, Tuple<UnityEngine.Transform, string>>;
 
     struct BoneDef
     {
@@ -30,8 +30,10 @@
         /*!
             \return combined mesh instance.
         */
-        public static GameObject Combine(List<SkinnedMeshRenderer> SkinnedRenderers, float weldThresold)
+        public static GameObject Combine(GameObject sourceClothing, float weldThresold)
         {
+
+            var SkinnedRenderers = sourceClothing.GetComponentsInChildren<SkinnedMeshRenderer>();
             // Generated GO
             GameObject final_mesh_go = new GameObject("Mesh");
             // Dummy parent holder
@@ -47,7 +49,7 @@
                 {
                     // Bone doesn't exist, add it
                     if (!all_bones.ContainsKey(bone.name))
-                        all_bones[bone.name] = new Jax.Utils.Tuple<Transform, string>(bone, bone.parent.name);
+                        all_bones[bone.name] = new Tuple<Transform, string>(bone, bone.parent.name);
                 }
             }
 
@@ -253,7 +255,8 @@
 
 
 
-            Debug.Log(combined_vertices.Count + " / " + combined_uvs.Count + " / " + combined_bone_weights.Count + " -> " + welded_vertices.Count + " / " + welded_uvs.Count + " / " + welded_bone_weights.Count);
+            //Debug.Log(combined_vertices.Count + " / " + combined_uvs.Count + " / " + combined_bone_weights.Count + " -> " + welded_vertices.Count + " / " + welded_uvs.Count + " / " + welded_bone_weights.Count);
+            Util.log(combined_vertices.Count + " / " + combined_uvs.Count + " / " + combined_bone_weights.Count + " -> " + welded_vertices.Count + " / " + welded_uvs.Count + " / " + welded_bone_weights.Count);
 
             combined_new_mesh.vertices = welded_vertices.ToArray();
             combined_new_mesh.uv = welded_uvs.ToArray();

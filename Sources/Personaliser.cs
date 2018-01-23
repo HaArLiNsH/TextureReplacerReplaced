@@ -640,7 +640,9 @@ namespace TextureReplacerReplaced
             return KerbalSuitsDB_cleaned[number % KerbalSuitsDB_cleaned.Count];
         }
 
-        /// ////////////////////////////////////////////////////////////////////////////////////////
+
+
+
         /// <summary>
         /// This is the main method that personalize and change the texture of your kerbal. 
         /// </summary>
@@ -650,12 +652,31 @@ namespace TextureReplacerReplaced
         /// <param name="needsEVASuit">Does the kerbal need a EVA suit? (space or ground)</param>
         /// <param name="needsEVAgroundSuit">Does the kerbal need a EVA ground suit ?</param>
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        /// ////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// This is the main method that personalize and change the texture of your kerbal. 
+        /// </summary>
+        /// <param name="component">The kerbal we want to personalize, in term of <see cref="Component"/></param>
+        /// <param name="protoKerbal">The <see cref="ProtoCrewMember"/> data of the kerbal we want to personalize</param>
+        /// <param name="cabin">A handle to the part that contains this Kerbal</param>
+        /// <param name="needsEVASuit">Does the kerbal need a EVA suit? (space or ground)</param>
+        /// <param name="needsEVAgroundSuit">Does the kerbal need a EVA ground suit ?</param>
+        /// <param name="suitState"></param>
+        /// <param name="hasVisor">Does the kerbal use a visor?</param>
+        /// <param name="visorReflection_Color">the color wanted for the reflection on the visor</param>
+        /// <param name="initialisation"></param>
+        /// ////////////////////////////////////////////////////////////////////////////////////////
         private void personaliseKerbal(Component component, ProtoCrewMember protoKerbal, Part cabin, bool needsEVASuit, 
             bool needsEVAgroundSuit, int suitState, out bool hasVisor, out Color32 visorReflection_Color, bool initialisation)
         {
             Personaliser personaliser = Personaliser.instance;
 
             Replacer replacer = Replacer.instance;
+
+            Stitcher stitcher = new Stitcher();
 
             KerbalData kerbalData = getKerbalData(protoKerbal);
 
@@ -704,8 +725,11 @@ namespace TextureReplacerReplaced
 
                 GameObject morty = GameObject.Instantiate(replacer.mortimer_obj);
 
-               Stitch(morty, baseModel);
+                
 
+               //Stitch(morty, baseModel);
+
+                stitcher.Stitch(morty, baseModel);
 
               //  mortimer_body01_smr.transform.parent = baseModel.transform;
 
@@ -3936,101 +3960,9 @@ namespace TextureReplacerReplaced
 
                
 
-        }
+        }       
 
 
-
-        /// <summary>
-        /// Stitch clothing onto an avatar.  Both clothing and avatar must be instantiated however clothing may be destroyed after.
-        /// </summary>
-        /// <param name="sourceClothing"></param>
-        /// <param name="targetAvatar"></param>
-        /// <returns>Newly created clothing on avatar</returns>
-        public GameObject Stitch(GameObject sourceClothing, GameObject targetAvatar)
-        {
-            var boneCatalog = new TransformCatalog(targetAvatar.transform);
-            var skinnedMeshRenderers = sourceClothing.GetComponentsInChildren<SkinnedMeshRenderer>();
-            var targetClothing = AddChild(sourceClothing, targetAvatar.transform);
-
-
-            foreach (var sourceRenderer in skinnedMeshRenderers)
-            {
-                var targetRenderer = AddSkinnedMeshRenderer(sourceRenderer, targetClothing);
-                targetRenderer.bones = TranslateTransforms(sourceRenderer.bones, boneCatalog);
-            }
-            return targetClothing;
-        }
-
-        private GameObject AddChild(GameObject source, Transform parent)
-        {
-            source.transform.parent = parent;
-
-            foreach (Transform child in source.transform)
-            {
-                UnityEngine.Object.Destroy(child.gameObject);
-            }
-
-            return source;
-        }
-
-        private SkinnedMeshRenderer AddSkinnedMeshRenderer(SkinnedMeshRenderer source, GameObject parent)
-        {
-            GameObject meshObject = new GameObject(source.name);
-            meshObject.transform.parent = parent.transform;
-
-            var target = meshObject.AddComponent<SkinnedMeshRenderer>();
-            target.sharedMesh = source.sharedMesh;
-            target.materials = source.materials;
-            return target;
-        }
-
-        private Transform[] TranslateTransforms(Transform[] sources, TransformCatalog transformCatalog)
-        {
-            var targets = new Transform[sources.Length];
-            for (var index = 0; index < sources.Length; index++)
-                targets[index] = DictionaryExtensions.Find(transformCatalog, sources[index].name);
-            return targets;
-        }
-
-        #region TransformCatalog
-        private class TransformCatalog : Dictionary<string, Transform>
-        {
-            #region Constructors
-            public TransformCatalog(Transform transform)
-            {
-                Catalog(transform);
-            }
-            #endregion
-
-            #region Catalog
-            private void Catalog(Transform transform)
-            {
-                if (ContainsKey(transform.name))
-                {
-                    Remove(transform.name);
-                    Add(transform.name, transform);
-                }
-                else
-                    Add(transform.name, transform);
-                foreach (Transform child in transform)
-                    Catalog(child);
-            }
-            #endregion
-        }
-        #endregion
-
-
-        #region DictionaryExtensions
-        private class DictionaryExtensions
-        {
-            public static TValue Find<TKey, TValue>(Dictionary<TKey, TValue> source, TKey key)
-            {
-                TValue value;
-                source.TryGetValue(key, out value);
-                return value;
-            }
-        }
-        #endregion
 
     }
 }
