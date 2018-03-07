@@ -18,6 +18,9 @@
     <NoWarn>
     </NoWarn>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="Suit_Selector.cs" />
@@ -55,4 +58,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y "$(TargetPath)" "D:\KSP 1.4.0\Kerbal Space Program\GameData\TextureReplacerReplaced\Plugins"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

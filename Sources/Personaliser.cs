@@ -1,6 +1,6 @@
 ﻿/*
- * Copyright © 2017 HaArLiNsH
- * Copyright © 2013-2017 Davorin Učakar, RangeMachine
+ * Copyright © 2017-2018 HaArLiNsH
+ * Copyright © 2013-2018 Davorin Učakar, RangeMachine
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -1280,6 +1280,26 @@ namespace TextureReplacerReplaced
 
             hasVisor = useVisor;
             visorReflection_Color = visorReflectionColor;
+
+            if (isEva)
+            {
+                foreach (Transform trans in component.GetComponentsInChildren<Transform>())
+                {
+                    if (trans.name == "EVAparachute")
+                    {
+                        foreach (Renderer renderer in trans.GetComponentsInChildren<Renderer>(true))
+                        {
+                            if (!needsEVASuit)
+                            {
+                                renderer.transform.localPosition += Vector3.forward * 0.1f;
+                                renderer.transform.localPosition += Vector3.up * -0.03f;
+                            }
+                            else
+                                renderer.transform.localPosition = Vector3.zero;
+                        }
+                    }
+                }
+            }
         }
         
         /// ////////////////////////////////////////////////////////////////////////////////////////
