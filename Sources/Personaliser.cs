@@ -685,6 +685,8 @@ namespace TextureReplacerReplaced
             {
                 var smr = renderer as SkinnedMeshRenderer;
 
+                
+
                 // Thruster jets, flag decals and headlight flares.
                 if (smr == null)
                 {
@@ -697,6 +699,7 @@ namespace TextureReplacerReplaced
                     Texture2D newTexture = null;
                     Texture2D newNormalMap = null;
 
+                   // Util.log("smr = {1}", smr.name);
                     switch (smr.name)
                     {
                         case "eyeballLeft":
@@ -1210,7 +1213,19 @@ namespace TextureReplacerReplaced
                             }
                             break;
 
-                            
+//                         case "EVAparachute":
+//                            
+//                                 if (!needsEVASuit)
+//                                 {
+//                                     smr.transform.localPosition += Vector3.forward * 0.1f;
+//                                     smr.transform.localPosition += Vector3.up * -0.03f;
+//                                 }
+//                                 else
+//                                    smr.transform.localPosition = Vector3.zero;
+//                            
+//                             break;
+
+                        
 
                         default: // Jetpack.
 
@@ -1281,25 +1296,25 @@ namespace TextureReplacerReplaced
             hasVisor = useVisor;
             visorReflection_Color = visorReflectionColor;
 
-            if (isEva)
-            {
-                foreach (Transform trans in component.GetComponentsInChildren<Transform>())
-                {
-                    if (trans.name == "EVAparachute")
-                    {
-                        foreach (Renderer renderer in trans.GetComponentsInChildren<Renderer>(true))
-                        {
-                            if (!needsEVASuit)
-                            {
-                                renderer.transform.localPosition += Vector3.forward * 0.1f;
-                                renderer.transform.localPosition += Vector3.up * -0.03f;
-                            }
-                            else
-                                renderer.transform.localPosition = Vector3.zero;
-                        }
-                    }
-                }
-            }
+//             if (isEva)
+//             {
+//                 foreach (Transform trans in component.GetComponentsInChildren<Transform>())
+//                 {
+//                     if (trans.name == "EVAparachute")
+//                     {
+//                         foreach (Renderer renderer in trans.GetComponentsInChildren<Renderer>(true))
+//                         {
+//                             if (!needsEVASuit)
+//                             {
+//                                 renderer.transform.localPosition += Vector3.forward * 0.1f;
+//                                 renderer.transform.localPosition += Vector3.up * -0.03f;
+//                             }
+//                             else
+//                                 renderer.transform.localPosition = Vector3.zero;
+//                         }
+//                     }
+//                 }
+//             }
         }
         
         /// ////////////////////////////////////////////////////////////////////////////////////////

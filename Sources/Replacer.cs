@@ -84,6 +84,9 @@ namespace TextureReplacerReplaced
         {
             foreach (Material material in Resources.FindObjectsOfTypeAll<Material>())
             {
+                if (!material.HasProperty("_MainTex"))
+                continue;
+
                 Texture texture = material.mainTexture;
 
                 if (texture == null || texture.name.Length == 0 || texture.name.StartsWith("Temp", StringComparison.Ordinal))
@@ -106,6 +109,9 @@ namespace TextureReplacerReplaced
                         UnityEngine.Object.Destroy(texture);
                     }
                 }
+
+                if (!material.HasProperty(Util.BUMPMAP_PROPERTY))
+                    continue;
 
                 Texture normalMap = material.GetTexture(Util.BUMPMAP_PROPERTY);
                 if (normalMap == null)
