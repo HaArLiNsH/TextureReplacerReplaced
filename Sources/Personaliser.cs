@@ -364,8 +364,8 @@ namespace TextureReplacerReplaced
                 {                    
                     isInitialised = true;
                 }
-
-                if (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor, isParachuteMoved, out isParachuteMoved) == 2)
+                bool isParachuteMovedStartBool = false;
+                if (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor, isParachuteMovedStartBool, out isParachuteMoved) == 2)
                 {
                     actualSuitState = 2;
                     hasEvaSuit = true;
@@ -670,10 +670,6 @@ namespace TextureReplacerReplaced
             Color32 visorReflectionColor = new Color32(128, 128, 128, 255);
 
             Color32 visorBasecolor = new Color32(255, 255, 255, 255);
-
-            //bool isParachuteFixed = false;
-
-            //isParachuteFixed = isParachuteMoved;
 
             Head_Set personaliseKerbal_Head = getKerbalHead(protoKerbal, kerbalData);
            
@@ -1310,14 +1306,17 @@ namespace TextureReplacerReplaced
             hasVisor = useVisor;
             visorReflection_Color = visorReflectionColor;
 
+            // fix to move the parachute when the jetpack is hidden
             if (isEva)
             {
                 foreach (Transform trans in component.GetComponentsInChildren<Transform>())
-                {
+                {                    
                     if (trans.name == "EVAparachute")
                     {
                         foreach (Renderer renderer in trans.GetComponentsInChildren<Renderer>(true))
-                        {                            
+                        {
+//                             if (renderer.name != null)
+//                             Util.log("renderer in parachute : {1}", renderer.name);
                             if (!needsEVASuit)
                             {
                                 if (!isParachuteMovedIn)
@@ -1337,7 +1336,6 @@ namespace TextureReplacerReplaced
                     }
                 }
             }
-
             isParachuteMovedOut = isParachuteMovedIn;
         }
         
@@ -1355,8 +1353,7 @@ namespace TextureReplacerReplaced
             Color32 visorReflectionColor = new Color32(128, 128, 128, 255);
             bool fakeParachuteBool = true;
 
-            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false, 0, out hasVisor, out visorReflectionColor, fakeParachuteBool, out fakeParachuteBool);
-           // isParachuteMovedOut = isParachuteMovedIn;
+            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false, 0, out hasVisor, out visorReflectionColor, fakeParachuteBool, out fakeParachuteBool);           
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
