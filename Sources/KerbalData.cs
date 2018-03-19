@@ -48,6 +48,8 @@ namespace TextureReplacerReplaced
 
         /// <summary>
         /// Is the kerbal a veteran?
+        /// 0 = Male ,
+        /// 1 = Female
         /// </summary>
         public bool isVeteran;
 
@@ -65,6 +67,13 @@ namespace TextureReplacerReplaced
         /// The suit set of the kerbal
         /// </summary>
         public Suit_Set suit;
+
+        /// <summary>
+        /// The model of the suit of the kerbal
+        /// 0 = Default ,
+        /// 1 = Vintage
+        /// </summary>
+        public int suitModel;
         
     }
 

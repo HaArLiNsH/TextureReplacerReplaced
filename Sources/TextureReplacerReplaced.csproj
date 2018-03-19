@@ -23,6 +23,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Stitcher.cs" />
     <Compile Include="Suit_Selector.cs" />
     <Compile Include="Suit_Filter.cs" />
     <Compile Include="KerbalData.cs" />
