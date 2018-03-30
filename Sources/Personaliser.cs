@@ -719,7 +719,7 @@ namespace TextureReplacerReplaced
                 {
                     Util.log("suit_Vintage_Male is loading +++");
 
-                    GameObject suit_Vintage_Male = GameObject.Instantiate(replacer.suit_Vintage_Male_obj);
+                    //GameObject suit_Vintage_Male = GameObject.Instantiate(replacer.suit_Vintage_Male_obj);
 
                     //stitcher.Stitch(suit_Vintage_Male, baseModel);
 
@@ -1032,6 +1032,7 @@ namespace TextureReplacerReplaced
                             break;
 
                         case "jetpack_Hazmat_Male":
+
                             break;
 
                         case "helmet":
