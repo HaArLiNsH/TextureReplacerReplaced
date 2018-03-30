@@ -22,6 +22,7 @@
  */
 
 
+using Expansions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -709,18 +710,24 @@ namespace TextureReplacerReplaced
 
             GameObject baseModel = component.transform.gameObject;
 
-            if (initialisation == true)
-            {
-                Util.log("suit_Vintage_Male is loading +++");
+            // check if the DLC is installed
+            if (ExpansionsLoader.IsExpansionInstalled("MakingHistory"))
+            {                
+                // we need to initialize the cloned mesh before we can safely use it
+                if (initialisation == true)
+                {
+                    Util.log("suit_Vintage_Male is loading +++");
 
-                GameObject suit_Vintage_Male = GameObject.Instantiate(replacer.suit_Vintage_Male_obj);
+                    GameObject suit_Vintage_Male = GameObject.Instantiate(replacer.suit_Vintage_Male_obj);
 
-                stitcher.Stitch(suit_Vintage_Male, baseModel);
+                    stitcher.Stitch(suit_Vintage_Male, baseModel);
 
-                Util.log("suit_Vintage_Male is loaded !!! ");
+                    Util.log("suit_Vintage_Male is loaded !!! ");
 
-                isSuit_Vintage_Male_loaded = true;
+                    isSuit_Vintage_Male_loaded = true;
+                }
             }
+            
 
                 // We must include hidden meshes, since flares are hidden when light is turned off.
                 // All other meshes are always visible, so no performance hit here.
@@ -952,9 +959,7 @@ namespace TextureReplacerReplaced
 
                         case "body01":
                         case "mesh_female_kerbalAstronaut01_body01":
-
                             smr.GetComponentInChildren<Renderer>().enabled = false;
-
                             if (personaliseKerbal_Suit != null)
                             {   
                                 if (isEva) // if out of the vehicle
@@ -988,7 +993,7 @@ namespace TextureReplacerReplaced
                                         break;
                                     }                                                                      
                                 }
-                            }
+                            }                            
                             break;
 
                         case "suit_Vintage_Male":
@@ -1002,7 +1007,6 @@ namespace TextureReplacerReplaced
 
                         case "helmet":
                         case "mesh_female_kerbalAstronaut01_helmet":
-                            
                             // Textures have to be replaced even when hidden since it may become visible later on situation change.
                             if (personaliseKerbal_Suit != null)
                             {
@@ -1098,7 +1102,6 @@ namespace TextureReplacerReplaced
 
                         case "visor":
                         case "mesh_female_kerbalAstronaut01_visor":
-
                             if (personaliseKerbal_Suit != null)
                             {
                                 if (isEva) // if out of the vehicle
@@ -1208,9 +1211,7 @@ namespace TextureReplacerReplaced
                         
 
                         case "jetpack":
-                        case "mesh_female_kerbalAstronaut01_jetpack":
-
-                            smr.GetComponentInChildren<Renderer>().enabled = false;
+                        case "mesh_female_kerbalAstronaut01_jetpack":                           
 
                             if (personaliseKerbal_Suit != null)
                             {
@@ -1271,9 +1272,7 @@ namespace TextureReplacerReplaced
 
                                                
 
-                        default: // Jetpack.
-                            smr.GetComponentInChildren<Renderer>().enabled = false;
-
+                        default: // Jetpack.                            
                             if (personaliseKerbal_Suit != null)
                             {
                                 if (isEva) // if out of the vehicle
@@ -1356,9 +1355,9 @@ namespace TextureReplacerReplaced
                             {
                                 if (!isParachuteMovedIn)
                                 {
-                                    renderer.transform.localPosition += Vector3.forward * 0.1f;
-                                    renderer.transform.localPosition += Vector3.up * -0.03f;
-                                    isParachuteMovedIn = true;
+//                                     renderer.transform.localPosition += Vector3.forward * 0.1f;
+//                                     renderer.transform.localPosition += Vector3.up * -0.03f;
+//                                     isParachuteMovedIn = true;
 
                                     //Color32 parachuteColor = new Color32(0, 255, 0, 255);
                                     //renderer.sharedMaterial.color = parachuteColor;

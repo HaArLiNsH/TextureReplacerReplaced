@@ -27,6 +27,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Expansions;
 
 namespace TextureReplacerReplaced
 {
@@ -110,8 +111,14 @@ namespace TextureReplacerReplaced
 			Replacer.instance.load();
 			Reflections.instance.load();
 			Personaliser.instance.load();
-			
-			isLoaded = true;
+
+            if (ExpansionsLoader.IsExpansionInstalled("MakingHistory"))
+            {
+
+                Util.log("DLC Making History present, using full features");
+            }
+
+                isLoaded = true;
 			Util.log("++++ 'TRR is loaded'++++");
 		}
 			   

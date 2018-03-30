@@ -167,8 +167,8 @@ namespace TextureReplacerReplaced
                                 Util.log("visor ok ---");
                                 break;
 
-                                // TODO here : fo trouver et nommer tous les composants du jetpack 
-                            case "jetpack01":// look for the jetpack and name the new SkinnedMeshRenderer
+                             
+                            case "jetpack01":// look for the jetpack and all his subcomposant and name the news SkinnedMeshRenderers
 
                                 var tank1 = t.transform.Find("tank1");
                                 tank1_Vintage_Male_smrSRC = tank1.GetComponent<SkinnedMeshRenderer>();
