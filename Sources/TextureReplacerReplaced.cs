@@ -112,13 +112,13 @@ namespace TextureReplacerReplaced
 			Reflections.instance.load();
 			Personaliser.instance.load();
 
-            if (ExpansionsLoader.IsExpansionInstalled("MakingHistory"))
-            {
+			if (ExpansionsLoader.IsExpansionInstalled("MakingHistory"))
+			{
 
-                Util.log("DLC Making History present, using full features");
-            }
+				Util.log("DLC Making History present, using full features");
+			}
 
-                isLoaded = true;
+				isLoaded = true;
 			Util.log("++++ 'TRR is loaded'++++");
 		}
 			   

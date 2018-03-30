@@ -121,6 +121,16 @@ namespace TextureReplacerReplaced
         public SkinnedMeshRenderer thruster_l08_Vintage_Male_smrSRC = null;
         public SkinnedMeshRenderer thruster_l09_Vintage_Male_smrSRC = null;
 
+        public GameObject suit_Hazmat_Male_obj = new GameObject("suit_Hazmat_Male");
+
+        public SkinnedMeshRenderer suit_Hazmat_Male_smrSRC = null;
+        public SkinnedMeshRenderer helmet_Hazmat_Male_smrSRC = null;
+        public SkinnedMeshRenderer helmetSupport_Hazmat_Male_smrSRC = null;
+        public SkinnedMeshRenderer visor_Hazmat_Male_smrSRC = null;
+        public SkinnedMeshRenderer jetpack_Hazmat_Male_smrSRC = null;
+
+
+
 
         private void saveMeshes (Part maleEva)
         {
@@ -407,22 +417,67 @@ namespace TextureReplacerReplaced
 
                 if (obj.name == "mortimer")
                 {
-                    Util.log("found mortimer +++");
+                    Util.log("found mortimer (VIP) +++");
                 }
 
                 if (obj.name == "PR_Guy")
                 {
-                    Util.log("found PR_Guy +++");
+                    Util.log("found PR_Guy (Hazmat) +++");
+
+                    suit_Hazmat_Male_obj = obj;
+
+                    var srcSuit_Transf = suit_Hazmat_Male_obj.transform.Find("model01");
+                    //Util.log("found model01 ******* ");
+                    var srcSuit_Transf_hazmat = srcSuit_Transf.transform.Find("hazmatmodel01");
+                    //Util.log("found hazmatmodel01 ******* ");
+                    var srcSuit_Transf_head = srcSuit_Transf.transform.Find("head02");
+                    Util.log("found head02 ******* ");
+                    srcSuit_Transf_head.gameObject.DestroyGameObject();
+                    foreach (Transform t in srcSuit_Transf_hazmat.transform)
+                    {
+                        switch (t.name)
+                        {
+                            case "body01":
+                                suit_Hazmat_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                suit_Hazmat_Male_smrSRC.name = "suit_Hazmat_Male";
+                                Util.log("body01 ok ---");
+                                break;
+
+                            case "mesh_hazm_helmet":
+                                helmet_Hazmat_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                helmet_Hazmat_Male_smrSRC.name = "helmet_Hazmat_Male";
+                                Util.log("mesh_hazm_helmet ok ---");
+                                break;
+
+                            case "mesh_helmet_support":
+                                helmetSupport_Hazmat_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                helmetSupport_Hazmat_Male_smrSRC.name = "helmetSupport_Hazmat_Male";
+                                Util.log("mesh_helmet_support ok ---");
+                                break;
+
+                            case "mesh_hazm_visor":
+                                visor_Hazmat_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                visor_Hazmat_Male_smrSRC.name = "visor_Hazmat_Male";
+                                Util.log("mesh_hazm_visor ok ---");
+                                break;
+
+                            case "mesh_backpack":
+                                jetpack_Hazmat_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                jetpack_Hazmat_Male_smrSRC.name = "jetpack_Hazmat_Male";
+                                Util.log("mesh_backpack ok ---");
+                                break;
+                        }
+                    }
                 }
 
                 if (obj.name == "Gus")
                 {
-                    Util.log("found Gus +++");
+                    Util.log("found Gus (worker) +++");
                 }
 
                 if (obj.name == "linus")
                 {
-                    Util.log("found linus +++");
+                    Util.log("found linus (scientist) +++");
                 }
 
                 if (obj.name == "WernerVonKerman")

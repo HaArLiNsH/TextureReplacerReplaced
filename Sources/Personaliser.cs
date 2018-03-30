@@ -168,6 +168,7 @@ namespace TextureReplacerReplaced
 
 
         private bool isSuit_Vintage_Male_loaded = false;
+        private bool isSuit_Hazmat_Male_loaded = false;
 
 
         /* =========================================================================================
@@ -720,11 +721,24 @@ namespace TextureReplacerReplaced
 
                     GameObject suit_Vintage_Male = GameObject.Instantiate(replacer.suit_Vintage_Male_obj);
 
-                    stitcher.Stitch(suit_Vintage_Male, baseModel);
+                    //stitcher.Stitch(suit_Vintage_Male, baseModel);
 
                     Util.log("suit_Vintage_Male is loaded !!! ");
 
                     isSuit_Vintage_Male_loaded = true;
+
+
+                    Util.log("suit_Hazmat_Male is loading +++");
+
+                    GameObject suit_Hazmat_Male = GameObject.Instantiate(replacer.suit_Hazmat_Male_obj);
+
+                    stitcher.Stitch(suit_Hazmat_Male, baseModel);
+
+                    Util.log("suit_Hazmat_Male is loaded !!! ");
+
+                    isSuit_Hazmat_Male_loaded = true;
+
+
                 }
             }
             
@@ -1003,6 +1017,21 @@ namespace TextureReplacerReplaced
                             break;
 
                         case "jetpack_Vintage_Male":
+                            break;
+
+                        case "suit_Hazmat_Male":
+                            break;
+
+                        case "helmet_Hazmat_Male":
+                            break;
+
+                        case "helmetSupport_Hazmat_Male":
+                            break;
+
+                        case "visor_Hazmat_Male":
+                            break;
+
+                        case "jetpack_Hazmat_Male":
                             break;
 
                         case "helmet":
@@ -1349,15 +1378,16 @@ namespace TextureReplacerReplaced
                     {
                         foreach (Renderer renderer in trans.GetComponentsInChildren<Renderer>(true))
                         {
-//                             if (renderer.name != null)
-//                             Util.log("renderer in parachute : {1}", renderer.name);
+                            renderer.GetComponentInChildren<Renderer>().enabled = false;
+                            //                             if (renderer.name != null)
+                            //                             Util.log("renderer in parachute : {1}", renderer.name);
                             if (!needsEVASuit)
                             {
                                 if (!isParachuteMovedIn)
                                 {
-//                                     renderer.transform.localPosition += Vector3.forward * 0.1f;
-//                                     renderer.transform.localPosition += Vector3.up * -0.03f;
-//                                     isParachuteMovedIn = true;
+                                    renderer.transform.localPosition += Vector3.forward * 0.1f;
+                                    renderer.transform.localPosition += Vector3.up * -0.03f;
+                                    isParachuteMovedIn = true;
 
                                     //Color32 parachuteColor = new Color32(0, 255, 0, 255);
                                     //renderer.sharedMaterial.color = parachuteColor;
