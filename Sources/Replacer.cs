@@ -129,7 +129,11 @@ namespace TextureReplacerReplaced
         public SkinnedMeshRenderer visor_Hazmat_Male_smrSRC = null;
         public SkinnedMeshRenderer jetpack_Hazmat_Male_smrSRC = null;
 
+        Dictionary<string, Transform> kerbalEVA_BonesCatalog = new Dictionary<string, Transform>();
+        Dictionary<string, Transform> hazmat_BonesCatalog = new Dictionary<string, Transform>();
 
+        public Transform hazmat_bones = null;
+        public Transform kerbalEVA_bones = null;
 
 
         private void saveMeshes (Part maleEva)
@@ -178,7 +182,7 @@ namespace TextureReplacerReplaced
                                 break;
 
                              
-                            case "jetpack01":// look for the jetpack and all his subcomposant and name the news SkinnedMeshRenderers
+                            case "jetpack01":// look for the jetpack and all his subcomponent and name the news SkinnedMeshRenderers
 
                                 var tank1 = t.transform.Find("tank1");
                                 tank1_Vintage_Male_smrSRC = tank1.GetComponent<SkinnedMeshRenderer>();
@@ -426,6 +430,14 @@ namespace TextureReplacerReplaced
 
                     suit_Hazmat_Male_obj = obj;
 
+
+                    var hazmat_bones = obj.transform.Find("globalMove01");
+
+                   // hazmat_bones.gameObject.DestroyGameObject();
+
+                    hazmat_BonesCatalog = new Stitcher.TransformCatalog(hazmat_bones.transform);
+
+
                     var srcSuit_Transf = suit_Hazmat_Male_obj.transform.Find("model01");
                     //Util.log("found model01 ******* ");
                     var srcSuit_Transf_hazmat = srcSuit_Transf.transform.Find("hazmatmodel01");
@@ -496,7 +508,55 @@ namespace TextureReplacerReplaced
                     Util.log("found Mechanic01 +++");
                 }
 
+                if (obj.name == "kerbalEVA")
+                {
+                    Util.log("found KerbalEVA +++");
+
+                    var kerbalEVA_bones = obj.transform.Find("globalMove01");
+
+                    kerbalEVA_BonesCatalog = new Stitcher.TransformCatalog(kerbalEVA_bones.transform);
+                }
+
             }
+            Util.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+            Util.log("list of Hazmat bones :   ");
+            foreach (String s in hazmat_BonesCatalog.Keys)
+            {
+                Util.log(s);
+            }
+
+            Util.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+            Util.log("list of KerbalEVA bones :   ");
+            foreach (String s in kerbalEVA_BonesCatalog.Keys)
+            {
+                Util.log(s);
+            }
+
+            Util.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            Util.log("bones diff :   ");
+            var intersection = kerbalEVA_BonesCatalog.Keys.Intersect(hazmat_BonesCatalog.Keys);
+            Util.log("intersection :");
+            foreach (String s in intersection)
+            {
+
+                Util.log(s);
+            }
+
+            var extraKeysInA = hazmat_BonesCatalog.Keys.Except(intersection);
+            var extraKeysInB = kerbalEVA_BonesCatalog.Keys.Except(intersection);
+            Util.log("extra in hazmat :  ");
+            foreach (String s in extraKeysInA)
+            {
+               
+                Util.log(s);
+            }
+            Util.log("extra in kerbalEVA :   ");
+            foreach (String s in extraKeysInB)
+            {
+                
+                Util.log(s);
+            }
+
         }
 
 

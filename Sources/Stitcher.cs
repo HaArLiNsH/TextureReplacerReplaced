@@ -62,7 +62,7 @@ namespace TextureReplacerReplaced
         }
 
         #region TransformCatalog
-        private class TransformCatalog : Dictionary<string, Transform>
+        public class TransformCatalog : Dictionary<string, Transform>
         {
             #region Constructors
             public TransformCatalog(Transform transform)
