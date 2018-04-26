@@ -431,7 +431,7 @@ namespace TextureReplacerReplaced
                     suit_Hazmat_Male_obj = obj;
 
 
-                    var hazmat_bones = obj.transform.Find("globalMove01");
+                    hazmat_bones = obj.transform.Find("globalMove01");
 
                    // hazmat_bones.gameObject.DestroyGameObject();
 
@@ -512,7 +512,7 @@ namespace TextureReplacerReplaced
                 {
                     Util.log("found KerbalEVA +++");
 
-                    var kerbalEVA_bones = obj.transform.Find("globalMove01");
+                    kerbalEVA_bones = obj.transform.Find("globalMove01");
 
                     kerbalEVA_BonesCatalog = new Stitcher.TransformCatalog(kerbalEVA_bones.transform);
                 }
@@ -556,6 +556,9 @@ namespace TextureReplacerReplaced
                 
                 Util.log(s);
             }
+
+            //hazmat_bones.gameObject.transform = kerbalEVA_bones.transform;
+
 
         }
 
