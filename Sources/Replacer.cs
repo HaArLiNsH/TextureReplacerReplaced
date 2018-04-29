@@ -518,7 +518,7 @@ namespace TextureReplacerReplaced
                 }
 
             }
-            Util.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+           /* Util.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
             Util.log("list of Hazmat bones :   ");
             foreach (String s in hazmat_BonesCatalog.Keys)
             {
@@ -544,7 +544,7 @@ namespace TextureReplacerReplaced
 
             var extraKeysInA = hazmat_BonesCatalog.Keys.Except(intersection);
             var extraKeysInB = kerbalEVA_BonesCatalog.Keys.Except(intersection);
-            Util.log("extra in hazmat :  ");
+            Util.log("extra in Hazmat :  ");
             foreach (String s in extraKeysInA)
             {
                
@@ -555,7 +555,7 @@ namespace TextureReplacerReplaced
             {
                 
                 Util.log(s);
-            }
+            }*/
 
             //hazmat_bones.gameObject.transform = kerbalEVA_bones.transform;
 

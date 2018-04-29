@@ -47,19 +47,19 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\KSP 1.4.2\Kerbal Space Program\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>D:\KSP 1.4.3\Kerbal Space Program\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.XML" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\KSP 1.4.2\Kerbal Space Program\KSP_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>D:\KSP 1.4.3\Kerbal Space Program\KSP_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y "$(TargetPath)" "D:\KSP 1.4.2\Kerbal Space Program\GameData\TextureReplacerReplaced\Plugins"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y "$(TargetPath)" "D:\KSP 1.4.3\Kerbal Space Program\GameData\TextureReplacerReplaced\Plugins"</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -709,7 +709,7 @@ namespace TextureReplacerReplaced
                 flag.GetComponent<Renderer>().enabled = false;
 
 
-            GameObject baseModel = component.transform.gameObject;
+            //GameObject baseModel = component.transform.gameObject;
 
             // check if the DLC is installed
             if (ExpansionsLoader.IsExpansionInstalled("MakingHistory"))
@@ -717,7 +717,20 @@ namespace TextureReplacerReplaced
                 // we need to initialize the cloned mesh before we can safely use it
                 if (initialisation == true)
                 {
-                    Util.log("suit_Vintage_Male is loading +++");
+                    GameObject baseModel = component.transform.gameObject;
+//                     SkinnedMeshRenderer baseBodySMR = new SkinnedMeshRenderer();
+//                     foreach (SkinnedMeshRenderer smr in baseModel.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+//                     {
+//                         switch (smr.name)
+//                         {
+//                             case "body01":
+//                             case "mesh_female_kerbalAstronaut01_body01":
+//                                 baseBodySMR = smr;
+//                                 break;
+//                         }
+//                     }
+
+                        Util.log("suit_Vintage_Male is loading +++");
 
                     //GameObject suit_Vintage_Male = GameObject.Instantiate(replacer.suit_Vintage_Male_obj);
 
@@ -746,7 +759,7 @@ namespace TextureReplacerReplaced
                 // We must include hidden meshes, since flares are hidden when light is turned off.
                 // All other meshes are always visible, so no performance hit here.
                 foreach (Renderer renderer in model.GetComponentsInChildren<Renderer>(true))
-            {
+                {
                 var smr = renderer as SkinnedMeshRenderer;
 
                 
