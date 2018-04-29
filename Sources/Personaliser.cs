@@ -1,6 +1,6 @@
 ﻿/*
- * Copyright © 2017 HaArLiNsH
- * Copyright © 2013-2017 Davorin Učakar, RangeMachine
+ * Copyright © 2017-2018 HaArLiNsH
+ * Copyright © 2013-2018 Davorin Učakar, RangeMachine
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -22,6 +22,7 @@
  */
 
 
+using Expansions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -163,7 +164,12 @@ namespace TextureReplacerReplaced
         /// <summary>
         /// Instance of Personaliser
         /// </summary>
-        public static Personaliser instance = null;        
+        public static Personaliser instance = null;
+
+
+        private bool isSuit_Vintage_Male_loaded = false;
+        private bool isSuit_Hazmat_Male_loaded = false;
+
 
         /* =========================================================================================
          * general TRR options
@@ -197,8 +203,8 @@ namespace TextureReplacerReplaced
         /// </summary>
         public bool isCollarRemovalEnabled = false;
 
-        public bool useKspSkin = true;   
-                
+        public bool useKspSkin = true;
+       
         /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /// <summary>
         /// Component bound to internal models that triggers Kerbal texture personalization
@@ -214,6 +220,7 @@ namespace TextureReplacerReplaced
             {
                 //Util.log("++++ 'Start()' ++++");
                 bool hasVisor = true;
+                //bool fakeParachuteTest = true;
                 Personaliser.instance.personaliseIva(GetComponent<Kerbal>(), out hasVisor);
                 //Destroy(this);
             }
@@ -222,6 +229,7 @@ namespace TextureReplacerReplaced
             {
                 //Util.log("++++ 'Update()' ++++");
                 bool hasVisor = true;
+                bool fakeParachuteTest = true;
                 Personaliser.instance.personaliseIva(GetComponent<Kerbal>(), out hasVisor);
             }
 
@@ -267,6 +275,12 @@ namespace TextureReplacerReplaced
             [KSPField(isPersistant = true)]
             public int actualSuitState = 0;
 
+            /// <summary>
+            /// to check if the parachute has been already moved or not when you hide the jetpack
+            /// </summary>
+            [KSPField(isPersistant = true)]
+            public bool isParachuteMoved = false;
+
             /// ************************************************************************************
             /// <summary>
             /// Used when you press the "Toggle EVA Suit" button on the Gui 
@@ -308,7 +322,7 @@ namespace TextureReplacerReplaced
                         actualSuitState = 0;
                     }
                 }
-                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor))
+                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor, isParachuteMoved , out isParachuteMoved, false))
                 {
                     case 0:     //IVA suit, if no air switch to state 1 : EVAground
                         actualSuitState = 0;
@@ -339,12 +353,12 @@ namespace TextureReplacerReplaced
                 
             }
 
-        /// ************************************************************************************
-        /// <summary>
-        /// Override the OnStart(). <see cref="Personaliser.TRR_EvaModule"/>
-        /// </summary>
-        /// ************************************************************************************
-        public override void OnStart(StartState state)
+            /// ************************************************************************************
+            /// <summary>
+            /// Override the OnStart(). <see cref="Personaliser.TRR_EvaModule"/>
+            /// </summary>
+            /// ************************************************************************************
+            public override void OnStart(StartState state)
             {
                 //Util.log("++++ 'OnStart()' ++++");
                 //Util.log("+++++ '{0}' +++++", state);
@@ -356,8 +370,8 @@ namespace TextureReplacerReplaced
                 {                    
                     isInitialised = true;
                 }
-
-                if (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor) == 2)
+                bool isParachuteMovedStartBool = false;
+                if (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor, isParachuteMovedStartBool, out isParachuteMoved, true) == 2)
                 {
                     actualSuitState = 2;
                     hasEvaSuit = true;
@@ -383,7 +397,7 @@ namespace TextureReplacerReplaced
                 bool useVisor = true;
                 Color32 visorReflectioncolor = new Color32(128, 128, 128, 255);
 
-                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor))
+                switch (personaliser.personaliseEva(part, actualSuitState, out useVisor, out visorReflectioncolor, isParachuteMoved, out isParachuteMoved, false))
                 {
                     case 0:     //IVA suit, if no air switch to state 1 : EVAground
                         actualSuitState = 0;
@@ -421,16 +435,16 @@ namespace TextureReplacerReplaced
                 }
             }          
             
-        /// ************************************************************************************
-        /// <summary>
-        /// OnDestroy() <see cref="Personaliser.TRR_EvaModule"/>
-        /// </summary>
-        /// ************************************************************************************
-        public void OnDestroy()
-            {
-                if (reflectionScript != null)
-                    reflectionScript.destroy();
-            }
+            /// ************************************************************************************
+            /// <summary>
+            /// OnDestroy() <see cref="Personaliser.TRR_EvaModule"/>
+            /// </summary>
+            /// ************************************************************************************
+            public void OnDestroy()
+                {
+                    if (reflectionScript != null)
+                        reflectionScript.destroy();
+                }
         }                     
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -536,8 +550,17 @@ namespace TextureReplacerReplaced
                     hash = kerbal.name.GetHashCode(),
                     gender = (int)kerbal.gender,
                     isVeteran = kerbal.veteran,
-                    isBadass = kerbal.isBadass
+                    isBadass = kerbal.isBadass,
+                    suitModel = (int)kerbal.suit
+
+                    
                 };
+
+//                 Util.log("{0} suitModel before = {1}", kerbal.name, kerbalData.suitModel);
+//                 kerbal.suit = ProtoCrewMember.KerbalSuit.Vintage;
+//                 Util.log("{0} suitModel AFTER = {1}", kerbal.name, kerbalData.suitModel);
+//                 Util.log("///////////////////");
+
                 gameKerbalsDB.Add(kerbal.name, kerbalData);
 
                 if (forceLegacyFemales)
@@ -643,11 +666,17 @@ namespace TextureReplacerReplaced
         /// <param name="needsEVAgroundSuit">Does the kerbal need a EVA ground suit ?</param>
         /// /// ////////////////////////////////////////////////////////////////////////////////////////
         private void personaliseKerbal(Component component, ProtoCrewMember protoKerbal, Part cabin, bool needsEVASuit, 
-            bool needsEVAgroundSuit, int suitState, out bool hasVisor, out Color32 visorReflection_Color)
+            bool needsEVAgroundSuit, int suitState, out bool hasVisor, out Color32 visorReflection_Color, bool isParachuteMovedIn, out bool isParachuteMovedOut, bool initialisation)
         {
             Personaliser personaliser = Personaliser.instance;
 
+            Replacer replacer = Replacer.instance;
+
+            Stitcher stitcher = new Stitcher();
+
             KerbalData kerbalData = getKerbalData(protoKerbal);
+
+           // Util.log("{0} 's KerbalSuit = {1}",protoKerbal.name, kerbalData.suitModel);
 
             int level = protoKerbal.experienceLevel;
 
@@ -665,7 +694,7 @@ namespace TextureReplacerReplaced
 
             Head_Set personaliseKerbal_Head = getKerbalHead(protoKerbal, kerbalData);
            
-            Suit_Set personaliseKerbal_Suit = getKerbalSuit(protoKerbal, kerbalData);
+            Suit_Set personaliseKerbal_Suit = getKerbalSuit(protoKerbal, kerbalData);            
 
             Suit_Filter suit_Filter = new Suit_Filter(kerbalData,level, personaliseKerbal_Suit);
             Suit_Selector suit_Selector = new Suit_Selector(kerbalData, level, personaliseKerbal_Suit);
@@ -679,11 +708,61 @@ namespace TextureReplacerReplaced
                 //flag.GetComponent<Renderer>().enabled = needsEVASuit;
                 flag.GetComponent<Renderer>().enabled = false;
 
-            // We must include hidden meshes, since flares are hidden when light is turned off.
-            // All other meshes are always visible, so no performance hit here.
-            foreach (Renderer renderer in model.GetComponentsInChildren<Renderer>(true))
-            {
+
+            //GameObject baseModel = component.transform.gameObject;
+
+            // check if the DLC is installed
+            if (ExpansionsLoader.IsExpansionInstalled("MakingHistory"))
+            {                
+                // we need to initialize the cloned mesh before we can safely use it
+                if (initialisation == true)
+                {
+                    GameObject baseModel = component.transform.gameObject;
+//                     SkinnedMeshRenderer baseBodySMR = new SkinnedMeshRenderer();
+//                     foreach (SkinnedMeshRenderer smr in baseModel.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+//                     {
+//                         switch (smr.name)
+//                         {
+//                             case "body01":
+//                             case "mesh_female_kerbalAstronaut01_body01":
+//                                 baseBodySMR = smr;
+//                                 break;
+//                         }
+//                     }
+
+                        Util.log("suit_Vintage_Male is loading +++");
+
+                    //GameObject suit_Vintage_Male = GameObject.Instantiate(replacer.suit_Vintage_Male_obj);
+
+                    //stitcher.Stitch(suit_Vintage_Male, baseModel);
+
+                    Util.log("suit_Vintage_Male is loaded !!! ");
+
+                    isSuit_Vintage_Male_loaded = true;
+
+
+                    Util.log("suit_Hazmat_Male is loading +++");
+
+                    GameObject suit_Hazmat_Male = GameObject.Instantiate(replacer.suit_Hazmat_Male_obj);
+
+                    stitcher.Stitch(suit_Hazmat_Male, baseModel);
+
+                    Util.log("suit_Hazmat_Male is loaded !!! ");
+
+                    isSuit_Hazmat_Male_loaded = true;
+
+
+                }
+            }
+            
+
+                // We must include hidden meshes, since flares are hidden when light is turned off.
+                // All other meshes are always visible, so no performance hit here.
+                foreach (Renderer renderer in model.GetComponentsInChildren<Renderer>(true))
+                {
                 var smr = renderer as SkinnedMeshRenderer;
+
+                
 
                 // Thruster jets, flag decals and headlight flares.
                 if (smr == null)
@@ -697,6 +776,7 @@ namespace TextureReplacerReplaced
                     Texture2D newTexture = null;
                     Texture2D newNormalMap = null;
 
+                   // Util.log("smr = {1}", smr.name);
                     switch (smr.name)
                     {
                         case "eyeballLeft":
@@ -906,7 +986,7 @@ namespace TextureReplacerReplaced
 
                         case "body01":
                         case "mesh_female_kerbalAstronaut01_body01":
-
+                            smr.GetComponentInChildren<Renderer>().enabled = false;
                             if (personaliseKerbal_Suit != null)
                             {   
                                 if (isEva) // if out of the vehicle
@@ -940,12 +1020,36 @@ namespace TextureReplacerReplaced
                                         break;
                                     }                                                                      
                                 }
-                            }
+                            }                            
+                            break;
+
+                        case "suit_Vintage_Male":
+                            break;
+
+                        case "helmet_Vintage_Male":
+                            break;
+
+                        case "jetpack_Vintage_Male":
+                            break;
+
+                        case "suit_Hazmat_Male":
+                            break;
+
+                        case "helmet_Hazmat_Male":
+                            break;
+
+                        case "helmetSupport_Hazmat_Male":
+                            break;
+
+                        case "visor_Hazmat_Male":
+                            break;
+
+                        case "jetpack_Hazmat_Male":
+
                             break;
 
                         case "helmet":
                         case "mesh_female_kerbalAstronaut01_helmet":
-                            
                             // Textures have to be replaced even when hidden since it may become visible later on situation change.
                             if (personaliseKerbal_Suit != null)
                             {
@@ -1041,7 +1145,6 @@ namespace TextureReplacerReplaced
 
                         case "visor":
                         case "mesh_female_kerbalAstronaut01_visor":
-
                             if (personaliseKerbal_Suit != null)
                             {
                                 if (isEva) // if out of the vehicle
@@ -1151,7 +1254,7 @@ namespace TextureReplacerReplaced
                         
 
                         case "jetpack":
-                        case "mesh_female_kerbalAstronaut01_jetpack":
+                        case "mesh_female_kerbalAstronaut01_jetpack":                           
 
                             if (personaliseKerbal_Suit != null)
                             {
@@ -1210,10 +1313,9 @@ namespace TextureReplacerReplaced
                             }
                             break;
 
-                            
+                                               
 
-                        default: // Jetpack.
-
+                        default: // Jetpack.                            
                             if (personaliseKerbal_Suit != null)
                             {
                                 if (isEva) // if out of the vehicle
@@ -1280,6 +1382,42 @@ namespace TextureReplacerReplaced
 
             hasVisor = useVisor;
             visorReflection_Color = visorReflectionColor;
+
+            // fix to move the parachute when the jetpack is hidden
+            if (isEva)
+            {
+                foreach (Transform trans in component.GetComponentsInChildren<Transform>())
+                {                    
+                    if (trans.name == "EVAparachute")
+                    {
+                        foreach (Renderer renderer in trans.GetComponentsInChildren<Renderer>(true))
+                        {
+                            renderer.GetComponentInChildren<Renderer>().enabled = false;
+                            //                             if (renderer.name != null)
+                            //                             Util.log("renderer in parachute : {1}", renderer.name);
+                            if (!needsEVASuit)
+                            {
+                                if (!isParachuteMovedIn)
+                                {
+                                    renderer.transform.localPosition += Vector3.forward * 0.1f;
+                                    renderer.transform.localPosition += Vector3.up * -0.03f;
+                                    isParachuteMovedIn = true;
+
+                                    //Color32 parachuteColor = new Color32(0, 255, 0, 255);
+                                    //renderer.sharedMaterial.color = parachuteColor;
+                                }
+                            }
+                            else
+                            {
+                                renderer.transform.localPosition = Vector3.zero;
+                                isParachuteMovedIn = false;
+                            }
+                                
+                        }
+                    }
+                }
+            }
+            isParachuteMovedOut = isParachuteMovedIn;
         }
         
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -1294,8 +1432,9 @@ namespace TextureReplacerReplaced
 
             Personaliser personaliser = Personaliser.instance;
             Color32 visorReflectionColor = new Color32(128, 128, 128, 255);
+            bool fakeParachuteBool = true;
 
-            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false, 0, out hasVisor, out visorReflectionColor);
+            personaliseKerbal(kerbal, kerbal.protoCrewMember, kerbal.InPart, needsSuit, false, 0, out hasVisor, out visorReflectionColor, fakeParachuteBool, out fakeParachuteBool, false);           
         }
 
         /// ////////////////////////////////////////////////////////////////////////////////////////
@@ -1355,12 +1494,14 @@ namespace TextureReplacerReplaced
         /// <para>2 = EVA space suit</para></param>
         /// <returns>The selected suit set after the <see cref="isAtmBreathable"/> test</returns>
         /// ////////////////////////////////////////////////////////////////////////////////////////
-        private int personaliseEva(Part evaPart, int suitSelection, out bool hasVisor, out Color32 visorReflectionColor)
+        private int personaliseEva(Part evaPart, int suitSelection, out bool hasVisor, out Color32 visorReflectionColor, bool isParachuteMovedIn, out bool isParachuteMovedOut,bool initialisation)
         {
             int selection = suitSelection;
             bool evaSuit = false;
             bool evaGroundSuit = false;
             bool useVisor = true;
+            //bool isParachuteFixed = true;
+            //isParachuteFixed = isParachuteMoved;
             Color32 reflectionColor = new Color32(128, 128, 128, 255);
             Personaliser personaliser = Personaliser.instance;
 
@@ -1430,10 +1571,11 @@ namespace TextureReplacerReplaced
                         break;
 
                 }                
-                personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit,selection, out useVisor, out reflectionColor);
+                personaliseKerbal(evaPart, crew[0], null, evaSuit, evaGroundSuit,selection, out useVisor, out reflectionColor, isParachuteMovedIn, out isParachuteMovedIn, initialisation);
             }
             hasVisor = useVisor;
             visorReflectionColor = reflectionColor;
+            isParachuteMovedOut = isParachuteMovedIn;
             return selection;
         }        
 

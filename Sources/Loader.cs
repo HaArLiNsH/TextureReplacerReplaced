@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright © 2017 HaArLiNsH
+ * Copyright © 2017-2018 HaArLiNsH
  * Copyright © 2013-2017 Davorin Učakar, RangeMachine
  * Copyright © 2013 Ryan Bray
  *

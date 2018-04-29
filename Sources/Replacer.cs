@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright © 2017 HaArLiNsH
+ * Copyright © 2017-2018 HaArLiNsH
  * Copyright © 2013-2017 Davorin Učakar, RangeMachine
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -75,6 +75,494 @@ namespace TextureReplacerReplaced
         /// </summary>
         public static Replacer instance = null;
 
+
+        public GameObject suit_Vintage_Male_obj = new GameObject("suit_Vintage_Male");
+//         public GameObject helmet_Vintage_Male_obj = new GameObject("helmet_Vintage_Male");
+//         public GameObject jetpack_Vintage_Male_obj = new GameObject("jetpack_Vintage_Male");
+
+        public SkinnedMeshRenderer suit_Vintage_Male_smrSRC = null;
+
+        public SkinnedMeshRenderer helmet_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer visor_Vintage_Male_smrSRC = null;
+
+        public SkinnedMeshRenderer jetpack_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer tank1_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer tank2_Vintage_Male_smrSRC = null;
+
+        public SkinnedMeshRenderer arm_r_handle01_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer arm_r_arm_b01_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer arm_r_arm_a01_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer arm_r_handleCtrl01_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer arm_r_pivotA01_Vintage_Male_smrSRC = null;
+
+        public SkinnedMeshRenderer arm_l_handle01_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer arm_l_arm_b01_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer arm_l_arm_a01_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer arm_l_handleCtrl01_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer arm_l_pivotA01_Vintage_Male_smrSRC = null;
+
+        public SkinnedMeshRenderer thruster_r01_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_r02_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_r03_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_r04_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_r05_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_r06_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_r07_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_r08_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_r09_Vintage_Male_smrSRC = null;
+
+        public SkinnedMeshRenderer thruster_l01_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_l02_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_l03_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_l04_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_l05_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_l06_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_l07_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_l08_Vintage_Male_smrSRC = null;
+        public SkinnedMeshRenderer thruster_l09_Vintage_Male_smrSRC = null;
+
+        public GameObject suit_Hazmat_Male_obj = new GameObject("suit_Hazmat_Male");
+
+        public SkinnedMeshRenderer suit_Hazmat_Male_smrSRC = null;
+        public SkinnedMeshRenderer helmet_Hazmat_Male_smrSRC = null;
+        public SkinnedMeshRenderer helmetSupport_Hazmat_Male_smrSRC = null;
+        public SkinnedMeshRenderer visor_Hazmat_Male_smrSRC = null;
+        public SkinnedMeshRenderer jetpack_Hazmat_Male_smrSRC = null;
+
+        Dictionary<string, Transform> kerbalEVA_BonesCatalog = new Dictionary<string, Transform>();
+        Dictionary<string, Transform> hazmat_BonesCatalog = new Dictionary<string, Transform>();
+
+        public Transform hazmat_bones = null;
+        public Transform kerbalEVA_bones = null;
+
+
+        private void saveMeshes (Part maleEva)
+        {
+            Util.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            Util.log("List of objects");
+
+            foreach (GameObject obj in Resources.FindObjectsOfTypeAll<GameObject>())
+            {
+
+                if (obj.name == "kbEVAVintage")
+                {
+                    Util.log("found kbEVAVintage +++");
+
+                    suit_Vintage_Male_obj = obj;
+
+                    var srcSuit_Transf = suit_Vintage_Male_obj.transform.Find("model01");
+                    foreach (Transform t in srcSuit_Transf.transform)
+                    {
+                        //Util.log("{0} ===", t.name);
+                        switch (t.name)
+                        {
+                            case "body01":// look for the body and name the new SkinnedMeshRenderer
+                                suit_Vintage_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                suit_Vintage_Male_smrSRC.name = "suit_Vintage_Male";
+                                Util.log("body ok ---");
+                                break;
+
+                            case "head02":// look for the head and destroy it (we already have a head)
+                                t.gameObject.DestroyGameObject();
+                                Util.log("head ok ---");
+                                break;
+
+                            case "helmet01":
+                                // look for the helmet and name the new SkinnedMeshRenderer
+                                var srcHelmet_Transf = t.transform.Find("helmet");
+                                helmet_Vintage_Male_smrSRC = srcHelmet_Transf.GetComponent<SkinnedMeshRenderer>();
+                                helmet_Vintage_Male_smrSRC.name = "helmet_Vintage_Male";
+                                Util.log("helmet ok ---");
+
+                                // look for the visor and name the new SkinnedMeshRenderer
+                                var srcVisor_Transf = t.transform.Find("visor");
+                                visor_Vintage_Male_smrSRC = srcVisor_Transf.GetComponent<SkinnedMeshRenderer>();
+                                visor_Vintage_Male_smrSRC.name = "visor_Vintage_Male";
+                                Util.log("visor ok ---");
+                                break;
+
+                             
+                            case "jetpack01":// look for the jetpack and all his subcomponent and name the news SkinnedMeshRenderers
+
+                                var tank1 = t.transform.Find("tank1");
+                                tank1_Vintage_Male_smrSRC = tank1.GetComponent<SkinnedMeshRenderer>();
+                                tank1_Vintage_Male_smrSRC.name = "tank1_Vintage_Male";
+                                Util.log("tank1 ok ---");
+
+                                var tank2 = t.transform.Find("tank2");
+                                tank2_Vintage_Male_smrSRC = tank1.GetComponent<SkinnedMeshRenderer>();
+                                tank2_Vintage_Male_smrSRC.name = "tank2_Vintage_Male";
+                                Util.log("tank2 ok ---");
+
+                                var jetpack_base01 = t.transform.Find("jetpack_base01");
+                                jetpack_Vintage_Male_smrSRC = jetpack_base01.GetComponent<SkinnedMeshRenderer>();
+                                jetpack_Vintage_Male_smrSRC.name = "jetpack_Vintage_Male";
+                                Util.log("jetpack_base01 ok ---");
+
+                                var grp_r_arm01 = t.transform.Find("grp_r_arm01");
+                                foreach (Transform tr in grp_r_arm01.transform)
+                                {
+                                    switch (tr.name)
+                                    {
+                                        case "arm_r_handle01": 
+                                            arm_r_handle01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            arm_r_handle01_Vintage_Male_smrSRC.name = "arm_r_handle01_Vintage_Male";
+                                            break;
+
+                                        case "arm_r_arm_b01":
+                                            arm_r_arm_b01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            arm_r_arm_b01_Vintage_Male_smrSRC.name = "arm_r_arm_b01_Vintage_Male";
+                                            break;                                       
+
+                                        case "arm_r_arm_a01":
+                                            arm_r_arm_a01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            arm_r_arm_a01_Vintage_Male_smrSRC.name = "arm_r_arm_a01_Vintage_Male";
+                                            break;
+
+                                        case "arm_r_handleCtrl01":
+                                            arm_r_handleCtrl01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            arm_r_handleCtrl01_Vintage_Male_smrSRC.name = "arm_r_handleCtrl01_Vintage_Male";
+                                            break;
+
+                                        case "arm_r_pivotA01":
+                                            arm_r_pivotA01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            arm_r_pivotA01_Vintage_Male_smrSRC.name = "arm_r_pivotA01_Vintage_Male";
+                                            break;
+                                    }
+                                }
+                                Util.log("grp_r_arm01 ok ---");
+
+                                var grp_l_arm01 = t.transform.Find("grp_l_arm01");
+                                foreach (Transform tr in grp_l_arm01.transform)
+                                {
+                                    switch (tr.name)
+                                    {
+                                        case "arm_l_handle01":
+                                            arm_l_handle01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            arm_l_handle01_Vintage_Male_smrSRC.name = "arm_l_handle01_Vintage_Male";
+                                            break;
+
+                                        case "arm_l_arm_b01":
+                                            arm_l_arm_b01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            arm_l_arm_b01_Vintage_Male_smrSRC.name = "arm_l_arm_b01_Vintage_Male";
+                                            break;
+
+                                        case "arm_l_arm_a01":
+                                            arm_l_arm_a01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            arm_l_arm_a01_Vintage_Male_smrSRC.name = "arm_l_arm_a01_Vintage_Male";
+                                            break;
+
+                                        case "arm_l_handleCtrl01":
+                                            arm_l_handleCtrl01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            arm_l_handleCtrl01_Vintage_Male_smrSRC.name = "arm_l_handleCtrl01_Vintage_Male";
+                                            break;
+
+                                        case "arm_l_pivotA01":
+                                            arm_l_pivotA01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            arm_l_pivotA01_Vintage_Male_smrSRC.name = "arm_l_pivotA01_Vintage_Male";
+                                            break;
+                                    }
+                                }
+                                Util.log("grp_l_arm01 ok ---");
+
+
+                                var thrusters_r = t.transform.Find("thrusters_r");
+                                foreach (Transform tr in thrusters_r.transform)
+                                {
+                                    switch (tr.name)
+                                    {
+                                        case "thruster_r01":
+                                            thruster_r01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_r01_Vintage_Male_smrSRC.name = "thruster_r01_Vintage_Male";
+                                            break;
+
+                                        case "thruster_r02":
+                                            thruster_r02_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_r02_Vintage_Male_smrSRC.name = "thruster_r02_Vintage_Male";
+                                            break;
+
+                                        case "thruster_r03":
+                                            thruster_r03_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_r03_Vintage_Male_smrSRC.name = "thruster_r03_Vintage_Male";
+                                            break;
+
+                                        case "thruster_r04":
+                                            thruster_r04_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_r04_Vintage_Male_smrSRC.name = "thruster_r04_Vintage_Male";
+                                            break;
+
+                                        case "thruster_r05":
+                                            thruster_r05_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_r05_Vintage_Male_smrSRC.name = "thruster_r05_Vintage_Male";
+                                            break;
+
+                                        case "thruster_r06":
+                                            thruster_r06_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_r06_Vintage_Male_smrSRC.name = "thruster_r06_Vintage_Male";
+                                            break;
+
+                                        case "thruster_r07":
+                                            thruster_r07_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_r07_Vintage_Male_smrSRC.name = "thruster_r07_Vintage_Male";
+                                            break;
+
+                                        case "thruster_r08":
+                                            thruster_r08_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_r08_Vintage_Male_smrSRC.name = "thruster_r08_Vintage_Male";
+                                            break;
+
+                                        case "thruster_r09":
+                                            thruster_r09_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_r09_Vintage_Male_smrSRC.name = "thruster_r09_Vintage_Male";
+                                            break;
+                                    }
+                                }
+                                Util.log("thrusters_r ok ---");
+
+                                var thrusters_l = t.transform.Find("thrusters_l");
+                                foreach (Transform tr in thrusters_l.transform)
+                                {
+                                    switch (tr.name)
+                                    {
+                                        case "thruster_l01":
+                                            thruster_l01_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_l01_Vintage_Male_smrSRC.name = "thruster_l01_Vintage_Male";
+                                            break;
+
+                                        case "thruster_l02":
+                                            thruster_l02_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_l02_Vintage_Male_smrSRC.name = "thruster_l02_Vintage_Male";
+                                            break;
+
+                                        case "thruster_l03":
+                                            thruster_l03_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_l03_Vintage_Male_smrSRC.name = "thruster_l03_Vintage_Male";
+                                            break;
+
+                                        case "thruster_l04":
+                                            thruster_l04_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_l04_Vintage_Male_smrSRC.name = "thruster_l04_Vintage_Male";
+                                            break;
+
+                                        case "thruster_l05":
+                                            thruster_l05_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_l05_Vintage_Male_smrSRC.name = "thruster_l05_Vintage_Male";
+                                            break;
+
+                                        case "thruster_l06":
+                                            thruster_l06_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_l06_Vintage_Male_smrSRC.name = "thruster_l06_Vintage_Male";
+                                            break;
+
+                                        case "thruster_l07":
+                                            thruster_l07_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_l07_Vintage_Male_smrSRC.name = "thruster_l07_Vintage_Male";
+                                            break;
+
+                                        case "thruster_l08":
+                                            thruster_l08_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_l08_Vintage_Male_smrSRC.name = "thruster_l08_Vintage_Male";
+                                            break;
+
+                                        case "thruster_l09":
+                                            thruster_l09_Vintage_Male_smrSRC = tr.GetComponent<SkinnedMeshRenderer>();
+                                            thruster_l09_Vintage_Male_smrSRC.name = "thruster_l09_Vintage_Male";
+                                            break;
+                                    }
+                                }
+                                Util.log("thrusters_l ok ---");
+
+                                break;
+
+
+                        }
+                    }
+
+                    
+
+                    // look for the body and name the new SkinnedMeshRenderer
+//                     var srcBody_Transf = suit_Vintage_Male_obj.transform.Find("model01/body01"); 
+//                     suit_Vintage_Male_smrSRC = srcBody_Transf.GetComponent<SkinnedMeshRenderer>();
+//                     suit_Vintage_Male_smrSRC.name = "suit_Vintage_Male";
+//                     Util.log("body ok ---");
+
+                    // look for the head and destroy it (we already have a head)
+//                     var srcHead_Transf = suit_Vintage_Male_obj.transform.Find("model01/head02");                    
+//                     srcHead_Transf.gameObject.DestroyGameObject();
+//                     Util.log("head ok ---");
+
+                    // look for the helmet and name the new SkinnedMeshRenderer
+//                     foreach (Transform t in suit_Vintage_Male_obj.transform)
+//                     {
+//                         Util.log("{0} ===",t.name);
+//                     }
+//                     var srcHelmet_Tansf = suit_Vintage_Male_obj.transform.Find("helmet01");
+//                     helmet_Vintage_Male_smrSRC = srcHelmet_Tansf.GetComponent<SkinnedMeshRenderer>();
+//                     helmet_Vintage_Male_smrSRC.name = "helmet_Vintage_Male";
+//                     Util.log("helmet ok ---");
+
+                    // look for the jetpack and name the new SkinnedMeshRenderer
+//                     var srcJetpack_Tansf = suit_Vintage_Male_obj.transform.Find("jetpack01");
+//                     jetpack_Vintage_Male_smrSRC = srcJetpack_Tansf.GetComponent<SkinnedMeshRenderer>();
+//                     jetpack_Vintage_Male_smrSRC.name = "jetpack_Vintage_Male";
+//                     Util.log("jetpack ok ---");
+                }
+
+                if (obj.name == " kbEVAFemaleVintage")
+                {
+                    Util.log("found  kbEVAFemaleVintage +++");
+                }
+
+                if (obj.name == "female01")
+                {
+                    Util.log("found female01 +++");
+                }
+
+
+                if (obj.name == "mortimer")
+                {
+                    Util.log("found mortimer (VIP) +++");
+                }
+
+                if (obj.name == "PR_Guy")
+                {
+                    Util.log("found PR_Guy (Hazmat) +++");
+
+                    suit_Hazmat_Male_obj = obj;
+
+
+                    hazmat_bones = obj.transform.Find("globalMove01");
+
+                   // hazmat_bones.gameObject.DestroyGameObject();
+
+                    hazmat_BonesCatalog = new Stitcher.TransformCatalog(hazmat_bones.transform);
+
+
+                    var srcSuit_Transf = suit_Hazmat_Male_obj.transform.Find("model01");
+                    //Util.log("found model01 ******* ");
+                    var srcSuit_Transf_hazmat = srcSuit_Transf.transform.Find("hazmatmodel01");
+                    //Util.log("found hazmatmodel01 ******* ");
+                    var srcSuit_Transf_head = srcSuit_Transf.transform.Find("head02");
+                    Util.log("found head02 ******* ");
+                    srcSuit_Transf_head.gameObject.DestroyGameObject();
+                    foreach (Transform t in srcSuit_Transf_hazmat.transform)
+                    {
+                        switch (t.name)
+                        {
+                            case "body01":
+                                suit_Hazmat_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                suit_Hazmat_Male_smrSRC.name = "suit_Hazmat_Male";
+                                Util.log("body01 ok ---");
+                                break;
+
+                            case "mesh_hazm_helmet":
+                                helmet_Hazmat_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                helmet_Hazmat_Male_smrSRC.name = "helmet_Hazmat_Male";
+                                Util.log("mesh_hazm_helmet ok ---");
+                                break;
+
+                            case "mesh_helmet_support":
+                                helmetSupport_Hazmat_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                helmetSupport_Hazmat_Male_smrSRC.name = "helmetSupport_Hazmat_Male";
+                                Util.log("mesh_helmet_support ok ---");
+                                break;
+
+                            case "mesh_hazm_visor":
+                                visor_Hazmat_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                visor_Hazmat_Male_smrSRC.name = "visor_Hazmat_Male";
+                                Util.log("mesh_hazm_visor ok ---");
+                                break;
+
+                            case "mesh_backpack":
+                                jetpack_Hazmat_Male_smrSRC = t.GetComponent<SkinnedMeshRenderer>();
+                                jetpack_Hazmat_Male_smrSRC.name = "jetpack_Hazmat_Male";
+                                Util.log("mesh_backpack ok ---");
+                                break;
+                        }
+                    }
+                }
+
+                if (obj.name == "Gus")
+                {
+                    Util.log("found Gus (worker) +++");
+                }
+
+                if (obj.name == "linus")
+                {
+                    Util.log("found linus (scientist) +++");
+                }
+
+                if (obj.name == "WernerVonKerman")
+                {
+                    Util.log("found WernerVonKerman +++");
+
+                }
+
+                if (obj.name == "GroundCrew01")
+                {
+                    Util.log("found GroundCrew01 +++");
+                }
+
+                if (obj.name == "Mechanic01")
+                {
+                    Util.log("found Mechanic01 +++");
+                }
+
+                if (obj.name == "kerbalEVA")
+                {
+                    Util.log("found KerbalEVA +++");
+
+                    kerbalEVA_bones = obj.transform.Find("globalMove01");
+
+                    kerbalEVA_BonesCatalog = new Stitcher.TransformCatalog(kerbalEVA_bones.transform);
+                }
+
+            }
+           /* Util.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+            Util.log("list of Hazmat bones :   ");
+            foreach (String s in hazmat_BonesCatalog.Keys)
+            {
+                Util.log(s);
+            }
+
+            Util.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+            Util.log("list of KerbalEVA bones :   ");
+            foreach (String s in kerbalEVA_BonesCatalog.Keys)
+            {
+                Util.log(s);
+            }
+
+            Util.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            Util.log("bones diff :   ");
+            var intersection = kerbalEVA_BonesCatalog.Keys.Intersect(hazmat_BonesCatalog.Keys);
+            Util.log("intersection :");
+            foreach (String s in intersection)
+            {
+
+                Util.log(s);
+            }
+
+            var extraKeysInA = hazmat_BonesCatalog.Keys.Except(intersection);
+            var extraKeysInB = kerbalEVA_BonesCatalog.Keys.Except(intersection);
+            Util.log("extra in Hazmat :  ");
+            foreach (String s in extraKeysInA)
+            {
+               
+                Util.log(s);
+            }
+            Util.log("extra in kerbalEVA :   ");
+            foreach (String s in extraKeysInB)
+            {
+                
+                Util.log(s);
+            }*/
+
+            //hazmat_bones.gameObject.transform = kerbalEVA_bones.transform;
+
+
+        }
+
+
         /// ////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// General texture replacement step.
@@ -84,6 +572,9 @@ namespace TextureReplacerReplaced
         {
             foreach (Material material in Resources.FindObjectsOfTypeAll<Material>())
             {
+                if (!material.HasProperty("_MainTex"))
+                continue;
+
                 Texture texture = material.mainTexture;
 
                 if (texture == null || texture.name.Length == 0 || texture.name.StartsWith("Temp", StringComparison.Ordinal))
@@ -106,6 +597,9 @@ namespace TextureReplacerReplaced
                         UnityEngine.Object.Destroy(texture);
                     }
                 }
+
+                if (!material.HasProperty(Util.BUMPMAP_PROPERTY))
+                    continue;
 
                 Texture normalMap = material.GetTexture(Util.BUMPMAP_PROPERTY);
                 if (normalMap == null)
@@ -248,6 +742,8 @@ namespace TextureReplacerReplaced
                 femaleIva.GetComponentsInChildren<SkinnedMeshRenderer>(true),
                 femaleEva.GetComponentsInChildren<SkinnedMeshRenderer>(true)
             };
+
+            saveMeshes(maleEva);            
 
             // Male materials to be copied to females to fix tons of female issues (missing normal maps, non-bumpmapped
             // shaders, missing teeth texture ...)

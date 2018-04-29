@@ -18,8 +18,12 @@
     <NoWarn>
     </NoWarn>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Stitcher.cs" />
     <Compile Include="Suit_Selector.cs" />
     <Compile Include="Suit_Filter.cs" />
     <Compile Include="KerbalData.cs" />
@@ -41,18 +45,21 @@
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>E:\KSP 1.3.1\Kerbal Space Program\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\KSP 1.4.3\Kerbal Space Program\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.XML" />
-    <Reference Include="UnityEngine">
-      <HintPath>E:\KSP 1.3.1\Kerbal Space Program\KSP_Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\KSP 1.4.3\Kerbal Space Program\KSP_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y "$(TargetPath)" "D:\KSP 1.4.3\Kerbal Space Program\GameData\TextureReplacerReplaced\Plugins"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
